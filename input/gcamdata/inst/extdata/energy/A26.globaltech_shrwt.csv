@@ -22,10 +22,7 @@ aviation fuels,biodiesel,oilcrop biodiesel,1,1,1,1
 aviation fuels,biodiesel,rapeseed biodiesel,1,1,1,1
 aviation fuels,biodiesel,palmfruit biodiesel,1,1,1,1
 aviation fuels,biodiesel,soybean biodiesel,1,1,1,1
-aviation fuels,renewable diesel,oilcrop renewable diesel,0,0,1,1
-aviation fuels,renewable diesel,rapeseed renewable diesel,0,0,1,1
-aviation fuels,renewable diesel,palmfruit renewable diesel,0,0,1,1
-aviation fuels,renewable diesel,soybean renewable diesel,0,0,1,1
+aviation fuels,renewable diesel,renewable diesel,0,0,1,1
 refined liquids enduse,refined oil,refined oil,1,1,1,1
 refined liquids enduse,biodiesel,oilcrop biodiesel,1,1,1,1
 refined liquids enduse,biodiesel,rapeseed biodiesel,1,1,1,1

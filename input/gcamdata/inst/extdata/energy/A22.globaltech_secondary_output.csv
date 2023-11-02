@@ -1,0 +1,9 @@
+# File: A22.globaltech_secondary_output.csv
+# Title: Primary energy transformation default technology shareweights
+# Units: N/A
+# Description: Jet fuel secondary outputs of renewable diesel and oil refining
+# Column types: ccccn
+# ----------
+supplysector,subsector,technology,secondary.output,output.ratio
+soybean RD jet high,soybean RD jet high,soybean RD jet high,RD jet fuel,1
+soybean RD jet low,soybean RD jet low,soybean RD jet low,RD jet fuel,0.2

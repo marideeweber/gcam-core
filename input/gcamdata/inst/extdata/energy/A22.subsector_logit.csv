@@ -18,6 +18,9 @@ sugar cane ethanol,sugar cane ethanol,-6,absolute-cost-logit
 cellulosic ethanol,cellulosic ethanol,-6,absolute-cost-logit
 corn ethanol,corn ethanol,-6,absolute-cost-logit
 soybean biodiesel,soybean biodiesel,-6,
-rapeseed biodiesel,rapeseed biodiesel,-6,
-oilpalm biodiesel,oilpalm biodiesel,-6,
-oilcrop biodiesel,oilcrop biodiesel,-6,
+soybean renewable diesel,soybean renewable diesel,-6,
+rapeseed renewable diesel,rapeseed renewable diesel,-6,
+palmfruit renewable diesel,palmfruit renewable diesel,-6,
+oilcrop renewable diesel,oilcrop renewable diesel,-6,
+soybean RD jet high,soybean RD jet high,-6,
+soybean RD jet low,soybean RD jet low,-6,

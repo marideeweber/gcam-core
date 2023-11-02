@@ -15,7 +15,7 @@
 #'  \code{L222.GlobalTechCost_en}, \code{L222.GlobalTechShrwt_en}, \code{L222.GlobalTechCapture_en},
 #'  \code{L222.GlobalTechShutdown_en}, \code{L222.GlobalTechSCurve_en}, \code{L222.GlobalTechLifetime_en},
 #'  \code{L222.GlobalTechProfitShutdown_en}, \code{L222.StubTechProd_gasproc}, \code{L222.StubTechProd_refining},
-#'   \code{L222.StubTechCoef_refining}, \code{L222.GlobalTechCost_low_en}. The corresponding file in the
+#'   \code{L222.StubTechCoef_refining}, \code{L222.GlobalTechCost_low_en}, \code{L222.GlobalTechSecOut}. The corresponding file in the
 #' original data system was \code{L222.en_transformation.R} (energy level2).
 #' @details This chunk sets up the energy transformation global technology database as well as writing out assumptions to all regions for shareweights and logits.
 #' Calibrated outputs for gas processing and oil refining as well as I:O coefficients are interpolated from historical values to base model years.
@@ -79,9 +79,53 @@ module_energy_L222.en_transformation <- function(command, ...) {
       "L222.biofuel_type_filter_R")
 
   if(command == driver.DECLARE_INPUTS) {
-    return(MODULE_INPUTS)
+    return(c(FILE = "common/GCAM_region_names",
+             FILE = "energy/calibrated_techs",
+             FILE = "energy/A_regions",
+             FILE = "energy/A22.sector",
+             FILE = "energy/A22.subsector_logit",
+             FILE = "energy/A22.subsector_shrwt",
+             FILE = "energy/A22.subsector_interp",
+             FILE = "energy/A22.globaltech_coef",
+             FILE = "energy/A22.globaltech_cost",
+             # Note: Low indicates low tech. Costs are actually higher than core
+             FILE = "energy/A22.globaltech_cost_low",
+             FILE = "energy/A22.globaltech_shrwt",
+             FILE = "energy/A22.globaltech_interp",
+             FILE = "energy/A22.globaltech_co2capture",
+             FILE = "energy/A22.globaltech_retirement",
+             FILE = "energy/A22.globaltech_secondary_output",
+             "L121.share_R_TPES_biofuel_tech",
+             FILE = "energy/A22.globaltech_keyword",
+             "L122.out_EJ_R_gasproc_F_Yh",
+             "L122.out_EJ_R_refining_F_Yh",
+             "L122.IO_R_oilrefining_F_Yh"))
   } else if(command == driver.DECLARE_OUTPUTS) {
-    return(MODULE_OUTPUTS)
+    return(c("L222.Supplysector_en",
+             "L222.SectorUseTrialMarket_en",
+             "L222.SubsectorLogit_en",
+             "L222.SubsectorShrwt_en",
+             "L222.SubsectorShrwtFllt_en",
+             "L222.SubsectorInterp_en",
+             "L222.SubsectorInterpTo_en",
+             "L222.StubTech_en",
+             "L222.GlobalTechInterp_en",
+             "L222.GlobalTechCoef_en",
+             "L222.GlobalTechCost_en",
+             "L222.GlobalTechShrwt_en",
+             "L222.GlobalTechCapture_en",
+             "L222.GlobalTechShutdown_en",
+             "L222.GlobalTechSCurve_en",
+             "L222.GlobalTechLifetime_en",
+             "L222.GlobalTechProfitShutdown_en",
+             "L222.GlobalTechKeyword_en",
+             "L222.StubTechProd_gasproc",
+             "L222.StubTechProd_refining",
+             "L222.StubTechCoef_refining",
+             "L222.GlobalTechCost_low_en",
+             "L222.AbsCostLogitBaseValue_ethanol",
+             "L222.biofuel_type_filter_R",
+             "L222.GlobalTechSecOut"))
   } else if(command == driver.MAKE) {
 
     all_data <- list(...)[[1]]
@@ -404,8 +448,16 @@ module_energy_L222.en_transformation <- function(command, ...) {
       filter(year %in% MODEL_YEARS) ->
       L222.GlobalTechKeyword_en
 
-    #2d. Calibration and region-specific data ----
-    # gas ----
+    # L222.GlobalTechSecondaryOutput: Global tech secondary outputs
+    # (for renewable diesel jet fuel secondary output)
+    # addition TRW 11/2/23
+    A22.globaltech_secondary_output %>%
+      repeat_add_columns(tibble(year = c(MODEL_BASE_YEARS, MODEL_FUTURE_YEARS))) %>%
+      rename(sector.name = supplysector, subsector.name = subsector) %>%
+      select(LEVEL2_DATA_NAMES[["GlobalTechSecOut"]]) ->
+      L222.GlobalTechSecOut
+
+    #2d. Calibration and region-specific data
     #  generate base year calibrated outputs of gas processing by interpolating from historical values
     L122.out_EJ_R_gasproc_F_Yh %>%
       complete(nesting(GCAM_region_ID, sector, fuel), year = c(year, MODEL_BASE_YEARS)) %>%
@@ -752,8 +804,21 @@ module_energy_L222.en_transformation <- function(command, ...) {
       add_precursors("energy/A_regions", "L121.share_R_TPES_biofuel_tech") ->
       L222.biofuel_type_filter_R
 
-    return_data(MODULE_OUTPUTS)
+    L222.GlobalTechSecOut %>%
+      add_title("Secondary outputs for refining techs") %>%
+      add_units("none") %>%
+      add_comments("Used to add jet fuel as secondary output of renewable diesel") %>%
+      add_precursors("energy/A22.globaltech_secondary_output") ->
+      L222.GlobalTechSecOut
 
+    return_data(L222.Supplysector_en, L222.SectorUseTrialMarket_en, L222.SubsectorLogit_en, L222.SubsectorShrwt_en,
+                L222.SubsectorShrwtFllt_en, L222.SubsectorInterp_en, L222.SubsectorInterpTo_en,
+                L222.StubTech_en, L222.GlobalTechInterp_en, L222.GlobalTechCoef_en, L222.GlobalTechCost_en,
+                L222.GlobalTechShrwt_en, L222.GlobalTechCapture_en, L222.GlobalTechShutdown_en,
+                L222.GlobalTechSCurve_en, L222.GlobalTechLifetime_en, L222.GlobalTechProfitShutdown_en,
+                L222.StubTechProd_gasproc, L222.StubTechProd_refining, L222.StubTechCoef_refining,
+                L222.GlobalTechCost_low_en, L222.GlobalTechKeyword_en, L222.AbsCostLogitBaseValue_ethanol,
+                L222.biofuel_type_filter_R, L222.GlobalTechSecOut)
   } else {
     stop("Unknown command")
   }
