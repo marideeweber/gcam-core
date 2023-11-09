@@ -55,8 +55,4 @@ oilcrop renewable diesel,oilcrop renewable diesel,oilcrop renewable diesel,H2 in
 soybean RD jet high,soybean RD jet high,soybean RD jet high,regional biomassOil soybean,1.0685,1.0685,1.0685
 soybean RD jet high,soybean RD jet high,soybean RD jet high,wholesale gas,0.0186,0.0186,0.0186
 soybean RD jet high,soybean RD jet high,soybean RD jet high,elect_td_ind,0.0098,0.0098,0.0098
-soybean RD jet low,soybean RD jet low,soybean RD jet low,H2 industrial,0.1095,0.1095,0.1095
-soybean RD jet low,soybean RD jet low,soybean RD jet low,regional biomassOil soybean,1.0685,1.0685,1.0685
-soybean RD jet low,soybean RD jet low,soybean RD jet low,wholesale gas,0.0186,0.0186,0.0186
-soybean RD jet low,soybean RD jet low,soybean RD jet low,elect_td_ind,0.0098,0.0098,0.0098
-soybean RD jet low,soybean RD jet low,soybean RD jet low,H2 industrial,0.1095,0.1095,0.1095
+soybean RD jet high,soybean RD jet high,soybean RD jet high,H2 industrial,0.1095,0.1095,0.1095

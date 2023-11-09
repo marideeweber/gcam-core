@@ -5,5 +5,4 @@
 # Column types: ccccn
 # ----------
 supplysector,subsector,technology,secondary.output,output.ratio
-soybean RD jet high,soybean RD jet high,soybean RD jet high,RD jet fuel,1
-soybean RD jet low,soybean RD jet low,soybean RD jet low,RD jet fuel,0.2
+soybean RD jet high,soybean RD jet high,soybean RD jet high,soybean RD jet fuel,1

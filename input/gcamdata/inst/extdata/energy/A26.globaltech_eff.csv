@@ -17,11 +17,7 @@ gas pipeline,gas pipeline,gas pipeline,gas processing,1,1,1
 wholesale gas,wholesale gas,wholesale gas,gas pipeline,1,1,1
 delivered gas,delivered gas,delivered gas,gas pipeline,1,1,1
 aviation fuels,refined oil,refined oil,regional refined oil,1,1,1
-aviation fuels,biodiesel,oilcrop biodiesel,regional oilcrop biodiesel,1,1,1
-aviation fuels,biodiesel,rapeseed biodiesel,regional rapeseed biodiesel,1,1,1
-aviation fuels,biodiesel,palmfruit biodiesel,regional palmfruit biodiesel,1,1,1
-aviation fuels,biodiesel,soybean biodiesel,regional soybean biodiesel,1,1,1
-aviation fuels,renewable diesel,renewable diesel,RD jet fuel,1,1,1
+aviation fuels,renewable diesel,soybean renewable diesel,soybean RD jet fuel,1,1,1
 refined liquids enduse,refined oil,refined oil,regional refined oil,1,1,1
 refined liquids enduse,biodiesel,soybean biodiesel refining,regional soybean biodiesel,1,1,1
 refined liquids enduse,biodiesel,oilcrop biodiesel refining,regional oilcrop biodiesel,1,1,1
