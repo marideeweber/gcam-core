@@ -1,0 +1,11 @@
+# File: A22.jet_credits.csv
+# Title: Jet fuel production credits
+# Units: N/A
+# Description: Credits to produce jet fuels from joint liquids sectors
+# Column types: cci
+# ----------
+policy.portfolio.standard,policyType,constraint
+soybean renewable diesel jet credit,RES,1
+rapeseed renewable diesel jet credit,RES,1
+palmfruit renewable diesel jet credit,RES,1
+oilcrop renewable diesel jet credit,RES,1

@@ -4,5 +4,8 @@
 # Description: Jet fuel secondary outputs of renewable diesel and oil refining
 # Column types: ccccn
 # ----------
-supplysector,subsector,technology,secondary.output,output.ratio
-soybean RD jet high,soybean RD jet high,soybean RD jet high,soybean RD jet fuel,1
+supplysector,subsector,technology,res.secondary.output,output.ratio
+soybean renewable diesel joint,soybean renewable diesel joint,soybean renewable diesel joint,soybean renewable diesel jet credit,0.1
+rapeseed renewable diesel joint,rapeseed renewable diesel joint,rapeseed renewable diesel joint,rapeseed renewable diesel jet credit,0.1
+palmfruit renewable diesel joint,palmfruit renewable diesel joint,palmfruit renewable diesel joint,palmfruit renewable diesel jet credit,0.1
+oilcrop renewable diesel joint,oilcrop renewable diesel joint,oilcrop renewable diesel joint,oilcrop renewable diesel jet credit,0.1

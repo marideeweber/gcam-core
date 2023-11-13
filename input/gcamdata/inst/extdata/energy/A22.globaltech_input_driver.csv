@@ -24,8 +24,11 @@ refining,gas to liquids,gas to liquids,regional natural gas
 refining,oil refining,oil refining,regional oil
 refining,biomass liquids,BTL with hydrogen,H2 industrial
 refining,biomass liquids,BTL with hydrogen,regional biomass
-soybean renewable diesel,soybean renewable diesel,soybean renewable diesel,regional biomassOil soybean
-rapeseed renewable diesel,rapeseed renewable diesel,rapeseed renewable diesel,regional biomassOil rapeseed
-palmfruit renewable diesel,palmfruit renewable diesel,palmfruit renewable diesel,regional biomassOil palmfruit
-oilcrop renewable diesel,oilcrop renewable diesel,oilcrop renewable diesel,regional biomassOil oilcrop
-soybean RD jet high,soybean RD jet high,soybean RD jet high,regional biomassOil soybean
+#soybean renewable diesel,soybean renewable diesel,soybean renewable diesel,regional biomassOil soybean
+#rapeseed renewable diesel,rapeseed renewable diesel,rapeseed renewable diesel,regional biomassOil rapeseed
+#palmfruit renewable diesel,palmfruit renewable diesel,palmfruit renewable diesel,regional biomassOil palmfruit
+#oilcrop renewable diesel,oilcrop renewable diesel,oilcrop renewable diesel,regional biomassOil oilcrop
+soybean renewable diesel joint,soybean renewable diesel joint,soybean renewable diesel joint,regional biomassOil soybean
+rapeseed renewable diesel joint,rapeseed renewable diesel joint,rapeseed renewable diesel joint,regional biomassOil rapeseed
+palmfruit renewable diesel joint,palmfruit renewable diesel joint,palmfruit renewable diesel joint,regional biomassOil palmfruit
+oilcrop renewable diesel joint,oilcrop renewable diesel joint,oilcrop renewable diesel joint,regional biomassOil oilcrop

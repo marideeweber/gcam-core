@@ -20,6 +20,9 @@ delivered gas,delivered gas,delivered gas,non-energy,1.25,1.25,1.25,1.25
 refined liquids enduse,refined oil,refined oil,non-energy,1.1,1.1,1.1,1.1
 aviation fuels,refined oil,refined oil,non-energy,1.1,1.1,1.1,1.1
 aviation fuels,renewable diesel,soybean renewable diesel,non-energy,1.1,1.1,1.1,1.1
+aviation fuels,renewable diesel,rapeseed renewable diesel,non-energy,1.1,1.1,1.1,1.1
+aviation fuels,renewable diesel,palmfruit renewable diesel,non-energy,1.1,1.1,1.1,1.1
+aviation fuels,renewable diesel,oilcrop renewable diesel,non-energy,1.1,1.1,1.1,1.1
 refined liquids enduse,biodiesel,oilcrop biodiesel,non-energy,1.1,1.1,1.1,1.1
 refined liquids enduse,biodiesel,rapeseed biodiesel,non-energy,1.1,1.1,1.1,1.1
 refined liquids enduse,biodiesel,palmfruit biodiesel,non-energy,1.1,1.1,1.1,1.1

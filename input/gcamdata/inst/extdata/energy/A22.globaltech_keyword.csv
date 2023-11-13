@@ -10,8 +10,11 @@ oilpalm biodiesel,oilpalm biodiesel,oilpalm biodiesel,biomass
 oilcrop biodiesel,oilcrop biodiesel,oilcrop biodiesel,biomass
 corn ethanol,corn ethanol,corn ethanol,biomass
 refining,biomass liquids,BTL with hydrogen,biomass
-soybean renewable diesel,soybean renewable diesel,soybean renewable diesel,biomass
-rapeseed renewable diesel,rapeseed renewable diesel,rapeseed renewable diesel,biomass
-palmfruit renewable diesel,palmfruit renewable diesel,palmfruit renewable diesel,biomass
-oilcrop renewable diesel,oilcrop renewable diesel,oilcrop renewable diesel,biomass
-soybean RD jet high,soybean RD jet high,soybean RD jet high,biomass
+#soybean renewable diesel,soybean renewable diesel,soybean renewable diesel,biomass
+#rapeseed renewable diesel,rapeseed renewable diesel,rapeseed renewable diesel,biomass
+#palmfruit renewable diesel,palmfruit renewable diesel,palmfruit renewable diesel,biomass
+#oilcrop renewable diesel,oilcrop renewable diesel,oilcrop renewable diesel,biomass
+soybean renewable diesel joint,soybean renewable diesel joint,soybean renewable diesel joint,biomass
+rapeseed renewable diesel joint,rapeseed renewable diesel joint,rapeseed renewable diesel joint,biomass
+palmfruit renewable diesel joint,palmfruit renewable diesel joint,palmfruit renewable diesel joint,biomass
+oilcrop renewable diesel joint,oilcrop renewable diesel joint,oilcrop renewable diesel joint,biomass

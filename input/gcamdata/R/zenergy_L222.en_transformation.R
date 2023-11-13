@@ -15,7 +15,7 @@
 #'  \code{L222.GlobalTechCost_en}, \code{L222.GlobalTechShrwt_en}, \code{L222.GlobalTechCapture_en},
 #'  \code{L222.GlobalTechShutdown_en}, \code{L222.GlobalTechSCurve_en}, \code{L222.GlobalTechLifetime_en},
 #'  \code{L222.GlobalTechProfitShutdown_en}, \code{L222.StubTechProd_gasproc}, \code{L222.StubTechProd_refining},
-#'   \code{L222.StubTechCoef_refining}, \code{L222.GlobalTechCost_low_en}, \code{L222.GlobalTechSecOut}. The corresponding file in the
+#'   \code{L222.StubTechCoef_refining}, \code{L222.GlobalTechCost_low_en}, \code{L222.GlobalTechSecOut}, \code{L222.jet_fuel_credits}. The corresponding file in the
 #' original data system was \code{L222.en_transformation.R} (energy level2).
 #' @details This chunk sets up the energy transformation global technology database as well as writing out assumptions to all regions for shareweights and logits.
 #' Calibrated outputs for gas processing and oil refining as well as I:O coefficients are interpolated from historical values to base model years.
@@ -95,6 +95,7 @@ module_energy_L222.en_transformation <- function(command, ...) {
              FILE = "energy/A22.globaltech_co2capture",
              FILE = "energy/A22.globaltech_retirement",
              FILE = "energy/A22.globaltech_secondary_output",
+             FILE = "energy/A22.jet_credits",
              "L121.share_R_TPES_biofuel_tech",
              FILE = "energy/A22.globaltech_keyword",
              "L122.out_EJ_R_gasproc_F_Yh",
@@ -125,7 +126,8 @@ module_energy_L222.en_transformation <- function(command, ...) {
              "L222.GlobalTechCost_low_en",
              "L222.AbsCostLogitBaseValue_ethanol",
              "L222.biofuel_type_filter_R",
-             "L222.GlobalTechSecOut"))
+             "L222.GlobalTechSecOut",
+             "L222.jet_fuel_credits"))
   } else if(command == driver.MAKE) {
 
     all_data <- list(...)[[1]]
@@ -454,8 +456,20 @@ module_energy_L222.en_transformation <- function(command, ...) {
     A22.globaltech_secondary_output %>%
       repeat_add_columns(tibble(year = c(MODEL_BASE_YEARS, MODEL_FUTURE_YEARS))) %>%
       rename(sector.name = supplysector, subsector.name = subsector) %>%
-      select(LEVEL2_DATA_NAMES[["GlobalTechSecOut"]]) ->
+      select(LEVEL2_DATA_NAMES[["GlobalTechRESSecOut"]]) ->
       L222.GlobalTechSecOut
+
+    # L222.jet_fuel_credits: credits for jet fuel production from joint liquids sectors
+    # addition TRW 11/9/23
+    A22.jet_credits %>%
+      repeat_add_columns(tibble(year = MODEL_FUTURE_YEARS)) %>%
+      write_to_all_regions(c("region", "policy.portfolio.standard", "policyType",
+                             "constraint", "year"),
+                           A_regions) %>%
+      mutate(market = region) %>%
+      select(LEVEL2_DATA_NAMES[["PortfolioStdConstraint"]]) ->
+      L222.jet_fuel_credits
+
 
     #2d. Calibration and region-specific data
     #  generate base year calibrated outputs of gas processing by interpolating from historical values
@@ -811,6 +825,13 @@ module_energy_L222.en_transformation <- function(command, ...) {
       add_precursors("energy/A22.globaltech_secondary_output") ->
       L222.GlobalTechSecOut
 
+    L222.jet_fuel_credits %>%
+      add_title("Jet fuel production credits") %>%
+      add_units("none") %>%
+      add_comments("Credits to produce jet fuels from joint liquids sectors") %>%
+      add_precursors("energy/A22.jet_credits") ->
+      L222.jet_fuel_credits
+
     return_data(L222.Supplysector_en, L222.SectorUseTrialMarket_en, L222.SubsectorLogit_en, L222.SubsectorShrwt_en,
                 L222.SubsectorShrwtFllt_en, L222.SubsectorInterp_en, L222.SubsectorInterpTo_en,
                 L222.StubTech_en, L222.GlobalTechInterp_en, L222.GlobalTechCoef_en, L222.GlobalTechCost_en,
@@ -818,7 +839,7 @@ module_energy_L222.en_transformation <- function(command, ...) {
                 L222.GlobalTechSCurve_en, L222.GlobalTechLifetime_en, L222.GlobalTechProfitShutdown_en,
                 L222.StubTechProd_gasproc, L222.StubTechProd_refining, L222.StubTechCoef_refining,
                 L222.GlobalTechCost_low_en, L222.GlobalTechKeyword_en, L222.AbsCostLogitBaseValue_ethanol,
-                L222.biofuel_type_filter_R, L222.GlobalTechSecOut)
+                L222.biofuel_type_filter_R, L222.GlobalTechSecOut, L222.jet_fuel_credits)
   } else {
     stop("Unknown command")
   }
