@@ -1,0 +1,23 @@
+# File: A22.globaltech_keyword.csv
+# Title: Primary energy handling keywords
+# Units: NA
+# Column types: cccc 
+# ----------
+supplysector,subsector,technology,primary.consumption
+oilcrop biodiesel,oilcrop biodiesel,oilcrop biodiesel,biomass
+rapeseed biodiesel,rapeseed biodiesel,rapeseed biodiesel,biomass
+palmfruit biodiesel,palmfruit biodiesel,palmfruit biodiesel,biomass
+soybean biodiesel,soybean biodiesel,soybean biodiesel,biomass
+refining,biomass liquids,BTL with hydrogen,biomass
+#soybean renewable diesel,soybean renewable diesel,soybean renewable diesel,biomass
+#rapeseed renewable diesel,rapeseed renewable diesel,rapeseed renewable diesel,biomass
+#palmfruit renewable diesel,palmfruit renewable diesel,palmfruit renewable diesel,biomass
+#oilcrop renewable diesel,oilcrop renewable diesel,oilcrop renewable diesel,biomass
+soybean renewable diesel joint,soybean renewable diesel joint,soybean renewable diesel joint high,biomass
+rapeseed renewable diesel joint,rapeseed renewable diesel joint,rapeseed renewable diesel joint high,biomass
+palmfruit renewable diesel joint,palmfruit renewable diesel joint,palmfruit renewable diesel joint high,biomass
+oilcrop renewable diesel joint,oilcrop renewable diesel joint,oilcrop renewable diesel joint high,biomass
+soybean renewable diesel joint,soybean renewable diesel joint,soybean renewable diesel joint low,biomass
+rapeseed renewable diesel joint,rapeseed renewable diesel joint,rapeseed renewable diesel joint low,biomass
+palmfruit renewable diesel joint,palmfruit renewable diesel joint,palmfruit renewable diesel joint low,biomass
+oilcrop renewable diesel joint,oilcrop renewable diesel joint,oilcrop renewable diesel joint low,biomass
