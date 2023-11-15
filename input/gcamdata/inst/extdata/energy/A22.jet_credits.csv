@@ -5,11 +5,13 @@
 # Column types: ccin
 # ----------
 policy.portfolio.standard,policyType,constraint, min.price
-soybean renewable diesel jet credit high,RES,1,-1e6
-rapeseed renewable diesel jet credit high,RES,1,-1e6
-palmfruit renewable diesel jet credit high,RES,1,-1e6
-oilcrop renewable diesel jet credit high,RES,1,-1e6
-soybean renewable diesel jet credit low,RES,1,-1e6
-rapeseed renewable diesel jet credit low,RES,1,-1e6
-palmfruit renewable diesel jet credit low,RES,1,-1e6
-oilcrop renewable diesel jet credit low,RES,1,-1e6
+#soybean renewable diesel jet credit high,RES,1,-1e6
+#rapeseed renewable diesel jet credit high,RES,1,-1e6
+#palmfruit renewable diesel jet credit high,RES,1,-1e6
+#oilcrop renewable diesel jet credit high,RES,1,-1e6
+#soybean renewable diesel jet credit low,RES,1,-1e6
+#rapeseed renewable diesel jet credit low,RES,1,-1e6
+#palmfruit renewable diesel jet credit low,RES,1,-1e6
+#oilcrop renewable diesel jet credit low,RES,1,-1e6
+renewable diesel jet credit high,RES,1,-1e6
+renewable diesel jet credit low,RES,1,-1e6

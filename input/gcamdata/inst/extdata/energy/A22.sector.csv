@@ -13,10 +13,6 @@ sugar cane ethanol,EJ,EJ,1975$/GJ,-6,absolute-cost-logit
 cellulosic ethanol,EJ,EJ,1975$/GJ,-6,absolute-cost-logit
 corn ethanol,EJ,EJ,1975$/GJ,-6,absolute-cost-logit
 soybean biodiesel,EJ,EJ,1975$/GJ,-6,
-#soybean renewable diesel,EJ,EJ,1975$/GJ,-6,
-#rapeseed renewable diesel,EJ,EJ,1975$/GJ,-6,
-#palmfruit renewable diesel,EJ,EJ,1975$/GJ,-6,
-#oilcrop renewable diesel,EJ,EJ,1975$/GJ,-6,
 soybean renewable diesel joint high,EJ,EJ,1975$/GJ,-6,
 soybean renewable diesel joint low,EJ,EJ,1975$/GJ,-6,
 soybean renewable diesel,EJ,EJ,1975$/GJ,-6,

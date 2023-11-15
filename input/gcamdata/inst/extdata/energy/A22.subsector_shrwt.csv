@@ -16,14 +16,6 @@ refining,coal to liquids,initial-future-year,,0
 refining,coal to liquids,end-year,,0.1
 refining,gas to liquids,initial-future-year,,0
 refining,gas to liquids,2025,,0.001
-#soybean renewable diesel,soybean renewable diesel,start-year,,0
-#rapeseed renewable diesel,rapeseed renewable diesel,start-year,,0
-#palmfruit renewable diesel,palmfruit renewable diesel,start-year,,0
-#oilcrop renewable diesel,oilcrop renewable diesel,start-year,,0
-#soybean renewable diesel,soybean renewable diesel,end-year,,1
-#rapeseed renewable diesel,rapeseed renewable diesel,end-year,,1
-#palmfruit renewable diesel,palmfruit renewable diesel,end-year,,1
-#oilcrop renewable diesel,oilcrop renewable diesel,end-year,,1
 soybean renewable diesel joint high,soybean renewable diesel joint high,start-year,,0
 soybean renewable diesel joint high,soybean renewable diesel joint high,initial-future-year,,1
 soybean renewable diesel,soybean renewable diesel,start-year,,0
