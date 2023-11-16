@@ -45,11 +45,11 @@ palmfruit biodiesel,palmfruit biodiesel,palmfruit biodiesel,initial-future-year,
 rapeseed biodiesel,rapeseed biodiesel,rapeseed biodiesel,initial-future-year,45,,30,0.3,-0.1,10
 soybean biodiesel,soybean biodiesel,soybean biodiesel,initial-future-year,45,,30,0.3,-0.1,10
 refining,biomass liquids,BTL with hydrogen,final-calibration-year,45,,25,0.2,-0.1,10
-soybean renewable diesel joint high,soybean renewable diesel joint high,soybean renewable diesel joint high,initial-future-year,45,,30,0.3,-0.1,10
-rapeseed renewable diesel joint high,rapeseed renewable diesel joint high,rapeseed renewable diesel joint high,initial-future-year,45,,30,0.3,-0.1,10
-palmfruit renewable diesel joint high,palmfruit renewable diesel joint high,palmfruit renewable diesel joint high,initial-future-year,45,,30,0.3,-0.1,10
-oilcrop renewable diesel joint high,oilcrop renewable diesel joint high,oilcrop renewable diesel joint high,initial-future-year,45,,30,0.3,-0.1,10
-soybean renewable diesel joint low,soybean renewable diesel joint low,soybean renewable diesel joint low,initial-future-year,45,,30,0.3,-0.1,10
-rapeseed renewable diesel joint low,rapeseed renewable diesel joint low,rapeseed renewable diesel joint low,initial-future-year,45,,30,0.3,-0.1,10
-palmfruit renewable diesel joint low,palmfruit renewable diesel joint low,palmfruit renewable diesel joint low,initial-future-year,45,,30,0.3,-0.1,10
-oilcrop renewable diesel joint low,oilcrop renewable diesel joint low,oilcrop renewable diesel joint low,initial-future-year,45,,30,0.3,-0.1,10
+soybean renewable diesel joint,soybean renewable diesel joint,soybean renewable diesel joint high,initial-future-year,45,,30,0.3,-0.1,10
+rapeseed renewable diesel joint,rapeseed renewable diesel joint,rapeseed renewable diesel joint high,initial-future-year,45,,30,0.3,-0.1,10
+palmfruit renewable diesel joint,palmfruit renewable diesel joint,palmfruit renewable diesel joint high,initial-future-year,45,,30,0.3,-0.1,10
+oilcrop renewable diesel joint,oilcrop renewable diesel joint,oilcrop renewable diesel joint high,initial-future-year,45,,30,0.3,-0.1,10
+soybean renewable diesel joint,soybean renewable diesel joint,soybean renewable diesel joint low,initial-future-year,45,,30,0.3,-0.1,10
+rapeseed renewable diesel joint,rapeseed renewable diesel joint,rapeseed renewable diesel joint low,initial-future-year,45,,30,0.3,-0.1,10
+palmfruit renewable diesel joint,palmfruit renewable diesel joint,palmfruit renewable diesel joint low,initial-future-year,45,,30,0.3,-0.1,10
+oilcrop renewable diesel joint,oilcrop renewable diesel joint,oilcrop renewable diesel joint low,initial-future-year,45,,30,0.3,-0.1,10

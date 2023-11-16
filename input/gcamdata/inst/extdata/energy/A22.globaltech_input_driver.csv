@@ -24,11 +24,11 @@ refining,gas to liquids,gas to liquids,regional natural gas
 refining,oil refining,oil refining,regional oil
 refining,biomass liquids,BTL with hydrogen,H2 industrial
 refining,biomass liquids,BTL with hydrogen,regional biomass
-soybean renewable diesel joint high,soybean renewable diesel joint high,soybean renewable diesel joint high,regional biomassOil soybean
-rapeseed renewable diesel joint high,rapeseed renewable diesel joint high,rapeseed renewable diesel joint high,regional biomassOil rapeseed
-palmfruit renewable diesel joint high,palmfruit renewable diesel joint high,palmfruit renewable diesel joint high,regional biomassOil palmfruit
-oilcrop renewable diesel joint high,oilcrop renewable diesel joint high,oilcrop renewable diesel joint high,regional biomassOil oilcrop
-soybean renewable diesel joint low,soybean renewable diesel joint low,soybean renewable diesel joint low,regional biomassOil soybean
-rapeseed renewable diesel joint low,rapeseed renewable diesel joint low,rapeseed renewable diesel joint low,regional biomassOil rapeseed
-palmfruit renewable diesel joint low,palmfruit renewable diesel joint low,palmfruit renewable diesel joint low,regional biomassOil palmfruit
-oilcrop renewable diesel joint low,oilcrop renewable diesel joint low,oilcrop renewable diesel joint low,regional biomassOil oilcrop
+soybean renewable diesel joint,soybean renewable diesel joint,soybean renewable diesel joint high,regional biomassOil soybean
+rapeseed renewable diesel joint,rapeseed renewable diesel joint,rapeseed renewable diesel joint high,regional biomassOil rapeseed
+palmfruit renewable diesel joint,palmfruit renewable diesel joint,palmfruit renewable diesel joint high,regional biomassOil palmfruit
+oilcrop renewable diesel joint,oilcrop renewable diesel joint,oilcrop renewable diesel joint high,regional biomassOil oilcrop
+soybean renewable diesel joint,soybean renewable diesel joint,soybean renewable diesel joint low,regional biomassOil soybean
+rapeseed renewable diesel joint,rapeseed renewable diesel joint,rapeseed renewable diesel joint low,regional biomassOil rapeseed
+palmfruit renewable diesel joint,palmfruit renewable diesel joint,palmfruit renewable diesel joint low,regional biomassOil palmfruit
+oilcrop renewable diesel joint,oilcrop renewable diesel joint,oilcrop renewable diesel joint low,regional biomassOil oilcrop

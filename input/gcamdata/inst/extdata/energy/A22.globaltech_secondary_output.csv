@@ -5,11 +5,11 @@
 # Column types: ccccn
 # ----------
 supplysector,subsector,technology,res.secondary.output,output.ratio
-soybean renewable diesel joint high,soybean renewable diesel joint high,soybean renewable diesel joint high,renewable diesel jet credit high,0.5
-rapeseed renewable diesel joint high,rapeseed renewable diesel joint high,rapeseed renewable diesel joint high,renewable diesel jet credit high,0.5
-palmfruit renewable diesel joint high,palmfruit renewable diesel joint high,palmfruit renewable diesel joint high,renewable diesel jet credit high,0.5
-oilcrop renewable diesel joint high,oilcrop renewable diesel joint high,oilcrop renewable diesel joint high,renewable diesel jet credit high,0.5
-soybean renewable diesel joint low,soybean renewable diesel joint low,soybean renewable diesel joint low,renewable diesel jet credit low,0
-rapeseed renewable diesel joint low,rapeseed renewable diesel joint low,rapeseed renewable diesel joint low,renewable diesel jet credit low,0
-palmfruit renewable diesel joint low,palmfruit renewable diesel joint low,palmfruit renewable diesel joint low,renewable diesel jet credit low,0
-oilcrop renewable diesel joint low,oilcrop renewable diesel joint low,oilcrop renewable diesel joint low,renewable diesel jet credit low,0
+soybean renewable diesel joint,soybean renewable diesel joint,soybean renewable diesel joint high,refining jet credit,0.5
+rapeseed renewable diesel joint,rapeseed renewable diesel joint,rapeseed renewable diesel joint high,refining jet credit,0.5
+palmfruit renewable diesel joint,palmfruit renewable diesel joint,palmfruit renewable diesel joint high,refining jet credit,0.5
+oilcrop renewable diesel joint,oilcrop renewable diesel joint,oilcrop renewable diesel joint high,refining jet credit,0.5
+soybean renewable diesel joint,soybean renewable diesel joint,soybean renewable diesel joint low,refining jet credit,0.5
+rapeseed renewable diesel joint,rapeseed renewable diesel joint,rapeseed renewable diesel joint low,refining jet credit,0.5
+palmfruit renewable diesel joint,palmfruit renewable diesel joint,palmfruit renewable diesel joint low,refining jet credit,0.5
+oilcrop renewable diesel joint,oilcrop renewable diesel joint,oilcrop renewable diesel joint low,refining jet credit,0.5
