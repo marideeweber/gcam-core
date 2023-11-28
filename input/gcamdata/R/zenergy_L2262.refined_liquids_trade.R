@@ -28,6 +28,7 @@ module_energy_L2262.refined_liquids_trade <- function(command, ...) {
       FILE = "energy/A262.refinedLiquidsTradedSubsector",
       FILE = "energy/A262.refinedLiquidsTradedTechnology",
       FILE = "energy/bio_feed_mapping",
+      FILE="energy/transport_data"
       "L121.share_R_TPES_biofuel_tech",
       "L122.out_EJ_R_refining_F_Yh",
       "L1262.refinedOil_GrossTrade_EJ_R_C_Y",
@@ -65,7 +66,7 @@ module_energy_L2262.refined_liquids_trade <- function(command, ...) {
 
     # Load required inputs ----
     get_data_list(all_data, MODULE_INPUTS, strip_attributes = TRUE)
-
+    L154.in_EJ_R_trn_m_sz_tech_F_Yh <- transport_data
     # Downscale the biofuel export volumes into the specific fuel types using L121.share_R_TPES_biofuel_tech
     # and A_regions
 
@@ -144,6 +145,25 @@ module_energy_L2262.refined_liquids_trade <- function(command, ...) {
     # The refined liquids trade data can include regions where the gross exports are greater than the total refinery output (production)
     # This is because the L1262 data on gross trade were assembled without reference to the energy balances.
     # At present this is seen in the Africa_Southern region for oil refining.
+    L122.out_EJ_R_refining_F_Yh_adj<-L122.out_EJ_R_refining_F_Yh %>%
+      left_join(select(bio_feed_mapping, Biofuel, fuel, technology),
+                by = c(sector = "Biofuel", "fuel")) %>%
+      mutate(sector = if_else(sector == "biodiesel", technology,sector)) %>%
+      select(colnames(L122.out_EJ_R_refining_F_Yh))
+
+    L154.in_EJ_R_trn_m_sz_tech_F_Yh %>%
+      filter(mode %in% c("Air Domestic","Air International")) %>%
+
+      group_by(GCAM_region_ID,year) %>%
+      summarize(air_value=sum(value))->L1262_aviation_adj
+
+    L122.out_EJ_R_refining_F_Yh_adj %>%
+      left_join_keep_first_only(L1262_aviation_adj, by=c("GCAM_region_ID" ,"year")) %>%
+      mutate(air_value=if_else(is.na(air_value),0,air_value),
+        air_value=if_else(sector=="oil refining",air_value,0)) %>%
+      mutate(value=value-air_value)->L122.out_EJ_R_refining_F_Yh_adj
+
+
     L2262.refinedLiquids_GrossTrade_EJ_R_C_Y %>%
       left_join(L122.out_EJ_R_refining_F_Yh,
                 by = c("GCAM_region_ID", "sector", "year")) %>%
@@ -282,7 +302,10 @@ module_energy_L2262.refined_liquids_trade <- function(command, ...) {
       left_join_error_no_match(GCAM_region_names, by = c("GCAM_region_ID")) %>%
       group_by(region, minicam.energy.input, year) %>%
       summarise(Prod_EJ = sum(value)) %>%
-      ungroup()
+      ungroup() %>% left_join(L1262_aviation_adj %>% left_join(GCAM_region_names), by=c("region","year")) %>%
+      mutate(air_value=if_else(is.na(air_value),0,air_value),
+             air_value=if_else(minicam.energy.input != "refining",0,air_value)) %>%
+      mutate(Prod_EJ=Prod_EJ-air_value)
 
     # Consumption of domestic production: equal to production minus gross exports
     # The production table doesn't have all zeroes written out (ignore_columns -> replace_na
@@ -293,7 +316,7 @@ module_energy_L2262.refined_liquids_trade <- function(command, ...) {
              grepl( "domestic", subsector)) %>%
       left_join_error_no_match(L2262.refinedLiquidsGrossExports_EJ_R_C_Y,
                                by = c("region", "minicam.energy.input", "year")) %>%
-      left_join_error_no_match(L2262.refinedLiquidsProd_EJ_R_C_Y,
+      left_join(L2262.refinedLiquidsProd_EJ_R_C_Y,
                                by = c("region", "minicam.energy.input", "year"),
                                ignore_columns = "Prod_EJ") %>%
       replace_na(list(Prod_EJ = 0)) %>%
@@ -493,6 +516,7 @@ module_energy_L2262.refined_liquids_trade <- function(command, ...) {
                      "L1262.refinedOil_GrossTrade_EJ_R_C_Y",
                      "L1262.Biofuel_GrossTrade_EJ_R_C_Y",
                      "L222.biofuel_type_filter_R",
+                     "energy/transport_data",
                      FILE = "energy/bio_feed_mapping") ->
       L2262.Production_refinedLiquids_reg_dom
 

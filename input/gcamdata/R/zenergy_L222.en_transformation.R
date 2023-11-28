@@ -49,6 +49,7 @@ module_energy_L222.en_transformation <- function(command, ...) {
         FILE = "energy/A22.globaltech_keyword",
         FILE = "energy/A22.globaltech_secondary_output",
         FILE = "energy/A22.jet_credits",
+        FILE="energy/transport_data",
 
         "L122.out_EJ_R_gasproc_F_Yh",
         "L122.out_EJ_R_refining_F_Yh",
@@ -103,6 +104,7 @@ module_energy_L222.en_transformation <- function(command, ...) {
 
     # Load required inputs ----
     get_data_list(all_data, MODULE_INPUTS, strip_attributes = TRUE)
+    L154.in_EJ_R_trn_m_sz_tech_F_Yh <- transport_data
 
     # ===================================================
 
@@ -464,6 +466,8 @@ module_energy_L222.en_transformation <- function(command, ...) {
       select(LEVEL2_DATA_NAMES[["PortfolioStdConstraint"]]) ->
       L222.jet_fuel_credits_all
 
+
+
     jet_credit_high_filter <- L222.biofuel_type_filter_R %>%
       filter(grepl("renewable diesel", supplysector)) %>%
       mutate(policy.portfolio.standard = paste0(supplysector, " jet credit high")) %>%
@@ -479,6 +483,7 @@ module_energy_L222.en_transformation <- function(command, ...) {
 
     L222.jet_fuel_credits <- anti_join(L222.jet_fuel_credits_all, jet_credit_filter,
                                        by = c("region", "policy.portfolio.standard"))
+
 
     # add the min.price to the jet credit policy portfolio standards
     A22.jet_credits %>%
@@ -556,11 +561,17 @@ module_energy_L222.en_transformation <- function(command, ...) {
       left_join(L222.out_EJ_R_refining_F_Yh, by = c("sector", "fuel")) %>%
       # rounds and renames outputs and adds year column for shareweights
       mutate(calOutputValue = round(value, energy.DIGITS_CALOUTPUT), year.share.weight = year) %>%
+      left_join_keep_first_only(L1262_aviation_adj, by=c("GCAM_region_ID" ,"year")) %>%
+      mutate(air_value=if_else(is.na(air_value),0,air_value),
+             air_value=if_else(subsector=="oil refining",air_value,0)) %>%
+      mutate(calOutputValue= calOutputValue- air_value) %>%
       select(-sector, -GCAM_region_ID, -fuel, -value) %>%
       # sets shareweight to 1 if output exists, otherwise 0
       mutate(share.weight = if_else(calOutputValue > 0, 1, 0)) %>%
       set_subsector_shrwt() ->
       L222.StubTechProd_refining
+
+
     # reorders columns to match expected model interface input
     L222.StubTechProd_refining <- L222.StubTechProd_refining[c(LEVEL2_DATA_NAMES[["StubTechYr"]], "calOutputValue", "year.share.weight", "subs.share.weight", "share.weight")]
 
@@ -816,7 +827,7 @@ module_energy_L222.en_transformation <- function(command, ...) {
       add_units("EJ") %>%
       add_comments("Historical values of output for liquid refining for base model years by region") %>%
       add_legacy_name("L222.StubTechProd_refining") %>%
-      add_precursors("L122.out_EJ_R_refining_F_Yh", "energy/calibrated_techs", "common/GCAM_region_names") ->
+      add_precursors("L122.out_EJ_R_refining_F_Yh", "energy/calibrated_techs", "common/GCAM_region_names","energy/transport_data") ->
       L222.StubTechProd_refining
 
     L222.StubTechCoef_refining %>%

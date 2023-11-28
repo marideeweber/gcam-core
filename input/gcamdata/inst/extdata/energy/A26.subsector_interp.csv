@@ -23,5 +23,4 @@ refined liquids enduse,biodiesel,share-weight,initial-future-year,end-year,,line
 refined liquids industrial,refined liquids industrial,share-weight,final-calibration-year,end-year,,linear
 backup_electricity,hydrogen,share-weight,final-calibration-year,initial-future-year,,linear
 backup_electricity,hydrogen,share-weight,initial-future-year,2030,,linear
-aviation fuels,refined oil,share-weight,final-calibration-year,end-year,,linear
 refined liquids enduse,renewable diesel,share-weight,initial-future-year,end-year,,linear
