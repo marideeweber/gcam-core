@@ -16,7 +16,7 @@ elect_td_trn,elect_td_trn,elect_td_trn,electricity_net_ownuse,1,1,1
 gas pipeline,gas pipeline,gas pipeline,gas processing,1,1,1
 wholesale gas,wholesale gas,wholesale gas,gas pipeline,1,1,1
 delivered gas,delivered gas,delivered gas,gas pipeline,1,1,1
-aviation fuels,refined oil,refined oil,refined jet,1,1,1
+aviation fuels,refined oil,refined oil,regional refined jet,1,1,1
 aviation fuels,renewable diesel,soybean renewable diesel,regional soybean renewable diesel jet fuel,1,1,1
 aviation fuels,renewable diesel,rapeseed renewable diesel,regional rapeseed renewable diesel jet fuel,1,1,1
 aviation fuels,renewable diesel,palmfruit renewable diesel,regional palmfruit renewable diesel jet fuel,1,1,1

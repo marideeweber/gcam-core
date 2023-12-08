@@ -31,7 +31,8 @@ module_energy_L121.liquids <- function(command, ...) {
       "L100.IEA_en_bal_ctry_hist",
       "L1012.en_bal_EJ_R_Si_Fi_Yh",
       "L111.Prod_EJ_R_F_Yh",
-      "L1262.refinedOil_GrossTrade_EJ_R_C_Y")
+      "L1262.refinedOil_GrossTrade_EJ_R_C_Y",
+      FILE="energy/A_jet_fuel_net_trade")
 
   MODULE_OUTPUTS <-
     c("L121.in_EJ_R_unoil_F_Yh",
@@ -63,6 +64,9 @@ module_energy_L121.liquids <- function(command, ...) {
       filter(minicam.energy.input == "regional natural gas") %>%
       gather_years(value_col = "gas_coef") %>%
       repeat_add_columns(tibble(region = c(iso_GCAM_regID$GCAM_region_ID)))
+
+    jet_fuel_net_trade <- get_data(all_data, "energy/A_jet_fuel_net_trade") %>%
+      select(GCAM_region_ID,year,net_jet=value)
 
     # L100.IEA_en_bal_ctry_hist might be null (meaning the data system is running
     # without the proprietary IEA data files). If this is the case, we substitute
@@ -175,7 +179,9 @@ module_energy_L121.liquids <- function(command, ...) {
         replace_na(list(value_unoil = 0,
                         net_trade = 0)) %>%
         left_join_error_no_match(L121.in_EJ_R_CTLGTL_liq_Yh, by = c("GCAM_region_ID", "year")) %>%
-        mutate(value = value + net_trade - value_unoil - value_ctlgtl) %>%
+        left_join(jet_fuel_net_trade %>% select(GCAM_region_ID, year, net_jet), by = c("GCAM_region_ID", "year")) %>%
+        mutate(net_jet=if_else(is.na(net_jet),0,net_jet)) %>%
+        mutate(value = value + net_trade - value_unoil - value_ctlgtl + net_jet) %>%
         select(GCAM_region_ID, sector, fuel, year, value) -> L121.in_EJ_R_TPES_crude_Yh
 
       L111.Prod_EJ_R_F_Yh %>%
@@ -243,7 +249,7 @@ module_energy_L121.liquids <- function(command, ...) {
         add_comments("Unconventional oil subtracted from total primary energy supply of liquids") %>%
         add_comments("to determine crude oil supply") %>%
         add_legacy_name("L121.in_EJ_R_TPES_crude_Yh") %>%
-        add_precursors("L1012.en_bal_EJ_R_Si_Fi_Yh") ->
+        add_precursors("L1012.en_bal_EJ_R_Si_Fi_Yh","energy/A_jet_fuel_net_trade") ->
         L121.in_EJ_R_TPES_crude_Yh
 
       L121.in_EJ_R_TPES_unoil_Yh %>%

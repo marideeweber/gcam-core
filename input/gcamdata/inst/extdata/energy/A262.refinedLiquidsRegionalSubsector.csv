@@ -35,3 +35,5 @@ regional soybean renewable diesel jet fuel,imported soybean renewable diesel jet
 regional rapeseed renewable diesel jet fuel,imported rapeseed renewable diesel jet fuel,-6,start-year,1,share-weight,final-calibration-year,end-year,s-curve,
 regional palmfruit renewable diesel jet fuel,imported palmfruit renewable diesel jet fuel,-6,start-year,1,share-weight,final-calibration-year,end-year,s-curve,
 regional oilcrop renewable diesel jet fuel,imported oilcrop renewable diesel jet fuel,-6,start-year,1,share-weight,final-calibration-year,end-year,s-curve,
+regional refined jet,domestic refined jet,-6,start-year,1,share-weight,final-calibration-year,end-year,s-curve,
+regional refined jet,imported refined jet,-6,start-year,1,share-weight,final-calibration-year,end-year,s-curve,

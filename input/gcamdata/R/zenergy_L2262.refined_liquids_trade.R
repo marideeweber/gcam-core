@@ -49,7 +49,9 @@ module_energy_L2262.refined_liquids_trade <- function(command, ...) {
       "L2262.TechCost_refinedLiquids_reg",
       "L2262.TechCoef_refinedLiquids_reg",
       "L2262.Production_refinedLiquids_reg_imp",
-      "L2262.Production_refinedLiquids_reg_dom")
+      "L2262.Production_refinedLiquids_reg_dom",
+      "L101_aviation_adj",
+      FILE="energy/A_jet_fuel_net_trade")
 
   if(command == driver.DECLARE_INPUTS) {
     return(MODULE_INPUTS)
@@ -75,6 +77,10 @@ module_energy_L2262.refined_liquids_trade <- function(command, ...) {
              air_value=if_else(sector=="oil refining",air_value,0)) %>%
       mutate(value=value-air_value)->L122.out_EJ_R_refining_F_Yh_adj
 
+
+    jet_fuel_net_trade <- get_data(all_data, "energy/A_jet_fuel_net_trade") %>%
+      select(GCAM_region_ID,year,prod,imports,exports,cons,net=value) %>%
+      left_join_error_no_match(GCAM_region_names, by =c("GCAM_region_ID"))
 
     L2262.share_R_TPES_biofuel_tech <- A_regions %>%
       select(GCAM_region_ID, ethanol, biodiesel) %>%
@@ -151,6 +157,15 @@ module_energy_L2262.refined_liquids_trade <- function(command, ...) {
     # The refined liquids trade data can include regions where the gross exports are greater than the total refinery output (production)
     # This is because the L1262 data on gross trade were assembled without reference to the energy balances.
 
+    
+    #KBN take out any production of jet fuel here. Technically this is consumption of jet fuel so that the we can calibrate the nonjet.
+    L122.out_EJ_R_refining_F_Yh_adj %>%
+      left_join_error_no_match(jet_fuel_net_trade %>% select(GCAM_region_ID,year,net,cons), by=c("GCAM_region_ID" ,"year")) %>%
+      mutate(air_value=if_else(is.na(net),0,net),
+             cons=if_else(is.na(cons),0,cons),
+        air_value=if_else(sector=="oil refining",air_value,0),
+        cons=if_else(sector=="oil refining",cons,0)) %>%
+      mutate(value=value-air_value-cons)->L122.out_EJ_R_refining_F_Yh_adj
 
 
     L2262.refinedLiquids_GrossTrade_EJ_R_C_Y %>%
@@ -290,7 +305,7 @@ module_energy_L2262.refined_liquids_trade <- function(command, ...) {
       left_join_error_no_match(GCAM_region_names, by = c("GCAM_region_ID")) %>%
       group_by(region, minicam.energy.input, year) %>%
       summarise(Prod_EJ = sum(value)) %>%
-      ungroup() %>% left_join(L101_aviation_adj %>% left_join(GCAM_region_names), by=c("region","year")) %>%
+      ungroup() %>% left_join(jet_fuel_net_trade %>%mutate(air_value=net+cons) %>%  select(region,year,air_value) , by=c("region","year")) %>%
       mutate(air_value=if_else(is.na(air_value),0,air_value),
              air_value=if_else(minicam.energy.input != "refining",0,air_value)) %>%
       mutate(Prod_EJ=Prod_EJ-air_value)
@@ -379,6 +394,60 @@ module_energy_L2262.refined_liquids_trade <- function(command, ...) {
       # adjust the sw
       mutate(share.weight = if_else(is.self.prod == 1,0.2,share.weight)) %>%
       select(-is.self.prod)
+
+
+    ###KBN- Add changes to calibrate jet fuels correctly
+    L2262.Production_refinedLiquids_reg_dom %>%
+      filter(supplysector=="regional refined oil") %>%
+      mutate(supplysector="regional refined jet",
+             subsector="domestic refined jet",
+             technology="domestic refined jet") %>%
+      left_join_error_no_match(jet_fuel_net_trade %>% select(region,year,cons,imports),by=c("region","year")) %>%
+      mutate(calOutputValue=cons-imports,
+             subs.share.weight=if_else(calOutputValue>0,1,0),
+             tech.share.weight=subs.share.weight) %>%
+      select(-cons) ->L2262.Production_refinedLiquids_reg_dom_jet
+
+
+    L2262.Production_refinedLiquids_reg_dom <- bind_rows(L2262.Production_refinedLiquids_reg_dom,
+                                                         L2262.Production_refinedLiquids_reg_dom_jet)
+
+
+    L2262.Production_refinedLiquids_reg_imp %>%
+      filter(supplysector=="regional refined oil") %>%
+      mutate(supplysector="regional refined jet",
+             subsector="imported refined jet",
+             technology="imported refined jet") %>%
+      left_join_error_no_match(jet_fuel_net_trade %>% select(region,year,imports),by=c("region","year")) %>%
+      mutate(calOutputValue=imports,
+             subs.share.weight=if_else(calOutputValue>0,1,0),
+             tech.share.weight=subs.share.weight) %>%
+      select(-imports) ->L2262.Production_refinedLiquids_reg_imp_jet
+
+
+    L2262.Production_refinedLiquids_reg_imp <- bind_rows(L2262.Production_refinedLiquids_reg_imp,
+                                                         L2262.Production_refinedLiquids_reg_imp_jet)
+
+
+
+    L2262.Production_refinedLiquids_tra %>%
+      filter(supplysector=="traded refined oil") %>%
+      mutate(supplysector="traded refined jet",
+             region2=subsector,
+             subsector=gsub("traded refined oil","traded refined jet", subsector),
+             technology=gsub("traded refined oil","traded refined jet", technology)) %>%
+      left_join_error_no_match(jet_fuel_net_trade %>% mutate(region2= paste0(region," traded refined oil"),
+                                                             region="USA")
+                                 %>% select(region,region2,year,exports),by=c("region","region2","year")) %>%
+      mutate(calOutputValue=exports,
+             subs.share.weight=if_else(calOutputValue>0,1,0),
+             tech.share.weight=subs.share.weight) %>%
+      select(-exports,-region2) ->L2262.Production_refinedLiquids_tra_jet
+
+
+    L2262.Production_refinedLiquids_tra <- bind_rows(L2262.Production_refinedLiquids_tra,
+                                                     L2262.Production_refinedLiquids_tra_jet)
+
 
 
     # Produce outputs

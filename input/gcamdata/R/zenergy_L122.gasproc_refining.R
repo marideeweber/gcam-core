@@ -25,6 +25,7 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
       FILE = "energy/A21.globaltech_coef",
       FILE = "energy/A21.globaltech_secout",
       FILE = "energy/A22.globaltech_coef",
+      FILE="energy/A_jet_fuel_net_trade",
       FILE = "energy/bio_feed_mapping",
       FILE = "energy/OTAQ_USA_biofuel_prod",
       "L1012.en_bal_EJ_R_Si_Fi_Yh",
@@ -77,8 +78,12 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
       rename(value_soybiodiesel = value,
              technology = sector) %>%
       mutate(technology = "soybean biodiesel")
+    
+    jet_fuel_net_trade <-  A_jet_fuel_net_trade%>%
+                         select(GCAM_region_ID,year,net_jet=value) %>%
+                         left_join_error_no_match(GCAM_region_names, by =c("GCAM_region_ID"))
 
-    # ===================================================
+    # #=======#=======#=======#=======#=======#=======#=========
     # Perform computations: Will start with refining
 
     # Most of the technologies (in calibrated_techs.csv) have inputs from outputs based on exogenous coefficients (A22.globaltech_coef).
@@ -247,7 +252,8 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
       mutate(value = value_en_bal - value_gtlctl) %>%
     # GPK 4/8/25: Adjust the oil refining output of each region to account for net_trade of refined oil products
       left_join_error_no_match(L1262.refinedOil_GrossTrade_EJ_R_C_Y %>% select(GCAM_region_ID, year, net_trade), by = c("GCAM_region_ID", "year")) %>%
-      mutate(value = value + net_trade) %>%
+      left_join_error_no_match(jet_fuel_net_trade %>% select(GCAM_region_ID, year, net_jet), by = c("GCAM_region_ID", "year")) %>%
+      mutate(value = value + net_trade+net_jet) %>%
       select(GCAM_region_ID, sector, fuel, year, value) ->
       L122.out_EJ_R_oilrefining_Yh
 
@@ -260,7 +266,9 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
       left_join(L122.out_EJ_R_oilrefining_Yh, by = c("GCAM_region_ID", "sector", "fuel", "year"),
                 suffix = c(".energyuse", ".output")) %>%
       replace_na(list(value.output = 0)) %>%
-      mutate(value = value.energyuse + value.output) %>%
+       left_join(jet_fuel_net_trade %>% mutate(fuel="oil"), by=c("GCAM_region_ID","year","fuel")) %>%
+      mutate(net_jet= if_else(is.na(net_jet),0,net_jet)) %>%
+      mutate(value = value.energyuse + value.output+net_jet) %>%
       select(-value.energyuse, -value.output) -> L122.in_EJ_R_oilrefining_F_Yh
 
     # Calculate region- and fuel-specific coefficients of crude oil refining
@@ -477,7 +485,7 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
       add_comments("Obtained by calculating the ratio input/output for oil refining from L122.in_EJ_R_oilrefining_F_Yh and L122.out_EJ_R_oilrefining_Yh") %>%
       add_legacy_name("L122.IO_R_oilrefining_F_Yh") %>%
       add_precursors("common/GCAM_region_names", "energy/calibrated_techs",
-                     "energy/A_regions", "energy/A21.globaltech_coef", "energy/A22.globaltech_coef", "L1012.en_bal_EJ_R_Si_Fi_Yh",
+                     "energy/A_regions", "energy/A21.globaltech_coef", "energy/A22.globaltech_coef", "L1012.en_bal_EJ_R_Si_Fi_Yh","energy/A_jet_fuel_net_trade",
                      "L121.in_EJ_R_unoil_F_Yh") ->
       L122.IO_R_oilrefining_F_Yh
 
