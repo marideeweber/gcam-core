@@ -79,7 +79,8 @@ module_aglu_L2012.ag_For_Past_bio_input_irr_mgmt <- function(command, ...) {
       # Join calibration price data, there are missing value for biomass, use left_join instead
       left_join(L2012.P_R_C, by = c("region", AgSupplySector = "GCAM_commodity")) %>%
       mutate(calPrice = reg_calPrice,
-             calPrice = replace(calPrice, AgSupplySector == "biomass", 1), # value irrelevant
+             calPrice = replace(calPrice, AgSupplySector == "biomass_herbaceous", 1),# value irrelevant
+             calPrice = replace(calPrice, AgSupplySector == "biomass_woody", 1),# value irrelevant
              # For regional commodities, specify market names with region names
              market = replace(market, market == "regional", region[market == "regional"])) %>%
       select(LEVEL2_DATA_NAMES[["AgSupplySector"]], LOGIT_TYPE_COLNAME) %>%
@@ -94,14 +95,14 @@ module_aglu_L2012.ag_For_Past_bio_input_irr_mgmt <- function(command, ...) {
     L181.ag_Prod_Mt_R_C_Y_GLU_irr_level %>%
       select(GCAM_region_ID, GLU) %>%
       unique %>%
-      mutate(GCAM_commodity = "biomass",
+      mutate(GCAM_commodity = "biomass_herbaceous",
              GCAM_subsector = "biomassGrass") ->
       L201.R_C_GLU_biograss
     # Second, biotree: available anywhere that has any forest production at all
     L123.For_Prod_bm3_R_Y_GLU %>%
       select(GCAM_region_ID, GLU) %>%
       unique %>%
-      mutate(GCAM_commodity = "biomass",
+      mutate(GCAM_commodity = "biomass_woody",
              GCAM_subsector = "biomassTree") ->
       L201.R_C_GLU_biotree
     # Third, bind Ag commodties, forest, pasture and biomass all together
@@ -337,7 +338,7 @@ module_aglu_L2012.ag_For_Past_bio_input_irr_mgmt <- function(command, ...) {
 
     # Add sector, subsector, and technology information to L201.AgYield_bio_grass
     L201.AgYield_bio_grass %>%
-      mutate(AgSupplySector = "biomass",
+      mutate(AgSupplySector = "biomass_herbaceous",
              AgSupplySubsector = paste0("biomassGrass_", GLU_name),
              AgProductionTechnology = AgSupplySubsector) %>%
       repeat_add_columns((tibble(year = MODEL_BASE_YEARS))) %>%
