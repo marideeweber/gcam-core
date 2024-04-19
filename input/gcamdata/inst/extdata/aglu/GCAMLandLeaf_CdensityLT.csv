@@ -39,5 +39,5 @@ SugarCrop,Cropland
 SugarCropC4,Cropland
 Vegetables,Cropland
 Wheat,Cropland
-biomassGrass,Pasture
-biomassTree,Pasture
+biomassHerbaceous,Pasture
+biomassWoody,Pasture

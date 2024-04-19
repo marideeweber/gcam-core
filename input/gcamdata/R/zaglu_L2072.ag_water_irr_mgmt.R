@@ -199,11 +199,11 @@ module_aglu_L2072.ag_water_irr_mgmt <- function(command, ...) {
 
     # Separate table of water withdrawals IO coefs into 2: one for bioenergy crops, another for non-bio crops
     L2072.AgCoef_IrrWaterWdraw_mgmt %>%
-      filter(AgSupplySector != "biomass") ->
+      filter(!grepl("biomass", AgSupplySector)) ->
       L2072.AgCoef_IrrWaterWdraw_ag_mgmt
 
     L2072.AgCoef_IrrWaterWdraw_mgmt %>%
-      filter(AgSupplySector == "biomass") ->
+      filter(grepl("biomass", AgSupplySector)) ->
       L2072.AgCoef_IrrWaterWdraw_bio_mgmt
 
 

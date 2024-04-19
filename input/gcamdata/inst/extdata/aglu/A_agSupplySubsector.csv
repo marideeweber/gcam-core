@@ -31,6 +31,6 @@ SugarCrop,SugarCropC4,-6,start-year,1
 Vegetables,Vegetables,-6,start-year,1
 Wheat,Wheat,-6,start-year,1
 Forest,Forest,-6,start-year,1
-biomass_herbaceous,biomassGrass,-6,start-year,1
-biomass_woody,biomassTree,-6,start-year,1
+biomassHerbaceous,biomassHerbaceous,-6,start-year,1
+biomassWoody,biomassWoody,-6,start-year,1
 Pasture,Pasture,-6,start-year,1

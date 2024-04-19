@@ -228,27 +228,27 @@ module_aglu_L2252.land_input_5_irr_mgmt <- function(command, ...) {
     # L2252.LN5_HistMgdAllocation_crop: historical cropland allocation
     # in the fifth land nest ie for each crop-irr-mgmt combo in each region-glu-year.
     ALL_LAND_ALLOCATION %>%
-      filter(!grepl("biomassGrass", LandLeaf) & !grepl("biomassTree", LandLeaf)) %>%
+      filter(!grepl("biomassHerbaceous", LandLeaf) & !grepl("biomassWoody", LandLeaf)) %>%
       filter(year %in% aglu.LAND_HISTORY_YEARS) ->
       L2252.LN5_HistMgdAllocation_crop
 
     # L2252.LN5_MgdAllocation_crop: cropland allocation
     # in the fifth land nest ie for each crop-irr-mgmt combo in each region-glu-year.
     ALL_LAND_ALLOCATION %>%
-      filter(!grepl("biomassGrass", LandLeaf), !grepl("biomassTree", LandLeaf)) %>%
+      filter(!grepl("biomassHerbaceous", LandLeaf), !grepl("biomassWoody", LandLeaf)) %>%
       filter(year %in% MODEL_BASE_YEARS)  %>%
       remove_zero_production_land_leafs(prod = L2012.AgProduction_ag_irr_mgmt) ->
       L2252.LN5_MgdAllocation_crop
 
     # L2252.LN5_HistMgdAllocation_bio
     ALL_LAND_ALLOCATION %>%
-      filter(grepl("biomassGrass", LandLeaf) | grepl("biomassTree", LandLeaf)) %>%
+      filter(grepl("biomassHerbaceous", LandLeaf) | grepl("biomassWoody", LandLeaf)) %>%
       filter(year %in% aglu.LAND_HISTORY_YEARS) ->
       L2252.LN5_HistMgdAllocation_bio
 
     # L2252.LN5_MgdAllocation_bio
     ALL_LAND_ALLOCATION %>%
-      filter(grepl("biomassGrass", LandLeaf) | grepl("biomassTree", LandLeaf)) %>%
+      filter(grepl("biomassHerbaceous", LandLeaf) | grepl("biomassWoody", LandLeaf)) %>%
       filter(year %in% MODEL_BASE_YEARS) ->
       L2252.LN5_MgdAllocation_bio
 

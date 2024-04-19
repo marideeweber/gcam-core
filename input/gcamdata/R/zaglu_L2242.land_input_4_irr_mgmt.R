@@ -52,7 +52,7 @@ module_aglu_L2242.land_input_4_irr_mgmt <- function(command, ...) {
     L2012.AgProduction_ag_irr_mgmt %>%
       distinct(region, AgSupplySubsector, AgSupplySector) %>%
       bind_rows(distinct(L2012.AgYield_bio_ref, region, AgSupplySubsector, AgSupplySector)) %>%
-      mutate(AgSupplySector = if_else(grepl("biomassTree", AgSupplySubsector), "biomassTree", "biomassGrass")) %>%
+      mutate(AgSupplySector = if_else(grepl("biomassWoody", AgSupplySubsector), "biomassWoody", "biomassHerbaceous")) %>%
       left_join(A_LandLeaf3, by=c("AgSupplySector" = "LandLeaf")) %>%
       separate(AgSupplySubsector, c("LandNode4", "GLU_name")) %>%
       mutate(logit.year.fillout = min(MODEL_BASE_YEARS)) %>%
@@ -70,9 +70,9 @@ module_aglu_L2242.land_input_4_irr_mgmt <- function(command, ...) {
     # Specify ghost node share for bioenergy node in future years (starting with first bio year).
     L2012.AgYield_bio_ref %>%
       distinct(region, AgSupplySubsector) %>%
-      mutate(GCAM_commodity = if_else(grepl("^biomassGrass", AgSupplySubsector), "biomassGrass", "biomassTree"),
-             GLU_name = if_else(grepl("^biomassGrass", AgSupplySubsector), gsub("biomassGrass_", "", AgSupplySubsector),
-                                                                            gsub("biomassTree_", "", AgSupplySubsector))) %>%
+      mutate(GCAM_commodity = if_else(grepl("^biomassHerbaceous", AgSupplySubsector), "biomassHerbaceous", "biomassWoody"),
+             GLU_name = if_else(grepl("^biomassHerbaceous", AgSupplySubsector), gsub("biomassHerbaceous_", "", AgSupplySubsector),
+                                                                            gsub("biomassWoody_", "", AgSupplySubsector))) %>%
       left_join_error_no_match(A_LT_Mapping, by = "GCAM_commodity") %>%
       mutate(LandAllocatorRoot = "root",
              LandNode1 = paste(LandNode1, GLU_name, sep = aglu.LT_GLU_DELIMITER),
