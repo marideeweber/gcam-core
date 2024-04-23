@@ -70,8 +70,7 @@ module_energy_Cstorage_xml <- function(command, ...) {
       add_xml_data(L261.GlobalTechCoef_C, "GlobalTechCoef") %>%
       add_xml_data(L261.GlobalTechCost_C, "GlobalTechCost") %>%
       add_xml_data(L261.GlobalTechShrwt_C, "GlobalTechShrwt") %>%
-      add_precursors("L261.Rsrc", "L261.UnlimitRsrc", "L261.RsrcCurves_C", "L261.ResTechShrwt_C", "L261.Supplysector_C", "L261.SubsectorLogit_C", "L261.SubsectorShrwtFllt_C", "L261.StubTech_C", "L261.GlobalTechCoef_C", "L261.GlobalTechCost_C", "L261.GlobalTechShrwt_C",
-                     "L261.ResSubresourceProdLifetime","L261.ResReserveTechLifetime","L261.ResReserveTechDeclinePhase","L261.ResReserveTechProfitShutdown") ->
+      add_precursors("L261.Rsrc", "L261.UnlimitRsrc", "L261.RsrcCurves_C", "L261.ResTechShrwt_C", "L261.Supplysector_C", "L261.SubsectorLogit_C", "L261.SubsectorShrwtFllt_C", "L261.StubTech_C", "L261.GlobalTechCoef_C", "L261.GlobalTechCost_C", "L261.GlobalTechShrwt_C") ->
       Cstorage.xml
 
     return_data(Cstorage.xml)
