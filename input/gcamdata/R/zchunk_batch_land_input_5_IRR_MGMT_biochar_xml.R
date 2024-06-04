@@ -14,13 +14,9 @@ module_aglu_batch_land_input_5_IRR_MGMT_biochar_xml <- function(command, ...) {
   if(command == driver.DECLARE_INPUTS) {
     return(c("L2252.LN5_Logit", # Logit is at node level, so no change
              "L2221.LN5_HistMgdAllocation_crop_biochar",
-             "L2221.LN5_HistMgdAllocation_bio_biochar",
              "L2221.LN5_MgdAllocation_crop_biochar",
-             "L2221.LN5_MgdAllocation_bio_biochar",
              "L2221.LN5_MgdCarbon_crop_biochar",
-             "L2221.LN5_MgdCarbon_bio_biochar",
              "L2221.LN5_LeafGhostShare",
-             "L2221.LN5_LeafGhostShare_bio",
              "L2252.LN5_NodeGhostShare"))
 
   } else if(command == driver.DECLARE_OUTPUTS) {
@@ -32,13 +28,9 @@ module_aglu_batch_land_input_5_IRR_MGMT_biochar_xml <- function(command, ...) {
     # Load required inputs
     L2252.LN5_Logit <- get_data(all_data, "L2252.LN5_Logit")
     L2221.LN5_HistMgdAllocation_crop_biochar <- get_data(all_data, "L2221.LN5_HistMgdAllocation_crop_biochar")
-    L2221.LN5_HistMgdAllocation_bio_biochar <- get_data(all_data, "L2221.LN5_HistMgdAllocation_bio_biochar")
     L2221.LN5_MgdAllocation_crop_biochar <- get_data(all_data, "L2221.LN5_MgdAllocation_crop_biochar")
-    L2221.LN5_MgdAllocation_bio_biochar <- get_data(all_data, "L2221.LN5_MgdAllocation_bio_biochar")
     L2221.LN5_MgdCarbon_crop_biochar <- get_data(all_data, "L2221.LN5_MgdCarbon_crop_biochar")
-    L2221.LN5_MgdCarbon_bio_biochar <- get_data(all_data, "L2221.LN5_MgdCarbon_bio_biochar")
     L2221.LN5_LeafGhostShare <- get_data(all_data, "L2221.LN5_LeafGhostShare")
-    L2221.LN5_LeafGhostShare_bio <- get_data(all_data, "L2221.LN5_LeafGhostShare_bio")
     L2252.LN5_NodeGhostShare <- get_data(all_data, "L2252.LN5_NodeGhostShare")
 
     # ===================================================
@@ -47,24 +39,16 @@ module_aglu_batch_land_input_5_IRR_MGMT_biochar_xml <- function(command, ...) {
     create_xml("biochar_land_input_5_IRR_MGMT.xml") %>%
       add_logit_tables_xml(L2252.LN5_Logit, "LN5_Logit") %>%
       add_xml_data(L2221.LN5_HistMgdAllocation_crop_biochar, "LN5_HistMgdAllocation") %>%
-      add_xml_data(L2221.LN5_HistMgdAllocation_bio_biochar, "LN5_HistMgdAllocation") %>%
       add_xml_data(L2221.LN5_MgdAllocation_crop_biochar, "LN5_MgdAllocation") %>%
-      add_xml_data(L2221.LN5_MgdAllocation_bio_biochar, "LN5_MgdAllocation") %>%
       add_xml_data(L2221.LN5_MgdCarbon_crop_biochar, "LN5_MgdCarbon") %>%
-      add_xml_data(L2221.LN5_MgdCarbon_bio_biochar, "LN5_MgdCarbon") %>%
       add_xml_data(L2221.LN5_LeafGhostShare, "LN5_LeafGhostShare") %>%
-      add_xml_data(L2221.LN5_LeafGhostShare_bio, "LN5_LeafGhostShare") %>%
       add_xml_data(L2252.LN5_NodeGhostShare, "LN5_NodeGhostShare") %>%
       add_rename_landnode_xml() %>%
       add_precursors("L2252.LN5_Logit",
                      "L2221.LN5_HistMgdAllocation_crop_biochar",
-                     "L2221.LN5_HistMgdAllocation_bio_biochar",
                      "L2221.LN5_MgdAllocation_crop_biochar",
-                     "L2221.LN5_MgdAllocation_bio_biochar",
                      "L2221.LN5_MgdCarbon_crop_biochar",
-                     "L2221.LN5_MgdCarbon_bio_biochar",
                      "L2221.LN5_LeafGhostShare",
-                     "L2221.LN5_LeafGhostShare_bio",
                      "L2252.LN5_NodeGhostShare") ->
       biochar_land_input_5_IRR_MGMT.xml
 

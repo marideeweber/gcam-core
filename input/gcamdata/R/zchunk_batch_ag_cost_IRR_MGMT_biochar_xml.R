@@ -12,8 +12,7 @@
 #' original data system was \code{batch_biochar_ag_demand.xml.R} (energy XML).
 module_aglu_batch_ag_cost_IRR_MGMT_biochar_xml <- function(command, ...) {
   if(command == driver.DECLARE_INPUTS) {
-    return(c("L2221.AgCost_ag_irr_mgmt",
-             "L2221.AgCost_bio_irr_mgmt"))
+    return(c("L2221.AgCost_ag_irr_mgmt"))
 
   } else if(command == driver.DECLARE_OUTPUTS) {
     return(c(XML = "biochar_ag_cost_IRR_MGMT.xml"))
@@ -23,16 +22,13 @@ module_aglu_batch_ag_cost_IRR_MGMT_biochar_xml <- function(command, ...) {
 
     # Load required inputs
     L2221.AgCost_ag_irr_mgmt <- get_data(all_data, "L2221.AgCost_ag_irr_mgmt")
-    L2221.AgCost_bio_irr_mgmt <- get_data(all_data, "L2221.AgCost_bio_irr_mgmt")
 
     # ===================================================
 
     # Produce outputs
     create_xml("biochar_ag_cost_IRR_MGMT.xml") %>%
       add_xml_data(L2221.AgCost_ag_irr_mgmt, "AgCost") %>%
-      add_xml_data(L2221.AgCost_bio_irr_mgmt, "AgCost") %>%
-      add_precursors("L2221.AgCost_ag_irr_mgmt",
-                     "L2221.AgCost_bio_irr_mgmt") ->
+      add_precursors("L2221.AgCost_ag_irr_mgmt") ->
       biochar_ag_cost_IRR_MGMT.xml
 
     return_data(biochar_ag_cost_IRR_MGMT.xml)

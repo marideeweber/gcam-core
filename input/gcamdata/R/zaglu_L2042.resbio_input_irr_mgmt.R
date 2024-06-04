@@ -178,9 +178,12 @@ module_aglu_L2042.resbio_input_irr_mgmt <- function(command, ...) {
       For.Mill.tmp2
 
     # Forest
+    # TODO: for biochar 2pt0. Does this table represent the forest residue available for biomass for elec gen, refining, etc.,
+    # TODO: and the table below this (Mill) has the forest residue available for the mill.
     For.Mill.tmp2 %>%
       filter(colID == "For") %>%
       select(-colID) ->
+      #mutate(residue.biomass.production = "biomassWoody")
       L204.AgResBioCurve_For
 
     # Mill
@@ -195,7 +198,7 @@ module_aglu_L2042.resbio_input_irr_mgmt <- function(command, ...) {
 
 
     # AGRICULTURE RESIDUE BIO
-    # 4. Form a table of Agricultural Residue Biomass Paramters by region-glu-year
+    # 4. Form a table of Agricultural Residue Biomass Parameters by region-glu-year
     L101.ag_Prod_Mt_R_C_Y_GLU %>%
       select(GCAM_region_ID, GCAM_commodity, GCAM_subsector, GLU) %>%
       distinct %>%

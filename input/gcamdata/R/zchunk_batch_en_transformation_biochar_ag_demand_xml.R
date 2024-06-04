@@ -14,8 +14,6 @@ module_energy_batch_en_transformation_biochar_ag_demand_xml <- function(command,
   if(command == driver.DECLARE_INPUTS) {
     return(c("L2221.AgCoef_Biochar_ag_irr_mgmt",
              "L2221.AgCost_Biochar_irr_mgmt_adj",
-             "L2221.AgCoef_Biochar_bio_irr_mgmt",
-             "L2221.AgCost_Biochar_irr_mgmt_adj_bio",
              "L2221.CarbonCoef"))
 
   } else if(command == driver.DECLARE_OUTPUTS) {
@@ -27,8 +25,6 @@ module_energy_batch_en_transformation_biochar_ag_demand_xml <- function(command,
     # Load required inputs
     L2221.AgCoef_Biochar_ag_irr_mgmt <- get_data(all_data, "L2221.AgCoef_Biochar_ag_irr_mgmt")
     L2221.AgCost_Biochar_irr_mgmt_adj <- get_data(all_data, "L2221.AgCost_Biochar_irr_mgmt_adj")
-    L2221.AgCoef_Biochar_bio_irr_mgmt <- get_data(all_data, "L2221.AgCoef_Biochar_bio_irr_mgmt")
-    L2221.AgCost_Biochar_irr_mgmt_adj_bio <- get_data(all_data, "L2221.AgCost_Biochar_irr_mgmt_adj_bio")
     L2221.CarbonCoef <- get_data(all_data, "L2221.CarbonCoef")
 
     # ===================================================
@@ -37,13 +33,9 @@ module_energy_batch_en_transformation_biochar_ag_demand_xml <- function(command,
     create_xml("biochar_ag_demand.xml") %>%
       add_xml_data(L2221.AgCoef_Biochar_ag_irr_mgmt, "AgCoef") %>%
       add_xml_data(L2221.AgCost_Biochar_irr_mgmt_adj, "AgCost") %>%
-      add_xml_data(L2221.AgCoef_Biochar_bio_irr_mgmt, "AgCoef") %>%
-      add_xml_data(L2221.AgCost_Biochar_irr_mgmt_adj_bio, "AgCost") %>%
       add_xml_data(L2221.CarbonCoef, "CarbonCoef") %>%
       add_precursors("L2221.AgCoef_Biochar_ag_irr_mgmt",
                      "L2221.AgCost_Biochar_irr_mgmt_adj",
-                     "L2221.AgCoef_Biochar_bio_irr_mgmt",
-                     "L2221.AgCost_Biochar_irr_mgmt_adj_bio",
                      "L2221.CarbonCoef") ->
       biochar_ag_demand.xml
 
