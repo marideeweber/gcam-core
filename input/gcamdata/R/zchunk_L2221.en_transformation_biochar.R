@@ -5,7 +5,7 @@
 #' Prepare the assumptions and calibrated outputs for energy transformation supplysectors, subsectors, and technologies.
 #' @param command API command to execute
 #' @param ... other optional parameters, depending on command
-#' @return Depends on \code{command}: either a vector of required inputs,
+#' @return Depends on \code{command}: either a vector of required inputs,,,
 #' a vector of output names, or (if \code{command} is "MAKE") all
 #' the generated outputs: \code{L2221.SectorLogitTables[[ curr_table ]]$data}, \code{L2221.Supplysector_en},
 #' \code{L2221.SubsectorLogitTables[[ curr_table ]]$data}, \code{L2221.SubsectorLogit_en}, },

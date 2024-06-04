@@ -6,7 +6,7 @@
 #' @param command API command to execute
 #' @param ... other optional parameters, depending on command
 #' @return Depends on \code{command}: either a vector of required inputs,
-#' a vector of output names, or (if \code{command} is "MAKE") all
+#' a vector of output names, or (if \code{command} is "MAKE") alll
 #' the generated outputs: \code{L2221.LN5_HistMgdAllocation_crop_biochar},
 #' \code{L2221.LN5_MgdAllocation_crop_biochar},
 #' \code{L2221.LN5_MgdCarbon_crop_biochar},
@@ -342,7 +342,7 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
       # DayCent * 0.1 = GCAM
       mutate(NB = NB * 0.1,
              B = B * 0.1) %>%
-     separate(technology, c("crop", "basin", "water", "fertilizer", "biochar", "treatment"), sep = "_") %>%
+      separate(technology, c("crop", "basin", "water", "fertilizer", "biochar", "treatment"), sep = "_") %>%
       unite("LandLeaf", "crop", "basin", "water", "fertilizer", sep = "_") %>%
       unite("treatment", "biochar", "treatment", sep = "_")
 
@@ -439,20 +439,20 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
     L2012.AgProduction_ag_irr_mgmt %>%
       filter(region %in% test.region,
              AgProductionTechnology %in% biochar.techs) %>%
-      # Here we create the biochar suffix to add to the technologies
-      mutate(suffix = "biochar") %>%
-      unite("AgProductionTechnology", c("AgProductionTechnology", "suffix"), sep="_") %>%
       # Set historical production to 0, and tech shareweight to 0. Subsector should not change
       mutate(calOutputValue = 0,
-             tech.share.weight = 0) -> L2221.AgProduction_ag_irr_mgmt # OUTPUT
+             tech.share.weight = 0) %>%
+      # Add in technology suffixes
+      full_join(biochar_techs, by=c("AgProductionTechnology" = "technology"), relationship = "many-to-many") %>%
+      unite("AgProductionTechnology", c(AgProductionTechnology, treatment)) -> L2221.AgProduction_ag_irr_mgmt # OUTPUT
 
     ## L2221.AgHAtoCL_irr_mgmt
     L2012.AgHAtoCL_irr_mgmt %>%
       filter(region %in% test.region,
              AgProductionTechnology %in% biochar.techs) %>%
-      # Here we create the biochar suffix to add to the technologies
-      mutate(suffix = "biochar") %>%
-      unite("AgProductionTechnology", c("AgProductionTechnology", "suffix"), sep="_") -> L2221.AgHAtoCL_irr_mgmt # OUTPUT
+      # Add in technology suffixes
+      full_join(biochar_techs, by=c("AgProductionTechnology" = "technology"), relationship = "many-to-many") %>%
+      unite("AgProductionTechnology", c(AgProductionTechnology, treatment)) -> L2221.AgHAtoCL_irr_mgmt # OUTPUT
 
     ## L2221.AgYield_biochar_ref
     # We need to create this table with yields for biochar technologies, since there is no production nor land allocation,
@@ -465,13 +465,13 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
       filter(region %in% test.region,
              AgProductionTechnology %in% biochar.techs) %>%
       left_join(L2252.LN5_MgdAllocation_crop, by = c("AgSupplySubsector" = "LandNode4", "AgProductionTechnology" = "LandLeaf","region", "year"))%>%
-      # Here we create the biochar suffix to add to the technologies; and calculate the yields
-      # and we replace NAs with 0 yields
-      mutate(suffix = "biochar",
-             yield = calOutputValue / allocation,
+      # Here we  calculate the yields and we replace NAs with 0 yields
+      mutate(yield = calOutputValue / allocation,
              yield = if_else(is.na(yield), 0, yield)) %>%
-      unite("AgProductionTechnology", c("AgProductionTechnology", "suffix"), sep="_") %>%
-      select(LEVEL2_DATA_NAMES$AgYield)-> L2221.AgYield_biochar_ref # OUTPUT
+      select(LEVEL2_DATA_NAMES$AgYield) %>%
+      # Add in technology suffixes
+      full_join(biochar_techs, by=c("AgProductionTechnology" = "technology"), relationship = "many-to-many") %>%
+      unite("AgProductionTechnology", c(AgProductionTechnology, treatment)) -> L2221.AgYield_biochar_ref # OUTPUT
 
     #=============================================================================================================================
 
@@ -480,9 +480,9 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
     L2052.AgCost_ag_irr_mgmt %>%
       filter(region %in% test.region,
              AgProductionTechnology %in% biochar.techs) %>%
-      # Here we create the biochar suffix to add to the technologies
-      mutate(suffix = "biochar") %>%
-      unite("AgProductionTechnology", c("AgProductionTechnology", "suffix"), sep="_") -> L2221.AgCost_ag_irr_mgmt # OUTPUT
+      # Add in technology suffixes
+      full_join(biochar_techs, by=c("AgProductionTechnology" = "technology"), relationship = "many-to-many") %>%
+      unite("AgProductionTechnology", c(AgProductionTechnology, treatment)) -> L2221.AgCost_ag_irr_mgmt # OUTPUT
 
     #=============================================================================================================================
 
@@ -505,7 +505,7 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
              AgProductionTechnology %in% biochar.techs,
              year == 2020) %>%
       mutate(# AgProdChange here is actually the yield index. Naming it this for binding purposes
-             AgProdChange = 1) %>%
+        AgProdChange = 1) %>%
       bind_rows(L2052.AgProdChange_ag_irr_ref %>% filter(year>2020)) %>%
       filter(region %in% test.region,
              AgProductionTechnology %in% biochar.techs) %>%
@@ -637,55 +637,6 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
              AgProdChange = annual_biochar_yield_improv) %>%
       select(LEVEL2_DATA_NAMES$AgProdChange)-> L2221.AgProdChange_ag_irr_ref_BEFORE # OUTPUT
 
-
-    ## L2221.AgProdChange_bio_irr_ref
-    L2052.AgProdChange_bio_irr_ref %>%
-      filter(region %in% test.region,
-             grepl("_hi", AgProductionTechnology)) %>%
-      # Here we create the biochar suffix to add to the technologies
-      mutate(suffix = "biochar") %>%
-      unite("AgProductionTechnology", c("AgProductionTechnology", "suffix"), sep="_") %>%
-      # Now get column to distinguish irrigated vs rainfed
-      mutate(water = if_else(grepl("IRR", AgProductionTechnology), "irrigated", "rainfed")) %>%
-      # Add climate zones tables
-      left_join_error_no_match(GCAM_region_names_climate_zone, by = "region") %>%
-      # Now add the table with the yield improvements as percentages, distinguishing from irrigated-rainfed, and tropical/temperate
-      left_join_error_no_match(A221.biochar_yield_increase, by = c("water", "zone")) %>%
-      # (Step 1): Finally, add the table with percentage of biochar land per period, which has the information for step 1
-      left_join_error_no_match(A221.biochar_land_alloc, by = "year") %>%
-      # Now everything is ready, perform calculations
-      # Step 2: Get the average yield on biochar land
-      # considering the percentage of land with biochar, and the yield increase of appliying the biochar
-      mutate(av_yield_biochar = 1*(1 + percentage * yield_increase)) %>%
-      # Step 3: Get cumulative base yield improvements (without biochar)
-      # Since this calculation is recursive, we need to set a for loop
-      # Each computaiton is dependent on the computaiton from teh previous year (within each basin and technology and crop)
-      group_by(region, AgSupplySector, AgSupplySubsector, AgProductionTechnology, water, GCAM_region_ID, zone) %>%
-      mutate(cum_base_yield_improv = 1) -> temp_bio
-
-    for (y in unique(temp_bio$year)) {
-      temp_bio %>%
-        mutate(cum_base_yield_improv = lag(cum_base_yield_improv)*(1 + AgProdChange)^5) %>%
-        replace_na(list(cum_base_yield_improv = 1))->temp_bio
-    }
-
-    # Now continue with computations
-    temp_bio %>%
-      # Step 4: Get cumulative biochar yield improvement
-      mutate(cum_biochar_yield_improv = cum_base_yield_improv * av_yield_biochar) %>%
-      # Step 5: Get annual biochar yield improvement
-      #We need to group first so that the divisin happens wihtin the same country, basin, crop, tech, and compared to previous year
-      #and not across different regions.
-      group_by(region, AgSupplySector, AgSupplySubsector, AgProductionTechnology, water, GCAM_region_ID, zone) %>%
-      mutate(annual_biochar_yield_improv = ((cum_biochar_yield_improv / lag(cum_biochar_yield_improv))^(1/5))-1) %>%
-      ungroup() %>%
-      # Now replace NA in 2020 with the same ag prod change from the default technology, since the yield increase comes after the application
-      mutate(annual_biochar_yield_improv = if_else(year == 2020 & is.na(annual_biochar_yield_improv), AgProdChange, annual_biochar_yield_improv)) %>%
-      # Now reanme old ag prod change, and keep the new one
-      rename(old_AgProdChange = AgProdChange,
-             AgProdChange = annual_biochar_yield_improv) %>%
-      select(LEVEL2_DATA_NAMES$AgProdChange)-> L2221.AgProdChange_bio_irr_ref_BEFORE # OUTPUT
-
     #=============================================================================================================================
 
     #### PART 5: Fertilizer information (biochar_ag_Fert_IRR_MGMT.xml) ####
@@ -693,17 +644,17 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
     L2062.AgCoef_Fert_ag_irr_mgmt %>%
       filter(region %in% test.region,
              AgProductionTechnology %in% biochar.techs) %>%
-      # Here we create the biochar suffix to add to the technologies
-      mutate(suffix = "biochar") %>%
-      unite("AgProductionTechnology", c("AgProductionTechnology", "suffix"), sep="_") -> L2221.AgCoef_Fert_ag_irr_mgmt # OUTPUT
+      # Add in technology suffixes
+      full_join(biochar_techs, by=c("AgProductionTechnology" = "technology"), relationship = "many-to-many") %>%
+      unite("AgProductionTechnology", c(AgProductionTechnology, treatment)) -> L2221.AgCoef_Fert_ag_irr_mgmt # OUTPUT
 
     ## L2221.AgCost_ag_irr_mgmt_adj
     L2062.AgCost_ag_irr_mgmt_adj %>%
       filter(region %in% test.region,
              AgProductionTechnology %in% biochar.techs) %>%
-      # Here we create the biochar suffix to add to the technologies
-      mutate(suffix = "biochar") %>%
-      unite("AgProductionTechnology", c("AgProductionTechnology", "suffix"), sep="_") -> L2221.AgCost_ag_irr_mgmt_adj # OUTPUT
+      # Add in technology suffixes
+      full_join(biochar_techs, by=c("AgProductionTechnology" = "technology"), relationship = "many-to-many") %>%
+      unite("AgProductionTechnology", c(AgProductionTechnology, treatment)) -> L2221.AgCost_ag_irr_mgmt_adj # OUTPUT
 
     #=============================================================================================================================
 
@@ -712,17 +663,17 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
     L2042.AgResBio_ag_irr_mgmt %>%
       filter(region %in% test.region,
              AgProductionTechnology %in% biochar.techs) %>%
-      # Here we create the biochar suffix to add to the technologies
-      mutate(suffix = "biochar") %>%
-      unite("AgProductionTechnology", c("AgProductionTechnology", "suffix"), sep="_") -> L2221.AgResBio_ag_irr_mgmt # OUTPUT
+      # Add in technology suffixes
+      full_join(biochar_techs, by=c("AgProductionTechnology" = "technology"), relationship = "many-to-many") %>%
+      unite("AgProductionTechnology", c(AgProductionTechnology, treatment)) -> L2221.AgResBio_ag_irr_mgmt # OUTPUT
 
     ## L2221.AgResBioCurve_ag_irr_mgmt
     L2042.AgResBioCurve_ag_irr_mgmt %>%
       filter(region %in% test.region,
              AgProductionTechnology %in% biochar.techs) %>%
-      # Here we create the biochar suffix to add to the technologies
-      mutate(suffix = "biochar") %>%
-      unite("AgProductionTechnology", c("AgProductionTechnology", "suffix"), sep="_") -> L2221.AgResBioCurve_ag_irr_mgmt # OUTPUT
+      # Add in technology suffixes
+      full_join(biochar_techs, by=c("AgProductionTechnology" = "technology"), relationship = "many-to-many") %>%
+      unite("AgProductionTechnology", c(AgProductionTechnology, treatment)) -> L2221.AgResBioCurve_ag_irr_mgmt # OUTPUT
 
     #=============================================================================================================================
 
@@ -749,9 +700,6 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
       filter(region %in% test.region,
              year == MODEL_FINAL_BASE_YEAR,
              LandLeaf %in% biochar.techs) %>%
-      # Here we create the biochar suffix to add to the technologies
-      mutate(suffix = "biochar") %>%
-      unite("LandLeaf", c("LandLeaf", "suffix"), sep="_") %>%
       # TODO: Need help with this for different rates
       # Units are in thousand km2 and we need them in hectares
       # Then we assume certain biochar application rate named at the constant "biochar.rate"
@@ -764,18 +712,21 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
              biochar.year_MT = max.bicohar_MT / assumed.biochar.years,
              #Get allocation in kg per hectare, since units are in kg of biochar per kg of crop
              biochar.year_kg = biochar.year_MT * 10^9) %>%
-      rename("AgSupplySubsector" = "LandNode4", "AgProductionTechnology" =  "LandLeaf") -> L2252.LN5_MgdAllocation_crop_biochar
+      rename("AgSupplySubsector" = "LandNode4", "AgProductionTechnology" =  "LandLeaf") %>%
+      # Add in technology suffixes
+      full_join(biochar_techs, by=c("AgProductionTechnology" = "technology"), relationship = "many-to-many") %>%
+      unite("AgProductionTechnology", c(AgProductionTechnology, treatment)) -> L2252.LN5_MgdAllocation_crop_biochar
 
     # Now prepare the table with the agricultural production
     L2012.AgProduction_ag_irr_mgmt %>%
       filter(region %in% test.region,
              year == MODEL_FINAL_BASE_YEAR,
              AgProductionTechnology %in% biochar.techs) %>%
-      # Here we create the biochar suffix to add to the technologies
-      mutate(suffix = "biochar") %>%
       # Since units are in Mt we convert them to kg
       mutate(prod_kg = calOutputValue * 10^9) %>%
-      unite("AgProductionTechnology", c("AgProductionTechnology", "suffix"), sep="_") -> L2012.AgProduction_ag_irr_mgmt_biochar
+      # Add in technology suffixes
+      full_join(biochar_techs, by=c("AgProductionTechnology" = "technology"), relationship = "many-to-many") %>%
+      unite("AgProductionTechnology", c(AgProductionTechnology, treatment)) -> L2012.AgProduction_ag_irr_mgmt_biochar
 
     # Merge tables
     L2252.LN5_MgdAllocation_crop_biochar %>%
@@ -785,7 +736,7 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
              biochar.year_kg, prod_kg) %>%
       # Now compute coefficient as biochar.year_MT divided total crop production (as with fertilzier)
       # This is Megatons of biochar / Mt of crop produced in that land; or kf of biochar / kg of crop production
-      mutate(minicam.energy.input = "biochar",
+      mutate(minicam.energy.input = "biochar_labile",
              coefficient = biochar.year_MT / calOutputValue,
              coefficient_kg = biochar.year_kg / prod_kg) %>%
       # Complete other years
@@ -797,9 +748,9 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
     L2062.AgCost_ag_irr_mgmt_adj %>% # We use the adjsuted costs of applying fertilizer here
       filter(region %in% test.region,
              AgProductionTechnology %in% biochar.techs) %>%
-      # Here we create the biochar suffix to add to the technologies
-      mutate(suffix = "biochar") %>%
-      unite("AgProductionTechnology", c("AgProductionTechnology", "suffix"), sep="_") %>%
+      # Add in technology suffixes
+      full_join(biochar_techs, by=c("AgProductionTechnology" = "technology"), relationship = "many-to-many") %>%
+      unite("AgProductionTechnology", c(AgProductionTechnology, treatment)) %>%
       # filter out non existent crops
       semi_join(L2221.AgCoef_Biochar_ag_irr_mgmt, by = c("region", "AgSupplySector", "AgSupplySubsector", "AgProductionTechnology", "year")) %>%
       select(LEVEL2_DATA_NAMES$AgCost) -> L2221.AgCost_Biochar_irr_mgmt_adj # OUTPUT
@@ -818,33 +769,33 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
     L2072.AgCoef_IrrBphysWater_ag_mgmt %>%
       filter(region %in% test.region,
              AgProductionTechnology %in% biochar.techs) %>%
-      # Here we create the biochar suffix to add to the technologies
-      mutate(suffix = "biochar") %>%
-      unite("AgProductionTechnology", c("AgProductionTechnology", "suffix"), sep="_") -> L2221.AgCoef_IrrBphysWater_ag_mgmt # OUTPUT
+      # Add in technology suffixes
+      full_join(biochar_techs, by=c("AgProductionTechnology" = "technology"), relationship = "many-to-many") %>%
+      unite("AgProductionTechnology", c(AgProductionTechnology, treatment)) -> L2221.AgCoef_IrrBphysWater_ag_mgmt # OUTPUT
 
     ## L2221.AgCoef_IrrWaterWdraw_ag_mgmt
     L2072.AgCoef_IrrWaterWdraw_ag_mgmt %>%
       filter(region %in% test.region,
              AgProductionTechnology %in% biochar.techs) %>%
-      # Here we create the biochar suffix to add to the technologies
-      mutate(suffix = "biochar") %>%
-      unite("AgProductionTechnology", c("AgProductionTechnology", "suffix"), sep="_") -> L2221.AgCoef_IrrWaterWdraw_ag_mgmt # OUTPUT
+      # Add in technology suffixes
+      full_join(biochar_techs, by=c("AgProductionTechnology" = "technology"), relationship = "many-to-many") %>%
+      unite("AgProductionTechnology", c(AgProductionTechnology, treatment)) -> L2221.AgCoef_IrrWaterWdraw_ag_mgmt # OUTPUT
 
     ## L2221.AgCoef_IrrWaterCons_ag_mgmt
     L2072.AgCoef_IrrWaterCons_ag_mgmt %>%
       filter(region %in% test.region,
              AgProductionTechnology %in% biochar.techs) %>%
-      # Here we create the biochar suffix to add to the technologies
-      mutate(suffix = "biochar") %>%
-      unite("AgProductionTechnology", c("AgProductionTechnology", "suffix"), sep="_") -> L2221.AgCoef_IrrWaterCons_ag_mgmt # OUTPUT
+      # Add in technology suffixes
+      full_join(biochar_techs, by=c("AgProductionTechnology" = "technology"), relationship = "many-to-many") %>%
+      unite("AgProductionTechnology", c(AgProductionTechnology, treatment)) -> L2221.AgCoef_IrrWaterCons_ag_mgmt # OUTPUT
 
     ## L2221.AgCoef_RfdBphysWater_ag_mgmt
     L2072.AgCoef_RfdBphysWater_ag_mgmt %>%
       filter(region %in% test.region,
              AgProductionTechnology %in% biochar.techs) %>%
-      # Here we create the biochar suffix to add to the technologies
-      mutate(suffix = "biochar") %>%
-      unite("AgProductionTechnology", c("AgProductionTechnology", "suffix"), sep="_") -> L2221.AgCoef_RfdBphysWater_ag_mgmt # OUTPUT
+      # Add in technology suffixes
+      full_join(biochar_techs, by=c("AgProductionTechnology" = "technology"), relationship = "many-to-many") %>%
+      unite("AgProductionTechnology", c(AgProductionTechnology, treatment)) -> L2221.AgCoef_RfdBphysWater_ag_mgmt # OUTPUT
 
     # ====================================================================================================================================
 
