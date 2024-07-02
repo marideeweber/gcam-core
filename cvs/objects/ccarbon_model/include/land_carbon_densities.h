@@ -90,6 +90,9 @@ public:
 	
 	virtual int getMatureAge( ) const;
 
+    //define a function here to get the basin level carbon densities
+    virtual int getBasinTimeScale() const;
+
 protected:
     
     // Define data such that introspection utilities can process the data from this
@@ -105,6 +108,9 @@ protected:
         
         //! Age at maturity.  This is used to grow forests slowly.
         DEFINE_VARIABLE( SIMPLE, "mature-age", mMatureAge, int )
+
+        //! Number of years to reach SOC equilibrium, after land use change (read in).
+        DEFINE_VARIABLE(SIMPLE | STATE, "soilTimeScale", aTimeScale, Value),
     )
 };
 

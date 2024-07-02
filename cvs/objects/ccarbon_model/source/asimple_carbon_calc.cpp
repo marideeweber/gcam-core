@@ -393,7 +393,15 @@ double ASimpleCarbonCalc::getAboveGroundCarbonSubsidyDiscountFactor( ){
 }
 
 void ASimpleCarbonCalc::setSoilTimeScale( const int aTimeScale ) {
+    //First set the national parameter
     mSoilTimeScale = aTimeScale;
+    //get the basin time scale      
+    int temp_basin_time_scale = getBasinTimeScale();
+
+    if (temp_basin_time_scale > 0) {
+        mSoilTimeScale = temp_basin_time_scale;
+        cout << "Basin tech soil time scale paramter read in " << mSoilTimeScale << endl;
+    }
     
     precalc_expsoil_diff = precalc_expsoil_type( aTimeScale );
 }
