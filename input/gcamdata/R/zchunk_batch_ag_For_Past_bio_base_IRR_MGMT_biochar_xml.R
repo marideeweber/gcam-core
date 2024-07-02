@@ -36,12 +36,14 @@ module_aglu_batch_ag_For_Past_bio_base_IRR_MGMT_biochar_xml <- function(command,
     ## L2221.AgSupplySector
     L2012.AgSupplySector %>%
       # Filter out forest and pasture, since these do not demand biochar for now
-      filter(!AgSupplySector %in% c("Forest", "Pasture")) -> L2221.AgSupplySector # OUTPUT
+      filter(AgSupplySector %in% L2221.AgProduction_ag_irr_mgmt$AgSupplySector,
+             region %in% L2221.AgProduction_ag_irr_mgmt$region) -> L2221.AgSupplySector # OUTPUT
 
     ## L2221.AgSupplySubsector
     L2012.AgSupplySubsector %>%
       # Filter out forest and pasture, since these do not demand biochar for now
-      filter(!AgSupplySector %in% c("Forest", "Pasture")) -> L2221.AgSupplySubsector # OUTPUT
+      filter(AgSupplySubsector %in% L2221.AgProduction_ag_irr_mgmt$AgSupplySubsector,
+             region %in% L2221.AgProduction_ag_irr_mgmt$region) -> L2221.AgSupplySubsector # OUTPUT
 
 
     # ===================================================
