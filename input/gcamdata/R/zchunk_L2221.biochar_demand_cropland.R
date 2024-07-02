@@ -21,7 +21,7 @@
 #' \code{L2221.CarbonCoef}, \code{L2221.AgCoef_IrrBphysWater_ag_mgmt},
 #' \code{L2221.AgCoef_IrrWaterWdraw_ag_mgmt},
 #' \code{L2221.AgCoef_IrrWaterCons_ag_mgmt},
-#' \code{L2221.AgCoef_RfdBphysWater_ag_mgmt},
+#' \code{L2221.AgCoef_RfdBphysWater_ag_mgmt}.
 #' @details This chunk sets up the biochar demand in agriculture. We assume an application rate of 20 tons of
 #' biochar per hectare. We follow similar approach to fertilizer to calculate IO coefficients.
 #' Applies only to future years
@@ -36,11 +36,8 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
       FILE = "aglu/A221.biochar_soc",
       # PART 1: biochar_land_input_5_IRR_MGMT.xml
       "L2252.LN5_HistMgdAllocation_crop",
-      "L2252.LN5_HistMgdAllocation_bio",
       "L2252.LN5_MgdAllocation_crop",
-      "L2252.LN5_MgdAllocation_bio",
       "L2252.LN5_MgdCarbon_crop",
-      "L2252.LN5_MgdCarbon_bio",
       FILE = "energy/A221.ghost_shrwt",
       # PART 2: biochar_ag_For_Past_bio_base_IRR_MGMT.xml
       "L2012.AgProduction_ag_irr_mgmt",
@@ -48,18 +45,14 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
       "L2012.AgYield_bio_ref",
       # PART 3: biochar_ag_cost_IRR_MGMT.xml
       "L2052.AgCost_ag_irr_mgmt",
-      "L2052.AgCost_bio_irr_mgmt",
       # PART 4: ag_prodchange_ref_IRR_MGMT.xml
       "L2052.AgProdChange_ag_irr_ref",
-      "L2052.AgProdChange_bio_irr_ref",
       FILE = "common/GCAM_region_names_climate_zone",
       FILE = "aglu/A221.biochar_yield_increase",
       FILE = "aglu/A221.biochar_land_alloc",
       # PART 5: biochar_ag_Fert_IRR_MGMT.xml
       "L2062.AgCoef_Fert_ag_irr_mgmt",
-      "L2062.AgCoef_Fert_bio_irr_mgmt",
       "L2062.AgCost_ag_irr_mgmt_adj",
-      "L2062.AgCost_bio_irr_mgmt_adj",
       # PART 6: biochar_resbio_input_IRR_MGMT.xml
       "L2042.AgResBio_ag_irr_mgmt",
       "L2042.AgResBioCurve_ag_irr_mgmt",
@@ -72,10 +65,7 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
       "L2072.AgCoef_IrrBphysWater_ag_mgmt",
       "L2072.AgCoef_IrrWaterWdraw_ag_mgmt",
       "L2072.AgCoef_IrrWaterCons_ag_mgmt",
-      "L2072.AgCoef_RfdBphysWater_ag_mgmt",
-      "L2072.AgCoef_BphysWater_bio_mgmt",
-      "L2072.AgCoef_IrrWaterWdraw_bio_mgmt",
-      "L2072.AgCoef_IrrWaterCons_bio_mgmt"))
+      "L2072.AgCoef_RfdBphysWater_ag_mgmt"))
   } else if(command == driver.DECLARE_OUTPUTS) {
     return(c(#1. biochar_land_input_5_IRR_MGMT.xml
       "L2221.LN5_HistMgdAllocation_crop_biochar",
@@ -124,11 +114,8 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
 
     #PART 1: biochar_land_input_5_IRR_MGMT.xml
     L2252.LN5_HistMgdAllocation_crop <- get_data(all_data, "L2252.LN5_HistMgdAllocation_crop")
-    L2252.LN5_HistMgdAllocation_bio <- get_data(all_data, "L2252.LN5_HistMgdAllocation_bio")
     L2252.LN5_MgdAllocation_crop <- get_data(all_data, "L2252.LN5_MgdAllocation_crop")
-    L2252.LN5_MgdAllocation_bio <- get_data(all_data, "L2252.LN5_MgdAllocation_bio")
     L2252.LN5_MgdCarbon_crop <- get_data(all_data, "L2252.LN5_MgdCarbon_crop")
-    L2252.LN5_MgdCarbon_bio <- get_data(all_data, "L2252.LN5_MgdCarbon_bio")
     A221.ghost_shrwt <- get_data(all_data, "energy/A221.ghost_shrwt")
 
     #PART 2: biochar_ag_For_Past_bio_base_IRR_MGMT.xml
@@ -138,11 +125,9 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
 
     #PART 3: biochar_ag_cost_IRR_MGMT.xml
     L2052.AgCost_ag_irr_mgmt <- get_data(all_data, "L2052.AgCost_ag_irr_mgmt")
-    L2052.AgCost_bio_irr_mgmt <- get_data(all_data, "L2052.AgCost_bio_irr_mgmt")
 
     #PART 4: ag_prodchange_ref_IRR_MGMT.xml
     L2052.AgProdChange_ag_irr_ref <- get_data(all_data, "L2052.AgProdChange_ag_irr_ref")
-    L2052.AgProdChange_bio_irr_ref <- get_data(all_data, "L2052.AgProdChange_bio_irr_ref")
     GCAM_region_names_climate_zone <- get_data(all_data, "common/GCAM_region_names_climate_zone")
     # Use NREL
     A221.biochar_yield_increase <- get_data(all_data, "aglu/A221.biochar_yield_increase")
@@ -150,9 +135,7 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
 
     #PART 5: biochar_ag_Fert_IRR_MGMT.xml
     L2062.AgCoef_Fert_ag_irr_mgmt <- get_data(all_data, "L2062.AgCoef_Fert_ag_irr_mgmt")
-    L2062.AgCoef_Fert_bio_irr_mgmt <- get_data(all_data, "L2062.AgCoef_Fert_bio_irr_mgmt")
     L2062.AgCost_ag_irr_mgmt_adj <- get_data(all_data, "L2062.AgCost_ag_irr_mgmt_adj")
-    L2062.AgCost_bio_irr_mgmt_adj <- get_data(all_data, "L2062.AgCost_bio_irr_mgmt_adj")
 
     #PART 6: biochar_resbio_input_IRR_MGMT.xml
     L2042.AgResBio_ag_irr_mgmt <- get_data(all_data, "L2042.AgResBio_ag_irr_mgmt")
@@ -171,9 +154,6 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
     L2072.AgCoef_IrrWaterWdraw_ag_mgmt <- get_data(all_data, "L2072.AgCoef_IrrWaterWdraw_ag_mgmt")
     L2072.AgCoef_IrrWaterCons_ag_mgmt <- get_data(all_data, "L2072.AgCoef_IrrWaterCons_ag_mgmt")
     L2072.AgCoef_RfdBphysWater_ag_mgmt <- get_data(all_data, "L2072.AgCoef_RfdBphysWater_ag_mgmt")
-    L2072.AgCoef_BphysWater_bio_mgmt <- get_data(all_data, "L2072.AgCoef_BphysWater_bio_mgmt")
-    L2072.AgCoef_IrrWaterWdraw_bio_mgmt <- get_data(all_data, "L2072.AgCoef_IrrWaterWdraw_bio_mgmt")
-    L2072.AgCoef_IrrWaterCons_bio_mgmt <- get_data(all_data, "L2072.AgCoef_IrrWaterCons_bio_mgmt")
 
 
     # ===================================================
@@ -504,9 +484,10 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
       filter(region %in% test.region,
              AgProductionTechnology %in% biochar.techs,
              year == 2020) %>%
-      mutate(# AgProdChange here is actually the yield index. Naming it this for binding purposes
+      mutate(year = 2015,
+        # AgProdChange here is actually the yield index. Naming it this for binding purposes
         AgProdChange = 1) %>%
-      bind_rows(L2052.AgProdChange_ag_irr_ref %>% filter(year>2020)) %>%
+      bind_rows(L2052.AgProdChange_ag_irr_ref) %>%
       filter(region %in% test.region,
              AgProductionTechnology %in% biochar.techs) %>%
       arrange(AgProductionTechnology) %>%
@@ -528,6 +509,10 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
     # 3. Calculate new yield changes
     # combine the no biochar yield index with the table containing no biochar to biochar ratios from Daycent
     A221.biochar_yield_ratio %>%
+      mutate(treatment = gsub("t", "", treatment),
+             add = "biochar") %>%
+      unite("treatment", c(add, treatment)) %>%
+      distinct() %>%
       # Comment out the following chunk if you want yield change from DayCent with 5 year variations
       # Otherwise, we want a smooth yield change over time, so that no matter when No Till is implemented
       # it receives the same yield change. Eventually we want yield change associated with technology age.
@@ -535,13 +520,14 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
       unite("technology", "technology", "treatment", sep = "_") %>%
       complete(nesting(technology), year = c(MODEL_YEARS)) %>%
       filter(year > max(MODEL_BASE_YEARS) | year == max(MODEL_BASE_YEARS)) %>%
-      mutate(yield_ratio = if_else(year == 2020, 1, yield_ratio)) %>%
+      mutate(yield_ratio = if_else(year == 2015, 1, yield_ratio)) %>%
       group_by(technology) %>%
       mutate(yield_ratio = approx_fun(year, yield_ratio, rule = 2)) %>%
       ungroup() %>%
       filter(year > max(MODEL_BASE_YEARS)) %>%
-      separate(technology, c("crop", "basin", "water", "fertilizer", "treatment"), sep = "_") %>%
+      separate(technology, c("crop", "basin", "water", "fertilizer", "treatment", "treatment1"), sep = "_") %>%
       unite("LandLeaf", "crop", "basin", "water", "fertilizer", sep = "_") %>%
+      unite("treatment", "treatment", "treatment1", sep = "_") %>%
       # this is where the "comment out" chunk ends
       left_join_error_no_match(yield_index, by = c("LandLeaf" = "AgProductionTechnology", "year")) %>%
       unite(AgProductionTechnology, LandLeaf, treatment, sep = "_") %>%
@@ -550,14 +536,14 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
       mutate(yield_ratio = yield_ratio - 1,
              yield_index = yield_index + yield_ratio) %>%
       # add 2020 yield index back in
-      bind_rows(yield_index_full %>% filter(year == 2020) %>% select(-AgProdChange)) %>%
+      bind_rows(yield_index_full %>% filter(year == 2015) %>% select(-AgProdChange)) %>%
       arrange(AgProductionTechnology, year) %>%
       select(-yield_ratio) %>%
       group_by(region, AgSupplySector, AgSupplySubsector, AgProductionTechnology) %>%
       # calculate new AgProdChange values
       mutate(AgProdChange = ((yield_index / lag(yield_index))^0.2) - 1) %>%
       ungroup() %>%
-      filter(year > 2020) %>%
+      filter(year > 2015) %>%
       select(LEVEL2_DATA_NAMES$AgProdChange) -> L2221.AgProdChange_ag_irr_ref # OUTPUT
 
 
@@ -694,7 +680,6 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
     ## L2221.AgCoef_Biochar_ag_irr_mgmt
     # Estimate coefficients for biochar demand
     # Get the total amount of land per crop, basin and tech for 2015 only
-    # We assume that only High tech crops demand biochar
     # But we create a new ag sector that competes with the other ones.
     L2252.LN5_MgdAllocation_crop %>%
       filter(region %in% test.region,
@@ -736,7 +721,7 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
              biochar.year_kg, prod_kg) %>%
       # Now compute coefficient as biochar.year_MT divided total crop production (as with fertilzier)
       # This is Megatons of biochar / Mt of crop produced in that land; or kf of biochar / kg of crop production
-      mutate(minicam.energy.input = "biochar_labile",
+      mutate(minicam.energy.input = "biochar",
              coefficient = biochar.year_MT / calOutputValue,
              coefficient_kg = biochar.year_kg / prod_kg) %>%
       # Complete other years
@@ -771,6 +756,8 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
              AgProductionTechnology %in% biochar.techs) %>%
       # Add in technology suffixes
       full_join(biochar_techs, by=c("AgProductionTechnology" = "technology"), relationship = "many-to-many") %>%
+      # Irrigated techs only (RFD have NA here because they do not exist in the original dataframe)
+      filter(grepl("IRR", AgProductionTechnology)) %>%
       unite("AgProductionTechnology", c(AgProductionTechnology, treatment)) -> L2221.AgCoef_IrrBphysWater_ag_mgmt # OUTPUT
 
     ## L2221.AgCoef_IrrWaterWdraw_ag_mgmt
@@ -779,6 +766,8 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
              AgProductionTechnology %in% biochar.techs) %>%
       # Add in technology suffixes
       full_join(biochar_techs, by=c("AgProductionTechnology" = "technology"), relationship = "many-to-many") %>%
+      # Irrigated techs only (RFD have NA here because they do not exist in the original dataframe)
+      filter(grepl("IRR", AgProductionTechnology)) %>%
       unite("AgProductionTechnology", c(AgProductionTechnology, treatment)) -> L2221.AgCoef_IrrWaterWdraw_ag_mgmt # OUTPUT
 
     ## L2221.AgCoef_IrrWaterCons_ag_mgmt
@@ -787,6 +776,8 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
              AgProductionTechnology %in% biochar.techs) %>%
       # Add in technology suffixes
       full_join(biochar_techs, by=c("AgProductionTechnology" = "technology"), relationship = "many-to-many") %>%
+      # Irrigated techs only (RFD have NA here because they do not exist in the original dataframe)
+      filter(grepl("IRR", AgProductionTechnology)) %>%
       unite("AgProductionTechnology", c(AgProductionTechnology, treatment)) -> L2221.AgCoef_IrrWaterCons_ag_mgmt # OUTPUT
 
     ## L2221.AgCoef_RfdBphysWater_ag_mgmt
@@ -795,6 +786,8 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
              AgProductionTechnology %in% biochar.techs) %>%
       # Add in technology suffixes
       full_join(biochar_techs, by=c("AgProductionTechnology" = "technology"), relationship = "many-to-many") %>%
+      # Rainfed techs only (IRR have NA here because they do not exist in the original dataframe)
+      filter(grepl("RFD", AgProductionTechnology)) %>%
       unite("AgProductionTechnology", c(AgProductionTechnology, treatment)) -> L2221.AgCoef_RfdBphysWater_ag_mgmt # OUTPUT
 
     # ====================================================================================================================================

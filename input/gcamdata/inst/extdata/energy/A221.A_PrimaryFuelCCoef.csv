@@ -6,4 +6,4 @@
 # Column types: cni 
 # ----------
 PrimaryFuelCO2Coef.name,PrimaryFuelCO2Coef,traded
-biochar_labile,0,0
+biochar,0,0
