@@ -95,8 +95,6 @@ public:
                                            const int aPeriod ) = 0;
 	
 	virtual int getMatureAge( ) const = 0;
-
-    virtual int getBasinTimeScale() const = 0;
     
     virtual void accept( IVisitor* aVisitor, const int aPeriod ) const;
 

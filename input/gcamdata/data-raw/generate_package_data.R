@@ -407,7 +407,6 @@ generate_level2_data_names <- function() {
                                             "veg.carbon.density", "soil.carbon.density", "mature.age.year.fillout", "mature.age", "min.veg.carbon.density", "min.soil.carbon.density")
   level2_data_names[["LN5_NodeGhostShare"]] <- c("region", "LandAllocatorRoot", "LandNode1", "LandNode2", "LandNode3", "LandNode4", "LandNode5", "year", "ghost.unnormalized.share")
   level2_data_names[["LN5_LeafGhostShare"]]<- c("region", "LandAllocatorRoot", "LandNode1", "LandNode2", "LandNode3", "LandNode4", "LandNode5", "LandLeaf", "year", "ghost.unnormalized.share")
-  level2_data_names[["LN5_SoilTimeScale"]] <- c(level2_data_names[["LN5_MgdCarbon"]], "soilTimeScale")
   level2_data_names[["LN1_Delete"]] <- c("region", "LandAllocatorRoot", "LandNode1")
   level2_data_names[["LN2_Delete"]] <- c(level2_data_names[["LN1_Delete"]], "LandNode2")
   level2_data_names[["LN3_Delete"]] <- c(level2_data_names[["LN2_Delete"]], "LandNode3")
