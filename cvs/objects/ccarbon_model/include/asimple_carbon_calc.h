@@ -95,6 +95,9 @@ public:
                                            const int aPeriod ) = 0;
 	
 	virtual int getMatureAge( ) const = 0;
+
+    //kbn adding a declaration here so that this function can be used in the time scale. 
+    virtual int getBasinTimeScale() const = 0;
     
     virtual void accept( IVisitor* aVisitor, const int aPeriod ) const;
 

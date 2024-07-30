@@ -154,3 +154,8 @@ double LandCarbonDensities::getActualBelowGroundCarbonDensity( const int aYear )
 int LandCarbonDensities::getMatureAge( ) const {
 	return mMatureAge;
 }
+
+//This is the definition of the function declared in .h file
+int LandCarbonDensities::getBasinTimeScale() const {
+    return mBasinTimeScale;
+}
