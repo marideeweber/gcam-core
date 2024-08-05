@@ -65,7 +65,8 @@ mCarbonStock( scenario->getModeltime()->getStartYear(), CarbonModelUtils::getEnd
     
     mLandUseHistory = 0;
     mLandLeaf = 0;
-    setSoilTimeScale( CarbonModelUtils::getSoilTimeScale() );
+    mSoilTimeScale = CarbonModelUtils::getSoilTimeScale();
+    precalc_expsoil_diff = precalc_expsoil_type(mSoilTimeScale);
     mHasCalculatedHistoricEmiss = false;
 }
 
