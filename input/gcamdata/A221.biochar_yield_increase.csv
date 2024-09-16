@@ -1,0 +1,5 @@
+"zone","water","yield_increase"
+"Tropical","irrigated",0.12
+"Tropical","rainfed",0.19
+"Temperate","irrigated",0.1
+"Temperate","rainfed",0.15
