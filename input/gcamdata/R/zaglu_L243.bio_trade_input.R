@@ -118,7 +118,7 @@ module_aglu_L243.bio_trade_input <- function(command, ...) {
       repeat_add_columns(tibble(subsector.name = c(DOMESTIC.BIOMASS.NAME, INTERNATIONAL.BIOMASS.NAME))) %>%
       mutate(technology = subsector.name) %>%
       repeat_add_columns(tibble(year = MODEL_YEARS)) %>%
-      mutate(minicam.energy.input = if_else(subsector.name == DOMESTIC.BIOMASS.NAME, BIOMASS.NAME, TRADED.BIOMASS.NAME),
+      mutate(minicam.energy.input = if_else(subsector.name == DOMESTIC.BIOMASS.NAME, "biomass_agg", TRADED.BIOMASS.NAME),
              coefficient = 1) ->
       L243.GlobalTechCoef_TotBio
 
@@ -156,7 +156,7 @@ module_aglu_L243.bio_trade_input <- function(command, ...) {
     L243.StubTech_TotBio %>%
       filter(subsector == DOMESTIC.BIOMASS.NAME) %>%
       repeat_add_columns(tibble(year = MODEL_YEARS)) %>%
-      mutate(minicam.energy.input = BIOMASS.NAME,
+      mutate(minicam.energy.input = "biomass_agg",
              coefficient = 1,
              market = region) ->
       L243.StubTechCoef_DomesticBio
@@ -193,7 +193,7 @@ module_aglu_L243.bio_trade_input <- function(command, ...) {
 
     # Input name, market, coeff for traded biomass
     tibble(region = BIOMASS.TRADE.REGION, supplysector = TRADED.BIOMASS.NAME) %>%
-      mutate(minicam.energy.input = BIOMASS.NAME,
+      mutate(minicam.energy.input = "biomass_agg",
              coefficient = 1) %>%
       repeat_add_columns(tibble(market.name = GCAM_region_names$region)) %>%
       repeat_add_columns(tibble(year = MODEL_YEARS)) %>%
