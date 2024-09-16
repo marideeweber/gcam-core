@@ -555,7 +555,7 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
     # This yield improvement is based on tropical/temeprate regions, and between irrigated and rainfed
     # These are the steps we follow to calculate the increase yields, considering existing ag prod change
     # 1. Share of total biochar land  over total land:
-    #We first assume that biochar is applied linearly from 2020-2100, in a period of 80 years
+    #We first assume that biochar is applied linearly from 2020-2100, in a period of 75 years
     #(1.25% per year, or 6.25% every 5 years)
     # 2. Average yield on biochar land:
     #Then we apply to that percentage of land the yield increase of applying the biochar
@@ -651,7 +651,8 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
              AgProductionTechnology %in% biochar.techs) %>%
       # Add in technology suffixes
       full_join(biochar_techs, by=c("AgProductionTechnology" = "technology"), relationship = "many-to-many") %>%
-      unite("AgProductionTechnology", c(AgProductionTechnology, treatment)) -> L2221.AgResBio_ag_irr_mgmt # OUTPUT
+      unite("AgProductionTechnology", c(AgProductionTechnology, treatment)) %>%
+      mutate(residue.biomass.production = "biomassHerbaceous") -> L2221.AgResBio_ag_irr_mgmt # OUTPUT
 
     ## L2221.AgResBioCurve_ag_irr_mgmt
     L2042.AgResBioCurve_ag_irr_mgmt %>%
@@ -659,7 +660,8 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
              AgProductionTechnology %in% biochar.techs) %>%
       # Add in technology suffixes
       full_join(biochar_techs, by=c("AgProductionTechnology" = "technology"), relationship = "many-to-many") %>%
-      unite("AgProductionTechnology", c(AgProductionTechnology, treatment)) -> L2221.AgResBioCurve_ag_irr_mgmt # OUTPUT
+      unite("AgProductionTechnology", c(AgProductionTechnology, treatment)) %>%
+      mutate(residue.biomass.production = "biomassHerbaceous")-> L2221.AgResBioCurve_ag_irr_mgmt # OUTPUT
 
     #=============================================================================================================================
 
