@@ -6,4 +6,5 @@
 # Column types: cccnn 
 # ----------
 supplysector,subsector,technology,1971,2100
-biochar,biochar,slow pyrolysis biochar,0.7,0.7
+biochar,biochar,slow pyrolysis biochar herbaceous,0.7,0.7
+biochar,biochar,slow pyrolysis biochar woody,0.7,0.7

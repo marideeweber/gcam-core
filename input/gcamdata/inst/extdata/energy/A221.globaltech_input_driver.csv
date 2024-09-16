@@ -5,4 +5,5 @@
 # Column types: cccc
 # ----------
 supplysector,subsector,technology,input.name
-biochar,biochar,slow pyrolysis biochar,regional biomass
+biochar,biochar,slow pyrolysis biochar herbaceous,biomassHerbaceous
+biochar,biochar,slow pyrolysis biochar woody,biomassWoody

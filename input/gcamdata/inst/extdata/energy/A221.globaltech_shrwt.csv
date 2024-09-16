@@ -5,4 +5,5 @@
 # Column types: ccciinii 
 # ----------
 supplysector,subsector,technology,1971,2015,2020,2050,2100
-biochar,biochar,slow pyrolysis biochar,0,0,0.333,1,1
+biochar,biochar,slow pyrolysis biochar herbaceous,0,0,0.333,1,1
+biochar,biochar,slow pyrolysis biochar woody,0,0,0.333,1,1

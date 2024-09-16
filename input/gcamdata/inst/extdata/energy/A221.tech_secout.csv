@@ -6,4 +6,5 @@
 # Source: Roberts et al 2010 https://pubs.acs.org/doi/full/10.1021/es902266r
 # ----------
 supplysector,subsector,technology,secondary.output,output.ratio
-biochar,biochar,slow pyrolysis biochar,natural gas,0.019883808
+biochar,biochar,slow pyrolysis biochar herbaceous,natural gas,0.019883808
+biochar,biochar,slow pyrolysis biochar woody,natural gas,0.019883808

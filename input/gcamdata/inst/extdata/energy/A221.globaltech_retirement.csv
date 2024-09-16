@@ -11,5 +11,7 @@
 # Column types: ccccicinni 
 # ----------
 supplysector,subsector,technology,year,lifetime,shutdown.rate,half.life,steepness,median.shutdown.point,profit.shutdown.steepness
-biochar,biochar,slow pyrolysis biochar,final-calibration-year,45,,25,0.2,-0.1,10
-biochar,biochar,slow pyrolysis biochar,initial-future-year,45,,30,0.3,-0.1,10
+biochar,biochar,slow pyrolysis biochar herbaceous,final-calibration-year,45,,25,0.2,-0.1,10
+biochar,biochar,slow pyrolysis biochar herbaceous,initial-future-year,45,,30,0.3,-0.1,10
+biochar,biochar,slow pyrolysis biochar woody,final-calibration-year,45,,25,0.2,-0.1,10
+biochar,biochar,slow pyrolysis biochar woody,initial-future-year,45,,30,0.3,-0.1,10
