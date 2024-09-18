@@ -652,7 +652,7 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
       # Add in technology suffixes
       full_join(biochar_techs, by=c("AgProductionTechnology" = "technology"), relationship = "many-to-many") %>%
       unite("AgProductionTechnology", c(AgProductionTechnology, treatment)) %>%
-      mutate(residue.biomass.production = "biomassHerbaceous") -> L2221.AgResBio_ag_irr_mgmt # OUTPUT
+      mutate(residue.biomass.production = ifelse(year > 2015, "biomassHerbaceous", residue.biomass.production)) -> L2221.AgResBio_ag_irr_mgmt # OUTPUT
 
     ## L2221.AgResBioCurve_ag_irr_mgmt
     L2042.AgResBioCurve_ag_irr_mgmt %>%
@@ -661,7 +661,7 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
       # Add in technology suffixes
       full_join(biochar_techs, by=c("AgProductionTechnology" = "technology"), relationship = "many-to-many") %>%
       unite("AgProductionTechnology", c(AgProductionTechnology, treatment)) %>%
-      mutate(residue.biomass.production = "biomassHerbaceous")-> L2221.AgResBioCurve_ag_irr_mgmt # OUTPUT
+      mutate(residue.biomass.production = ifelse(year > 2015, "biomassHerbaceous", residue.biomass.production)) -> L2221.AgResBioCurve_ag_irr_mgmt # OUTPUT
 
     #=============================================================================================================================
 

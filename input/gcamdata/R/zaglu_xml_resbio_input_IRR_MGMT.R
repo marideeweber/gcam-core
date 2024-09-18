@@ -30,9 +30,9 @@ module_aglu_resbio_input_IRR_MGMT_xml <- function(command, ...) {
     L2042.GlobalResBio_Mill <- get_data(all_data, "L2042.GlobalResBio_Mill")
     L2042.StubResBioCurve_Mill <- get_data(all_data, "L2042.StubResBioCurve_Mill")
     L2042.AgResBio_ag_irr_mgmt <- get_data(all_data, "L2042.AgResBio_ag_irr_mgmt") %>%
-      mutate(residue.biomass.production = "biomassHerbaceous")
+      mutate(residue.biomass.production = ifelse(year > 2015, "biomassHerbaceous", residue.biomass.production))
     L2042.AgResBioCurve_ag_irr_mgmt <- get_data(all_data, "L2042.AgResBioCurve_ag_irr_mgmt") %>%
-      mutate(residue.biomass.production = "biomassHerbaceous")
+      mutate(residue.biomass.production = ifelse(year > 2015, "biomassHerbaceous", residue.biomass.production))
 
     # ===================================================
 
