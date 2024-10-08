@@ -6,6 +6,10 @@
 # Column types: cni
 # ----------
 PrimaryFuelCO2Coef.name,PrimaryFuelCO2Coef,traded
+biomassHerbaceous,0,0
+biomassWoody,0,0
+biomassHerbaceous_forBiochar,23,0
+biomassWoody_forBiochar,23,0
 biomass,0,0
 regional biomass,23,0
 delivered biomass,23,0
@@ -28,4 +32,3 @@ refined liquids industrial,19.6,0
 refined liquids enduse,19.6,0
 limestone,0.08,0
 unconventional oil upscaling,1.5,0
-
