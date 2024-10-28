@@ -3,23 +3,23 @@
         <region name="USA">
             <ghgpolicy name="CO2">
                 <market>global</market>
-				<fixedTax year="2020">0</fixedTax>                
-				<fixedTax year="2025">227.781</fixedTax>
-                <fixedTax year="2030">365.638</fixedTax>
-                <fixedTax year="2035">644</fixedTax>
-                <fixedTax year="2040">922</fixedTax>
-                <fixedTax year="2045">1100</fixedTax>
-                <fixedTax year="2050">1209.09</fixedTax>
-                <fixedTax year="2055">1218.18</fixedTax>
-                <fixedTax year="2060">1227.27</fixedTax>
-                <fixedTax year="2065">1236.36</fixedTax>
-                <fixedTax year="2070">1245.45</fixedTax>
-                <fixedTax year="2075">1254.54</fixedTax>
-                <fixedTax year="2080">1263.63</fixedTax>
-                <fixedTax year="2085">1272.72</fixedTax>
-                <fixedTax year="2090">1281.81</fixedTax>
-                <fixedTax year="2095">1290.9</fixedTax>
-                <fixedTax year="2100">1300</fixedTax>
+				<fixedTax year="2020">50</fixedTax>                
+				<fixedTax year="2025">57.96</fixedTax>
+                <fixedTax year="2030">67.20</fixedTax>
+                <fixedTax year="2035">77.90</fixedTax>
+                <fixedTax year="2040">90.31</fixedTax>
+                <fixedTax year="2045">104.69</fixedTax>
+                <fixedTax year="2050">121.36</fixedTax>
+                <fixedTax year="2055">121.36</fixedTax>
+                <fixedTax year="2060">121.36</fixedTax>
+                <fixedTax year="2065">121.36</fixedTax>
+                <fixedTax year="2070">121.36</fixedTax>
+                <fixedTax year="2075">121.36</fixedTax>
+                <fixedTax year="2080">121.36</fixedTax>
+                <fixedTax year="2085">121.36</fixedTax>
+                <fixedTax year="2090">121.36</fixedTax>
+                <fixedTax year="2095">121.36</fixedTax>
+                <fixedTax year="2100">121.36</fixedTax>
             </ghgpolicy>
         </region>
         <region name="Canada">
