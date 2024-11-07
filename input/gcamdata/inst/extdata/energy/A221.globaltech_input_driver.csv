@@ -7,3 +7,5 @@
 supplysector,subsector,technology,input.name
 biochar,biochar,slow pyrolysis biochar herbaceous,biomassHerbaceous
 biochar,biochar,slow pyrolysis biochar woody,biomassWoody
+biochar,biochar,fast pyrolysis biochar herbaceous,biomassHerbaceous
+biochar,biochar,fast pyrolysis biochar woody,biomassWoody

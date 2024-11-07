@@ -8,3 +8,5 @@
 supplysector,subsector,technology,secondary.output,output.ratio
 biochar,biochar,slow pyrolysis biochar herbaceous,natural gas,0.019883808
 biochar,biochar,slow pyrolysis biochar woody,natural gas,0.019883808
+biochar,biochar,fast pyrolysis biochar herbaceous,natural gas,0.019883808
+biochar,biochar,fast pyrolysis biochar woody,natural gas,0.019883808

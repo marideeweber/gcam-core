@@ -7,3 +7,5 @@
 supplysector,subsector,technology,minicam.non.energy.input,1971,2010,2100,improvement.max,improvement.rate,improvement.shadow.technology
 biochar,biochar,slow pyrolysis biochar herbaceous,non-energy,0.054013365,0.054013365,0.054013365,,,
 biochar,biochar,slow pyrolysis biochar woody,non-energy,0.054013365,0.054013365,0.054013365,,,
+biochar,biochar,fast pyrolysis biochar herbaceous,non-energy,0.054013365,0.054013365,0.054013365,,,
+biochar,biochar,fast pyrolysis biochar woody,non-energy,0.054013365,0.054013365,0.054013365,,,
