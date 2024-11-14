@@ -32,11 +32,16 @@ module_energy_batch_en_transformation_biochar_xml <- function(command, ...) {
     all_data <- list(...)[[1]]
 
     # Load required inputs
-    L2221.Supplysector_en <- get_data(all_data, "L2221.Supplysector_en")
-    L2221.SubsectorLogit_en <- get_data(all_data, "L2221.SubsectorLogit_en")
-    L2221.SubsectorShrwtFllt_en <- get_data(all_data, "L2221.SubsectorShrwtFllt_en")
-    L2221.SubsectorInterp_en <- get_data(all_data, "L2221.SubsectorInterp_en")
-    L2221.StubTech_en <- get_data(all_data, "L2221.StubTech_en")
+    L2221.Supplysector_en <- get_data(all_data, "L2221.Supplysector_en") %>%
+      filter(region == "USA")
+    L2221.SubsectorLogit_en <- get_data(all_data, "L2221.SubsectorLogit_en") %>%
+      filter(region == "USA")
+    L2221.SubsectorShrwtFllt_en <- get_data(all_data, "L2221.SubsectorShrwtFllt_en") %>%
+      filter(region == "USA")
+    L2221.SubsectorInterp_en <- get_data(all_data, "L2221.SubsectorInterp_en") %>%
+      filter(region == "USA")
+    L2221.StubTech_en <- get_data(all_data, "L2221.StubTech_en") %>%
+      filter(region == "USA")
     L2221.GlobalTechInterp_en <- get_data(all_data, "L2221.GlobalTechInterp_en")
     L2221.GlobalTechCoef_en <- get_data(all_data, "L2221.GlobalTechCoef_en")
     L2221.GlobalTechCost_en <- get_data(all_data, "L2221.GlobalTechCost_en")

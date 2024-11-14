@@ -37,7 +37,8 @@ module_energy_biochar_co_products_xml <- function(command, ...) {
     all_data <- list(...)[[1]]
 
     # Load required inputs
-    GCAM_region_names <- get_data(all_data, "common/GCAM_region_names")
+    GCAM_region_names <- get_data(all_data, "common/GCAM_region_names") %>%
+      filter(region == "USA")
     A221.tech_secout <- get_data(all_data, "energy/A221.tech_secout")
 
     # ===================================================
