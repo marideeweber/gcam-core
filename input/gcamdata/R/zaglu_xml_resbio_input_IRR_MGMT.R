@@ -25,14 +25,18 @@ module_aglu_resbio_input_IRR_MGMT_xml <- function(command, ...) {
     all_data <- list(...)[[1]]
 
     # Load required inputs
-    L2042.AgResBio_For <- get_data(all_data, "L2042.AgResBio_For")
-    L2042.AgResBioCurve_For <- get_data(all_data, "L2042.AgResBioCurve_For")
-    L2042.GlobalResBio_Mill <- get_data(all_data, "L2042.GlobalResBio_Mill")
-    L2042.StubResBioCurve_Mill <- get_data(all_data, "L2042.StubResBioCurve_Mill")
+    L2042.AgResBio_For <- get_data(all_data, "L2042.AgResBio_For") %>%
+      mutate(residue.biomass.production = "biomassWoody")
+    L2042.AgResBioCurve_For <- get_data(all_data, "L2042.AgResBioCurve_For") %>%
+      mutate(residue.biomass.production = "biomassWoody")
+    L2042.GlobalResBio_Mill <- get_data(all_data, "L2042.GlobalResBio_Mill") %>%
+      mutate(residue.biomass.production = "biomassWoody")
+    L2042.StubResBioCurve_Mill <- get_data(all_data, "L2042.StubResBioCurve_Mill") %>%
+      mutate(residue.biomass.production = "biomassWoody")
     L2042.AgResBio_ag_irr_mgmt <- get_data(all_data, "L2042.AgResBio_ag_irr_mgmt") %>%
-      mutate(residue.biomass.production = ifelse(year > 2015, "biomassHerbaceous", residue.biomass.production))
+      mutate(residue.biomass.production = "biomassHerbaceous")
     L2042.AgResBioCurve_ag_irr_mgmt <- get_data(all_data, "L2042.AgResBioCurve_ag_irr_mgmt") %>%
-      mutate(residue.biomass.production = ifelse(year > 2015, "biomassHerbaceous", residue.biomass.production))
+      mutate(residue.biomass.production = "biomassHerbaceous")
 
     # ===================================================
 
