@@ -79,8 +79,7 @@ module_aglu_L2242.land_input_4_irr_mgmt <- function(command, ...) {
              LandNode2 = paste(LandNode2, GLU_name, sep = aglu.LT_GLU_DELIMITER),
              LandNode3 = paste(LandNode3, GLU_name, sep = aglu.LT_GLU_DELIMITER),
              LandNode4 = paste(LandLeaf, GLU_name, sep = aglu.LT_GLU_DELIMITER)) %>%
-      repeat_add_columns(tibble::tibble(year = MODEL_FUTURE_YEARS)) %>%
-      filter(year >= aglu.BIO_START_YEAR) %>%
+      repeat_add_columns(tibble::tibble(year = MODEL_YEARS)) %>%
       left_join(A_bio_ghost_share, by = "year") %>%
       mutate(ghost.unnormalized.share = approx_fun(year, ghost.share)) %>%
       select(LEVEL2_DATA_NAMES[["LN4_NodeGhostShare"]]) ->
