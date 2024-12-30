@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?><scenario>
+    <world>
+		<region name = "USA">
+            <supplysector name="biomassWoody_forBiochar">
+                <subsector name="biomassWoody_forBiochar">
+                    <technology name="biomassWoody_forBiochar">
+                        <period year="1975">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassWoody">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="1990">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassWoody">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>                            
+                        </period>
+                        <period year="2005">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassWoody">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>                          
+                        </period>
+                        <period year="2010">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassWoody">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>                         
+                        <period year="2015">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassWoody">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>                       
+                        </period>
+                        <period year="2020">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassWoody">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="2025">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassWoody">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="2030">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassWoody">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="2035">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassWoody">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="2040">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassWoody">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="2045">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassWoody">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="2050">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassWoody">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="2055">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassWoody">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="2060">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassWoody">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="2065">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassWoody">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="2070">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassWoody">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="2075">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassWoody">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="2080">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassWoody">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="2085">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassWoody">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="2090">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassWoody">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="2095">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassWoody">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="2100">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassWoody">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                    </technology>
+                    <relative-cost-logit>
+                        <logit-exponent fillout="1" year="1975">-6</logit-exponent>
+                    </relative-cost-logit>
+                    <share-weight fillout="1" year="1975">1</share-weight>
+                </subsector>
+                <relative-cost-logit>
+                    <logit-exponent fillout="1" year="1975">-6</logit-exponent>
+                </relative-cost-logit>
+                <output-unit>EJ</output-unit>
+                <input-unit>EJ</input-unit>
+                <price-unit>1975$/GJ</price-unit>
+                <share-weight fillout="1" year="1975">1</share-weight>
+            </supplysector>
+            <supplysector name="biomassHerbaceous_forBiochar">
+                <subsector name="biomassHerbaceous_forBiochar">
+                    <technology name="biomassHerbaceous_forBiochar">
+                        <period year="1975">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassHerbaceous">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="1990">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassHerbaceous">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>                            
+                        </period>
+                        <period year="2005">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassHerbaceous">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>                          
+                        </period>
+                        <period year="2010">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassHerbaceous">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>                         
+                        <period year="2015">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassHerbaceous">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>                       
+                        </period>
+                        <period year="2020">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassHerbaceous">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="2025">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassHerbaceous">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="2030">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassHerbaceous">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="2035">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassHerbaceous">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="2040">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassHerbaceous">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="2045">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassHerbaceous">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="2050">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassHerbaceous">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="2055">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassHerbaceous">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="2060">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassHerbaceous">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="2065">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassHerbaceous">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="2070">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassHerbaceous">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="2075">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassHerbaceous">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="2080">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassHerbaceous">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="2085">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassHerbaceous">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="2090">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassHerbaceous">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="2095">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassHerbaceous">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                        <period year="2100">
+                        <share-weight>1</share-weight>
+                            <minicam-energy-input name="biomassHerbaceous">
+                                <coefficient>1</coefficient>
+                            </minicam-energy-input>
+                            <CO2 name="CO2"/>
+                        </period>
+                    </technology>
+                    <relative-cost-logit>
+                        <logit-exponent fillout="1" year="1975">-6</logit-exponent>
+                    </relative-cost-logit>
+                    <share-weight fillout="1" year="1975">1</share-weight>
+                </subsector>
+                <relative-cost-logit>
+                    <logit-exponent fillout="1" year="1975">-6</logit-exponent>
+                </relative-cost-logit>
+                <output-unit>EJ</output-unit>
+                <input-unit>EJ</input-unit>
+                <price-unit>1975$/GJ</price-unit>
+                <share-weight fillout="1" year="1975">1</share-weight>
+            </supplysector>
+		</region>
+	</world>
+</scenario>
