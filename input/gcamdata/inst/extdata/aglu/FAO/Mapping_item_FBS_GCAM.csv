@@ -3,7 +3,7 @@
 # Units: NA
 # Description: Rice and products and Groundnuts are adjusted to primary products to match FBH using milling rate of 0.667 and a shell rate of 0.7.
 # There are 118 FBSH and CB items and 9 items were not mapped.
-# Last update: 8-25-2022 (XZ)
+# Last update: 01-16-2025 (XZ)
 # Column types: cic
 GCAM_commodity,item_code,FBSH_CB_items
 Beef,2731,Bovine Meat
@@ -56,13 +56,13 @@ OilCrop,2561,Sesame seed
 OilCrop,2563,Olives (including preserved)
 OilCrop,2570,"Oilcrops, Other"
 OilCrop,2573,Sunflowerseed Oil
-OilCrop,2574,Rape and Mustard Oil
+Rapeseed,2574,Rape and Mustard Oil
 OilCrop,2579,Sesameseed Oil
 OilCrop,2580,Olive Oil
 OilCrop,2586,"Oilcrops Oil, Other"
-OilCrop,2558,Rape and Mustardseed
+Rapeseed,2558,Rape and Mustardseed
 OilCrop,2592,Sunflowerseed Cake
-OilCrop,2593,Rape and Mustard Cake
+Rapeseed,2593,Rape and Mustard Cake
 OilCrop,2598,"Oilseed Cakes, Other"
 OilCrop,2597,Sesameseed Cake
 OilPalm,2577,Palm Oil

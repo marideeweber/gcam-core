@@ -17,7 +17,7 @@
 # Need to make sure that when nest_level is not 0 Q25asMin extraction_rate_Q25 and extraction_rate_world2019 have values
 # Jojoba seed Poppy seed and Oil castor beans did not have quality extraction rate so 1 was used here.
 # Update2024: mushroom and brazil nuts were not associated with area harvested per FAO change; we removed both
-# Last update: 06-09-2024 (XZ)
+# Last update: 01-16-2025 (XZ)
 # Column types: ccilccncnnl
 # ----------
 GCAM_commodity,APE_comm,nest_level,source_primary,source_item,sink_item,output_specific_extraction_rate,sink_FBS_item,extraction_rate_Q25,extraction_rate_world2019,Q25asMin
@@ -92,11 +92,11 @@ OilPalm,OilPalm,2,FALSE,Palm kernels,"Oil, palm kernel",,Palmkernel Oil and prod
 OilPalm,OilPalm,2,FALSE,Palm kernels,"Cake, palm kernel",,Palmkernel Cake,0.931997389,0.998701612,TRUE
 OilCrop,Sunflower seed,1,TRUE,Sunflower seed,"Oil, sunflower",,Sunflower seed and products,0.83448627,0.882079224,TRUE
 OilCrop,Sunflower seed,1,TRUE,Sunflower seed,"Cake, sunflower",,Sunflowerseed Cake,0.83448627,0.882079224,TRUE
-OilCrop,Rapeseed,1,TRUE,Rapeseed,"Oil, rapeseed",,Rape and Mustard Oil and products,0.921894704,0.964325659,FALSE
-OilCrop,Rapeseed,1,TRUE,Rapeseed,"Cake, rapeseed",,Rape and Mustard Cake,0.921894704,0.964325659,FALSE
-OilCrop,Mustard seed,1,TRUE,Mustard seed,"Oil, mustard",,Rape and Mustard Oil and products,0.772188199,0.906606832,FALSE
-OilCrop,Mustard seed,1,TRUE,Mustard seed,"Flour, mustard",,Rape and Mustard Oil and products,0.772188199,0.906606832,FALSE
-OilCrop,Mustard seed,1,TRUE,Mustard seed,"Cake, mustard",,Rape and Mustard Cake,0.772188199,0.906606832,FALSE
+Rapeseed,Rapeseed,1,TRUE,Rapeseed,"Oil, rapeseed",,Rape and Mustard Oil and products,0.921894704,0.964325659,FALSE
+Rapeseed,Rapeseed,1,TRUE,Rapeseed,"Cake, rapeseed",,Rape and Mustard Cake,0.921894704,0.964325659,FALSE
+Rapeseed,Mustard seed,1,TRUE,Mustard seed,"Oil, mustard",,Rape and Mustard Oil and products,0.772188199,0.906606832,FALSE
+Rapeseed,Mustard seed,1,TRUE,Mustard seed,"Flour, mustard",,Rape and Mustard Oil and products,0.772188199,0.906606832,FALSE
+Rapeseed,Mustard seed,1,TRUE,Mustard seed,"Cake, mustard",,Rape and Mustard Cake,0.772188199,0.906606832,FALSE
 OilCrop,Coconuts,1,TRUE,Coconuts,Copra,,Coconuts (including copra) and products,0.199996942,0.250353462,TRUE
 OilCrop,Coconuts,1,TRUE,Coconuts,"Coconuts, desiccated",,Coconuts (including copra) and products,0.199996942,0.250353462,TRUE
 OilCrop,Coconuts,1,TRUE,Coconuts,Coir,,QCL,0.199996942,0.250353462,TRUE

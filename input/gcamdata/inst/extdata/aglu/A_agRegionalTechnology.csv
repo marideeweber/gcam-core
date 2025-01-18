@@ -20,6 +20,8 @@ total nuts_seeds,domestic nuts_seeds,domestic nuts_seeds,NutsSeeds,1,0,1,regiona
 total nuts_seeds,imported nuts_seeds,imported nuts_seeds,traded nuts_seeds,1,0,1,USA
 total oilcrop,domestic oilcrop,domestic oilcrop,OilCrop,1,0,1,regional
 total oilcrop,imported oilcrop,imported oilcrop,traded oilcrop,1,0,1,USA
+total rapeseed,domestic rapeseed,domestic rapeseed,Rapeseed,1,0,1,regional
+total rapeseed,imported rapeseed,imported rapeseed,traded rapeseed,1,0,1,USA
 total othergrain,domestic othergrain,domestic othergrain,OtherGrain,1,0,1,regional
 total othergrain,imported othergrain,imported othergrain,traded othergrain,1,0,1,USA
 total oilpalm,domestic oilpalm,domestic oilpalm,OilPalm,1,0,1,regional

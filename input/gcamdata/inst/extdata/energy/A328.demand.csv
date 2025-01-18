@@ -13,6 +13,7 @@ FoodDemand_NonStaples,Protein,Plant,Legumes,food processing,1,0
 FoodDemand_NonStaples,MiscCrop,MiscCrop,MiscCrop,food processing,1,0
 FoodDemand_NonStaples,Protein,Plant,NutsSeeds,food processing,1,0
 FoodDemand_NonStaples,Oil,OilCrop,OilCrop,food processing,1,0
+FoodDemand_NonStaples,Oil,Rapeseed,Rapeseed,food processing,1,0
 FoodDemand_NonStaples,Oil,Soybean,Soybean,food processing,1,0
 FoodDemand_Staples,OtherGrain,OtherGrain,OtherGrain,food processing,1,0
 FoodDemand_NonStaples,Oil,OilPalm,OilPalm,food processing,1,0

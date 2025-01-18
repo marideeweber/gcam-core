@@ -1,5 +1,5 @@
 # File: CEDS_sector_tech_proc.csv
-# Title: Mapping between GCAM  technologies to CEDS aggregate sectors, aggregte fuels, EDGAR aggregate sector, RCP aggregate sector, BCOC aggregate sectore, EPA MACC sector, and IIASA sector. This file is used to map process sectors from CEDS to GCAM for the old transportation size classes.
+# Title: Mapping between GCAM  technologies to CEDS aggregate sectors, aggregte fuels, EDGAR aggregate sector, RCP aggregate sector, BCOC aggregate sectore, EPA MACC sector, and IIASA sector. This file is used to map process sectors from CEDS to GCAM for the old transportation size classes
 # Units: None
 # Source: internal
 # Column types: ccccccccccccccccc
@@ -123,6 +123,7 @@ ammonia,coal,coal,ammonia,coal,coal,industry_energy,coal,industry_energy,coal,co
 ammonia,gas,gas,ammonia,gas,gas,industry_energy,gas,industry_energy,gas,gas,industry_energy,ind,industry_energy,gas,,
 ammonia,refined liquids,refined liquids,ammonia,refined liquids,refined liquids,industry_energy,refined liquids,industry_energy,refined liquids,refined liquids,industry_energy,ind,industry_energy,refined liquids,,
 OilCrop,,,OilCrop,,,,,,,,,,,,Cropland Management,
+Rapeseed,,,Rapeseed,,,,,,,,,,,,Cropland Management,
 OtherGrain,,,OtherGrain,,,,,,,,,,,,Cropland Management,
 out_resources,coal,coal,out_resources,coal,coal,coal,process,coal,all,all,coal,,,,Coal Mining Activities,
 out_resources,crude oil,crude oil,out_resources,crude oil,crude oil,oil_gas,process,oil_gas,all,all,oil_gas,,,,Natural Gas and Oil Systems,

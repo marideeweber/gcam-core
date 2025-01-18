@@ -19,6 +19,8 @@ total nuts_seeds,domestic nuts_seeds,-6,start-year,1,share-weight,final-calibrat
 total nuts_seeds,imported nuts_seeds,-6,start-year,1,share-weight,final-calibration-year,end-year,fixed,
 total oilcrop,domestic oilcrop,-6,start-year,1,share-weight,final-calibration-year,end-year,fixed,
 total oilcrop,imported oilcrop,-6,start-year,1,share-weight,final-calibration-year,end-year,fixed,
+total rapeseed,domestic rapeseed,-6,start-year,1,share-weight,final-calibration-year,end-year,fixed,
+total rapeseed,imported rapeseed,-6,start-year,1,share-weight,final-calibration-year,end-year,fixed,
 total othergrain,domestic othergrain,-6,start-year,1,share-weight,final-calibration-year,end-year,fixed,
 total othergrain,imported othergrain,-6,start-year,1,share-weight,final-calibration-year,end-year,fixed,
 total oilpalm,domestic oilpalm,-6,start-year,1,share-weight,final-calibration-year,end-year,fixed,

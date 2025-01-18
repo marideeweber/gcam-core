@@ -686,8 +686,14 @@ module_aglu_L100.FAO_SUA_PrimaryEquivalent <- function(command, ...) {
              # When production in FBSH_CB = 0 set to production in QCL so scaling will be consistent
              FBSH_CB = if_else(FBSH_CB[element == "Production"] == 0 & element == "Production", value, FBSH_CB),
              # After the above adjustments, re-scale SUA to match production in value
-             value = FBSH_CB * value[element == "Production"]/FBSH_CB[element == "Production"],
-             # fix NA
+             # Here we distinguish the scaler for production and non production
+             # We need to ensure production in FBS/SUA matches QCL/PRODSTAT
+             # But when the scaler is extremely large (due to small denominators), it won't make sense to apply that to other elements
+             # We set a ceiling at 3 and the rest will be adjusted using residue
+             Scaler_Prod = value[element == "Production"]/FBSH_CB[element == "Production"],
+             Scaler_NonProd = pmin(3, Scaler_Prod),
+             value = if_else(element == "Production", FBSH_CB * Scaler_Prod, FBSH_CB * Scaler_NonProd),
+             # fix NA (no scaling needed)
              value = if_else(!is.finite(value), FBSH_CB, value)) %>%
       ungroup() %>%
       select(area, GCAM_commodity, element, year, value) %>%
