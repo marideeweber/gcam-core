@@ -42,6 +42,7 @@ module_aglu_L100.FAO_SUA_PrimaryEquivalent <- function(command, ...) {
 
   MODULE_OUTPUTS <-
     c("GCAM_AgLU_SUA_APE_1973_2019",
+      "GCAM_AgLU_SUA_APE_1973_2019_ProcessedUse",
       "FAO_AgProd_Kt_All",
       "FAO_AgArea_Kha_All",
       "FAO_Food_Macronutrient_All_2010_2019",
@@ -696,7 +697,19 @@ module_aglu_L100.FAO_SUA_PrimaryEquivalent <- function(command, ...) {
              # fix NA (no scaling needed)
              value = if_else(!is.finite(value), FBSH_CB, value)) %>%
       ungroup() %>%
-      select(area, GCAM_commodity, element, year, value) %>%
+      select(area, GCAM_commodity, element, year, value) ->
+      GCAM_APE_before2010_0
+
+    # There could be secondary products that had no data in QCL_PROD_GCAM, e.g., feedcakes
+    # There are data in FBSH_CB_GCAM and add them back
+    FBSH_CB_GCAM %>%
+      anti_join(GCAM_APE_before2010_0, by = c("area", "year", "GCAM_commodity", "element")) %>%
+      bind_rows(
+        GCAM_APE_before2010_0
+      )->
+      GCAM_APE_before2010_1
+
+    GCAM_APE_before2010_1 %>%
       # adjust gross trade
       GROSS_TRADE_ADJUST(.MIN_TRADE_PROD_RATIO = 0.001,
                          .Reg_VAR = "area",
@@ -780,12 +793,15 @@ module_aglu_L100.FAO_SUA_PrimaryEquivalent <- function(command, ...) {
 
     # 4.2. Connect and bind data from two periods ----
 
-    GCAM_AgLU_SUA_APE_1973_2019 <-
+    GCAM_AgLU_SUA_APE_1973_2019_0 <-
       GCAM_APE_before2010 %>%
       bind_rows(GCAM_APE_after2010) %>%
       mutate(unit = "1000 tonnes") %>%
       # clean and aggregate elements not using
-      filter(!element %in% c("Regional demand", "Regional supply")) %>%
+      filter(!element %in% c("Regional demand", "Regional supply"))
+
+    GCAM_AgLU_SUA_APE_1973_2019 <-
+      GCAM_AgLU_SUA_APE_1973_2019_0 %>%
       mutate(element = replace(element,
                                element %in% c("Processed",
                                               "Seed", "Residuals"),
@@ -796,7 +812,17 @@ module_aglu_L100.FAO_SUA_PrimaryEquivalent <- function(command, ...) {
     ## Check balance
     GCAM_AgLU_SUA_APE_1973_2019 %>% Check_Balance_SUA
 
-    rm(GCAM_APE_before2010, GCAM_APE_after2010)
+    COMM_PROCESSING <- c("Soybean")
+    # Ensure COMM_PROCESSING in the data
+    assert_that(all(COMM_PROCESSING %in% unique(GCAM_AgLU_SUA_APE_1973_2019$GCAM_commodity)))
+
+    # Keep processed use of COMM_PROCESSING
+    GCAM_AgLU_SUA_APE_1973_2019_ProcessedUse <-
+      GCAM_AgLU_SUA_APE_1973_2019_0 %>%
+      filter(GCAM_commodity %in% COMM_PROCESSING) %>%
+      filter(element == "Processed")
+
+    rm(GCAM_APE_before2010, GCAM_APE_after2010, GCAM_AgLU_SUA_APE_1973_2019_0)
 
 
     ## Done Section4 ----
@@ -926,8 +952,14 @@ module_aglu_L100.FAO_SUA_PrimaryEquivalent <- function(command, ...) {
       select(-region) ->
       FAO_AgProd_Kt_All
 
+    # Adding secondary items here
+    # [ToDo] Will need to differentiate the in the mapping files later
+    Secondary_Item_CROP <- c("Soybean oil", "Soybean feedcake", "OilPalm oil", "OilPalm feedcake", "OilCrop oil", "OilCrop feedcake")
+    Secondary_Item_CROP <- c("Soybean oil", "Soybean feedcake")
+
     assertthat::assert_that(
       GCAM_AgLU_SUA_APE_1973_2019 %>%
+        filter(!GCAM_commodity %in% Secondary_Item_CROP) %>%
         filter(element == "Production") %>%
         left_join_error_no_match(
           QCL_PROD_GCAM %>% filter(CropMeat != "Crop_Fodder") %>%
@@ -984,6 +1016,14 @@ module_aglu_L100.FAO_SUA_PrimaryEquivalent <- function(command, ...) {
 
     # highly processed products or other products are not included in GCAM
     # (e.g., wine, infant food, or other nonfood items etc.)
+
+
+    # The 3 soy products were not included in food calories for now!
+    # [ToDo] revisit later; could map them to soybean
+    # Soya sauce
+    # Soya paste
+    # Soya curd
+    # But soybean oil is included; no cake for food consumption
 
     SUA_item_code_map %>%
       filter(!item_code %in% unique(SUA_Items_GCAM$item_code)) -> SUA_Items_NonGCAM

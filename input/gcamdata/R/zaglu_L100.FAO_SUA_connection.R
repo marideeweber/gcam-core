@@ -21,7 +21,9 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
       FILE = "aglu/FAO/FAO_ag_items_PRODSTAT",
       FILE = "aglu/FAO/FAO_an_items_PRODSTAT",
       FILE = "aglu/A_agStorageSector",
+      FILE = "aglu/A_Crushing_max_rate",
       "GCAM_AgLU_SUA_APE_1973_2019",
+      "GCAM_AgLU_SUA_APE_1973_2019_ProcessedUse",
       "FAO_AgProd_Kt_All",
       "FAO_AgArea_Kha_All",
       "FAO_Food_Macronutrient_All_2010_2019",
@@ -39,7 +41,9 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
       "L101.CropMeat_Food_Pcal_R_C_Y",
       "L101.ag_Feed_Mt_R_C_Y",
       "L101.GrossTrade_Mt_R_C_Y",
-      "L101.ag_Storage_Mt_R_C_Y")
+      "L101.ag_Storage_Mt_R_C_Y",
+      "L101.FAO_SUA_APE_balance_Crushing",
+      "L101.ag_Secondary_SUA_Mt_R_C_Y")
 
   if(command == driver.DECLARE_INPUTS) {
     return(MODULE_INPUTS)
@@ -70,6 +74,14 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
     COMM_CROP <- FAO_ag_items_PRODSTAT %>% filter(!is.na(GCAM_commodity)) %>% distinct(GCAM_commodity) %>% pull
     COMM_MEAT <- FAO_an_items_PRODSTAT %>% filter(!is.na(GCAM_commodity)) %>% distinct(GCAM_commodity) %>% pull
     COMM_STORAGE <- A_agStorageSector %>% filter(storage_model == TRUE) %>% distinct(GCAM_commodity) %>% pull
+
+    COMM_CURSHING_PRIMARY <- c("Soybean", "OilPalm", "OilCrop")
+    COMM_CRUSHING_SECONDARY <- c("Soybean oil", "Soybean feedcake", "OilPalm oil", "OilPalm feedcake", "OilCrop oil", "OilCrop feedcake")
+
+    COMM_CURSHING_PRIMARY <- c("Soybean")
+    COMM_CRUSHING_SECONDARY <- c("Soybean oil", "Soybean feedcake")
+    COMM_CRUSHING_SECONDARY_FEEDCAKE <- COMM_CRUSHING_SECONDARY[grepl("feedcake", x = COMM_CRUSHING_SECONDARY)]
+
 
     # assert that COMM_STORAGE commodities exist
     assert_that(all(COMM_STORAGE %in% c(COMM_CROP, COMM_MEAT)), msg = "Storage commodities do not all exist in data")
@@ -114,13 +126,25 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
       rename(`Opening stocks` = OpenStock, `Closing stocks` = CloseStock) ->
       GCAM_AgLU_SUA_APE_1973_2019_StockAdj2
 
+    # Step_0.3 Move food consumption of feedcakes to feed
+    # they are mostly tiny (only in C. Asia) and we won't introduce food use of feedcake
+
+    GCAM_AgLU_SUA_APE_1973_2019_StockAdj2 %>%
+      filter(GCAM_commodity %in% COMM_CRUSHING_SECONDARY_FEEDCAKE) %>%
+      mutate(Feed = Feed + Food,
+             Food = 0) %>%
+      bind_rows(
+        GCAM_AgLU_SUA_APE_1973_2019_StockAdj2 %>%
+          filter(!GCAM_commodity %in% COMM_CRUSHING_SECONDARY_FEEDCAKE)
+      ) ->
+      GCAM_AgLU_SUA_APE_1973_2019_StockAdj3
 
 
     # 1. Supply-utilization accounting balance ----
     # Change unit and year for later uses
     # data was balanced already and in GCAM regions
     L100.FAO_SUA_APE_balance <-
-      GCAM_AgLU_SUA_APE_1973_2019_StockAdj2 %>%
+      GCAM_AgLU_SUA_APE_1973_2019_StockAdj3 %>%
       mutate(Net_Export = Export - Import) %>%
       select(-unit) %>%
       left_join_error_no_match(GCAM_region_names, by = "region") %>%
@@ -136,6 +160,23 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
       select(-moving_avg) %>%
       filter(year %in% aglu.AGLU_HISTORICAL_YEARS)
 
+
+    # prepare the corresponding processed use for COMM_CURSHING_PRIMARY (e.g., oilseeds)
+    L101.FAO_SUA_APE_balance_Crushing <-
+      GCAM_AgLU_SUA_APE_1973_2019_ProcessedUse %>%
+      filter(GCAM_commodity %in% COMM_CURSHING_PRIMARY) %>%
+      select(-unit) %>%
+      left_join_error_no_match(GCAM_region_names, by = "region") %>%
+      select(-region) %>%
+      # change unit to Mt
+      mutate(value = value / 1000) %>%
+      # Adding 5-year moving average here
+      dplyr::group_by_at(dplyr::vars(-year, -value)) %>%
+      mutate(moving_avg = Moving_average(value, periods = aglu.MODEL_MEAN_PERIOD_LENGTH)) %>%
+      ungroup() %>%
+      mutate(value = if_else(is.na(moving_avg), value, moving_avg)) %>%
+      select(-moving_avg) %>%
+      filter(year %in% aglu.AGLU_HISTORICAL_YEARS)
 
     # 2. Primary crop and meat production and harvested area ----
     ## 2.1. Primary crop production, harvested area, and a combined for downscaling ----
@@ -265,6 +306,13 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
       spread(macronutrient, value) ->
       DF_Macronutrient_FoodItem1
 
+    # [Todo] Need better commodity grouping to remove cakes from food
+    # Note that feedcakes and OilPalm do not exist in food item in DF_Macronutrient_FoodItem1
+
+    DF_Macronutrient_FoodItem1 %>%
+      filter(!grepl("feedcake", GCAM_commodity)) ->
+      DF_Macronutrient_FoodItem1
+
     DF_Macronutrient_FoodItem1 %>%
       # NEC is removed by joining
       # though not all food items are consumed in all regions (deal with NA later)
@@ -314,13 +362,14 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
 
     DF_Macronutrient_FoodItem4 <-
       L100.FAO_SUA_APE_balance %>% filter(element == "Food") %>%
+      # [Todo] Need better commodity grouping to remove cakes from food
+      filter(!grepl("feedcake", GCAM_commodity)) %>%
       rename(Mt = value) %>%
       left_join_error_no_match(DF_Macronutrient_FoodItem3_calperg,
                                by = c("GCAM_commodity", "GCAM_region_ID")) %>%
       mutate(Kcalperg = calperg / 1000,
              MKcal =  Kcalperg * Mt * 1000) %>%
       select(-calperg)
-
 
     ##* L101.ag_Food_Mt_R_C_Y ----
     L101.ag_Food_Mt_R_C_Y <-
@@ -397,6 +446,8 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
     # Also consumption may have negative values (adjusted later)
     # But set loss to zero for those
     L101.LossRate %>%
+      # [Todo] Need better commodity grouping to remove cakes from food
+      filter(!grepl("feedcake", GCAM_commodity)) %>%
       left_join_error_no_match(L101.LossRateWorld,
                                by = c("GCAM_commodity", "year")) %>%
       mutate(LossRate = if_else(is.na(LossRate) | LossRate <= 0, LossRateWorld, LossRate),
@@ -435,7 +486,53 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
       gather(element, value, -GCAM_region_ID, -GCAM_commodity, -year)->
       L101.ag_Storage_Mt_R_C_Y
 
+    # 6. Secondary product SUA ----
 
+    L100.FAO_SUA_APE_balance %>%
+      filter(GCAM_commodity %in% COMM_CRUSHING_SECONDARY) ->
+      L101.ag_Secondary_SUA_Mt_R_C_Y_1
+
+    # Check and improve crushing rates
+    L101.FAO_SUA_APE_balance_Crushing %>%
+      filter(element == "Processed") %>%
+      transmute(year, COMM_Curshing_Primary = GCAM_commodity, GCAM_region_ID, Crushing_Mt = value) %>%
+      left_join_error_no_match(
+        L101.ag_Secondary_SUA_Mt_R_C_Y_1 %>%
+          filter(element == "Production") %>% spread(element, value) %>%
+          tidyr::separate(GCAM_commodity, into =c("COMM_Curshing_Primary", "Oil_Cake")) %>%
+          spread(Oil_Cake, Production),
+        by = c("year", "GCAM_region_ID", "COMM_Curshing_Primary")
+      ) %>%
+      left_join_error_no_match(
+        A_Crushing_max_rate, by = c("COMM_Curshing_Primary") ) %>%
+      # adjustments if curshing_Mt = 0, oil and cake should be 0
+      mutate(oil = if_else(Crushing_Mt == 0, 0, oil),
+             feedcake = if_else(Crushing_Mt == 0, 0, feedcake),
+            # set upper limits here for crushing rate
+             oil = pmin(oil, max_rate_oil * Crushing_Mt),
+             feedcake = pmin(feedcake, max_rate_cake * Crushing_Mt)) %>%
+      # calculate rates
+      mutate(rate_total = (feedcake + oil)/Crushing_Mt,
+             rate_feedcake = feedcake/Crushing_Mt) %>%
+      replace_na(list(rate_total = 0, rate_feedcake = 0)) %>%
+      # adjust cake again if total is bigger than max_rate_total
+      mutate(feedcake = (rate_feedcake - pmax(0, rate_total - max_rate_total)) * Crushing_Mt) %>%
+      mutate(rate_total = (feedcake + oil)/Crushing_Mt,
+             rate_oil = oil/Crushing_Mt ,
+             rate_feedcake = feedcake/Crushing_Mt ) ->
+      L101.ag_Secondary_SUA_Mt_R_C_Y_Crushing_Rate
+
+    # bind back adjusted production
+    L101.ag_Secondary_SUA_Mt_R_C_Y_Crushing_Rate %>%
+      select(year, GCAM_region_ID, COMM_Curshing_Primary, oil, feedcake) %>%
+      gather(oil_cake, value, oil, feedcake) %>%
+      transmute(year, GCAM_region_ID, GCAM_commodity = paste(COMM_Curshing_Primary, oil_cake, sep = " "),
+                element = "Production", value) %>%
+      bind_rows(
+        L101.ag_Secondary_SUA_Mt_R_C_Y_1 %>%
+          filter(element != "Production")
+      ) ->
+      L101.ag_Secondary_SUA_Mt_R_C_Y
 
 
     # Produce outputs ----
@@ -447,6 +544,21 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
       add_precursors("GCAM_AgLU_SUA_APE_1973_2019",
                      "common/GCAM_region_names") ->
       L100.FAO_SUA_APE_balance
+
+    L101.FAO_SUA_APE_balance_Crushing %>%
+      add_title("Regional crushing demand of primary crops") %>%
+      add_units("Mt") %>%
+      add_comments("Processed demand for commodities that are processed in GCAM; 5-year average") %>%
+      add_precursors("GCAM_AgLU_SUA_APE_1973_2019_ProcessedUse") ->
+      L101.FAO_SUA_APE_balance_Crushing
+
+    L101.ag_Secondary_SUA_Mt_R_C_Y %>%
+      add_title("Regional SUA for secondary GCAM AGLU commodities") %>%
+      add_units("Mt") %>%
+      add_comments("Supply utilization balance for secondary GCAM commodities") %>%
+      add_precursors("GCAM_AgLU_SUA_APE_1973_2019",
+                     "aglu/A_Crushing_max_rate") ->
+      L101.ag_Secondary_SUA_Mt_R_C_Y
 
     L100.FAO_ag_HA_ha %>%
       add_title("FAO agricultural harvested area by country, item, year") %>%

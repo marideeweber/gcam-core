@@ -219,7 +219,7 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
 
     L122.in_EJ_R_refining_F_Yh <- bind_rows(L122.in_EJ_R_oilrefining_F_Yh, L122.in_EJ_R_gtlctl_F_Yh, L122.in_EJ_R_biofuel_F_Yh_rev)
 
-    # The final steps here write out some information for the AgLU module
+    # The final steps here write out some information for the AgLU module ----
     # First, calculate and create the derived crop inputs to the various first-generation biofuel technologies
     L122.in_EJ_R_biofuel_F_Yh %>%
       left_join(select(calibrated_techs, sector, fuel, passthrough.sector = minicam.energy.input), by = c("sector", "fuel")) %>%
@@ -264,6 +264,8 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
     # Multiply by input quantities by coefficients in L121.globaltech_coef
     # 2/2020 modification (gpk) - replace with region-specific coefficients for selected regions/commodities
     # This reflects the different oil contents of soybeans (~18%) versus sunflower and rapeseed (~43%) feedstocks
+
+
     L122.in_EJ_R_1stgenbio_F_Yh %>%
       select(GCAM_region_ID, passthrough.sector, GCAM_commodity, year, out_value = value) %>%
       left_join(select(L121.globaltech_coef, passthrough.sector = "supplysector", GCAM_commodity = minicam.energy.input, year, coef = value),

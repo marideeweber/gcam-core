@@ -20,6 +20,7 @@ module_aglu_L113_ag_storage <- function(command, ...) {
     c(FILE = "common/GCAM_region_names",
       FILE = "aglu/A_agStorageSector",
       "L109.ag_ALL_Mt_R_C_Y",
+      "L109_crushing_processed_ALL_Mt_R_C_Y",
       "L109.an_ALL_Mt_R_C_Y",
       "L1321.ag_prP_R_C_75USDkg",
       "L1321.an_prP_R_C_75USDkg")
@@ -71,6 +72,10 @@ module_aglu_L113_ag_storage <- function(command, ...) {
         L109.an_ALL_Mt_R_C_Y %>%
           gather(element, value, -GCAM_commodity, -year, -GCAM_region_ID)
       ) %>%
+      bind_rows(
+        L109_crushing_processed_ALL_Mt_R_C_Y %>%
+          gather(element, value, -GCAM_commodity, -year, -GCAM_region_ID)
+      ) %>%
       # Keep relevant elements, storage comm., and base years only
       filter(element %in% c("Opening stocks", "Closing stocks", "InterAnnualStockLoss"),
              year %in% MODEL_BASE_YEARS) %>%
@@ -81,6 +86,12 @@ module_aglu_L113_ag_storage <- function(command, ...) {
       left_join_error_no_match(GCAM_region_names, by = "GCAM_region_ID") %>%
       select(-GCAM_region_ID) ->
       L113.ag_Storage_Mt_R_C_Y_adj1
+
+    assertthat::assert_that(
+      all(A_agStorageSector %>% distinct(GCAM_commodity) %>%
+            pull %in% unique(L113.ag_Storage_Mt_R_C_Y_adj1$GCAM_commodity)),
+      msg = "Not all commodities in A_agStorageSector available here in data."
+    )
 
 
     # 3. Compute loss-coefficients and arrange data to get table needed ----

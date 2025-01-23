@@ -1,7 +1,7 @@
 # File: A_demand_technology.csv
 # Title: Technologies and inputs of agricultural production
 # Unit: NA
-# Description: Generic information of technologies and inputs of agricultural production
+# Description: Generic information of technologies and inputs of agricultural production; soybean oil is added to food but not feedcake
 # Source: GCAM assumptions
 # Column types: cccccccccn
 # ----------
@@ -14,7 +14,8 @@ FoodDemand_NonStaples,MiscCrop,MiscCrop,MiscCrop,share-weight,final-calibration-
 FoodDemand_NonStaples,Protein,Plant,NutsSeeds,share-weight,final-calibration-year,end-year,fixed,regional nuts_seeds,1
 FoodDemand_NonStaples,Oil,OilCrop,OilCrop,share-weight,final-calibration-year,end-year,fixed,regional oilcrop,1
 FoodDemand_NonStaples,Oil,Rapeseed,Rapeseed,share-weight,final-calibration-year,end-year,fixed,regional rapeseed,1
-FoodDemand_NonStaples,Oil,Soybean,Soybean,share-weight,final-calibration-year,end-year,fixed,regional soybean,1
+FoodDemand_NonStaples,Oil,Soybean oil,Soybean oil,share-weight,final-calibration-year,end-year,fixed,regional soybean oil,1
+FoodDemand_NonStaples,Soybean,Soybean,Soybean,share-weight,final-calibration-year,end-year,fixed,regional soybean,1
 FoodDemand_Staples,OtherGrain,OtherGrain,OtherGrain,share-weight,final-calibration-year,end-year,fixed,regional othergrain,1
 FoodDemand_NonStaples,Oil,OilPalm,OilPalm,share-weight,final-calibration-year,end-year,fixed,regional oilpalm,1
 FoodDemand_Staples,Rice,Rice,Rice,share-weight,final-calibration-year,end-year,fixed,regional rice,1
@@ -43,6 +44,8 @@ NonFoodDemand_Crops,OilPalm,OilPalm,OilPalm,share-weight,final-calibration-year,
 NonFoodDemand_Crops,Rice,Rice,Rice,share-weight,final-calibration-year,end-year,fixed,regional rice,1
 NonFoodDemand_Crops,RootTuber,RootTuber,RootTuber,share-weight,final-calibration-year,end-year,fixed,regional root_tuber,1
 NonFoodDemand_Crops,Soybean,Soybean,Soybean,share-weight,final-calibration-year,end-year,fixed,regional soybean,1
+NonFoodDemand_Crops,Soybean oil,Soybean oil,Soybean oil,share-weight,final-calibration-year,end-year,fixed,regional soybean oil,1
+NonFoodDemand_Crops,Soybean feedcake,Soybean feedcake,Soybean feedcake,share-weight,final-calibration-year,end-year,fixed,regional soybean feedcake,1
 NonFoodDemand_Crops,SugarCrop,SugarCrop,SugarCrop,share-weight,final-calibration-year,end-year,fixed,regional sugarcrop,1
 NonFoodDemand_Crops,Vegetables,Vegetables,Vegetables,share-weight,final-calibration-year,end-year,fixed,regional vegetables,1
 NonFoodDemand_Crops,Wheat,Wheat,Wheat,share-weight,final-calibration-year,end-year,fixed,regional wheat,1

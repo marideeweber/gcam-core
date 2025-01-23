@@ -1,7 +1,8 @@
 # File: A21.globaltech_coef.csv
 # Title: Primary energy handling default coefficients
 # Units: Unitless
-#Source: Fine et al 2015. Food losses and waste in the french oilcrops sector. OCL.22.A302.10.1051/ocl/2015012
+# Source: Fine et al 2015. Food losses and waste in the french oilcrops sector. OCL.22.A302.10.1051/ocl/2015012
+# Comment: (Temp fix) soybean oil should be 25.6; we applied 0.3 to that for now since there are other non oil crop feedstock not included yet
 # Column types: ccccnnn 
 # ----------
 supplysector,subsector,technology,minicam.energy.input,1971,2015,2100
@@ -12,5 +13,5 @@ regional biomassOil,regional biomassOil,biomassOil,biomassOil,1,1,1
 regional biomassOil,regional biomassOil,OilCrop,regional oilcrop,61.3,61.3,61.3
 regional biomassOil,regional biomassOil,Rapeseed,regional rapeseed,61.3,61.3,61.3
 regional biomassOil,regional biomassOil,OilPalm,regional oilpalm,128,128,128
-regional biomassOil,regional biomassOil,Soybean,regional soybean,142.57,142.57,142.57
+regional biomassOil,regional biomassOil,Soybean oil,regional soybean oil,8.533333333,8.533333333,8.533333333
 regional woodpulp for energy,regional woodpulp for energy,regional woodpulp for energy,woodpulp_energy,1,1,1

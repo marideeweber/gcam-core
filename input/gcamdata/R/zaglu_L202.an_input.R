@@ -22,6 +22,7 @@
 #' @importFrom tidyr complete replace_na
 #' @author BBL August 2017
 module_aglu_L202.an_input <- function(command, ...) {
+
   MODULE_INPUTS <-
     c(FILE = "common/GCAM_region_names",
       FILE = "energy/A_regions",
@@ -36,10 +37,17 @@ module_aglu_L202.an_input <- function(command, ...) {
       FILE = "aglu/A_an_supplysector",
       FILE = "aglu/A_an_subsector",
       FILE = "aglu/A_an_technology",
+      # new files for crushing
+      FILE = "aglu/A_Crushing_sector",
+      FILE = "aglu/A_Crushing_subsector",
+      FILE = "aglu/A_Crushing_technology_coef",
+      FILE = "aglu/A_Crushing_technology_secout",
+
       "L107.an_Prod_Mt_R_C_Sys_Fd_Y",
       "L108.an_Feed_Mt_R_C_Sys_Fd_Y_adj",
       "L108.ag_Feed_Mt_R_C_Y",
       "L109.ag_ALL_Mt_R_C_Y",
+      "L109_crushing_processed_ALL_Mt_R_C_Y",
       "L1321.ag_prP_R_C_75USDkg",
       "L1321.an_prP_R_C_75USDkg",
       "L110.For_ALL_bm3_R_Y",
@@ -74,7 +82,16 @@ module_aglu_L202.an_input <- function(command, ...) {
       "L202.ag_consP_R_C_75USDkg",
       "L202.StubTechCost_For_proc",
       "L202.StubTechProd_in_Forest",
-      "L202.StubTechProd_in_pulp_energy")
+      "L202.StubTechProd_in_pulp_energy",
+      # outputs for crushing
+      "L202.Supplysector_oil",
+      "L202.SubsectorAll_oil",
+      "L202.GlobalTechShrwt_oil",
+      "L202.GlobalTechCoef_oil",
+      "L202.GlobalTechSecOut_oil",
+      "L202.StubTechProd_oil",
+      "L202.StubTechSecOut_oil",
+      "L202.StubTechCoef_oil")
 
   if(command == driver.DECLARE_INPUTS) {
     return(MODULE_INPUTS)
@@ -175,6 +192,10 @@ module_aglu_L202.an_input <- function(command, ...) {
     L202.an_Feed_Mt_R_C_Sys_Fd_Y.mlt <- get_join_filter("L108.an_Feed_Mt_R_C_Sys_Fd_Y_adj")
     L202.ag_Feed_Mt_R_C_Y.mlt <- get_join_filter("L108.ag_Feed_Mt_R_C_Y")
 
+    L202.ag_ALL_Mt_R_C_Y <- get_join_filter("L109.ag_ALL_Mt_R_C_Y")
+    L202.crushing_processed_ALL_Mt_R_C_Y <- get_join_filter("L109_crushing_processed_ALL_Mt_R_C_Y")
+
+
     L202.an_FeedIO_R_C_Sys_Fd_Y.mlt <- L107.an_FeedIO_R_C_Sys_Fd_Y %>%
       left_join_error_no_match(GCAM_region_names, by = "GCAM_region_ID") %>%
       filter(year %in% MODEL_BASE_YEARS)
@@ -194,6 +215,7 @@ module_aglu_L202.an_input <- function(command, ...) {
       select(region, renewresource) %>%
       mutate(year = min(MODEL_BASE_YEARS), price = gcam.DEFAULT_PRICE) ->
       L202.RenewRsrcPrice
+
 
     # L202.maxSubResource: maximum amount of resource production allowed in any period (72-97)
     # Compute the maxsubresource as the maximum of all base periods, for each region and resource
@@ -246,6 +268,100 @@ module_aglu_L202.an_input <- function(command, ...) {
       mutate(price = if_else(!is.na(value), value, price)) %>%
       select(LEVEL2_DATA_NAMES[["UnlimitRsrcPrice"]]) ->
       L202.UnlimitedRenewRsrcPrice
+
+    # OTAQ crushing ----
+
+    # L202.Supplysector_oil: supplysectors of oil crushing
+    A_Crushing_sector %>%
+      write_to_all_regions(c(LEVEL2_DATA_NAMES[["Supplysector"]], LOGIT_TYPE_COLNAME), GCAM_region_names) ->
+      L202.Supplysector_oil
+
+    # L202.SubsectorAll_oil: subsector info
+    A_Crushing_subsector %>%
+      write_to_all_regions(c(LEVEL2_DATA_NAMES[["SubsectorAll"]], LOGIT_TYPE_COLNAME), GCAM_region_names) ->
+      L202.SubsectorAll_oil
+
+    # L202.StubTechShrwt_oil: stub technology share-weights of oil/feedcake production
+    # Just default it to 1; whether the tech is available will be determined by the subsector share-weights
+    A_Crushing_technology_coef %>%
+      rename(sector.name = supplysector, subsector.name = subsector) %>%
+      repeat_add_columns(tibble(year = MODEL_YEARS)) %>%
+      mutate(share.weight = 1) %>%
+      select(LEVEL2_DATA_NAMES[["GlobalTechShrwt"]]) ->
+      L202.GlobalTechShrwt_oil
+
+    # L202.GlobalTechCoef_oil: default coefficients for inputs to oil/feedcake production
+    A_Crushing_technology_coef %>%
+      gather_years(value_col = "coefficient") %>%
+      complete(nesting(supplysector, subsector, technology, minicam.energy.input),
+               year = sort(unique(c(year, MODEL_YEARS)))) %>%
+      group_by(supplysector, subsector, technology, minicam.energy.input) %>%
+      mutate(sector.name = supplysector, subsector.name = subsector,
+             coefficient = approx_fun(year, coefficient)) %>%
+      ungroup() %>%
+      filter(year %in% MODEL_YEARS) %>%
+      select(LEVEL2_DATA_NAMES[["GlobalTechCoef"]]) ->
+      L202.GlobalTechCoef_oil
+
+    # L202.GlobalTechSecOut_oil: default output-ratio ("crush ratio") of feed:oil
+    A_Crushing_technology_secout %>%
+      gather_years(value_col = "output.ratio") %>%
+      complete(nesting(supplysector, subsector, technology, secondary.output),
+               year = sort(unique(c(year, MODEL_YEARS)))) %>%
+      group_by(supplysector, subsector, technology, secondary.output) %>%
+      mutate(sector.name = supplysector, subsector.name = subsector,
+             output.ratio = approx_fun(year, output.ratio)) %>%
+      ungroup() %>%
+      filter(year %in% MODEL_YEARS) %>%
+      select(LEVEL2_DATA_NAMES[["GlobalTechSecOut"]]) ->
+      L202.GlobalTechSecOut_oil
+
+    # L202.StubTechProd_oil: calibrated production of oil (Prod_Mt of oil)
+    L202.crushing_processed_ALL_Mt_R_C_Y %>%
+      filter(GCAM_commodity %in% A_Crushing_technology_coef$supplysector) %>%
+      rename(supplysector = GCAM_commodity) %>%
+      left_join_error_no_match(select(A_Crushing_technology_coef, supplysector, subsector, technology),
+                               by = "supplysector") %>%
+      select(region, supplysector, subsector, stub.technology = technology, year, calOutputValue = Prod_Mt) %>%
+      set_subsector_shrwt() %>%
+      mutate(share.weight.year = year,
+             tech.share.weight = if_else(calOutputValue == 0, 0, 1)) %>%
+      select(LEVEL2_DATA_NAMES[["StubTechProd"]]) ->
+      L202.StubTechProd_oil
+
+    # L202.StubTechSecOut_oil: calibrated secondary output production of feedcakes (Prod_Mt of feedcakes / Prod_Mt of oil)
+    L202.crushing_processed_ALL_Mt_R_C_Y %>%
+      filter(GCAM_commodity %in% A_Crushing_technology_secout$secondary.output) %>%
+      rename(secondary.output = GCAM_commodity) %>%
+      left_join_error_no_match(select(A_Crushing_technology_secout, supplysector, subsector, technology, secondary.output),
+                               by = "secondary.output") %>%
+      select(region, supplysector, subsector, stub.technology = technology, secondary.output, year, FeedOut = Prod_Mt) %>%
+      left_join_error_no_match(L202.StubTechProd_oil,
+                               by = c("region", "supplysector", "subsector", "stub.technology", "year")) %>%
+      mutate(output.ratio = round(FeedOut / calOutputValue, digits = aglu.DIGITS_CALOUTPUT)) %>%
+      # no need to calibrate stub tech sec out ratio where there was no oil/meal production
+      filter(!is.na(output.ratio)) %>%
+      #rename(secondary.output.name = secondary.output, secondary.output = output.ratio) %>%
+      select(LEVEL2_DATA_NAMES[["StubTechSecOut"]]) ->
+      L202.StubTechSecOut_oil
+
+    # L202.StubTechCoef_oil: calibrated IO coefficient of oil (Crushing_Mt of crop / Prod_Mt of oil)
+    L202.ag_ALL_Mt_R_C_Y %>%
+      filter(GCAM_commodity %in% A_Crushing_technology_coef$primary.crop) %>%
+      rename(primary.crop = GCAM_commodity) %>%
+      left_join_error_no_match(select(A_Crushing_technology_coef, supplysector, subsector, technology, minicam.energy.input, primary.crop),
+                               by = "primary.crop") %>%
+      select(region, supplysector, subsector, stub.technology = technology, minicam.energy.input, year, Input = Crushing_Mt) %>%
+      left_join_error_no_match(L202.StubTechProd_oil, by = c("region", "supplysector", "subsector", "stub.technology", "year")) %>%
+      mutate(coefficient = round(Input / calOutputValue, digits = aglu.DIGITS_CALOUTPUT),
+             market.name = region) %>%
+      # no need to calibrate stub tech IO coef where there was no oil/meal production
+      filter(!is.na(coefficient)) %>%
+      select(LEVEL2_DATA_NAMES[["StubTechCoef"]]) ->
+      L202.StubTechCoef_oil
+
+    #----
+
 
     # L202.Supplysector_in: generic supplysector info for inputs to animal production (114-122)
     A_an_input_supplysector %>%
@@ -555,6 +671,61 @@ module_aglu_L202.an_input <- function(command, ...) {
       mutate(price = if_else(weight == 0, price_RegMean, revenue / weight)) %>%
       select(region, supplysector, price) ->
       L202.ag_FeedCost_USDkg_R_F
+
+
+
+    # OTAQ Crushing ----
+    # [ToDo: need to update]
+
+    # 11/19/2019 modification - feedcake prices should be set equal to the price of their primary commodities, in each region
+    L202.RenewRsrcPrice %>%
+      left_join(select(A_Crushing_technology_secout, renewresource = secondary.output, supplysector),
+                by = "renewresource") %>%
+      #[XZ: keep a coef for adjusting cake prices]
+      left_join(select(A_Crushing_technology_coef, supplysector, GCAM_commodity = primary.crop, coef = `2015`),
+                by = "supplysector") %>%
+      left_join(L202.prP_R_C_75USDkg %>% rename(value = price), by = c("region", "GCAM_commodity")) %>%
+      #[XZ: adjust cake prices]
+      mutate(price = if_else(is.na(value), round(price, aglu.DIGITS_CALPRICE), value / coef)) %>%
+      select(region, renewresource, year, price) ->
+      L202.RenewRsrcPrice
+
+    #[xz VERY temp adjustments: change from renewable to unlimited for soy cake ]----
+    # add soybean cake to L202.UnlimitedRenewRsrcCurves and L202.UnlimitedRenewRsrcPrice
+
+    L202.UnlimitedRenewRsrcCurves %>%
+      filter(unlimited.resource == "OtherMeat_Fish") %>%
+      mutate(unlimited.resource = "Soybean feedcake", market = region) %>%
+      bind_rows(L202.UnlimitedRenewRsrcCurves)->
+      L202.UnlimitedRenewRsrcCurves
+
+    L202.UnlimitedRenewRsrcPrice %>%
+      filter(unlimited.resource == "OtherMeat_Fish") %>%
+      mutate(unlimited.resource = "Soybean feedcake") %>%
+      select(-price) %>%
+      left_join_error_no_match(
+        L202.RenewRsrcPrice %>%
+          filter(renewresource == "Soybean feedcake") %>%
+          rename(unlimited.resource = renewresource) %>%
+          select(-year), by = c("region", "unlimited.resource")
+      ) ->
+      L202.UnlimitedRenewRsrcPrice
+  #[xz done temp adjustments ]----
+
+
+
+    # remove soybean cake from L202.RenewRsrcPrice and L202.RenewRsrc
+    L202.RenewRsrcPrice %>%
+      filter(!renewresource %in% A_Crushing_technology_secout$secondary.output) ->
+      L202.RenewRsrcPrice
+
+    L202.RenewRsrc %>%
+      filter(!renewresource %in% A_Crushing_technology_secout$secondary.output) ->
+      L202.RenewRsrc
+
+
+
+    # ----
 
     # gpk 8/5/2020 - compute default animal commodity prices in case of missing values
 
@@ -978,6 +1149,64 @@ module_aglu_L202.an_input <- function(command, ...) {
                      "energy/A_regions", "common/GCAM_region_names",
                      "L1327.IO_woodpulp_energy") ->
       L202.StubTechProd_in_pulp_energy
+
+    # OTAQ Crushing ----
+    L202.Supplysector_oil %>%
+      add_title("Generic supplysector info for inputs to animal production") %>%
+      add_units("NA") %>%
+      add_comments("A_Crushing_sector written to all regions") %>%
+      add_precursors("aglu/A_Crushing_sector", "common/GCAM_region_names") ->
+      L202.Supplysector_oil
+
+    L202.SubsectorAll_oil %>%
+      add_title("Generic subsector info for inputs to animal production technologies") %>%
+      add_units("NA") %>%
+      add_comments("A_Crushing_subsector written to all regions") %>%
+      add_precursors("aglu/A_Crushing_subsector", "common/GCAM_region_names") ->
+      L202.SubsectorAll_oil
+
+    L202.GlobalTechShrwt_oil %>%
+      add_title("Global tech default share-weights for crop oil production") %>%
+      add_units("NA") %>%
+      add_comments("Within these sectors, the competition happens only at the subsector level") %>%
+      add_precursors("aglu/A_Crushing_technology_coef") ->
+      L202.GlobalTechShrwt_oil
+
+    L202.GlobalTechCoef_oil %>%
+      add_title("Global tech default coefficients for crop oil production") %>%
+      add_units("Unitless mass of feed per mass of oil") %>%
+      add_comments("Coefs are generally over-written by calibration data") %>%
+      add_precursors("aglu/A_Crushing_technology_coef") ->
+      L202.GlobalTechCoef_oil
+
+    L202.GlobalTechSecOut_oil %>%
+      add_title("Global tech secondary output coefficients (feed / oil) for crop oil production") %>%
+      add_units("Unitless mass of feed per mass of oil") %>%
+      add_comments("Output ratios are generally over-written by calibration data") %>%
+      add_precursors("aglu/A_Crushing_technology_secout") ->
+      L202.GlobalTechSecOut_oil
+
+    L202.StubTechProd_oil %>%
+      add_title("Calibrated production of crop oil", overwrite = T) %>%
+      add_units("Mt/yr") %>%
+      add_comments("Calculated from FAOSTAT SUA data on crop oil production") %>%
+      add_precursors("aglu/A_Crushing_technology_coef", "L109.ag_ALL_Mt_R_C_Y", "L109_crushing_processed_ALL_Mt_R_C_Y") ->
+      L202.StubTechProd_oil
+
+    L202.StubTechSecOut_oil %>%
+      add_title("Calibrated secondary output ratios of feedcakes (feed / oil)", overwrite = T) %>%
+      add_units("Unitless feed / oil") %>%
+      add_comments("Calculated from FAOSTAT SUA data on crop oil and crop meal production") %>%
+      add_precursors("aglu/A_Crushing_technology_secout", "L109.ag_ALL_Mt_R_C_Y", "L109_crushing_processed_ALL_Mt_R_C_Y") ->
+      L202.StubTechSecOut_oil
+
+    L202.StubTechCoef_oil %>%
+      add_title("Calibrated input-output coefficients of crop oil (input crop / output oil)", overwrite = T) %>%
+      add_units("Unitless crop / oil") %>%
+      add_comments("Calculated from FAOSTAT SUA data on crop oil and crop meal production, plus assumed losses") %>%
+      add_precursors("aglu/A_Crushing_technology_coef", "L109.ag_ALL_Mt_R_C_Y", "L109_crushing_processed_ALL_Mt_R_C_Y") ->
+      L202.StubTechCoef_oil
+
 
     return_data(MODULE_OUTPUTS)
   } else {

@@ -1,0 +1,9 @@
+# File: A_Crushing_sector.csv
+# Title: Agriculture supply sector information
+# Unit: NA
+# Description: agSupplySectors - name / market / unit
+# Source: NA
+# Column types: ccccnc
+# ----------
+supplysector,output.unit,input.unit,price.unit,logit.exponent,logit.type
+Soybean oil,Mt,Mt,1975$/kg,-3,

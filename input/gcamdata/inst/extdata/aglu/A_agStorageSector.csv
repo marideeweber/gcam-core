@@ -20,6 +20,8 @@ OilPalm,T,regional oilpalm,total oilpalm,ag-storage,1
 Rice,T,regional rice,total rice,ag-storage,1
 RootTuber,T,regional root_tuber,total root_tuber,ag-storage,1
 Soybean,T,regional soybean,total soybean,ag-storage,1
+Soybean oil,F,regional soybean oil,total soybean oil,ag-storage,1
+Soybean feedcake,F,regional soybean feedcake,total soybean feedcake,ag-storage,1
 SugarCrop,T,regional sugarcrop,total sugarcrop,ag-storage,1
 Vegetables,F,regional vegetables,total vegetables,ag-storage,1
 Wheat,T,regional wheat,total wheat,ag-storage,1

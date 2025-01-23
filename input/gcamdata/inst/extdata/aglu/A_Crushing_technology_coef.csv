@@ -1,0 +1,8 @@
+# File: A_Crushing_technology_coef.csv
+# Title: Input-output coefficients of oil crushing technologies
+# Units: Unitless (kg of crop inputs per kg of oil)
+# Source: Calculated as (1 + sec out coef) * 1.04. Loss coef from DOI: 10.1051/ocl/2015012
+# Column types: cccccnnnn
+# ----------
+supplysector,subsector,technology,minicam.energy.input,primary.crop,1971,2010,2015,2100
+Soybean oil,Soybean oil,Soybean oil,regional soybean,Soybean,5.408,5.408,5.408,5.408

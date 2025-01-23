@@ -7,3 +7,4 @@ supplysector,subsector,technology,apply.to,from.year,to.year,to.value,interpolat
 regional biomassOil,regional biomassOil,OilCrop,share-weight,final-calibration-year,end-year,,fixed
 regional biomassOil,regional biomassOil,Rapeseed,share-weight,final-calibration-year,end-year,,fixed
 regional biomassOil,regional biomassOil,OilPalm,share-weight,final-calibration-year,end-year,,fixed
+regional biomassOil,regional biomassOil,Soybean oil,share-weight,final-calibration-year,end-year,,fixed

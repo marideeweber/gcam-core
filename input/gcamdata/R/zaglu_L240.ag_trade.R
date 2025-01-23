@@ -31,6 +31,7 @@ module_aglu_L240.ag_trade <- function(command, ...) {
       FILE = "aglu/A_agTradedTechnology",
       FILE = "common/iso_GCAM_regID",
       "L109.ag_ALL_Mt_R_C_Y",
+      "L109_crushing_processed_ALL_Mt_R_C_Y",
       "L109.an_ALL_Mt_R_C_Y",
       "L110.For_ALL_bm3_R_Y",
       "L100.FAO_For_Exp_m3")
@@ -69,6 +70,9 @@ module_aglu_L240.ag_trade <- function(command, ...) {
     # 0: Bind crops, livestock, and forest for prod and net trade (netexp) ----
     L109.ag_an_for_ALL_Mt_R_C_Y <- L109.ag_ALL_Mt_R_C_Y %>%
       select(GCAM_region_ID, GCAM_commodity, year, Prod_Mt, NetExp_Mt) %>%
+      bind_rows(
+        L109_crushing_processed_ALL_Mt_R_C_Y %>%
+          select(GCAM_region_ID, GCAM_commodity, year, Prod_Mt, NetExp_Mt)) %>%
       bind_rows(L109.an_ALL_Mt_R_C_Y %>%
                   select(GCAM_region_ID, GCAM_commodity, year, Prod_Mt, NetExp_Mt)) %>%
       bind_rows(L110.For_ALL_bm3_R_Y %>%
@@ -78,6 +82,8 @@ module_aglu_L240.ag_trade <- function(command, ...) {
     #  and for gross trade
     L1091.GrossTrade_Mt_R_C_Y <- L109.ag_ALL_Mt_R_C_Y %>%
       select(GCAM_region_ID, GCAM_commodity, year, GrossExp_Mt, GrossImp_Mt) %>%
+      bind_rows(L109_crushing_processed_ALL_Mt_R_C_Y %>%
+                  select(GCAM_region_ID, GCAM_commodity, year, GrossExp_Mt, GrossImp_Mt)) %>%
       bind_rows(L109.an_ALL_Mt_R_C_Y %>%
                   select(GCAM_region_ID, GCAM_commodity, year, GrossExp_Mt, GrossImp_Mt)) %>%
       bind_rows(L110.For_ALL_bm3_R_Y %>%
@@ -203,6 +209,10 @@ module_aglu_L240.ag_trade <- function(command, ...) {
       L109.ag_ALL_Mt_R_C_Y %>%
       gather(element, value, -GCAM_commodity, -year, -GCAM_region_ID) %>%
       bind_rows(
+        L109_crushing_processed_ALL_Mt_R_C_Y %>%
+          gather(element, value, -GCAM_commodity, -year, -GCAM_region_ID)
+      ) %>%
+      bind_rows(
         L109.an_ALL_Mt_R_C_Y %>%
           gather(element, value, -GCAM_commodity, -year, -GCAM_region_ID)
       ) %>%
@@ -287,6 +297,7 @@ module_aglu_L240.ag_trade <- function(command, ...) {
       add_precursors("common/GCAM_region_names",
                      "aglu/A_agTradedTechnology",
                      "L109.ag_ALL_Mt_R_C_Y",
+                     "L109_crushing_processed_ALL_Mt_R_C_Y",
                      "L109.an_ALL_Mt_R_C_Y",
                      "L110.For_ALL_bm3_R_Y",
                      "L100.FAO_For_Exp_m3",
@@ -332,6 +343,7 @@ module_aglu_L240.ag_trade <- function(command, ...) {
       add_precursors("common/GCAM_region_names",
                      "aglu/A_agRegionalTechnology",
                      "L109.ag_ALL_Mt_R_C_Y",
+                     "L109_crushing_processed_ALL_Mt_R_C_Y",
                      "L109.an_ALL_Mt_R_C_Y") ->
       L240.Production_reg_imp
 
@@ -342,6 +354,7 @@ module_aglu_L240.ag_trade <- function(command, ...) {
       add_precursors("common/GCAM_region_names",
                      "aglu/A_agRegionalTechnology",
                      "L109.ag_ALL_Mt_R_C_Y",
+                     "L109_crushing_processed_ALL_Mt_R_C_Y",
                      "L109.an_ALL_Mt_R_C_Y",
                      "L110.For_ALL_bm3_R_Y",
                      "L100.FAO_For_Exp_m3",

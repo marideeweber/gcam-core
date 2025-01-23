@@ -4131,7 +4131,7 @@ element input {
                     <axis1 name="sector">sector</axis1>
                     <axis2 name="Year">physical-output[@vintage]</axis2>
                     <xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector' and
-               (@name='Beef' or @name='SheepGoat' or @name='Pork' or @name='Dairy' or @name='Poultry')]//
+               (@name='Beef' or @name='SheepGoat' or @name='Pork' or @name='Dairy' or @name='Poultry' or @name='Soybean oil')]//
                *[@type='output']/physical-output/node()</xPath>
                     <comments/>
                 </supplyDemandQuery>
@@ -4139,7 +4139,7 @@ element input {
                     <axis1 name="sector">sector</axis1>
                     <axis2 name="Year">physical-output[@vintage]</axis2>
                     <xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector' and
-               (@name='Beef' or @name='SheepGoat' or @name='Pork' or @name='Dairy' or @name='Poultry')]/
+               (@name='Beef' or @name='SheepGoat' or @name='Pork' or @name='Dairy' or @name='Poultry' or @name='Soybean oil')]/
                *[@type='subsector']/*[@type='technology']//
                *[@type='output']/physical-output/node()</xPath>
                     <comments/>
@@ -4262,7 +4262,7 @@ element input {
             (@name='regional corn' or @name='regional fibercrop' or @name='regional fruits' or @name='regional legumes'
                or @name='regional misccrop' or @name='regional nuts_seeds' or @name='regional oilcrop' or @name='regional othergrain'
                or @name='regional oilpalm' or @name='regional rice' or @name='regional root_tuber'
-               or @name='regional soybean' or @name='regional sugarcrop' or @name='regional vegetables' or @name='regional wheat'
+               or @name='regional soybean' or @name='regional soybean oil' or @name='regional soybean feedcake' or @name='regional sugarcrop' or @name='regional vegetables' or @name='regional wheat'
                or @name='FodderGrass' or @name='FodderHerb' or @name='Forest' or @name='Pasture' or @name='regional sawnwood' or @name='regional woodpulp')]/
                demand-physical/node()</xPath>
                 <comments/>
