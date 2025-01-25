@@ -62,6 +62,13 @@ module_aglu_an_input_xml <- function(command, ...) {
 
     # Load required inputs
     get_data_list(all_data, MODULE_INPUTS, strip_attributes = TRUE)
+#
+#     L202.StubTech_in %>% filter(subsector != "OilPalm") -> L202.StubTech_in
+#     L202.StubTechInterp_in  %>% filter(subsector != "OilPalm") -> L202.StubTechInterp_in
+#     L202.GlobalTechCoef_in  %>% filter(technology != "OilPalm") -> L202.GlobalTechCoef_in
+#     L202.GlobalTechShrwt_in  %>% filter(technology != "OilPalm") -> L202.GlobalTechShrwt_in
+#     L202.StubTechProd_in  %>% filter(subsector != "OilPalm") -> L202.StubTechProd_in
+
 
     # ===================================================
 

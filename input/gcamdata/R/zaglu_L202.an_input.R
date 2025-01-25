@@ -425,7 +425,10 @@ module_aglu_L202.an_input <- function(command, ...) {
              tech.share.weight = if_else(calOutputValue > 0, 1, 0)) %>%
       select(LEVEL2_DATA_NAMES[["StubTechProd"]]) %>%
       #Take out forest supply sectors from this
-      filter(!stub.technology %in% c(aglu.FOREST_COMMODITIES, "woodpulp_energy"))->
+      filter(!stub.technology %in% c(aglu.FOREST_COMMODITIES, "woodpulp_energy")) %>%
+      # [ToDo] OilPalm is not used as feed; drop na to remove them for new
+      # better comm mapping later
+      drop_na(calOutputValue) ->
       L202.StubTechProd_in
 
     A_an_input_technology %>%
@@ -699,6 +702,12 @@ module_aglu_L202.an_input <- function(command, ...) {
       bind_rows(L202.UnlimitedRenewRsrcCurves)->
       L202.UnlimitedRenewRsrcCurves
 
+    L202.UnlimitedRenewRsrcCurves %>%
+      filter(unlimited.resource == "OtherMeat_Fish") %>%
+      mutate(unlimited.resource = "OilPalm feedcake", market = region) %>%
+      bind_rows(L202.UnlimitedRenewRsrcCurves)->
+      L202.UnlimitedRenewRsrcCurves
+
     L202.UnlimitedRenewRsrcPrice %>%
       filter(unlimited.resource == "OtherMeat_Fish") %>%
       mutate(unlimited.resource = "Soybean feedcake") %>%
@@ -709,7 +718,29 @@ module_aglu_L202.an_input <- function(command, ...) {
           rename(unlimited.resource = renewresource) %>%
           select(-year), by = c("region", "unlimited.resource")
       ) ->
+      L202.UnlimitedRenewRsrcPrice1
+
+    L202.UnlimitedRenewRsrcPrice %>%
+      filter(unlimited.resource == "OtherMeat_Fish") %>%
+      mutate(unlimited.resource = "OilPalm feedcake") %>%
+      select(-price) %>%
+      left_join_error_no_match(
+        L202.RenewRsrcPrice %>%
+          filter(renewresource == "OilPalm feedcake") %>%
+          rename(unlimited.resource = renewresource) %>%
+          select(-year), by = c("region", "unlimited.resource")
+      ) ->
+      L202.UnlimitedRenewRsrcPrice2
+
+    L202.UnlimitedRenewRsrcPrice %>%
+      bind_rows(
+        L202.UnlimitedRenewRsrcPrice1
+      ) %>%
+      bind_rows(
+        L202.UnlimitedRenewRsrcPrice2
+      ) ->
       L202.UnlimitedRenewRsrcPrice
+
   #[xz done temp adjustments ]----
 
 

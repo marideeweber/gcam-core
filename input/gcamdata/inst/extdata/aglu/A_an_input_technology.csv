@@ -1,6 +1,6 @@
 # File: A_an_input_technology.csv
 # Title: Technologies of inputs to animal production
-# Comments: Note, forest product parameters are included here as well granted the processing steps are largely independent from animal production
+# Comments: Note, forest product parameters are included here as well granted the processing steps are largely independent from animal production; remove PalmFruit
 # Units: NA
 # Source: NA
 # Column types: cccccccci
@@ -19,7 +19,7 @@ FeedCrops,NutsSeeds,NutsSeeds,share-weight,final-calibration-year,end-year,fixed
 FeedCrops,OilCrop,OilCrop,share-weight,final-calibration-year,end-year,fixed,regional oilcrop,1
 FeedCrops,Rapeseed,Rapeseed,share-weight,final-calibration-year,end-year,fixed,regional rapeseed,1
 FeedCrops,OtherGrain,OtherGrain,share-weight,final-calibration-year,end-year,fixed,regional othergrain,1
-FeedCrops,OilPalm,OilPalm,share-weight,final-calibration-year,end-year,fixed,regional oilpalm,1
+FeedCrops,OilPalm feedcake,OilPalm feedcake,share-weight,final-calibration-year,end-year,fixed,regional oilpalm feedcake,1
 FeedCrops,Rice,Rice,share-weight,final-calibration-year,end-year,fixed,regional rice,1
 FeedCrops,RootTuber,RootTuber,share-weight,final-calibration-year,end-year,fixed,regional root_tuber,1
 FeedCrops,Soybean,Soybean,share-weight,final-calibration-year,end-year,fixed,regional soybean,1

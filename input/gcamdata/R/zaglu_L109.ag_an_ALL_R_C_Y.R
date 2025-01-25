@@ -165,6 +165,10 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
   L109.ag_ALL_Mt_R_C_Y %>%
     filter(GCAM_commodity %in% Primary_commodities) %>%
     filter(GCAM_commodity != "FodderHerb") %>%
+      # after palm fruit (OilPalm) is separated
+      # the other use of palm fruit is virtually zero or tiny negative due to rounding
+      # so change tiny negative other use values to zero
+    mutate(OtherUses_Mt = if_else(OtherUses_Mt <0 & OtherUses_Mt > -0.1^7, 0, OtherUses_Mt)) %>%
     mutate(negOther = if_else(OtherUses_Mt < 0, "Neg", "Pos") ) ->
     L109.ag_ALL_Mt_R_C_Y_1
 
@@ -232,7 +236,8 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
     L109.ag_ALL_Mt_R_C_Y
 
   ## Check again in model base year and adjust food consumption if needed ----
-  if(any(filter(L109.ag_ALL_Mt_R_C_Y, year %in% MODEL_BASE_YEARS)$OtherUses_Mt < 0)){
+  if(any(L109.ag_ALL_Mt_R_C_Y %>%
+         filter(year %in% MODEL_BASE_YEARS, OtherUses_Mt < 0) %>% nrow >0)){
 
     L109.ag_ALL_Mt_R_C_Y %>%
       filter(year %in% MODEL_BASE_YEARS, OtherUses_Mt <0) %>%
@@ -260,7 +265,8 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
     # domestic supply minus known (and fixed) food and feed quantities. This needs to be addressed on a case-by-case
     # basis, but failure to address the issue here will result in negative calibration values being read to GCAM, and
     # model solution failure.
-    if(any(filter(L109.ag_ALL_Mt_R_C_Y, year %in% MODEL_BASE_YEARS)$OtherUses_Mt < 0)){
+    if(L109.ag_ALL_Mt_R_C_Y %>%
+       filter(year %in% MODEL_BASE_YEARS, OtherUses_Mt <0) %>% nrow() >0){
       stop("Still negative other uses in model base year, possibly due to biofuel crop requirements exceeding available domestic supply")
     }
 
@@ -452,7 +458,9 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
 
     }
 
-    if(any(filter(L109_crushing_processed_ALL_Mt_R_C_Y, year %in% MODEL_BASE_YEARS)$OtherUses_Mt < 0)){
+    if(L109_crushing_processed_ALL_Mt_R_C_Y %>%
+       filter(year %in% MODEL_BASE_YEARS, OtherUses_Mt < 0) %>%
+       nrow() >0){
       stop("Still negative other uses in model base year")
     }
 

@@ -61,8 +61,9 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
 
     # check years
     # to remove
-    FAO_AgProd_Kt_All %>% filter(year >= 1973) -> FAO_AgProd_Kt_All
-    FAO_AgArea_Kha_All %>% filter(year >= 1973) -> FAO_AgArea_Kha_All
+    FAO_AgProd_Kt_All %>% filter(year >= min(aglu.AGLU_HISTORICAL_YEARS)) -> FAO_AgProd_Kt_All
+    FAO_AgArea_Kha_All %>% filter(year >= min(aglu.AGLU_HISTORICAL_YEARS)) -> FAO_AgArea_Kha_All
+    GCAM_AgLU_SUA_APE_1973_2019 %>% filter(year >= min(aglu.AGLU_HISTORICAL_YEARS)) -> GCAM_AgLU_SUA_APE_1973_2019
     assertthat::assert_that(unique(c(min(GCAM_AgLU_SUA_APE_1973_2019$year),
                                    min(FAO_AgProd_Kt_All$year),
                                    min(FAO_AgArea_Kha_All$year)) ) %>% length() == 1,
@@ -78,8 +79,8 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
     COMM_CURSHING_PRIMARY <- c("Soybean", "OilPalm", "OilCrop")
     COMM_CRUSHING_SECONDARY <- c("Soybean oil", "Soybean feedcake", "OilPalm oil", "OilPalm feedcake", "OilCrop oil", "OilCrop feedcake")
 
-    COMM_CURSHING_PRIMARY <- c("Soybean")
-    COMM_CRUSHING_SECONDARY <- c("Soybean oil", "Soybean feedcake")
+    COMM_CURSHING_PRIMARY <- c("Soybean", "OilPalm")
+    COMM_CRUSHING_SECONDARY <- c("Soybean oil", "Soybean feedcake", "OilPalm oil", "OilPalm feedcake")
     COMM_CRUSHING_SECONDARY_FEEDCAKE <- COMM_CRUSHING_SECONDARY[grepl("feedcake", x = COMM_CRUSHING_SECONDARY)]
 
 
@@ -233,7 +234,13 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
         filter(!GCAM_commodity %in% c("FodderGrass", "FodderHerb")) %>%
         group_by(GCAM_commodity, year, GCAM_region_ID) %>%
         summarise(value = sum(value)/1000000, .groups = "drop") %>%
-        ungroup()  %>%
+        ungroup() %>%
+        # For certein crops, e.g., palm fruit, there could be zeros in prod
+        # and nonexist in SUA; inner join first
+        inner_join(
+          L100.FAO_SUA_APE_balance %>%
+            distinct(year, GCAM_commodity, GCAM_region_ID),
+          by = c("GCAM_commodity", "year", "GCAM_region_ID")) %>%
         left_join_error_no_match(
           L100.FAO_SUA_APE_balance %>% filter(element == "Production") %>%
             filter(GCAM_commodity %in% COMM_CROP) %>%
@@ -364,6 +371,7 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
       L100.FAO_SUA_APE_balance %>% filter(element == "Food") %>%
       # [Todo] Need better commodity grouping to remove cakes from food
       filter(!grepl("feedcake", GCAM_commodity)) %>%
+      filter(!GCAM_commodity %in% c("OilPalm")) %>%
       rename(Mt = value) %>%
       left_join_error_no_match(DF_Macronutrient_FoodItem3_calperg,
                                by = c("GCAM_commodity", "GCAM_region_ID")) %>%
@@ -499,8 +507,10 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
       left_join_error_no_match(
         L101.ag_Secondary_SUA_Mt_R_C_Y_1 %>%
           filter(element == "Production") %>% spread(element, value) %>%
+          # separate feedcake and oil from primary name
           tidyr::separate(GCAM_commodity, into =c("COMM_Curshing_Primary", "Oil_Cake")) %>%
-          spread(Oil_Cake, Production),
+          spread(Oil_Cake, Production) %>%
+          mutate(feedcake = if_else(is.na(feedcake) & oil == 0, 0, feedcake)),
         by = c("year", "GCAM_region_ID", "COMM_Curshing_Primary")
       ) %>%
       left_join_error_no_match(
@@ -531,8 +541,47 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
       bind_rows(
         L101.ag_Secondary_SUA_Mt_R_C_Y_1 %>%
           filter(element != "Production")
-      ) ->
+      ) %>%
+      spread(element, value, fill = 0) ->
+      L101.ag_Secondary_SUA_Mt_R_C_Y_2
+
+    # adding additional adjustments to lower feedcake used in feed
+    # mainly because the other use would be too negative to adjust in L109
+    # (and feed cannot be adjusted in L109 since it is used previously in L108)
+    # This will also effectively imply lower cake rate in crushing in places adjusted
+
+    # adding an adjustment ratio
+    Feed_OtherUse_ratio_adjuster = 0.8
+    # move negative other use into feed
+
+    L101.ag_Secondary_SUA_Mt_R_C_Y_2 %>%
+      mutate(
+        `Regional supply` = Production + `Import` + `Opening stocks`,
+        `Regional demand` = `Export` + Feed + Food + Loss +  `Closing stocks`,
+        OtherUse = `Regional supply` -  `Regional demand`) %>%
+      mutate(OtherUse_Feed_Ratio = OtherUse / Feed) %>%
+      mutate(Feed = if_else(Feed > 0 &
+                              OtherUse_Feed_Ratio < 0 &
+                              OtherUse_Feed_Ratio > -1 &
+                              GCAM_commodity == "OilPalm feedcake" &
+                              year %in% MODEL_BASE_YEARS,
+                            Feed + OtherUse * Feed_OtherUse_ratio_adjuster,
+                            Feed) ) %>%
+      # add another special adjustment to lower feed in region 13
+      # to avoid the AG_OTHERUSE_WARNING_Crushing in L109
+      mutate(Feed = if_else(GCAM_commodity == "OilPalm feedcake" &
+                              year %in% 1975 & GCAM_region_ID == 13,
+                            Feed - 0.1,
+                            Feed) ) %>%
+      select(-`Regional supply`, -`Regional demand`, -OtherUse, -OtherUse_Feed_Ratio) %>%
+      gather(element, value, -year, -GCAM_region_ID, -GCAM_commodity) ->
+      L101.ag_Secondary_SUA_Mt_R_C_Y_3
+
+    # complete GCAM regions (e.g., for some feedcakes, all elements could be zero in a year)
+    L101.ag_Secondary_SUA_Mt_R_C_Y_3 %>%
+      complete(nesting(GCAM_commodity, year, element), GCAM_region_ID, fill = list(value = 0)) ->
       L101.ag_Secondary_SUA_Mt_R_C_Y
+
 
 
     # Produce outputs ----

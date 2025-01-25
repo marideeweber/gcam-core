@@ -1,6 +1,6 @@
 # File: A_an_input_subsector.csv
 # Title: Subsectors of inputs to animal production
-# Comments: Note, forest product parameters are included here as well granted the processing steps are largely independent from animal production
+# Comments: Note, forest product parameters are included here as well granted the processing steps are largely independent from animal production; remove PalmFruit
 # Units: Various
 # Source: NA
 # Column types: ccicicccccc
@@ -19,7 +19,7 @@ FeedCrops,NutsSeeds,-6,start-year,1,share-weight,final-calibration-year,end-year
 FeedCrops,OilCrop,-6,start-year,1,share-weight,final-calibration-year,end-year,,fixed,
 FeedCrops,Rapeseed,-6,start-year,1,share-weight,final-calibration-year,end-year,,fixed,
 FeedCrops,OtherGrain,-6,start-year,1,share-weight,final-calibration-year,end-year,,fixed,
-FeedCrops,OilPalm,-6,start-year,1,share-weight,final-calibration-year,end-year,,fixed,
+FeedCrops,OilPalm feedcake,-6,start-year,1,share-weight,final-calibration-year,end-year,,fixed,
 FeedCrops,Rice,-6,start-year,1,share-weight,final-calibration-year,end-year,,fixed,
 FeedCrops,RootTuber,-6,start-year,1,share-weight,final-calibration-year,end-year,,fixed,
 FeedCrops,Soybean,-6,start-year,1,share-weight,final-calibration-year,end-year,,fixed,

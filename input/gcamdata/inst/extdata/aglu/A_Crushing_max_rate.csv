@@ -7,3 +7,4 @@
 # ----------
 COMM_Curshing_Primary,max_rate_oil,max_rate_cake,max_rate_total
 Soybean,0.23,0.9,0.995
+OilPalm,0.3,0.04,0.995

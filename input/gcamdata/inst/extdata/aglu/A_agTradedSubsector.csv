@@ -15,6 +15,8 @@ traded oilcrop,traded oilcrop,-6,start-year,1,share-weight,final-calibration-yea
 traded rapeseed,traded rapeseed,-6,start-year,1,share-weight,final-calibration-year,end-year,fixed,1,
 traded othergrain,traded othergrain,-6,start-year,1,share-weight,final-calibration-year,end-year,fixed,1,
 traded oilpalm,traded oilpalm,-6,start-year,1,share-weight,final-calibration-year,end-year,fixed,1,
+traded oilpalm oil,traded oilpalm oil,-6,start-year,1,share-weight,final-calibration-year,end-year,fixed,1,
+traded oilpalm feedcake,traded oilpalm feedcake,-6,start-year,1,share-weight,final-calibration-year,end-year,fixed,1,
 traded rice,traded rice,-6,start-year,1,share-weight,final-calibration-year,end-year,fixed,1,
 traded root_tuber,traded root_tuber,-6,start-year,1,share-weight,final-calibration-year,end-year,fixed,1,
 traded soybean,traded soybean,-6,start-year,1,share-weight,final-calibration-year,end-year,fixed,1,

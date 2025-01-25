@@ -660,13 +660,28 @@ module_aglu_L100.FAO_SUA_PrimaryEquivalent <- function(command, ...) {
     # Connect SUA (FBSH_CB) to primary production (QCL_PROD_GCAM)
     # Primary production could be different due to aggregation or inconsistency
 
+    # [ToDo: may need to move this code to better places]
+    # Since FAO FBS before 2010 didn't have palm fruit balances
+    # add palm fruit here based on prod (QCL) and assume 100% processed
+    QCL_PROD_GCAM %>%
+      filter(GCAM_commodity == "OilPalm") %>%
+      bind_rows(
+        QCL_PROD_GCAM %>%
+          filter(GCAM_commodity == "OilPalm") %>%
+          mutate(element = "Processed")
+      ) %>%
+      bind_rows(
+        FBSH_CB_GCAM
+      ) ->
+      FBSH_CB_GCAM
+
     QCL_PROD_GCAM %>%
       filter(year >= min(unique(FBSH_CB_GCAM$year))) %>%
       # Complete elements in QCL_PROD
       # also GCAM_commodity because no pork production in Pakistan
       complete(area, year, GCAM_commodity,
                element = unique(FBSH_CB_GCAM$element), fill = list(value = 0)) %>%
-      left_join_error_no_match(
+      left_join(
         FBSH_CB_GCAM %>%
           # complete element to add zero productions
           complete(area, year, GCAM_commodity, element, fill = list(value = 0)) %>%
@@ -774,14 +789,15 @@ module_aglu_L100.FAO_SUA_PrimaryEquivalent <- function(command, ...) {
       }
 
       # 4. Balanced in all dimensions
-      .DF %>% filter(year < 2010) -> .DF1
+      .DF %>% filter(year >= min(aglu.AGLU_HISTORICAL_YEARS), year < 2010,
+                     !GCAM_commodity %in% c("OilPalm", "OilPalm feedcake")) -> .DF1
       assertthat::assert_that(.DF1 %>% nrow() ==
                                 .DF1 %>% distinct(year) %>% nrow *
                                 .DF1 %>% distinct(GCAM_commodity) %>% nrow *
                                 .DF1 %>% distinct(element) %>% nrow *
                                 .DF1 %>% distinct(region) %>% nrow)
 
-      .DF %>% filter(year >= 2010) -> .DF1
+      .DF %>% filter(year >= 2010, !GCAM_commodity %in% c("OilPalm", "OilPalm feedcake")) -> .DF1
       assertthat::assert_that(.DF1 %>% nrow() ==
                                 .DF1 %>% distinct(year) %>% nrow *
                                 .DF1 %>% distinct(GCAM_commodity) %>% nrow *
@@ -812,7 +828,7 @@ module_aglu_L100.FAO_SUA_PrimaryEquivalent <- function(command, ...) {
     ## Check balance
     GCAM_AgLU_SUA_APE_1973_2019 %>% Check_Balance_SUA
 
-    COMM_PROCESSING <- c("Soybean")
+    COMM_PROCESSING <- c("Soybean", "OilPalm")
     # Ensure COMM_PROCESSING in the data
     assert_that(all(COMM_PROCESSING %in% unique(GCAM_AgLU_SUA_APE_1973_2019$GCAM_commodity)))
 
@@ -955,7 +971,7 @@ module_aglu_L100.FAO_SUA_PrimaryEquivalent <- function(command, ...) {
     # Adding secondary items here
     # [ToDo] Will need to differentiate the in the mapping files later
     Secondary_Item_CROP <- c("Soybean oil", "Soybean feedcake", "OilPalm oil", "OilPalm feedcake", "OilCrop oil", "OilCrop feedcake")
-    Secondary_Item_CROP <- c("Soybean oil", "Soybean feedcake")
+    Secondary_Item_CROP <- c("Soybean oil", "Soybean feedcake", "OilPalm oil", "OilPalm feedcake")
 
     assertthat::assert_that(
       GCAM_AgLU_SUA_APE_1973_2019 %>%
@@ -1024,6 +1040,12 @@ module_aglu_L100.FAO_SUA_PrimaryEquivalent <- function(command, ...) {
     # Soya paste
     # Soya curd
     # But soybean oil is included; no cake for food consumption
+
+    # A few more items were not used after separating Oilcrop oil and feedcake, e.g.,
+    # Flour, oilseeds
+    # Flour, mustard
+    # Palm kernels
+    # Kapokseed shelled
 
     SUA_item_code_map %>%
       filter(!item_code %in% unique(SUA_Items_GCAM$item_code)) -> SUA_Items_NonGCAM

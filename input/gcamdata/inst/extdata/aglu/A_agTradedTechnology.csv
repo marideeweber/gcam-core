@@ -16,6 +16,8 @@ traded oilcrop,traded oilcrop,traded oilcrop,OilCrop,1,0,1,1
 traded rapeseed,traded rapeseed,traded rapeseed,Rapeseed,1,0,1,1
 traded othergrain,traded othergrain,traded othergrain,OtherGrain,1,0,1,1
 traded oilpalm,traded oilpalm,traded oilpalm,OilPalm,1,0,1,1
+traded oilpalm oil,traded oilpalm oil,traded oilpalm oil,OilPalm oil,1,0,1,1
+traded oilpalm feedcake,traded oilpalm feedcake,traded oilpalm feedcake,OilPalm feedcake,1,0,1,1
 traded rice,traded rice,traded rice,Rice,1,0,1,1
 traded root_tuber,traded root_tuber,traded root_tuber,RootTuber,1,0,1,1
 traded soybean,traded soybean,traded soybean,Soybean,1,0,1,1

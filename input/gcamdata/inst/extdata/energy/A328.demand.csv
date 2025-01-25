@@ -17,7 +17,7 @@ FoodDemand_NonStaples,Oil,Rapeseed,Rapeseed,food processing,1,0
 FoodDemand_NonStaples,Soybean,Soybean,Soybean,food processing,1,0
 FoodDemand_NonStaples,Oil,Soybean oil,Soybean oil,food processing,1,0
 FoodDemand_Staples,OtherGrain,OtherGrain,OtherGrain,food processing,1,0
-FoodDemand_NonStaples,Oil,OilPalm,OilPalm,food processing,1,0
+FoodDemand_NonStaples,Oil,OilPalm oil,OilPalm oil,food processing,1,0
 FoodDemand_Staples,Rice,Rice,Rice,food processing,1,0
 FoodDemand_Staples,RootTuber,RootTuber,RootTuber,food processing,1,0
 FoodDemand_NonStaples,SugarCrop,SugarCrop,SugarCrop,food processing,1,0

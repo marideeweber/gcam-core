@@ -84,10 +84,10 @@ OtherGrain,CerealsNES,5,TRUE,Cereals nes,Cereal preparations nes,,"Cereals, Othe
 Soybean,Soybean,0,TRUE,Soybeans,Soybeans,,Soyabeans and products,0.938210713,1.001923596,TRUE
 Soybean oil,Soybean oil,0,TRUE,"Oil, soybean","Oil, soybean",,Soyabean Oil and products,0.938210713,1.001923596,TRUE
 Soybean feedcake,Soybean feedcake,0,TRUE,"Cake, soybeans","Cake, soybeans",,Soyabean Cake,0.938210713,1.001923596,TRUE
-OilPalm,OilPalm,1,TRUE,Oil palm fruit,"Oil, palm",,Palm Oil and products,0.229783485,0.266953101,TRUE
-OilPalm,OilPalm,1,TRUE,Oil palm fruit,Palm kernels,,Palm kernels and products,0.229783485,0.266953101,TRUE
-OilPalm,OilPalm,2,FALSE,Palm kernels,"Oil, palm kernel",,Palmkernel Oil and products,0.931997389,0.998701612,TRUE
-OilPalm,OilPalm,2,FALSE,Palm kernels,"Cake, palm kernel",,Palmkernel Cake,0.931997389,0.998701612,TRUE
+OilPalm,OilPalm,0,TRUE,Oil palm fruit,Oil palm fruit,,Palm Oil and products,1,1,FALSE
+OilPalm oil,OilPalm oil,0,FALSE,"Oil, palm","Oil, palm",,Palm Oil and products,1,1,FALSE
+OilPalm oil,OilPalm oil,0,FALSE,"Oil, palm kernel","Oil, palm kernel",,Palmkernel Oil and products,1,1,FALSE
+OilPalm feedcake,OilPalm feedcake,0,FALSE,"Cake, palm kernel","Cake, palm kernel",,Palmkernel Cake,1,1,FALSE
 OilCrop,Sunflower seed,1,TRUE,Sunflower seed,"Oil, sunflower",,Sunflower seed and products,0.83448627,0.882079224,TRUE
 OilCrop,Sunflower seed,1,TRUE,Sunflower seed,"Cake, sunflower",,Sunflowerseed Cake,0.83448627,0.882079224,TRUE
 Rapeseed,Rapeseed,1,TRUE,Rapeseed,"Oil, rapeseed",,Rape and Mustard Oil and products,0.921894704,0.964325659,FALSE
