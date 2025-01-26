@@ -88,8 +88,9 @@ OilPalm,OilPalm,0,TRUE,Oil palm fruit,Oil palm fruit,,Palm Oil and products,1,1,
 OilPalm oil,OilPalm oil,0,FALSE,"Oil, palm","Oil, palm",,Palm Oil and products,1,1,FALSE
 OilPalm oil,OilPalm oil,0,FALSE,"Oil, palm kernel","Oil, palm kernel",,Palmkernel Oil and products,1,1,FALSE
 OilPalm feedcake,OilPalm feedcake,0,FALSE,"Cake, palm kernel","Cake, palm kernel",,Palmkernel Cake,1,1,FALSE
-OilCrop,Sunflower seed,1,TRUE,Sunflower seed,"Oil, sunflower",,Sunflower seed and products,0.83448627,0.882079224,TRUE
-OilCrop,Sunflower seed,1,TRUE,Sunflower seed,"Cake, sunflower",,Sunflowerseed Cake,0.83448627,0.882079224,TRUE
+OilCrop,Sunflower seed,0,TRUE,Sunflower seed,Sunflower seed,,Sunflower seed and products,1,1,FALSE
+OilCrop oil,Sunflower seed oil,0,FALSE,"Oil, sunflower","Oil, sunflower",,Sunflower seed Oil,1,1,FALSE
+OilCrop feedcake,Sunflower seed feedcake,0,FALSE,"Cake, sunflower","Cake, sunflower",,Sunflowerseed Cake,1,1,FALSE
 Rapeseed,Rapeseed,1,TRUE,Rapeseed,"Oil, rapeseed",,Rape and Mustard Oil and products,0.921894704,0.964325659,FALSE
 Rapeseed,Rapeseed,1,TRUE,Rapeseed,"Cake, rapeseed",,Rape and Mustard Cake,0.921894704,0.964325659,FALSE
 Rapeseed,Mustard seed,1,TRUE,Mustard seed,"Oil, mustard",,Rape and Mustard Oil and products,0.772188199,0.906606832,FALSE
@@ -98,38 +99,46 @@ Rapeseed,Mustard seed,1,TRUE,Mustard seed,"Cake, mustard",,Rape and Mustard Cake
 OilCrop,Coconuts,1,TRUE,Coconuts,Copra,,Coconuts (including copra) and products,0.199996942,0.250353462,TRUE
 OilCrop,Coconuts,1,TRUE,Coconuts,"Coconuts, desiccated",,Coconuts (including copra) and products,0.199996942,0.250353462,TRUE
 OilCrop,Coconuts,1,TRUE,Coconuts,Coir,,QCL,0.199996942,0.250353462,TRUE
-OilCrop,Coconuts,2,FALSE,Copra,"Oil, coconut (copra)",,Coconut Oil and products,0.949594442,1.021711161,TRUE
-OilCrop,Coconuts,2,FALSE,Copra,"Cake, copra",,Copra Cake,0.949594442,1.021711161,TRUE
-OilCrop,Sesame seed,1,TRUE,Sesame seed,"Oil, sesame",,Sesameseed Oil and products,0.921607193,0.974784023,FALSE
-OilCrop,Sesame seed,1,TRUE,Sesame seed,"Cake, sesame seed",,Sesameseed Cake,0.921607193,0.974784023,FALSE
-OilCrop,Olives,1,TRUE,Olives,Olives preserved,,Olives (including preserved) and products,0.346509871,0.475683954,TRUE
-OilCrop,Olives,1,TRUE,Olives,"Oil, olive, virgin",,Olive Oil and products,0.346509871,0.475683954,TRUE
-OilCrop,Olives,1,TRUE,Olives,"Oil, olive residues",,Olive Oil and products,0.346509871,0.475683954,TRUE
-OilCrop,Olives,1,TRUE,Olives,"Cake, olive residues",,Estimated,0.346509871,0.475683954,TRUE
-OilCrop,Linseed,1,TRUE,Linseed,"Oil, linseed",,"Oilcrops, Other and products",0.917542006,0.956329598,TRUE
-OilCrop,Linseed,1,TRUE,Linseed,"Cake, linseed",,Estimated,0.917542006,0.956329598,TRUE
-OilCrop,Castor oil seed,1,TRUE,Castor oil seed,"Oil, castor beans",,"Oilcrops Oil, Other and products",0.4,0.43961813,TRUE
-OilCrop,Castor oil seed,2,FALSE,"Oil, castor beans","Castor oil, hydrogenated (opal wax)",,"Oilcrops Oil, Other and products",1,1,FALSE
-OilCrop,Tallowtree seed,1,TRUE,Tallowtree seed,Vegetable tallow,,"Oilcrops Oil, Other and products",0.15,0.15,TRUE
-OilCrop,Karite nuts (sheanuts),1,TRUE,Karite nuts (sheanuts),Butter of karite nuts,,"Oilcrops Oil, Other and products",0.299163129,0.292599938,TRUE
+OilCrop oil,Coconut oil,0,FALSE,"Oil, coconut (copra)","Oil, coconut (copra)",,Coconut Oil and products,0.949594442,1.021711161,FALSE
+OilCrop feedcake,Coconut feedcake,0,FALSE,"Cake, copra","Cake, copra",,Copra Cake,0.949594442,1.021711161,FALSE
+OilCrop,Sesame seed,0,TRUE,Sesame seed,Sesame seed,,Sesameseed Oil and products,0.921607193,0.974784023,FALSE
+OilCrop oil,Sesame seed oil,0,FALSE,"Oil, sesame","Oil, sesame",,Sesameseed Oil and products,0.921607193,0.974784023,FALSE
+OilCrop feedcake,Sesame seed feedcake,0,FALSE,"Cake, sesame seed","Cake, sesame seed",,Sesameseed Cake,0.921607193,0.974784023,FALSE
+OilCrop,Olives,0,TRUE,Olives,Olives,,Olives (including preserved) and products,0.346509871,0.475683954,TRUE
+OilCrop oil,Olive oil,0,FALSE,"Oil, olive, virgin","Oil, olive, virgin",,Olive Oil and products,0.346509871,0.475683954,TRUE
+OilCrop oil,Olive oil,0,FALSE,"Oil, olive residues","Oil, olive residues",,Olive Oil and products,0.346509871,0.475683954,TRUE
+OilCrop feedcake,Olive feedcake,0,FALSE,"Cake, olive residues","Cake, olive residues",,Estimated,0.346509871,0.475683954,TRUE
+OilCrop,Linseed,0,TRUE,Linseed,Linseed,,"Oilcrops, Other and products",0.917542006,0.956329598,TRUE
+OilCrop oil,Linseed oil,0,FALSE,"Oil, linseed","Oil, linseed",,"Oilcrops, Other and products",0.917542006,0.956329598,TRUE
+OilCrop feedcake,Linseed feedcake,0,FALSE,"Cake, linseed","Cake, linseed",,Estimated,0.917542006,0.956329598,TRUE
+OilCrop,Castor oil seed,0,TRUE,Castor oil seed,Castor oil seed,,"Oilcrops Oil, Other and products",1,1,FALSE
+OilCrop oil,Castor oil,1,FALSE,"Oil, castor beans","Castor oil, hydrogenated (opal wax)",,"Oilcrops Oil, Other and products",1,1,FALSE
+OilCrop,Tallowtree seed,0,TRUE,Tallowtree seed,Tallowtree seed,,"Oilcrops Oil, Other and products",1,1,TRUE
+OilCrop oil,Vegetable tallow,0,TRUE,Vegetable tallow,Vegetable tallow,,"Oilcrops Oil, Other and products",1,1,TRUE
+OilCrop,Karite nuts (sheanuts),0,TRUE,Karite nuts (sheanuts),Karite nuts (sheanuts),,"Oilcrops Oil, Other and products",1,1,TRUE
+OilCrop oil,Butter of karite nuts,0,FALSE,Butter of karite nuts,Butter of karite nuts,,"Oilcrops Oil, Other and products",1,1,TRUE
 OilCrop,Kapok fruit,1,TRUE,Kapok fruit,Kapokseed in shell,,"Oilcrops, Other and products",1.029837176,1.040012446,FALSE
 OilCrop,Kapok fruit,1,TRUE,Kapok fruit,Kapok fibre,,QCL,1.029837176,1.040012446,FALSE
-OilCrop,Kapok fruit,2,FALSE,Kapokseed in shell,Kapokseed shelled,,"Oilcrops, Other and products",0.659998607,0.659998455,FALSE
-OilCrop,Kapok fruit,3,FALSE,Kapokseed shelled,"Oil, kapok",,"Oilcrops Oil, Other and products",0.749993466,0.792471231,FALSE
-OilCrop,Kapok fruit,3,FALSE,Kapokseed shelled,"Cake, kapok",,Estimated,0.749993466,0.792471231,FALSE
+OilCrop oil,Kapok fruit oil,0,FALSE,"Oil, kapok","Oil, kapok",,"Oilcrops Oil, Other and products",0.749993466,0.792471231,FALSE
+OilCrop feedcake,Kapok fruit feedcake,0,FALSE,"Cake, kapok","Cake, kapok",,Estimated,0.749993466,0.792471231,FALSE
 OilCrop,OilCropNES,0,TRUE,Melonseed,Melonseed,,"Oilcrops, Other and products",,,
-OilCrop,OilCropNES,1,TRUE,Safflower seed,"Oil, safflower",,"Oilcrops Oil, Other and products",0.710838072,0.84546635,TRUE
-OilCrop,OilCropNES,1,TRUE,Safflower seed,"Cake, safflower",,Estimated,0.710838072,0.84546635,TRUE
-OilCrop,OilCropNES,2,TRUE,Jojoba seed,"Oil, jojoba",,"Oilcrops Oil, Other and products",1,1,FALSE
-OilCrop,OilCropNES,2,TRUE,Jojoba seed,"Cake, jojoba",,Estimated,1,1,FALSE
-OilCrop,OilCropNES,3,TRUE,Poppy seed,"Oil, poppy",,"Oilcrops Oil, Other and products",1,1,FALSE
-OilCrop,OilCropNES,3,TRUE,Poppy seed,"Cake, poppy",,Estimated,1,1,FALSE
-OilCrop,OilCropNES,4,TRUE,Hempseed,"Oil, hempseed",,"Oilcrops Oil, Other and products",0.560643519,0.673878058,FALSE
-OilCrop,OilCropNES,4,TRUE,Hempseed,"Cake, hempseed",,Estimated,0.560643519,0.673878058,FALSE
-OilCrop,OilCropNES,5,TRUE,Oilseeds nes,"Oil, vegetable origin nes",,"Oilcrops Oil, Other and products",0.76104,2.60284622,TRUE
-OilCrop,OilCropNES,5,TRUE,Oilseeds nes,"Cake, vegetable origin nes",,"Oilseed Cakes, Other",0.76104,2.60284622,TRUE
-OilCrop,OilCropNES,5,TRUE,Oilseeds nes,"Flour, oilseeds",,"Oilcrops, Other and products",0.76104,2.60284622,TRUE
-OilCrop,OilCropNES,6,TRUE,Tung nuts,"Oil, tung nuts",,"Oilcrops Oil, Other and products",0.174239784,0.170890194,TRUE
+OilCrop,OilCropNES,0,TRUE,Safflower seed,Safflower seed,,"Oilcrops Oil, Other and products",0.710838072,0.84546635,TRUE
+OilCrop oil,OilCropNES oil,0,FALSE,"Oil, safflower","Oil, safflower",,"Oilcrops Oil, Other and products",0.710838072,0.84546635,TRUE
+OilCrop feedcake,OilCropNES feedcake,0,FALSE,"Cake, safflower","Cake, safflower",,Estimated,0.710838072,0.84546635,TRUE
+OilCrop,OilCropNES,0,TRUE,Jojoba seed,Jojoba seed,,"Oilcrops Oil, Other and products",1,1,FALSE
+OilCrop oil,OilCropNES oil,0,FALSE,"Oil, jojoba","Oil, jojoba",,"Oilcrops Oil, Other and products",1,1,FALSE
+OilCrop feedcake,OilCropNES feedcake,0,FALSE,"Cake, jojoba","Cake, jojoba",,Estimated,1,1,FALSE
+OilCrop,OilCropNES,0,TRUE,Poppy seed,Poppy seed,,"Oilcrops Oil, Other and products",1,1,FALSE
+OilCrop oil,OilCropNES oil,0,FALSE,"Oil, poppy","Oil, poppy",,"Oilcrops Oil, Other and products",1,1,FALSE
+OilCrop feedcake,OilCropNES feedcake,0,FALSE,"Cake, poppy","Cake, poppy",,Estimated,1,1,FALSE
+OilCrop,OilCropNES,0,TRUE,Hempseed,Hempseed,,"Oilcrops Oil, Other and products",0.560643519,0.673878058,FALSE
+OilCrop oil,OilCropNES oil,0,FALSE,"Oil, hempseed","Oil, hempseed",,"Oilcrops Oil, Other and products",0.560643519,0.673878058,FALSE
+OilCrop feedcake,OilCropNES feedcake,0,FALSE,"Cake, hempseed","Cake, hempseed",,Estimated,0.560643519,0.673878058,FALSE
+OilCrop,OilCropNES,0,TRUE,Oilseeds nes,Oilseeds nes,,"Oilcrops Oil, Other and products",0.76104,2.60284622,TRUE
+OilCrop oil,OilCropNES oil,0,FALSE,"Oil, vegetable origin nes","Oil, vegetable origin nes",,"Oilcrops Oil, Other and products",0.76104,2.60284622,TRUE
+OilCrop feedcake,OilCropNES feedcake,0,FALSE,"Cake, vegetable origin nes","Cake, vegetable origin nes",,"Oilseed Cakes, Other",0.76104,2.60284622,TRUE
+OilCrop,OilCropNES,0,TRUE,Tung nuts,Tung nuts,,"Oilcrops Oil, Other and products",0.174239784,0.170890194,TRUE
+OilCrop oil,OilCropNES oil,0,FALSE,"Oil, tung nuts","Oil, tung nuts",,"Oilcrops Oil, Other and products",0.174239784,0.170890194,TRUE
 FiberCrop,Seed cotton,1,TRUE,Seed cotton,Cottonseed,,QCL,0.881238445,0.844809987,TRUE
 FiberCrop,Seed cotton,1,TRUE,Seed cotton,Cotton lint,,QCL,0.881238445,0.844809987,TRUE
 FiberCrop,Seed cotton,2,FALSE,Cottonseed,"Oil, cottonseed",,Cottonseed Oil and products,0.653978909,0.693275286,TRUE

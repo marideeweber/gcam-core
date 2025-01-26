@@ -7,7 +7,7 @@ supplysector,subsector,technology,1971,2100
 regional biomass,regional biomass,regional biomass,1,1
 regional corn for ethanol,regional corn for ethanol,regional corn for ethanol,1,1
 regional sugar for ethanol,regional sugar for ethanol,regional sugar for ethanol,1,1
-regional biomassOil,regional biomassOil,OilCrop,0,0
+regional biomassOil,regional biomassOil,OilCrop oil,0,0
 regional biomassOil,regional biomassOil,Rapeseed,0,0
 regional biomassOil,regional biomassOil,OilPalm oil,0,0
 regional biomassOil,regional biomassOil,Soybean oil,0,0

@@ -828,7 +828,8 @@ module_aglu_L100.FAO_SUA_PrimaryEquivalent <- function(command, ...) {
     ## Check balance
     GCAM_AgLU_SUA_APE_1973_2019 %>% Check_Balance_SUA
 
-    COMM_PROCESSING <- c("Soybean", "OilPalm")
+    COMM_PROCESSING <- c("Soybean", "OilPalm", "OilCrop", "Rapeseed")
+    COMM_PROCESSING <- c("Soybean", "OilPalm", "OilCrop")
     # Ensure COMM_PROCESSING in the data
     assert_that(all(COMM_PROCESSING %in% unique(GCAM_AgLU_SUA_APE_1973_2019$GCAM_commodity)))
 
@@ -970,8 +971,11 @@ module_aglu_L100.FAO_SUA_PrimaryEquivalent <- function(command, ...) {
 
     # Adding secondary items here
     # [ToDo] Will need to differentiate the in the mapping files later
-    Secondary_Item_CROP <- c("Soybean oil", "Soybean feedcake", "OilPalm oil", "OilPalm feedcake", "OilCrop oil", "OilCrop feedcake")
-    Secondary_Item_CROP <- c("Soybean oil", "Soybean feedcake", "OilPalm oil", "OilPalm feedcake")
+    Secondary_Item_CROP <- c("Soybean oil", "Soybean feedcake", "OilPalm oil", "OilPalm feedcake",
+                             "OilCrop oil", "OilCrop feedcake", "Rapeseed oil", "Rapeseed feedcake")
+
+    Secondary_Item_CROP <- c("Soybean oil", "Soybean feedcake", "OilPalm oil", "OilPalm feedcake",
+                             "OilCrop oil", "OilCrop feedcake")
 
     assertthat::assert_that(
       GCAM_AgLU_SUA_APE_1973_2019 %>%

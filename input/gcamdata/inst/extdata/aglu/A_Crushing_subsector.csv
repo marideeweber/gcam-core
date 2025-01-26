@@ -7,3 +7,4 @@
 supplysector,subsector,logit.exponent,year.fillout,share.weight,apply.to,from.year,to.year,interpolation.function,logit.type
 Soybean oil,Soybean oil,-6,initial-future-year,1,share-weight,initial-future-year,end-year,fixed,
 OilPalm oil,OilPalm oil,-6,initial-future-year,1,share-weight,initial-future-year,end-year,fixed,
+OilCrop oil,OilCrop oil,-6,initial-future-year,1,share-weight,initial-future-year,end-year,fixed,

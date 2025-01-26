@@ -76,11 +76,12 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
     COMM_MEAT <- FAO_an_items_PRODSTAT %>% filter(!is.na(GCAM_commodity)) %>% distinct(GCAM_commodity) %>% pull
     COMM_STORAGE <- A_agStorageSector %>% filter(storage_model == TRUE) %>% distinct(GCAM_commodity) %>% pull
 
+    COMM_CURSHING_PRIMARY <- c("Soybean", "OilPalm", "OilCrop", "Rapeseed")
+    COMM_CRUSHING_SECONDARY <- c("Soybean oil", "Soybean feedcake", "OilPalm oil", "OilPalm feedcake",
+                                 "OilCrop oil", "OilCrop feedcake", "Rapeseed oil", "Rapeseed feedcake")
+
     COMM_CURSHING_PRIMARY <- c("Soybean", "OilPalm", "OilCrop")
     COMM_CRUSHING_SECONDARY <- c("Soybean oil", "Soybean feedcake", "OilPalm oil", "OilPalm feedcake", "OilCrop oil", "OilCrop feedcake")
-
-    COMM_CURSHING_PRIMARY <- c("Soybean", "OilPalm")
-    COMM_CRUSHING_SECONDARY <- c("Soybean oil", "Soybean feedcake", "OilPalm oil", "OilPalm feedcake")
     COMM_CRUSHING_SECONDARY_FEEDCAKE <- COMM_CRUSHING_SECONDARY[grepl("feedcake", x = COMM_CRUSHING_SECONDARY)]
 
 
@@ -551,7 +552,8 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
     # This will also effectively imply lower cake rate in crushing in places adjusted
 
     # adding an adjustment ratio
-    Feed_OtherUse_ratio_adjuster = 0.8
+    Feed_OtherUse_ratio_adjuster_OilPalmFeed = 0.8
+    Feed_OtherUse_ratio_adjuster_OilCropFeed = 0.7
     # move negative other use into feed
 
     L101.ag_Secondary_SUA_Mt_R_C_Y_2 %>%
@@ -565,13 +567,32 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
                               OtherUse_Feed_Ratio > -1 &
                               GCAM_commodity == "OilPalm feedcake" &
                               year %in% MODEL_BASE_YEARS,
-                            Feed + OtherUse * Feed_OtherUse_ratio_adjuster,
+                            Feed + OtherUse * Feed_OtherUse_ratio_adjuster_OilPalmFeed,
                             Feed) ) %>%
       # add another special adjustment to lower feed in region 13
       # to avoid the AG_OTHERUSE_WARNING_Crushing in L109
       mutate(Feed = if_else(GCAM_commodity == "OilPalm feedcake" &
                               year %in% 1975 & GCAM_region_ID == 13,
                             Feed - 0.1,
+                            Feed) ) %>%
+      # adding the same adjustment make for OilPalm feedcake balance to OilCrop feedcake
+      # L109 had balancing error for OilCrop mainly in 2005 and 1990
+      # we lower feed use to reduce negative values in other use of OilCrop
+      mutate(Feed = if_else(Feed > 0 &
+                              OtherUse_Feed_Ratio < 0 &
+                              OtherUse_Feed_Ratio > -1 &
+                              GCAM_commodity == "OilCrop feedcake" &
+                              year %in% MODEL_BASE_YEARS,
+                            Feed + OtherUse * Feed_OtherUse_ratio_adjuster_OilCropFeed,
+                            Feed) ) %>%
+      # adding special cases for Oil Crop feedcakes
+      mutate(Feed = if_else(GCAM_commodity == "OilCrop feedcake" &
+                              year %in% 1990 & GCAM_region_ID == 13,
+                            Feed - 2,
+                            Feed) ) %>%
+      mutate(Feed = if_else(GCAM_commodity == "OilCrop feedcake" &
+                              year %in% 2005 & GCAM_region_ID %in% c(13, 17),
+                            Feed - 1,
                             Feed) ) %>%
       select(-`Regional supply`, -`Regional demand`, -OtherUse, -OtherUse_Feed_Ratio) %>%
       gather(element, value, -year, -GCAM_region_ID, -GCAM_commodity) ->

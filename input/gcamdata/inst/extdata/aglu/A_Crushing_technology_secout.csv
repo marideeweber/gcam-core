@@ -1,5 +1,5 @@
 # File: A_Crushing_technology_secout.csv
-# Title: Feed:oil ratios of oil crop crushing. These are default assumptions, which may be replaced by real data in calibration years,,,,,,
+# Title: Feed:oil ratios of oil crop crushing. These are default assumptions, which may be replaced by real data in calibration years
 # Units: unitless mass ratio (feed / oil)
 # Source: Historical values from FAOSTAT 2010 global average. 2015 onward for Rapeseed and Soybean from OTAQ.
 # Column types: ccccnnnn
@@ -7,3 +7,4 @@
 supplysector,subsector,technology,secondary.output,1971,2010,2015,2100
 Soybean oil,Soybean oil,Soybean oil,Soybean feedcake,4.2,4.2,5.6566,5.6566
 OilPalm oil,OilPalm oil,OilPalm oil,OilPalm feedcake,0.15,0.15,0.15,0.15
+OilCrop oil,OilCrop oil,OilCrop oil,OilCrop feedcake,1,1,1,1

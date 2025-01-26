@@ -719,12 +719,12 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
     # two cases added for now
     L109.ag_ALL_Mt_R_C_Y %>%
       filter((year == 1975 & GCAM_region_ID == 10 & GCAM_commodity == "Soybean") |
-               (year == 1975 & GCAM_region_ID == 18 & GCAM_commodity == "OtherGrain") |
+               #(year == 1975 & GCAM_region_ID == 18 & GCAM_commodity == "OtherGrain") |
                (year == 2021 & GCAM_region_ID == 8 & GCAM_commodity == "Legumes")) %>%
       bind_rows(
         L109.ag_ALL_Mt_R_C_Y_b %>%
           filter(!(year == 1975 & GCAM_region_ID == 10 & GCAM_commodity == "Soybean") &
-                   !(year == 1975 & GCAM_region_ID == 18 & GCAM_commodity == "OtherGrain") &
+                   #!(year == 1975 & GCAM_region_ID == 18 & GCAM_commodity == "OtherGrain") &
                    !(year == 2021 & GCAM_region_ID == 8 & GCAM_commodity == "Legumes"))
       ) ->
       L109.ag_ALL_Mt_R_C_Y
@@ -741,6 +741,17 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
              GrossExp_Mt = if_else(GrossExp_Mt > Prod_Mt,
                                    Prod_Mt, GrossExp_Mt)) ->
       L109_crushing_processed_ALL_Mt_R_C_Y
+
+    # # further reduce export and import to ensure production > pmin(GrossExp_Mt, GrossImp_Mt) by at least 10%
+    # # when both export and import are positive
+    #
+    # L109_crushing_processed_ALL_Mt_R_C_Y %>%
+    #   # reduce import and export both by the same (GrossExp_Mt - Prod_Mt)
+    #   mutate(GrossTradeAdj = if_else(GrossExp_Mt == Prod_Mt, pmin(GrossExp_Mt, GrossImp_Mt) * .1, 0),
+    #          GrossExp_Mt = GrossExp_Mt - GrossTradeAdj,
+    #          GrossImp_Mt = GrossImp_Mt - GrossTradeAdj) ->
+    #   L109_crushing_processed_ALL_Mt_R_C_Y
+
 
     if(any(filter(L109_crushing_processed_ALL_Mt_R_C_Y, year %in% MODEL_BASE_YEARS)$GrossImp_Mt < 0)){
       stop("Negative trade values.") }

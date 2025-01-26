@@ -17,6 +17,7 @@ FeedCrops,Legumes,Legumes,share-weight,final-calibration-year,end-year,fixed,reg
 FeedCrops,MiscCrop,MiscCrop,share-weight,final-calibration-year,end-year,fixed,regional misccrop,1
 FeedCrops,NutsSeeds,NutsSeeds,share-weight,final-calibration-year,end-year,fixed,regional nuts_seeds,1
 FeedCrops,OilCrop,OilCrop,share-weight,final-calibration-year,end-year,fixed,regional oilcrop,1
+FeedCrops,OilCrop feedcake,OilCrop feedcake,share-weight,final-calibration-year,end-year,fixed,regional oilcrop feedcake,1
 FeedCrops,Rapeseed,Rapeseed,share-weight,final-calibration-year,end-year,fixed,regional rapeseed,1
 FeedCrops,OtherGrain,OtherGrain,share-weight,final-calibration-year,end-year,fixed,regional othergrain,1
 FeedCrops,OilPalm feedcake,OilPalm feedcake,share-weight,final-calibration-year,end-year,fixed,regional oilpalm feedcake,1

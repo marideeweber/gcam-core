@@ -8,3 +8,4 @@
 supplysector,output.unit,input.unit,price.unit,logit.exponent,logit.type
 Soybean oil,Mt,Mt,1975$/kg,-3,
 OilPalm oil,Mt,Mt,1975$/kg,-3,
+OilCrop oil,Mt,Mt,1975$/kg,-3,
