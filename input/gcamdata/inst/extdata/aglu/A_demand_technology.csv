@@ -14,7 +14,8 @@ FoodDemand_NonStaples,MiscCrop,MiscCrop,MiscCrop,share-weight,final-calibration-
 FoodDemand_NonStaples,Protein,Plant,NutsSeeds,share-weight,final-calibration-year,end-year,fixed,regional nuts_seeds,1
 FoodDemand_NonStaples,Oil,OilCrop oil,OilCrop oil,share-weight,final-calibration-year,end-year,fixed,regional oilcrop oil,1
 FoodDemand_NonStaples,OilCrop,OilCrop,OilCrop,share-weight,final-calibration-year,end-year,fixed,regional oilcrop,1
-FoodDemand_NonStaples,Oil,Rapeseed,Rapeseed,share-weight,final-calibration-year,end-year,fixed,regional rapeseed,1
+FoodDemand_NonStaples,Oil,Rapeseed oil,Rapeseed oil,share-weight,final-calibration-year,end-year,fixed,regional rapeseed oil,1
+FoodDemand_NonStaples,Rapeseed,Rapeseed,Rapeseed,share-weight,final-calibration-year,end-year,fixed,regional rapeseed,1
 FoodDemand_NonStaples,Oil,Soybean oil,Soybean oil,share-weight,final-calibration-year,end-year,fixed,regional soybean oil,1
 FoodDemand_NonStaples,Soybean,Soybean,Soybean,share-weight,final-calibration-year,end-year,fixed,regional soybean,1
 FoodDemand_Staples,OtherGrain,OtherGrain,OtherGrain,share-weight,final-calibration-year,end-year,fixed,regional othergrain,1
@@ -42,6 +43,8 @@ NonFoodDemand_Crops,OilCrop,OilCrop,OilCrop,share-weight,final-calibration-year,
 NonFoodDemand_Crops,OilCrop oil,OilCrop oil,OilCrop oil,share-weight,final-calibration-year,end-year,fixed,regional oilcrop oil,1
 NonFoodDemand_Crops,OilCrop feedcake,OilCrop feedcake,OilCrop feedcake,share-weight,final-calibration-year,end-year,fixed,regional oilcrop feedcake,1
 NonFoodDemand_Crops,Rapeseed,Rapeseed,Rapeseed,share-weight,final-calibration-year,end-year,fixed,regional rapeseed,1
+NonFoodDemand_Crops,Rapeseed oil,Rapeseed oil,Rapeseed oil,share-weight,final-calibration-year,end-year,fixed,regional rapeseed oil,1
+NonFoodDemand_Crops,Rapeseed feedcake,Rapeseed feedcake,Rapeseed feedcake,share-weight,final-calibration-year,end-year,fixed,regional rapeseed feedcake,1
 NonFoodDemand_Crops,OtherGrain,OtherGrain,OtherGrain,share-weight,final-calibration-year,end-year,fixed,regional othergrain,1
 NonFoodDemand_Crops,OilPalm,OilPalm,OilPalm,share-weight,final-calibration-year,end-year,fixed,regional oilpalm,1
 NonFoodDemand_Crops,OilPalm oil,OilPalm oil,OilPalm oil,share-weight,final-calibration-year,end-year,fixed,regional oilpalm oil,1

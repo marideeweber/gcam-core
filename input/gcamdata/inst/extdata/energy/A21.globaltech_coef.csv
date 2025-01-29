@@ -9,9 +9,8 @@ supplysector,subsector,technology,minicam.energy.input,1971,2015,2100
 regional biomass,regional biomass,regional biomass,biomass,1,1,1
 regional corn for ethanol,regional corn for ethanol,regional corn for ethanol,regional corn,111.79,111.79,111.79
 regional sugar for ethanol,regional sugar for ethanol,regional sugar for ethanol,regional sugarcrop,582.48,582.48,582.48
-regional biomassOil,regional biomassOil,biomassOil,biomassOil,1,1,1
-regional biomassOil,regional biomassOil,OilCrop oil,regional oilcrop oil,61.3,61.3,61.3
-regional biomassOil,regional biomassOil,Rapeseed,regional rapeseed,61.3,61.3,61.3
+regional biomassOil,regional biomassOil,OilCrop oil,regional oilcrop oil,25.6,25.6,25.6
+regional biomassOil,regional biomassOil,Rapeseed oil,regional rapeseed oil,25.6,25.6,25.6
 regional biomassOil,regional biomassOil,OilPalm oil,regional oilpalm oil,25.6,25.6,25.6
 regional biomassOil,regional biomassOil,Soybean oil,regional soybean oil,8.533333333,8.533333333,8.533333333
 regional woodpulp for energy,regional woodpulp for energy,regional woodpulp for energy,woodpulp_energy,1,1,1

@@ -91,11 +91,12 @@ OilPalm feedcake,OilPalm feedcake,0,FALSE,"Cake, palm kernel","Cake, palm kernel
 OilCrop,Sunflower seed,0,TRUE,Sunflower seed,Sunflower seed,,Sunflower seed and products,1,1,FALSE
 OilCrop oil,Sunflower seed oil,0,FALSE,"Oil, sunflower","Oil, sunflower",,Sunflower seed Oil,1,1,FALSE
 OilCrop feedcake,Sunflower seed feedcake,0,FALSE,"Cake, sunflower","Cake, sunflower",,Sunflowerseed Cake,1,1,FALSE
-Rapeseed,Rapeseed,1,TRUE,Rapeseed,"Oil, rapeseed",,Rape and Mustard Oil and products,0.921894704,0.964325659,FALSE
-Rapeseed,Rapeseed,1,TRUE,Rapeseed,"Cake, rapeseed",,Rape and Mustard Cake,0.921894704,0.964325659,FALSE
-Rapeseed,Mustard seed,1,TRUE,Mustard seed,"Oil, mustard",,Rape and Mustard Oil and products,0.772188199,0.906606832,FALSE
-Rapeseed,Mustard seed,1,TRUE,Mustard seed,"Flour, mustard",,Rape and Mustard Oil and products,0.772188199,0.906606832,FALSE
-Rapeseed,Mustard seed,1,TRUE,Mustard seed,"Cake, mustard",,Rape and Mustard Cake,0.772188199,0.906606832,FALSE
+Rapeseed,Rapeseed,0,TRUE,Rapeseed,Rapeseed,,Rape and Mustard Oil and products,1,1,FALSE
+Rapeseed oil,Rapeseed oil,0,FALSE,"Oil, rapeseed","Oil, rapeseed",,Rape and Mustard Oil and products,1,1,FALSE
+Rapeseed feedcake,Rapeseed feedcake,0,FALSE,"Cake, rapeseed","Cake, rapeseed",,Rape and Mustard Cake,1,1,FALSE
+Rapeseed,Mustard seed,0,TRUE,Mustard seed,Mustard seed,,Rape and Mustard Oil and products,1,1,FALSE
+Rapeseed oil,Mustard seed oil,0,FALSE,"Oil, mustard","Oil, mustard",,Rape and Mustard Oil and products,1,1,FALSE
+Rapeseed feedcake,Mustard seed feedcake,0,FALSE,"Cake, mustard","Cake, mustard",,Rape and Mustard Cake,1,1,FALSE
 OilCrop,Coconuts,1,TRUE,Coconuts,Copra,,Coconuts (including copra) and products,0.199996942,0.250353462,TRUE
 OilCrop,Coconuts,1,TRUE,Coconuts,"Coconuts, desiccated",,Coconuts (including copra) and products,0.199996942,0.250353462,TRUE
 OilCrop,Coconuts,1,TRUE,Coconuts,Coir,,QCL,0.199996942,0.250353462,TRUE

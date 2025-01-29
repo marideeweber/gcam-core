@@ -789,6 +789,7 @@ module_aglu_L100.FAO_SUA_PrimaryEquivalent <- function(command, ...) {
       }
 
       # 4. Balanced in all dimensions
+      # In some cases, data doesn't exist/NA for all elements in a year in a region
       .DF %>% filter(year >= min(aglu.AGLU_HISTORICAL_YEARS), year < 2010,
                      !GCAM_commodity %in% c("OilPalm", "OilPalm feedcake")) -> .DF1
       assertthat::assert_that(.DF1 %>% nrow() ==
@@ -797,7 +798,9 @@ module_aglu_L100.FAO_SUA_PrimaryEquivalent <- function(command, ...) {
                                 .DF1 %>% distinct(element) %>% nrow *
                                 .DF1 %>% distinct(region) %>% nrow)
 
-      .DF %>% filter(year >= 2010, !GCAM_commodity %in% c("OilPalm", "OilPalm feedcake")) -> .DF1
+      .DF %>% filter(year >= 2010,
+                     !GCAM_commodity %in% c("OilPalm", "OilPalm feedcake",
+                                            "Rapeseed feedcake")) -> .DF1
       assertthat::assert_that(.DF1 %>% nrow() ==
                                 .DF1 %>% distinct(year) %>% nrow *
                                 .DF1 %>% distinct(GCAM_commodity) %>% nrow *
@@ -829,7 +832,7 @@ module_aglu_L100.FAO_SUA_PrimaryEquivalent <- function(command, ...) {
     GCAM_AgLU_SUA_APE_1973_2019 %>% Check_Balance_SUA
 
     COMM_PROCESSING <- c("Soybean", "OilPalm", "OilCrop", "Rapeseed")
-    COMM_PROCESSING <- c("Soybean", "OilPalm", "OilCrop")
+
     # Ensure COMM_PROCESSING in the data
     assert_that(all(COMM_PROCESSING %in% unique(GCAM_AgLU_SUA_APE_1973_2019$GCAM_commodity)))
 
@@ -973,9 +976,6 @@ module_aglu_L100.FAO_SUA_PrimaryEquivalent <- function(command, ...) {
     # [ToDo] Will need to differentiate the in the mapping files later
     Secondary_Item_CROP <- c("Soybean oil", "Soybean feedcake", "OilPalm oil", "OilPalm feedcake",
                              "OilCrop oil", "OilCrop feedcake", "Rapeseed oil", "Rapeseed feedcake")
-
-    Secondary_Item_CROP <- c("Soybean oil", "Soybean feedcake", "OilPalm oil", "OilPalm feedcake",
-                             "OilCrop oil", "OilCrop feedcake")
 
     assertthat::assert_that(
       GCAM_AgLU_SUA_APE_1973_2019 %>%

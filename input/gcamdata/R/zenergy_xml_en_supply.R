@@ -22,7 +22,6 @@ module_energy_en_supply_xml <- function(command, ...) {
       "L221.SubsectorInterpTo_en",
       "L221.StubTech_en",
       "L221.GlobalTechCoef_en",
-      "L221.StubTechCoef_bioOil",
       "L221.GlobalTechCost_en",
       "L221.GlobalTechShrwt_en",
       "L221.PrimaryConsKeyword_en",
@@ -108,7 +107,7 @@ module_energy_en_supply_xml <- function(command, ...) {
       add_node_equiv_xml("technology") %>%
       add_xml_data(L221.StubTech_en, "StubTech") %>%
       add_xml_data(L221.GlobalTechCoef_en, "GlobalTechCoef") %>%
-      add_xml_data(L221.StubTechCoef_bioOil, "StubTechCoef") %>%
+      #add_xml_data(L221.StubTechCoef_bioOil, "StubTechCoef") %>%
       add_xml_data(L221.GlobalTechCost_en, "GlobalTechCost") %>%
       add_xml_data(L221.GlobalTechShrwt_en, "GlobalTechShrwt") %>%
       add_xml_data(L221.PrimaryConsKeyword_en, "PrimaryConsKeyword") %>%

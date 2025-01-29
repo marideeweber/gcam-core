@@ -714,6 +714,12 @@ module_aglu_L202.an_input <- function(command, ...) {
       bind_rows(L202.UnlimitedRenewRsrcCurves)->
       L202.UnlimitedRenewRsrcCurves
 
+    L202.UnlimitedRenewRsrcCurves %>%
+      filter(unlimited.resource == "OtherMeat_Fish") %>%
+      mutate(unlimited.resource = "Rapeseed feedcake", market = region) %>%
+      bind_rows(L202.UnlimitedRenewRsrcCurves)->
+      L202.UnlimitedRenewRsrcCurves
+
     L202.UnlimitedRenewRsrcPrice %>%
       filter(unlimited.resource == "OtherMeat_Fish") %>%
       mutate(unlimited.resource = "Soybean feedcake") %>%
@@ -751,6 +757,18 @@ module_aglu_L202.an_input <- function(command, ...) {
       L202.UnlimitedRenewRsrcPrice3
 
     L202.UnlimitedRenewRsrcPrice %>%
+      filter(unlimited.resource == "OtherMeat_Fish") %>%
+      mutate(unlimited.resource = "Rapeseed feedcake") %>%
+      select(-price) %>%
+      left_join_error_no_match(
+        L202.RenewRsrcPrice %>%
+          filter(renewresource == "Rapeseed feedcake") %>%
+          rename(unlimited.resource = renewresource) %>%
+          select(-year), by = c("region", "unlimited.resource")
+      ) ->
+      L202.UnlimitedRenewRsrcPrice4
+
+    L202.UnlimitedRenewRsrcPrice %>%
       bind_rows(
         L202.UnlimitedRenewRsrcPrice1
       ) %>%
@@ -759,10 +777,11 @@ module_aglu_L202.an_input <- function(command, ...) {
       ) %>%
       bind_rows(
         L202.UnlimitedRenewRsrcPrice3
+      ) %>%
+      bind_rows(
+        L202.UnlimitedRenewRsrcPrice4
       ) ->
       L202.UnlimitedRenewRsrcPrice
-
-  #[xz done temp adjustments ]----
 
 
 
@@ -775,6 +794,7 @@ module_aglu_L202.an_input <- function(command, ...) {
       filter(!renewresource %in% A_Crushing_technology_secout$secondary.output) ->
       L202.RenewRsrc
 
+    #[xz done temp adjustments ]----
 
 
     # ----

@@ -21,7 +21,7 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
       FILE = "aglu/FAO/FAO_ag_items_PRODSTAT",
       FILE = "aglu/FAO/FAO_an_items_PRODSTAT",
       FILE = "aglu/A_agStorageSector",
-      FILE = "aglu/A_Crushing_max_rate",
+      FILE = "aglu/A_Crushing_min_max_rate",
       "GCAM_AgLU_SUA_APE_1973_2019",
       "GCAM_AgLU_SUA_APE_1973_2019_ProcessedUse",
       "FAO_AgProd_Kt_All",
@@ -79,9 +79,6 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
     COMM_CURSHING_PRIMARY <- c("Soybean", "OilPalm", "OilCrop", "Rapeseed")
     COMM_CRUSHING_SECONDARY <- c("Soybean oil", "Soybean feedcake", "OilPalm oil", "OilPalm feedcake",
                                  "OilCrop oil", "OilCrop feedcake", "Rapeseed oil", "Rapeseed feedcake")
-
-    COMM_CURSHING_PRIMARY <- c("Soybean", "OilPalm", "OilCrop")
-    COMM_CRUSHING_SECONDARY <- c("Soybean oil", "Soybean feedcake", "OilPalm oil", "OilPalm feedcake", "OilCrop oil", "OilCrop feedcake")
     COMM_CRUSHING_SECONDARY_FEEDCAKE <- COMM_CRUSHING_SECONDARY[grepl("feedcake", x = COMM_CRUSHING_SECONDARY)]
 
 
@@ -515,13 +512,15 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
         by = c("year", "GCAM_region_ID", "COMM_Curshing_Primary")
       ) %>%
       left_join_error_no_match(
-        A_Crushing_max_rate, by = c("COMM_Curshing_Primary") ) %>%
+        A_Crushing_min_max_rate, by = c("COMM_Curshing_Primary") ) %>%
       # adjustments if curshing_Mt = 0, oil and cake should be 0
       mutate(oil = if_else(Crushing_Mt == 0, 0, oil),
              feedcake = if_else(Crushing_Mt == 0, 0, feedcake),
-            # set upper limits here for crushing rate
-             oil = pmin(oil, max_rate_oil * Crushing_Mt),
-             feedcake = pmin(feedcake, max_rate_cake * Crushing_Mt)) %>%
+            # set lower and upper limits here for crushing rate
+            oil = pmin(oil, max_rate_oil * Crushing_Mt),
+            oil = pmax(oil, min_rate_oil * Crushing_Mt),
+            feedcake = pmin(feedcake, max_rate_cake * Crushing_Mt),
+            feedcake = pmax(feedcake, min_rate_cake * Crushing_Mt)) %>%
       # calculate rates
       mutate(rate_total = (feedcake + oil)/Crushing_Mt,
              rate_feedcake = feedcake/Crushing_Mt) %>%
@@ -627,7 +626,7 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
       add_units("Mt") %>%
       add_comments("Supply utilization balance for secondary GCAM commodities") %>%
       add_precursors("GCAM_AgLU_SUA_APE_1973_2019",
-                     "aglu/A_Crushing_max_rate") ->
+                     "aglu/A_Crushing_min_max_rate") ->
       L101.ag_Secondary_SUA_Mt_R_C_Y
 
     L100.FAO_ag_HA_ha %>%
