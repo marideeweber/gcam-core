@@ -6,6 +6,7 @@
 # ----------
 supplysector,subsector,technology,input.name
 refining,biomass liquids,biodiesel,regional biomassOil
+refining,biomass liquids,soybean biodiesel,regional biomassOil soybean
 refining,biomass liquids,cellulosic ethanol,regional biomass
 refining,biomass liquids,cellulosic ethanol CCS level 1,regional biomass
 refining,biomass liquids,cellulosic ethanol CCS level 2,regional biomass

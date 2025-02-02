@@ -145,20 +145,28 @@ module_energy_L221.en_supply <- function(command, ...) {
       write_to_all_regions(c(LEVEL2_DATA_NAMES[["Tech"]]), has_traded = FALSE,
                            GCAM_region_names = GCAM_region_names) -> L221.StubTech_en
 
-    # Drop stub technologies for biomassOil techs that do not exist
-    A21.globaltech_shrwt %>%
-      filter(supplysector == "regional biomassOil") %>%
-      select(supplysector, subsector, technology) %>%
-      repeat_add_columns(tibble("GCAM_region_ID" = GCAM_region_names$GCAM_region_ID, "region" = GCAM_region_names$region)) %>%
-      left_join(A_regions %>%
-                  rename(technology = biomassOil_tech), by = c("region", "GCAM_region_ID", "technology")) %>%
-      filter(is.na(tradbio_region)) %>%
-      select(supplysector, subsector, technology, region, GCAM_region_ID) -> L221.rm_biomassOil_techs_R
 
-    # Removing some region/technology pairs that don't have traditional biomass
+    # Xin (2/2/2025) Comment the following code ----
+    # No idea why it is needed. trad bio is processed in a different place
+
+    # # Drop stub technologies for biomassOil techs that do not exist
+    # A21.globaltech_shrwt %>%
+    #   filter(grepl("regional biomassOil", supplysector)) %>%
+    #   select(supplysector, subsector, technology) %>%
+    #   repeat_add_columns(tibble("GCAM_region_ID" = GCAM_region_names$GCAM_region_ID, "region" = GCAM_region_names$region)) %>%
+    #   left_join(A_regions %>%
+    #               rename(technology = biomassOil_tech), by = c("region", "GCAM_region_ID", "technology")) %>%
+    #   filter(is.na(tradbio_region)) %>%
+    #   select(supplysector, subsector, technology, region, GCAM_region_ID) -> L221.rm_biomassOil_techs_R
+    #
+    # # Removing some region/technology pairs that don't have traditional biomass
+    # L221.StubTech_en %>%
+    #   anti_join(L221.rm_biomassOil_techs_R, by = c("region", "technology")) %>%
+    #   rename(stub.technology = technology) -> L221.StubTech_en
+
     L221.StubTech_en %>%
-      anti_join(L221.rm_biomassOil_techs_R, by = c("region", "technology")) %>%
       rename(stub.technology = technology) -> L221.StubTech_en
+
 
     # Coefficients of global technologies
     # Energy inputs and coefficients of global technologies for upstream energy handling
@@ -380,7 +388,8 @@ module_energy_L221.en_supply <- function(command, ...) {
       mutate(share.weight = 1)
 
     # For regions with no agricultural and land use sector (Taiwan), need to remove the passthrough supplysectors for first-gen biofuels
-    ag_en <- c("regional corn for ethanol", "regional sugar for ethanol", "regional biomassOil")
+    ag_en <- c("regional corn for ethanol", "regional sugar for ethanol", "regional biomassOil",
+               "regional biomassOil soybean")
 
     L221.SubsectorLogit_en %>%
       filter(!(region %in% aglu.NO_AGLU_REGIONS & supplysector %in% ag_en)) -> L221.SubsectorLogit_en

@@ -62,6 +62,24 @@ module_energy_en_transformation_xml <- function(command, ...) {
     L222.StubTechProd_gasproc <- rename(L222.StubTechProd_gasproc, share.weight.year = year.share.weight, tech.share.weight = share.weight)
     L222.StubTechProd_refining <- rename(L222.StubTechProd_refining, share.weight.year = year.share.weight, tech.share.weight = share.weight)
 
+
+    # Xin: adjustments in biodiesel tech names here in L222.StubTech_en
+
+    L222.StubTech_en %>%
+      filter(!grepl("biodiesel", stub.technology)) %>%
+      # bind cleaned biodiesel tech
+      bind_rows(
+        L222.StubTech_en %>%
+          filter(grepl("biodiesel", stub.technology)) %>%
+          inner_join(
+            L222.StubTechProd_refining %>%
+              distinct(region, supplysector, subsector, stub.technology) %>%
+              filter(grepl("biodiesel", stub.technology)),
+            by = c("region", "supplysector", "subsector", "stub.technology")
+          )
+      ) ->
+      L222.StubTech_en
+
     # Produce outputs
     create_xml("en_transformation.xml") %>%
       add_logit_tables_xml(L222.Supplysector_en, "Supplysector") %>%

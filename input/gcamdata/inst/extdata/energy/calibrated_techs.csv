@@ -22,6 +22,8 @@ corn ethanol,corn,refining,biomass liquids,corn ethanol,regional corn for ethano
 corn ethanol,gas,refining,biomass liquids,corn ethanol,wholesale gas,output,
 corn ethanol,electricity,refining,biomass liquids,corn ethanol,elect_td_ind,output,
 sugar cane ethanol,sugar,refining,biomass liquids,sugar cane ethanol,regional sugar for ethanol,output,
+soybean biodiesel,soybean biomass oil,refining,biomass liquids,soybean biodiesel,regional biomassOil soybean,output,
+soybean biodiesel,gas,refining,biomass liquids,soybean biodiesel,wholesale gas,output,
 biodiesel,biomass oil,refining,biomass liquids,biodiesel,regional biomassOil,output,
 biodiesel,gas,refining,biomass liquids,biodiesel,wholesale gas,output,
 cellulosic ethanol,biomass,refining,biomass liquids,cellulosic ethanol,regional biomass,output,

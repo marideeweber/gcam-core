@@ -2,12 +2,13 @@
 # Title: Mapping between intermediate fuel names and minicam-energy-input names
 # Units: NA
 # Source: NA
-# Column types: cc 
+# Column types: cc
 # ----------
 minicam.energy.input,fuel
 regional biomass,biomass
 delivered biomass,biomass
 regional biomassOil,biomass oil
+regional biomassOil soybean,biomass oil soybean
 regional coal,coal
 delivered coal,coal
 regional corn for ethanol,corn
@@ -22,4 +23,3 @@ regional sugar for ethanol,sugar
 regional sugarbeet for ethanol,sugarbeet
 refined liquids enduse,refined liquids
 refined liquids industrial,refined liquids
-

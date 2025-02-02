@@ -71,6 +71,17 @@ module_energy_en_supply_xml <- function(command, ...) {
         filter(supplysector %in% unique(L239.TechCoef_tra$supplysector))
     # ===================================================
 
+    L221.StubTech_en %>%
+      inner_join(L221.Supplysector_en, by = c("region", "supplysector"))  %>%
+      select(names(L221.Supplysector_en)) ->
+      L221.Supplysector_en
+
+    L221.StubTech_en %>%
+      inner_join(L221.SubsectorLogit_en, by = c("region", "supplysector", "subsector")) %>%
+      select(names(L221.SubsectorLogit_en)) ->
+      L221.SubsectorLogit_en
+
+
     # Produce outputs
     create_xml("en_supply.xml") %>%
       add_logit_tables_xml(L221.Supplysector_en, "Supplysector") %>%
@@ -86,12 +97,26 @@ module_energy_en_supply_xml <- function(command, ...) {
       }
 
       if(!is.null(L221.SubsectorShrwtFllt_en)) {
+
+        L221.StubTech_en %>%
+          inner_join(L221.SubsectorShrwtFllt_en,
+                     by = c("region", "supplysector", "subsector")) %>%
+          select(names(L221.SubsectorShrwtFllt_en)) ->
+          L221.SubsectorShrwtFllt_en
+
         en_supply.xml %>%
           add_xml_data(L221.SubsectorShrwtFllt_en, "SubsectorShrwtFllt") ->
           en_supply.xml
       }
 
       if(!is.null(L221.SubsectorInterp_en)) {
+
+        L221.StubTech_en %>%
+          inner_join(L221.SubsectorInterp_en,
+                     by = c("region", "supplysector", "subsector")) %>%
+          select(names(L221.SubsectorInterp_en)) ->
+          L221.SubsectorInterp_en
+
         en_supply.xml %>%
           add_xml_data(L221.SubsectorInterp_en, "SubsectorInterp") ->
           en_supply.xml

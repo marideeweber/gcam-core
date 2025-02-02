@@ -95,6 +95,14 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
              share = if_else(is.na(share), 1, share)) %>%
       select(GCAM_region_ID, Biofuel, technology, biomassOil_tech, share)
 
+    # TEMP Adjustment!!! need to check data and mapping!
+
+    A_biofuel_types_R %>%
+      mutate(biomassOil_tech = if_else(technology == "soybean biodiesel", "Soybean oil", biomassOil_tech)) %>%
+      mutate(technology = if_else(biomassOil_tech == "Soybean oil" & technology == "biodiesel", "soybean biodiesel", technology) ) %>%
+      distinct() ->
+      A_biofuel_types_R
+
     # Creating fuel constant for biomass liquids that will be used to filter biofuels from L1012.en_bal_EJ_R_Si_Fi_Yh and to create L122.out_EJ_R_biofuel_Yh
     # Use left_join because the row # will increase for any region with multiple biofuel production technologies (e.g.,
     # sugar cane ethanol, corn ethanol)

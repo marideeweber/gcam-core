@@ -66,6 +66,7 @@ process heat cement,coal,coal,,,,,,
 process heat cement,gas,gas,,,,,,
 process heat cement,refined liquids,refined liquids,,,,,,
 refining,biomass liquids,biodiesel,0.0075,0.0054,0.002,0,0,0
+refining,biomass liquids,soybean biodiesel,0.0075,0.0054,0.002,0,0,0
 refining,biomass liquids,cellulosic ethanol,0.0075,0.0054,0.002,0,0,0
 refining,biomass liquids,cellulosic ethanol CCS level 1,0.0075,0.0054,0.002,0,0,0
 refining,biomass liquids,cellulosic ethanol CCS level 2,0.0075,0.0054,0.002,0,0,0
