@@ -389,7 +389,7 @@ module_energy_L221.en_supply <- function(command, ...) {
 
     # For regions with no agricultural and land use sector (Taiwan), need to remove the passthrough supplysectors for first-gen biofuels
     ag_en <- c("regional corn for ethanol", "regional sugar for ethanol", "regional biomassOil",
-               "regional biomassOil soybean")
+               "regional biomassOil soybean", "regional biomassOil rapeseed")
 
     L221.SubsectorLogit_en %>%
       filter(!(region %in% aglu.NO_AGLU_REGIONS & supplysector %in% ag_en)) -> L221.SubsectorLogit_en

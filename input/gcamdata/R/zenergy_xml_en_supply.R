@@ -72,11 +72,13 @@ module_energy_en_supply_xml <- function(command, ...) {
     # ===================================================
 
     L221.StubTech_en %>%
+      select(region, supplysector) %>% distinct() %>%
       inner_join(L221.Supplysector_en, by = c("region", "supplysector"))  %>%
       select(names(L221.Supplysector_en)) ->
       L221.Supplysector_en
 
     L221.StubTech_en %>%
+      select(-stub.technology ) %>% distinct() %>%
       inner_join(L221.SubsectorLogit_en, by = c("region", "supplysector", "subsector")) %>%
       select(names(L221.SubsectorLogit_en)) ->
       L221.SubsectorLogit_en

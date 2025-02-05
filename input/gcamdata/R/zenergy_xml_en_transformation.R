@@ -63,7 +63,6 @@ module_energy_en_transformation_xml <- function(command, ...) {
     L222.StubTechProd_refining <- rename(L222.StubTechProd_refining, share.weight.year = year.share.weight, tech.share.weight = share.weight)
 
 
-    # Xin: adjustments in biodiesel tech names here in L222.StubTech_en
 
     L222.StubTech_en %>%
       filter(!grepl("biodiesel", stub.technology)) %>%

@@ -100,6 +100,8 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
     A_biofuel_types_R %>%
       mutate(biomassOil_tech = if_else(technology == "soybean biodiesel", "Soybean oil", biomassOil_tech)) %>%
       mutate(technology = if_else(biomassOil_tech == "Soybean oil" & technology == "biodiesel", "soybean biodiesel", technology) ) %>%
+      mutate(biomassOil_tech = if_else(technology == "rapeseed biodiesel", "Rapeseed oil", biomassOil_tech)) %>%
+      mutate(technology = if_else(biomassOil_tech == "Rapeseed oil" & technology == "biodiesel", "rapeseed biodiesel", technology) ) %>%
       distinct() ->
       A_biofuel_types_R
 

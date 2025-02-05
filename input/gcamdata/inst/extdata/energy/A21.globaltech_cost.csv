@@ -8,7 +8,7 @@ regional biomass,regional biomass,regional biomass,non-energy,0.737,0.737
 regional corn for ethanol,regional corn for ethanol,regional corn for ethanol,non-energy,0,0
 regional sugar for ethanol,regional sugar for ethanol,regional sugar for ethanol,non-energy,0,0
 regional biomassOil,regional biomassOil,OilCrop oil,non-energy,0,0
-regional biomassOil,regional biomassOil,Rapeseed oil,non-energy,0,0
+regional biomassOil rapeseed,regional biomassOil rapeseed,Rapeseed oil,non-energy,0,0
 regional biomassOil,regional biomassOil,OilPalm oil,non-energy,0,0
 regional biomassOil soybean,regional biomassOil soybean,Soybean oil,non-energy,0,0
 regional woodpulp for energy,regional woodpulp for energy,regional woodpulp for energy,non-energy,0,0
