@@ -2,11 +2,14 @@
 # Title: Secondary outputs for biochar production
 # Units: GJ out / kg biochar
 # Column types: ccccn
-# Comments: Taking assumptions from Roberts et al 2010 SI spreadsheet we have 20095 MJ of syngas co-produced. We subtract the 211.19 MJ of natural gas that are needed for the slow pyrolisis process and we model the net here
-# Source: Roberts et al 2010 https://pubs.acs.org/doi/full/10.1021/es902266r
+# Source: NREL TEA
 # ----------
 supplysector,subsector,technology,secondary.output,output.ratio
-biochar,biochar,slow pyrolysis biochar herbaceous,natural gas,0.019883808
-biochar,biochar,slow pyrolysis biochar woody,natural gas,0.019883808
-biochar,biochar,fast pyrolysis biochar herbaceous,natural gas,0.019883808
-biochar,biochar,fast pyrolysis biochar woody,natural gas,0.019883808
+biochar,biochar,slow pyrolysis biochar herbaceous,natural gas,0.000918114
+biochar,biochar,slow pyrolysis biochar herbaceous,refined liquids enduse,0.001057415
+biochar,biochar,slow pyrolysis biochar woody,natural gas,0.001484356
+biochar,biochar,slow pyrolysis biochar woody,refined liquids enduse,0.004627962
+biochar,biochar,fast pyrolysis biochar herbaceous,natural gas,0.000859476
+biochar,biochar,fast pyrolysis biochar herbaceous,refined liquids enduse,0.005618089
+biochar,biochar,fast pyrolysis biochar woody,natural gas,0.002096438
+biochar,biochar,fast pyrolysis biochar woody,refined liquids enduse,0.008302106

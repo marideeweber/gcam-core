@@ -1,12 +1,12 @@
 # File: A221.globaltech_co2capture.csv
 # Title: Biochar technology capture fractions
 # Units: fractions
-# Description: Fraction of CO2 captured by biochar assuming than 30% is released into the atmosphere in the initial years of application following Roberts et al 2010
-# Source: Roberts et al 2010 https://pubs.acs.org/doi/full/10.1021/es902266r
+# Description: Fraction of CO2 captured by biochar
+# Source: NREL TEA
 # Column types: cccnn 
 # ----------
 supplysector,subsector,technology,1971,2100
-biochar,biochar,slow pyrolysis biochar herbaceous,0.7,0.7
-biochar,biochar,slow pyrolysis biochar woody,0.7,0.7
-biochar,biochar,fast pyrolysis biochar herbaceous,0.7,0.7
-biochar,biochar,fast pyrolysis biochar woody,0.7,0.7
+biochar,biochar,slow pyrolysis biochar herbaceous,0.8478,0.8478
+biochar,biochar,slow pyrolysis biochar woody,0.7045,0.7045
+biochar,biochar,fast pyrolysis biochar herbaceous,0.7128,0.7128
+biochar,biochar,fast pyrolysis biochar woody,0.5965,0.5965
