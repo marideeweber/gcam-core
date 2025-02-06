@@ -203,11 +203,22 @@ module_gcamusa_L2261.regional_biomass <- function(command, ...) {
 
     # kbn 2020
     L221.StubTechCoef_bioOil %>%
-      filter(region=="USA") %>%
-      select(-region) %>%
-      repeat_add_columns(tibble(region = gcamusa.STATES)) %>%
-      mutate(market.name = gcam.USA_REGION) %>%
-      select(LEVEL2_DATA_NAMES$StubTechCoef)->L2261.StubTechCoef_bioOil_USA
+      filter(region=="USA")->
+      L221.StubTechCoef_bioOil
+
+    if (nrow(L221.StubTechCoef_bioOil) >0) {
+      L221.StubTechCoef_bioOil %>%
+        select(-region) %>%
+        repeat_add_columns(tibble(region = gcamusa.STATES)) %>%
+        mutate(market.name = gcam.USA_REGION) %>%
+        select(LEVEL2_DATA_NAMES$StubTechCoef)->L2261.StubTechCoef_bioOil_USA
+    } else{
+      L221.StubTechCoef_bioOil %>%
+        mutate(market.name = gcam.USA_REGION) %>%
+        select(LEVEL2_DATA_NAMES$StubTechCoef)->L2261.StubTechCoef_bioOil_USA
+    }
+
+
 
     # Technology share-weights of state-level regional biomassOil sectors
     # kbn 2020-03-29 No longer writing out share-weights for some regions. But we need this for GCAM-USA

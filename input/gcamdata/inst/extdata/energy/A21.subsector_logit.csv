@@ -9,5 +9,6 @@ regional corn for ethanol,regional corn for ethanol,-6,0,
 regional sugar for ethanol,regional sugar for ethanol,-6,0,
 regional biomassOil soybean,regional biomassOil soybean,-3,0,
 regional biomassOil rapeseed,regional biomassOil rapeseed,-3,0,
-regional biomassOil,regional biomassOil,-3,0,absolute-cost-logit
+regional biomassOil oilcrop,regional biomassOil oilcrop,-3,0,absolute-cost-logit
+regional biomassOil oilpalm,regional biomassOil oilpalm,-3,0,absolute-cost-logit
 regional woodpulp for energy,regional woodpulp for energy,-6,0,

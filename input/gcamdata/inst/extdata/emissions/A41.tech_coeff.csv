@@ -2,7 +2,7 @@
 # Title: Emission coefficients for energy technology by sector 
 # Units: NA
 # Source: NA 
-# Description: may.be.historic is an indicator variable that indicates if the ""new"" technology may be been used historically by some sector.
+# Description: may.be.historic is an indicator variable that indicates if the new technology may be been used historically by some sector.
 # Column types: cccnnnnnnnncci 
 # ----------
 supplysector,subsector,stub.technology,SO2,NOx,CO,CH4,N2O,BC,OC,NMVOC,exception,exception_tech,may.be.historic
@@ -20,7 +20,8 @@ refining,biomass liquids,corn ethanol,0.01,0.01,0.01,,0.0001,,,0.0001,,,1
 refining,biomass liquids,sugar cane ethanol,0.01,0.01,0.01,,0.0001,,,0.0001,,,1
 refining,biomass liquids,soybean biodiesel,0.01,0.01,0.01,,0.0001,,,0.0001,,,1
 refining,biomass liquids,rapeseed biodiesel,0.01,0.01,0.01,,0.0001,,,0.0001,,,1
-refining,biomass liquids,biodiesel,0.01,0.01,0.01,,0.0001,,,0.0001,,,1
+refining,biomass liquids,oilpalm biodiesel,0.01,0.01,0.01,,0.0001,,,0.0001,,,1
+refining,biomass liquids,oilcrop biodiesel,0.01,0.01,0.01,,0.0001,,,0.0001,,,1
 electricity,coal,coal (conv pul CCS),0.001,0.03,,0.0005,0.0001,4.07E-07,1.00E-05,0.0001,CO,gas (steam/CT),
 electricity,coal,coal (IGCC),0.001,0.03,,0.0005,0.0001,4.07E-07,1.00E-05,0.0001,CO,gas (steam/CT),
 electricity,coal,coal (IGCC CCS),0.001,0.03,,0.0005,0.0001,4.07E-07,1.00E-05,0.0001,CO,gas (steam/CT),

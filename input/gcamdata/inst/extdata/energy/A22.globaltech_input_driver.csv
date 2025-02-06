@@ -5,7 +5,8 @@
 # Column types: cccc
 # ----------
 supplysector,subsector,technology,input.name
-refining,biomass liquids,biodiesel,regional biomassOil
+refining,biomass liquids,oilcrop biodiesel,regional biomassOil oilcrop
+refining,biomass liquids,oilpalm biodiesel,regional biomassOil oilpalm
 refining,biomass liquids,soybean biodiesel,regional biomassOil soybean
 refining,biomass liquids,rapeseed biodiesel,regional biomassOil rapeseed
 refining,biomass liquids,cellulosic ethanol,regional biomass

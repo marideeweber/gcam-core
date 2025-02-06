@@ -30,7 +30,9 @@ refining,biomass liquids,soybean biodiesel,regional biomassOil soybean,1.0309,1.
 refining,biomass liquids,soybean biodiesel,wholesale gas,0.05767,0.05767,0.06
 refining,biomass liquids,rapeseed biodiesel,regional biomassOil rapeseed,1.0309,1.0309,1.03
 refining,biomass liquids,rapeseed biodiesel,wholesale gas,0.05767,0.05767,0.06
-refining,biomass liquids,biodiesel,regional biomassOil,1.0309,1.0309,1.03
-refining,biomass liquids,biodiesel,wholesale gas,0.05767,0.05767,0.06
+refining,biomass liquids,oilpalm biodiesel,regional biomassOil oilpalm,1.0309,1.0309,1.03
+refining,biomass liquids,oilpalm biodiesel,wholesale gas,0.05767,0.05767,0.06
+refining,biomass liquids,oilcrop biodiesel,regional biomassOil oilcrop,1.0309,1.0309,1.03
+refining,biomass liquids,oilcrop biodiesel,wholesale gas,0.05767,0.05767,0.06
 refining,biomass liquids,BTL with hydrogen,H2 industrial,0.816228052,0.816228052,0.816228052
 refining,biomass liquids,BTL with hydrogen,regional biomass,1.031914894,1.031914894,1.031914894

@@ -130,11 +130,11 @@ module_energy_en_supply_xml <- function(command, ...) {
           en_supply.xml
       }
 
+
     en_supply.xml %>%
       add_node_equiv_xml("technology") %>%
       add_xml_data(L221.StubTech_en, "StubTech") %>%
       add_xml_data(L221.GlobalTechCoef_en, "GlobalTechCoef") %>%
-      #add_xml_data(L221.StubTechCoef_bioOil, "StubTechCoef") %>%
       add_xml_data(L221.GlobalTechCost_en, "GlobalTechCost") %>%
       add_xml_data(L221.GlobalTechShrwt_en, "GlobalTechShrwt") %>%
       add_xml_data(L221.PrimaryConsKeyword_en, "PrimaryConsKeyword") %>%
@@ -164,9 +164,15 @@ module_energy_en_supply_xml <- function(command, ...) {
       add_xml_data(L239.CarbonCoef, "CarbonCoef") %>%
       add_xml_data(L221.StubTechCalInput_bioOil, "StubTechCalInput") %>%
       add_xml_data(L221.StubTechInterp_bioOil, "StubTechInterp") %>%
-      add_xml_data(L221.StubTechShrwt_bioOil, "StubTechShrwt") %>%
       add_precursors(MODULE_INPUTS) ->
       en_supply.xml
+
+    if (nrow(L221.StubTechShrwt_bioOil)>0) {
+      en_supply.xml %>%
+        add_xml_data(L221.StubTechShrwt_bioOil, "StubTechShrwt") ->
+        en_supply.xml
+    }
+
 
     return_data(MODULE_OUTPUTS)
   } else {

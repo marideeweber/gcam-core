@@ -11,4 +11,5 @@ refining,biomass liquids,corn ethanol,share-weight,final-calibration-year,end-ye
 refining,biomass liquids,sugar cane ethanol,share-weight,final-calibration-year,end-year,linear
 refining,biomass liquids,soybean biodiesel,share-weight,final-calibration-year,end-year,linear
 refining,biomass liquids,rapeseed biodiesel,share-weight,final-calibration-year,end-year,linear
-refining,biomass liquids,biodiesel,share-weight,final-calibration-year,end-year,linear
+refining,biomass liquids,oilpalm biodiesel,share-weight,final-calibration-year,end-year,linear
+refining,biomass liquids,oilcrop biodiesel,share-weight,final-calibration-year,end-year,linear

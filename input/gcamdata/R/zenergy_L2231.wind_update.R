@@ -21,7 +21,6 @@ module_energy_L2231.wind_update <- function(command, ...) {
   if(command == driver.DECLARE_INPUTS) {
     return(c(FILE = "common/iso_GCAM_regID",
              FILE = "common/GCAM_region_names",
-             FILE = "energy/mappings/fuel_energy_input",
              FILE = "energy/A20.wind_class_CFs",
              FILE =  "energy/mappings/NREL_wind_ctry",
              FILE = "energy/NREL_onshore_energy",
@@ -54,7 +53,6 @@ module_energy_L2231.wind_update <- function(command, ...) {
     # Load required inputs
     iso_GCAM_regID <- get_data(all_data, "common/iso_GCAM_regID")
     GCAM_region_names <- get_data(all_data, "common/GCAM_region_names")
-    fuel_energy_input <- get_data(all_data, "energy/mappings/fuel_energy_input")
     A20.wind_class_CFs <- get_data(all_data, "energy/A20.wind_class_CFs")
     L113.globaltech_OMfixed_ATB <- get_data(all_data, "L113.globaltech_OMfixed_ATB")
     L113.globaltech_capital_ATB <- get_data(all_data, "L113.globaltech_capital_ATB")
@@ -331,7 +329,8 @@ module_energy_L2231.wind_update <- function(command, ...) {
       add_units("Unitless") %>%
       add_comments("Resource curve and prices for onshore wind by region") %>%
       add_legacy_name("L2231.SmthRenewRsrcCurves_onshore_wind") %>%
-      add_precursors( "common/iso_GCAM_regID", "common/GCAM_region_names", "energy/mappings/fuel_energy_input",  "energy/A20.wind_class_CFs", "L113.globaltech_capital_ATB", "L113.globaltech_OMfixed_ATB", "energy/NREL_onshore_energy", "L223.StubTechCapFactor_elec", "energy/mappings/NREL_wind_ctry") ->
+      add_precursors( "common/iso_GCAM_regID", "common/GCAM_region_names",
+                      "energy/A20.wind_class_CFs", "L113.globaltech_capital_ATB", "L113.globaltech_OMfixed_ATB", "energy/NREL_onshore_energy", "L223.StubTechCapFactor_elec", "energy/mappings/NREL_wind_ctry") ->
       L2231.SmthRenewRsrcCurves_onshore_wind
 
     L2231.StubTechCapFactor_onshore_wind %>%

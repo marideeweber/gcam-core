@@ -380,16 +380,23 @@ module_energy_L221.en_supply <- function(command, ...) {
       select(LEVEL2_DATA_NAMES[["StubTechInterp"]])
 
     # Technology share-weights for regions without calibration values
-    L221.StubTechShrwt_bioOil <- filter(L221.StubTechCalInput_bioOil,
-                                        year == max(MODEL_BASE_YEARS),
-                                        tech.share.weight == 0) %>%
-      select(region, supplysector, subsector, stub.technology) %>%
-      repeat_add_columns(tibble(year = MODEL_FUTURE_YEARS)) %>%
-      mutate(share.weight = 1)
+    L221.StubTechShrwt_bioOil <-
+      L221.StubTechCalInput_bioOil %>%
+      filter(year == max(MODEL_BASE_YEARS),
+             tech.share.weight == 0) %>%
+      select(region, supplysector, subsector, stub.technology)
+
+    if (nrow(L221.StubTechShrwt_bioOil)>0) {
+      L221.StubTechShrwt_bioOil <-
+        L221.StubTechShrwt_bioOil %>%
+        repeat_add_columns(tibble(year = MODEL_FUTURE_YEARS)) %>%
+        mutate(share.weight = 1)
+    }
 
     # For regions with no agricultural and land use sector (Taiwan), need to remove the passthrough supplysectors for first-gen biofuels
-    ag_en <- c("regional corn for ethanol", "regional sugar for ethanol", "regional biomassOil",
-               "regional biomassOil soybean", "regional biomassOil rapeseed")
+    ag_en <- c("regional corn for ethanol", "regional sugar for ethanol",
+               "regional biomassOil soybean", "regional biomassOil rapeseed",
+               "regional biomassOil oilpalm", "regional biomassOil oilcrop")
 
     L221.SubsectorLogit_en %>%
       filter(!(region %in% aglu.NO_AGLU_REGIONS & supplysector %in% ag_en)) -> L221.SubsectorLogit_en

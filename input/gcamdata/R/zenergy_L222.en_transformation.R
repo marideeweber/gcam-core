@@ -196,7 +196,8 @@ module_energy_L222.en_transformation <- function(command, ...) {
     # L222.StubTech_en: Identification of stub technologies of energy transformation
     # set up filter to keep all non-first gen bio techs in L222.StubTech_en
     firstgenbio_techs <- c("corn ethanol", "sugarbeet ethanol", "sugar cane ethanol", "biodiesel",
-                           "soybean biodiesel", "rapeseed biodiesel")
+                           "soybean biodiesel", "rapeseed biodiesel",
+                           "oilpalm biodiesel", "oilcrop biodiesel")
 
     # create list of regional stub.technologies
     A22.globaltech_shrwt %>%
