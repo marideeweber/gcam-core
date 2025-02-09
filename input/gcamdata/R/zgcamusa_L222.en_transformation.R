@@ -86,6 +86,14 @@ module_gcamusa_L222.en_transformation <- function(command, ...) {
     L122.out_EJ_state_refining_F <- get_data(all_data, "L122.out_EJ_state_refining_F", strip_attributes = TRUE)
     L202.CarbonCoef <- get_data(all_data, "L202.CarbonCoef")
 
+    # will need to remove gcamusa.SECTOR_EN_NAMES in constants.R
+    # but here we need to add biodiesel and ethanol tech
+    gcamusa.SECTOR_EN_NAMES <-
+      L222.StubTech_en %>%
+      distinct(supplysector) %>%
+      filter(grepl("refining|biodiesel|ethanol", supplysector)) %>%
+      pull(supplysector)
+
     # silence check package notes
     logit.year.fillout <- year <- from.year <- to.year <- region <- supplysector <- subsector <-
       technology <- sector.name <- subsector.name <- sector <- state <- fuel <- value <- market.name <-
@@ -288,7 +296,7 @@ module_gcamusa_L222.en_transformation <- function(command, ...) {
                                  by = "subsector") %>%
         rename(supplysector = supplysector.x,
                old_supplysector = supplysector.y) %>%
-        left_join_error_no_match(distinct(select(L222.Supplysector_en, -region)),
+        left_join_error_no_match(distinct(select(L222.Supplysector_en, -region)), ignore_columns = "logit.type",
                                  by = c("old_supplysector" = "supplysector")) %>%
         select(one_of(LEVEL2_DATA_NAMES[["Supplysector"]])) ->
         L222.Supplysector_en_USA

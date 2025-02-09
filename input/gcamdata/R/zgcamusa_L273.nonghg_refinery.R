@@ -103,7 +103,7 @@ module_gcamusa_L273.nonghg_refinery <- function(command, ...) {
 
     # create structure (like in en_transformation_USA.xml)
     bio_prod_structure <- L222.StubTech_en_USA %>%
-      filter( stub.technology == "soybean biodiesel" ) %>%
+      filter( grepl("soybean biodiesel", stub.technology) ) %>%
       select( -region ) %>%
       repeat_add_columns( tibble::tibble( pet_ref_emissions$year) ) %>%
       rename( year = `pet_ref_emissions$year` ) %>%
