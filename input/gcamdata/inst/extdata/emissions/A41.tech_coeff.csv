@@ -18,7 +18,7 @@ refining,biomass liquids,FT biofuels CCS level 1,0.01,0.01,0.01,0.001,0.0001,,,0
 refining,biomass liquids,FT biofuels CCS level 2,0.01,0.01,0.01,0.001,0.0001,,,0.0001,,,
 refining,biomass liquids,corn ethanol,0.01,0.01,0.01,,0.0001,,,0.0001,,,1
 refining,biomass liquids,sugar cane ethanol,0.01,0.01,0.01,,0.0001,,,0.0001,,,1
-refining,biomass liquids,soybean biodiesel,0.01,0.01,0.01,,0.0001,,,0.0001,,,1
+soybean biodiesel,soybean biodiesel,soybean biodiesel,0.01,0.01,0.01,,0.0001,,,0.0001,,,1
 refining,biomass liquids,rapeseed biodiesel,0.01,0.01,0.01,,0.0001,,,0.0001,,,1
 refining,biomass liquids,oilpalm biodiesel,0.01,0.01,0.01,,0.0001,,,0.0001,,,1
 refining,biomass liquids,oilcrop biodiesel,0.01,0.01,0.01,,0.0001,,,0.0001,,,1

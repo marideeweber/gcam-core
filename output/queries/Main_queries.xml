@@ -1694,7 +1694,7 @@ local:generate-sector-input-coefs(remove($outputNameQueue, 1), $currTree, $coefs
                 <supplyDemandQuery title="refined liquids production by tech">
                     <axis1 name="technology">technology</axis1>
                     <axis2 name="Year">physical-output[@vintage]</axis2>
-                    <xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector' and contains(@name,'refining')]/*[@type='subsector']/
+                    <xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector' and (contains(@name,'refining') or contains(@name,'biodiesel'))]/*[@type='subsector']/
                *[@type='technology']/output-primary[@type='output']/physical-output/node()</xPath>
                     <comments/>
                 </supplyDemandQuery>
@@ -1717,7 +1717,7 @@ local:generate-sector-input-coefs(remove($outputNameQueue, 1), $currTree, $coefs
                 <supplyDemandQuery title="refinery inputs by tech (energy and feedstocks)">
                     <axis1 name="input">input</axis1>
                     <axis2 name="Year">demand-physical[@vintage]</axis2>
-                    <xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector' and (@name='refining' or @name='regional oil' or
+                    <xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector' and (@name='refining' or @name='regional oil' or @name='soybean biodiesel' or
                @name='regional corn for ethanol' or @name='regional sugar for ethanol' or contains(@name, 'regional biomassOil') or @name='regional biomassOil soybean')]/
                *[@type='subsector']/*[@type='technology']/
                *[@type='input' and not(contains(@name,'water'))]/demand-physical/node()</xPath>

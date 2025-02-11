@@ -23,7 +23,10 @@ refining,biomass liquids,FT biofuels CCS level 1,final-calibration-year,45,,25,0
 refining,biomass liquids,FT biofuels CCS level 2,final-calibration-year,45,,25,0.2,-0.1,10
 refining,biomass liquids,corn ethanol,final-calibration-year,45,,25,0.2,-0.5,5
 refining,biomass liquids,sugar cane ethanol,final-calibration-year,45,,25,0.2,-0.5,5
-refining,biomass liquids,biodiesel,final-calibration-year,45,,25,0.2,-0.9,5
+soybean biodiesel,soybean biodiesel,soybean biodiesel,final-calibration-year,45,,25,0.2,-0.1,10
+refining,biomass liquids,rapeseed biodiesel,final-calibration-year,45,,25,0.2,-0.1,10
+refining,biomass liquids,oilpalm biodiesel,final-calibration-year,45,,25,0.2,-0.1,10
+refining,biomass liquids,oilcrop biodiesel,final-calibration-year,45,,25,0.2,-0.1,10
 refining,oil refining,oil refining,initial-future-year,45,,30,0.3,-0.1,10
 refining,coal to liquids,coal to liquids,initial-future-year,45,,30,0.3,-0.1,10
 refining,coal to liquids,coal to liquids CCS level 1,initial-future-year,45,,30,0.3,-0.1,10
@@ -37,7 +40,7 @@ refining,biomass liquids,FT biofuels CCS level 1,initial-future-year,45,,30,0.3,
 refining,biomass liquids,FT biofuels CCS level 2,initial-future-year,45,,30,0.3,-0.1,10
 refining,biomass liquids,corn ethanol,initial-future-year,45,,30,0.3,-0.5,5
 refining,biomass liquids,sugar cane ethanol,initial-future-year,45,,30,0.3,-0.5,5
-refining,biomass liquids,soybean biodiesel,initial-future-year,45,,30,0.3,-0.1,10
+soybean biodiesel,soybean biodiesel,soybean biodiesel,initial-future-year,45,,30,0.3,-0.1,10
 refining,biomass liquids,rapeseed biodiesel,initial-future-year,45,,30,0.3,-0.1,10
 refining,biomass liquids,oilpalm biodiesel,initial-future-year,45,,30,0.3,-0.9,5
 refining,biomass liquids,oilcrop biodiesel,initial-future-year,45,,30,0.3,-0.9,5

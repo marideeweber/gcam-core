@@ -26,7 +26,7 @@
 module_energy_L222.en_transformation <- function(command, ...) {
 
   MODULE_INPUTS <-
-    c(c(FILE = "common/GCAM_region_names",
+      c(FILE = "common/GCAM_region_names",
         FILE = "energy/calibrated_techs",
         FILE = "energy/A_regions",
         FILE = "energy/A22.sector",
@@ -47,7 +47,8 @@ module_energy_L222.en_transformation <- function(command, ...) {
         FILE = "energy/A22.globaltech_keyword",
         "L122.out_EJ_R_gasproc_F_Yh",
         "L122.out_EJ_R_refining_F_Yh",
-        "L122.IO_R_oilrefining_F_Yh"))
+        "L122.IO_R_oilrefining_F_Yh",
+        "L121.share_R_TPES_biofuel_tech")
 
   MODULE_OUTPUTS <-
     c("L222.Supplysector_en",
@@ -72,7 +73,8 @@ module_energy_L222.en_transformation <- function(command, ...) {
       "L222.StubTechProd_gasproc",
       "L222.StubTechProd_refining",
       "L222.StubTechCoef_refining",
-      "L222.GlobalTechCost_low_en")
+      "L222.GlobalTechCost_low_en",
+      "L222.biofuel_type_filter_R")
 
   if(command == driver.DECLARE_INPUTS) {
     return(MODULE_INPUTS)
@@ -102,6 +104,21 @@ module_energy_L222.en_transformation <- function(command, ...) {
     A22.sector %>%
       write_to_all_regions(c(LEVEL2_DATA_NAMES[["Supplysector"]], LOGIT_TYPE_COLNAME), GCAM_region_names) ->
       L222.Supplysector_en
+
+    # Create a filter for first-generation biofuels (ethanol, biodiesel) that are NOT produced in each region
+    biofuel_types_R <- gather(select(A_regions, GCAM_region_ID, ethanol, biodiesel),
+                              key = "Biofuel", value = "technology",
+                              -GCAM_region_ID) %>%
+      bind_rows(select(L121.share_R_TPES_biofuel_tech, GCAM_region_ID, Biofuel, technology)) %>%
+      distinct() %>%
+      left_join_error_no_match(GCAM_region_names, by = "GCAM_region_ID")
+
+    L222.biofuel_type_filter_R <- select(L222.Supplysector_en, region, supplysector) %>%
+      filter(supplysector %in% biofuel_types_R$technology) %>%
+      anti_join(biofuel_types_R, by = c("region", supplysector = "technology"))
+
+    #L222.Supplysector_en <- anti_join(L222.Supplysector_en, L222.biofuel_type_filter_R, by = c("region", "supplysector"))
+
     # 2b. Subsector information
     # L222.SubsectorLogit_en: Subsector logit exponents of energy transformation sectors
 
@@ -195,8 +212,9 @@ module_energy_L222.en_transformation <- function(command, ...) {
 
     # L222.StubTech_en: Identification of stub technologies of energy transformation
     # set up filter to keep all non-first gen bio techs in L222.StubTech_en
-    firstgenbio_techs <- c("corn ethanol", "sugarbeet ethanol", "sugar cane ethanol", "biodiesel",
-                           "soybean biodiesel", "rapeseed biodiesel",
+    firstgenbio_techs <- c("corn ethanol", "sugarbeet ethanol", "sugar cane ethanol",
+                           #"soybean biodiesel",
+                           "rapeseed biodiesel",
                            "oilpalm biodiesel", "oilcrop biodiesel")
 
     # create list of regional stub.technologies
@@ -368,7 +386,8 @@ module_energy_L222.en_transformation <- function(command, ...) {
       filter(year %in% MODEL_YEARS) ->
       L222.GlobalTechKeyword_en
 
-    #2d. Calibration and region-specific data
+    #2d. Calibration and region-specific data ----
+    # gas ----
     #  generate base year calibrated outputs of gas processing by interpolating from historical values
     L122.out_EJ_R_gasproc_F_Yh %>%
       complete(nesting(GCAM_region_ID, sector, fuel), year = c(year, MODEL_BASE_YEARS)) %>%
@@ -406,7 +425,8 @@ module_energy_L222.en_transformation <- function(command, ...) {
     # reorders columns to match expected model interface input
     L222.StubTechProd_gasproc <- L222.StubTechProd_gasproc[c(LEVEL2_DATA_NAMES[["StubTechYr"]], "calOutputValue", "year.share.weight", "subs.share.weight", "share.weight")]
 
-    # Oil refining calibrated output by technology
+    # refining + 1G ----
+    #  refining calibrated output by technology
     # interpolates values of IO coefficients for base years from historical values
     L122.out_EJ_R_refining_F_Yh %>%
       complete(nesting(GCAM_region_ID, sector, fuel), year = c(year, MODEL_BASE_YEARS)) %>%
@@ -554,7 +574,7 @@ module_energy_L222.en_transformation <- function(command, ...) {
       add_comments("Writes out subset of stub technologies to all regions where those technologies exist") %>%
       add_comments("removes some first gen bio techs from regions where they do not exist") %>%
       add_legacy_name("L222.StubTech_en") %>%
-      add_precursors("energy/A22.globaltech_shrwt", "energy/A_regions") ->
+      add_precursors("energy/A22.globaltech_shrwt", "energy/A_regions", "L121.share_R_TPES_biofuel_tech") ->
       L222.StubTech_en
 
     L222.GlobalTechInterp_en %>%
@@ -699,6 +719,13 @@ module_energy_L222.en_transformation <- function(command, ...) {
       add_legacy_name("L222.GlobalTechCost_low_en") %>%
       add_precursors("energy/A22.globaltech_cost_low") ->
       L222.GlobalTechCost_low_en
+
+    L222.biofuel_type_filter_R %>%
+      add_title("Filter for removing non-applicable region x biofuel types") %>%
+      add_units("none") %>%
+      add_comments("This ensures that no markets are created") %>%
+      add_precursors("energy/A_regions", "L121.share_R_TPES_biofuel_tech") ->
+      L222.biofuel_type_filter_R
 
     return_data(MODULE_OUTPUTS)
 

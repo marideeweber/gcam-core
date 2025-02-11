@@ -4,7 +4,7 @@
 # Column types: cccc 
 # ----------
 supplysector,subsector,technology,primary.consumption
-refining,biomass liquids,soybean biodiesel,biomass
+soybean biodiesel,soybean biodiesel,soybean biodiesel,biomass
 refining,biomass liquids,rapeseed biodiesel,biomass
 refining,biomass liquids,oilpalm biodiesel,biomass
 refining,biomass liquids,oilcrop biodiesel,biomass
