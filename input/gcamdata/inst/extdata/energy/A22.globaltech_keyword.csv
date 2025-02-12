@@ -5,8 +5,8 @@
 # ----------
 supplysector,subsector,technology,primary.consumption
 soybean biodiesel,soybean biodiesel,soybean biodiesel,biomass
-refining,biomass liquids,rapeseed biodiesel,biomass
-refining,biomass liquids,oilpalm biodiesel,biomass
-refining,biomass liquids,oilcrop biodiesel,biomass
-refining,biomass liquids,corn ethanol,biomass
+rapeseed biodiesel,rapeseed biodiesel,rapeseed biodiesel,biomass
+oilpalm biodiesel,oilpalm biodiesel,oilpalm biodiesel,biomass
+oilcrop biodiesel,oilcrop biodiesel,oilcrop biodiesel,biomass
+corn ethanol,corn ethanol,corn ethanol,biomass
 refining,biomass liquids,BTL with hydrogen,biomass

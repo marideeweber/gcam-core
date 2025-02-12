@@ -123,7 +123,7 @@ module_energy_L226.en_distribution <- function(command, ...) {
     }
 
 
-    # Note from otaq (Xin)
+    # Note from otaq (Xin); not sure if needed
     # 9/14/2021 hack (GPK) - we can't get rid of interpolation rules subsequently,
     # and ref liq enduse / biodiesel share-weights are set individually, period by period
     L226.SubsectorInterp_en <- filter(L226.SubsectorInterp_en,

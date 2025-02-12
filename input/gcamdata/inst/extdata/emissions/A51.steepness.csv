@@ -64,18 +64,18 @@ process heat cement,biomass,biomass,,,,,,
 process heat cement,coal,coal,,,,,,
 process heat cement,gas,gas,,,,,,
 process heat cement,refined liquids,refined liquids,,,,,,
-refining,biomass liquids,oilcrop biodiesel,3.5,3.5,3.5,3.5,3.5,3.5
-refining,biomass liquids,oilpalm biodiesel,3.5,3.5,3.5,3.5,3.5,3.5
+oilcrop biodiesel,oilcrop biodiesel,oilcrop biodiesel,3.5,3.5,3.5,3.5,3.5,3.5
+oilpalm biodiesel,oilpalm biodiesel,oilpalm biodiesel,3.5,3.5,3.5,3.5,3.5,3.5
 soybean biodiesel,soybean biodiesel,soybean biodiesel,3.5,3.5,3.5,3.5,3.5,3.5
-refining,biomass liquids,rapeseed biodiesel,3.5,3.5,3.5,3.5,3.5,3.5
-refining,biomass liquids,cellulosic ethanol,3.5,3.5,3.5,3.5,3.5,3.5
-refining,biomass liquids,cellulosic ethanol CCS level 1,3.5,3.5,3.5,3.5,3.5,3.5
-refining,biomass liquids,cellulosic ethanol CCS level 2,3.5,3.5,3.5,3.5,3.5,3.5
-refining,biomass liquids,corn ethanol,3.5,3.5,3.5,3.5,3.5,3.5
+rapeseed biodiesel,rapeseed biodiesel,rapeseed biodiesel,3.5,3.5,3.5,3.5,3.5,3.5
+cellulosic ethanol,cellulosic ethanol,cellulosic ethanol,3.5,3.5,3.5,3.5,3.5,3.5
+cellulosic ethanol,cellulosic ethanol,cellulosic ethanol CCS level 1,3.5,3.5,3.5,3.5,3.5,3.5
+cellulosic ethanol,cellulosic ethanol,cellulosic ethanol CCS level 2,3.5,3.5,3.5,3.5,3.5,3.5
+corn ethanol,corn ethanol,corn ethanol,3.5,3.5,3.5,3.5,3.5,3.5
 refining,biomass liquids,FT biofuels,3.5,3.5,3.5,3.5,3.5,3.5
 refining,biomass liquids,FT biofuels CCS level 1,3.5,3.5,3.5,3.5,3.5,3.5
 refining,biomass liquids,FT biofuels CCS level 2,3.5,3.5,3.5,3.5,3.5,3.5
-refining,biomass liquids,sugar cane ethanol,3.5,3.5,3.5,3.5,3.5,3.5
+sugar cane ethanol,sugar cane ethanol,sugar cane ethanol,3.5,3.5,3.5,3.5,3.5,3.5
 refining,coal to liquids,coal to liquids,3.5,3.5,3.5,3.5,3.5,3.5
 refining,coal to liquids,coal to liquids CCS level 1,3.5,3.5,3.5,3.5,3.5,3.5
 refining,coal to liquids,coal to liquids CCS level 2,3.5,3.5,3.5,3.5,3.5,3.5

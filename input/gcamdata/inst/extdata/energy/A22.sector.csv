@@ -9,4 +9,10 @@ gas processing,EJ,EJ,1975$/GJ,-6,
 nuclearFuelGenII,EJ,EJ,1975$/GJ,-3,
 nuclearFuelGenIII,EJ,EJ,1975$/GJ,-3,
 refining,EJ,EJ,1975$/GJ,-6,absolute-cost-logit
+sugar cane ethanol,EJ,EJ,1975$/GJ,-6,absolute-cost-logit
+cellulosic ethanol,EJ,EJ,1975$/GJ,-6,absolute-cost-logit
+corn ethanol,EJ,EJ,1975$/GJ,-6,absolute-cost-logit
 soybean biodiesel,EJ,EJ,1975$/GJ,-6,
+rapeseed biodiesel,EJ,EJ,1975$/GJ,-6,
+oilpalm biodiesel,EJ,EJ,1975$/GJ,-6,
+oilcrop biodiesel,EJ,EJ,1975$/GJ,-6,

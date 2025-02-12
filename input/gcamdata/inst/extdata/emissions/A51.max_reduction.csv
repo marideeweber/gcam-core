@@ -65,18 +65,18 @@ process heat cement,biomass,biomass,,,,,,
 process heat cement,coal,coal,,,,,,
 process heat cement,gas,gas,,,,,,
 process heat cement,refined liquids,refined liquids,,,,,,
-refining,biomass liquids,oilcrop biodiesel,25,46,80,50,50,60
-refining,biomass liquids,oilpalm biodiesel,25,46,80,50,50,60
+oilcrop biodiesel,oilcrop biodiesel,oilcrop biodiesel,25,46,80,50,50,60
+oilpalm biodiesel,oilpalm biodiesel,oilpalm biodiesel,25,46,80,50,50,60
 soybean biodiesel,soybean biodiesel,soybean biodiesel,25,46,80,50,50,60
-refining,biomass liquids,rapeseed biodiesel,25,46,80,50,50,60
-refining,biomass liquids,cellulosic ethanol,25,46,80,50,50,60
-refining,biomass liquids,cellulosic ethanol CCS level 1,25,46,80,50,50,60
-refining,biomass liquids,cellulosic ethanol CCS level 2,25,46,80,50,50,60
-refining,biomass liquids,corn ethanol,25,46,80,50,50,60
+rapeseed biodiesel,rapeseed biodiesel,rapeseed biodiesel,25,46,80,50,50,60
+cellulosic ethanol,cellulosic ethanol,cellulosic ethanol,25,46,80,50,50,60
+cellulosic ethanol,cellulosic ethanol,cellulosic ethanol CCS level 1,25,46,80,50,50,60
+cellulosic ethanol,cellulosic ethanol,cellulosic ethanol CCS level 2,25,46,80,50,50,60
+corn ethanol,corn ethanol,corn ethanol,25,46,80,50,50,60
 refining,biomass liquids,FT biofuels,25,46,80,50,50,60
 refining,biomass liquids,FT biofuels CCS level 1,25,46,80,50,50,60
 refining,biomass liquids,FT biofuels CCS level 2,25,46,80,50,50,60
-refining,biomass liquids,sugar cane ethanol,25,46,80,50,50,60
+sugar cane ethanol,sugar cane ethanol,sugar cane ethanol,25,46,80,50,50,60
 refining,coal to liquids,coal to liquids,25,46,80,50,50,60
 refining,coal to liquids,coal to liquids CCS level 1,25,46,80,50,50,60
 refining,coal to liquids,coal to liquids CCS level 2,25,46,80,50,50,60

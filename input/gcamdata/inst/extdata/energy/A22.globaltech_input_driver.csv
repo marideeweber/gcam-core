@@ -5,18 +5,18 @@
 # Column types: cccc
 # ----------
 supplysector,subsector,technology,input.name
-refining,biomass liquids,oilcrop biodiesel,regional biomassOil oilcrop
-refining,biomass liquids,oilpalm biodiesel,regional biomassOil oilpalm
+oilcrop biodiesel,oilcrop biodiesel,oilcrop biodiesel,regional biomassOil oilcrop
+oilpalm biodiesel,oilpalm biodiesel,oilpalm biodiesel,regional biomassOil oilpalm
 soybean biodiesel,soybean biodiesel,soybean biodiesel,regional biomassOil soybean
-refining,biomass liquids,rapeseed biodiesel,regional biomassOil rapeseed
-refining,biomass liquids,cellulosic ethanol,regional biomass
-refining,biomass liquids,cellulosic ethanol CCS level 1,regional biomass
-refining,biomass liquids,cellulosic ethanol CCS level 2,regional biomass
-refining,biomass liquids,corn ethanol,regional corn for ethanol
+rapeseed biodiesel,rapeseed biodiesel,rapeseed biodiesel,regional biomassOil rapeseed
+cellulosic ethanol,cellulosic ethanol,cellulosic ethanol,regional biomass
+cellulosic ethanol,cellulosic ethanol,cellulosic ethanol CCS level 1,regional biomass
+cellulosic ethanol,cellulosic ethanol,cellulosic ethanol CCS level 2,regional biomass
+corn ethanol,corn ethanol,corn ethanol,regional corn for ethanol
 refining,biomass liquids,FT biofuels,regional biomass
 refining,biomass liquids,FT biofuels CCS level 1,regional biomass
 refining,biomass liquids,FT biofuels CCS level 2,regional biomass
-refining,biomass liquids,sugar cane ethanol,regional sugar for ethanol
+sugar cane ethanol,sugar cane ethanol,sugar cane ethanol,regional sugar for ethanol
 refining,coal to liquids,coal to liquids,regional coal
 refining,coal to liquids,coal to liquids CCS level 1,regional coal
 refining,coal to liquids,coal to liquids CCS level 2,regional coal

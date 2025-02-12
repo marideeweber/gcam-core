@@ -18,6 +18,7 @@ gas pipeline,gas pipeline,start-year,,1
 wholesale gas,wholesale gas,start-year,,1
 delivered gas,delivered gas,start-year,,1
 refined liquids enduse,refined oil,start-year,,1
+refined liquids enduse,ethanol,start-year,,0.5
 refined liquids enduse,biodiesel,start-year,,0.5
 refined liquids industrial,refined liquids industrial,start-year,,1
 backup_electricity,hydrogen,start-year,,1

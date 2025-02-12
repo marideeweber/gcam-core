@@ -16,23 +16,23 @@ refining,coal to liquids,coal to liquids,regional coal,2.112,2.112,1.959
 refining,coal to liquids,coal to liquids CCS level 1,regional coal,2.196,2.196,2.037
 refining,coal to liquids,coal to liquids CCS level 2,regional coal,2.323,2.323,2.155
 refining,gas to liquids,gas to liquids,regional natural gas,1.654,1.654,1.534
-refining,biomass liquids,cellulosic ethanol,regional biomass,2.057,2.057,1.771
-refining,biomass liquids,cellulosic ethanol CCS level 1,regional biomass,2.139,2.139,1.842
-refining,biomass liquids,cellulosic ethanol CCS level 2,regional biomass,2.263,2.263,1.948
+cellulosic ethanol,cellulosic ethanol,cellulosic ethanol,regional biomass,2.057,2.057,1.771
+cellulosic ethanol,cellulosic ethanol,cellulosic ethanol CCS level 1,regional biomass,2.139,2.139,1.842
+cellulosic ethanol,cellulosic ethanol,cellulosic ethanol CCS level 2,regional biomass,2.263,2.263,1.948
 refining,biomass liquids,FT biofuels,regional biomass,1.961,1.961,1.739
 refining,biomass liquids,FT biofuels CCS level 1,regional biomass,2.039,2.039,1.809
 refining,biomass liquids,FT biofuels CCS level 2,regional biomass,2.157,2.157,1.913
-refining,biomass liquids,corn ethanol,regional corn for ethanol,1,1,1
-refining,biomass liquids,corn ethanol,wholesale gas,0.318,0.318,0.318
-refining,biomass liquids,corn ethanol,elect_td_ind,0.026,0.026,0.026
-refining,biomass liquids,sugar cane ethanol,regional sugar for ethanol,1,1,1
+corn ethanol,corn ethanol,corn ethanol,regional corn for ethanol,1,1,1
+corn ethanol,corn ethanol,corn ethanol,wholesale gas,0.318,0.318,0.318
+corn ethanol,corn ethanol,corn ethanol,elect_td_ind,0.026,0.026,0.026
+sugar cane ethanol,sugar cane ethanol,sugar cane ethanol,regional sugar for ethanol,1,1,1
 soybean biodiesel,soybean biodiesel,soybean biodiesel,regional biomassOil soybean,1.0309,1.0309,1.03
 soybean biodiesel,soybean biodiesel,soybean biodiesel,wholesale gas,0.05767,0.05767,0.06
-refining,biomass liquids,rapeseed biodiesel,regional biomassOil rapeseed,1.0309,1.0309,1.03
-refining,biomass liquids,rapeseed biodiesel,wholesale gas,0.05767,0.05767,0.06
-refining,biomass liquids,oilpalm biodiesel,regional biomassOil oilpalm,1.0309,1.0309,1.03
-refining,biomass liquids,oilpalm biodiesel,wholesale gas,0.05767,0.05767,0.06
-refining,biomass liquids,oilcrop biodiesel,regional biomassOil oilcrop,1.0309,1.0309,1.03
-refining,biomass liquids,oilcrop biodiesel,wholesale gas,0.05767,0.05767,0.06
+rapeseed biodiesel,rapeseed biodiesel,rapeseed biodiesel,regional biomassOil rapeseed,1.0309,1.0309,1.03
+rapeseed biodiesel,rapeseed biodiesel,rapeseed biodiesel,wholesale gas,0.05767,0.05767,0.06
+oilpalm biodiesel,oilpalm biodiesel,oilpalm biodiesel,regional biomassOil oilpalm,1.0309,1.0309,1.03
+oilpalm biodiesel,oilpalm biodiesel,oilpalm biodiesel,wholesale gas,0.05767,0.05767,0.06
+oilcrop biodiesel,oilcrop biodiesel,oilcrop biodiesel,regional biomassOil oilcrop,1.0309,1.0309,1.03
+oilcrop biodiesel,oilcrop biodiesel,oilcrop biodiesel,wholesale gas,0.05767,0.05767,0.06
 refining,biomass liquids,BTL with hydrogen,H2 industrial,0.816228052,0.816228052,0.816228052
 refining,biomass liquids,BTL with hydrogen,regional biomass,1.031914894,1.031914894,1.031914894
