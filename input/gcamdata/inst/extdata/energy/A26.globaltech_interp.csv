@@ -1,0 +1,7 @@
+# File: A26.globaltech_interp.csv
+# Title: Energy distribution technology interpolation functions
+# Units: NA
+# Column types: ccccccc 
+# ----------
+supplysector,subsector,technology,apply.to,from.year,to.year,interpolation.function
+refined liquids enduse,biodiesel,soybean biodiesel refining,share-weight,final-calibration-year,end-year,fixed
