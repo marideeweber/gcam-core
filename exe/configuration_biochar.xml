@@ -5,7 +5,7 @@
 		<Value name="BatchFileName">batch_ag.xml</Value>
 		<Value name="policy-target-file">../input/policy/forcing_target_4p5.xml</Value>
 		<Value name="GHGInputFileName">../input/magicc/inputs/input_gases.emk</Value>
-		<Value write-output="1" append-scenario-name="0" name="xmldb-location">../output/testbiomass</Value>
+		<Value write-output="1" append-scenario-name="0" name="xmldb-location">../output/mult_path</Value>
 		<Value write-output="1" append-scenario-name="0" name="restart">./restart/restart</Value>
 		<Value write-output="1" append-scenario-name="1" name="xmlDebugFileName">debug.xml</Value>
 		<Value write-output="1" append-scenario-name="0" name="climatFileName">gas.emk</Value>
@@ -117,7 +117,7 @@
 		<Value name = "ag_water_biochar">../input/gcamdata/xml/biochar_ag_water_input_IRR_MGMT.xml</Value>
 		<Value name = "co_products_biochar">../input/gcamdata/xml/biochar_co_products.xml</Value>
 
-		<Value name = "carbon_penny">../input/extra/biochar/carbon_price_penny.xml</Value>
+		<Value name = "carbon_penny">../input/extra/biochar/carbon_price_50_2050.xml</Value>
 		<Value name = "biomass_comp">../input/extra/biochar/biomass_competition.xml</Value>
 		<Value name = "biomass_comp">../input/extra/biochar/biomass_for_biochar_passthru.xml</Value>
 
@@ -125,7 +125,7 @@
 		
 	</ScenarioComponents>
 	<Strings>
-		<Value name="scenarioName">Reference</Value>
+		<Value name="scenarioName">Carbon</Value>
 		<Value name="debug-region">USA</Value>
 		<Value name="MAGICC-input-dir">../input/magicc/inputs</Value>
 		<Value name="MAGICC-output-dir">../output</Value>
