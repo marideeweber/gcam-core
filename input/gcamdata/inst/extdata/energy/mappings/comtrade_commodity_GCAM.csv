@@ -1,0 +1,41 @@
+# File: comtrade_commodity_GCAM.csv
+# Title: Mapping between Comtrade commodity codes and GCAM goods
+# Source: UN Comtrade
+# Units: NA
+# Column types: icc
+# ----------
+Commodity_Code,Description,GCAM_commodity
+220720,"Ethyl alcohol and other spirits; denatured, of any strength",ethanol
+2707,Oils and other products of the distillation of high temperature coal tar; similar products in which the weight of the aromatic constituents exceeds that of the non-aromatic constituents,ctl
+270710,Oils and products of the distillation of high temperature coal tar; benzole,ctl
+270720,Oils and products of the distillation of high temperature coal tar; toluole,ctl
+270730,Oils and products of the distillation of high temperature coal tar; xylole,ctl
+270740,Oils and products of the distillation of high temperature coal tar; naphthalene,ctl
+270750,"Aromatic hydrocarbon mixtures; n.e.s. in heading no. 2707, of which 65% or more by volume (including losses) distils at 250 degrees celsius by the ASTM D 86 method",ctl
+270760,Oils and other products of the distillation of high temperature coal tar; phenols,ctl
+270791,Oils and other products of the distillation of high temperature coal tar; creosote oils,ctl
+270799,Oils and other products of the distillation of high temperature coal tar; n.e.s. in heading no. 2707,ctl
+2709,Petroleum oils and oils obtained from bituminous minerals; crude,crude oil
+270900,"Oils; petroleum oils and oils obtained from bituminous minerals, crude",crude oil
+2710,"Petroleum oils, oils from bituminous minerals, not crude; preparations n.e.s. containing less than 70% petroleum oils, oils from bituminous minerals; these being the basic constituents of the preparations",refining
+271000,"Oils; petroleum oils and oils obtained from bituminous minerals, not crude; preparations n.e.s., containing by weight 70% or more of petroleum oils or oils obtained from bituminous minerals",refining
+271011,Aviation spirit **LEGACY NON-WCO CODE**,refining
+271012,Petroleum spirit for motor vehicles **LEGACY NON-WCO CODE**,refining
+271013,Petroleum spirit except aviation or motor fuel **LEGACY NON-WCO CODE**,refining
+271014,Petroleum spirit-type fuel **LEGACY NON-WCO CODE**,refining
+271015,White spirit **LEGACY NON-WCO CODE**,refining
+271016,Petroleum naphtha **LEGACY NON-WCO CODE**,refining
+271019,Light petroleum distillates nes **LEGACY NON-WCO CODE**,refining
+271021,Kerosene jet fuel **LEGACY NON-WCO CODE**,refining
+271022,"Kerosene, for furnaces **LEGACY NON-WCO CODE**",refining
+271025,"Kerosene lamp oil, motor kerosene, light diesel, etc **LEGACY NON-WCO CODE**",refining
+271026,"Gas oils - bunker oil, No.1 furnace, motor diesel **LEGACY NON-WCO CODE**",refining
+271027,"Diesel oils- No.2 furnace, marine diesel **LEGACY NON-WCO CODE**",refining
+271029,"Fuel oils nes, heavy distillates **LEGACY NON-WCO CODE**",refining
+271091,Heavy furnace oil (heating or motor fuel) <1% sulphur **LEGACY NON-WCO CODE**,refining
+271093,Heavy furnace oil nes **LEGACY NON-WCO CODE**,refining
+271094,Petroleum oil used in road building **LEGACY NON-WCO CODE**,refining
+271095,Petroleum lubricating oils **LEGACY NON-WCO CODE**,refining
+271096,Petroleum lubricating greases **LEGACY NON-WCO CODE**,refining
+271099,Petroleum oils and products nes **LEGACY NON-WCO CODE**,refining
+3826,Biodiesel and mixtures thereof; not containing or containing less than 70% by weight of petroleum oils or oils obtained from bituminous minerals,biodiesel

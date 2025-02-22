@@ -57,6 +57,7 @@ module_energy_L232.other_industry <- function(command, ...) {
              FILE = "energy/A32.demand",
              "L127.in_EJ_R_indchp_F_Yh",
              "L1328.in_EJ_R_indenergy_F_Yh",
+             "L1329.in_EJ_R_indenergy_F_Yh",
              "L1324.in_EJ_R_indfeed_F_Yh",
              FILE = "socioeconomics/A32.inc_elas_output",
              "L101.Pop_thous_GCAM3_R_Y",
@@ -119,6 +120,10 @@ module_energy_L232.other_industry <- function(command, ...) {
     L101.Pop_thous_GCAM3_R_Y <- get_data(all_data, "L101.Pop_thous_GCAM3_R_Y")
     L102.pcgdp_thous90USD_GCAM3_R_Y <- get_data(all_data, "L102.pcgdp_thous90USD_GCAM3_R_Y")
     L102.pcgdp_thous90USD_Scen_R_Y <- get_data(all_data, "L102.pcgdp_thous90USD_Scen_R_Y")
+
+
+    L1329.in_EJ_R_indenergy_F_Yh <- get_data(all_data, "L1329.in_EJ_R_indenergy_F_Yh")
+    L1328.in_EJ_R_indenergy_F_Yh <- L1329.in_EJ_R_indenergy_F_Yh
 
     # ===================================================
     # 0. Give binding for variable names used in pipeline

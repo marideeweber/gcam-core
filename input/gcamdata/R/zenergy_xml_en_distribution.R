@@ -13,7 +13,8 @@
 module_energy_en_distribution_xml <- function(command, ...) {
 
   MODULE_INPUTS <-
-    c("L226.Supplysector_en",
+    c(FILE = "common/GCAM_region_names",
+      "L226.Supplysector_en",
       "L226.SubsectorLogit_en",
       "L226.SubsectorShrwt_en",
       "L226.SubsectorShrwtFllt_en",
@@ -27,12 +28,19 @@ module_energy_en_distribution_xml <- function(command, ...) {
       "L226.StubTechCoef_elecownuse",
       "L226.StubTechCoef_electd",
       "L226.StubTechCoef_gaspipe",
-      "L222.StubTechProd_refining",
       "L254.StubTranTechCalInput",
-      "L244.StubTechCalInput_bld")
+      "L244.StubTechCalInput_bld",
+
+      # temp include the residual energy inputs into other_ind
+      "L1328.in_EJ_R_indenergy_F_Yh",
+      #"L131.in_EJ_R_Senduse_F_Yh",
+      "L2262.Production_refinedLiquids_tra",
+      "L2262.Production_refinedLiquids_reg_imp",
+      "L2262.Production_refinedLiquids_reg_dom")
 
   MODULE_OUTPUTS <-
-    c(XML = "en_distribution.xml")
+    c(XML = "en_distribution.xml",
+      "L1329.in_EJ_R_indenergy_F_Yh")
 
   if(command == driver.DECLARE_INPUTS) {
     return(MODULE_INPUTS)
@@ -45,6 +53,78 @@ module_energy_en_distribution_xml <- function(command, ...) {
     # Load required inputs ----
     get_data_list(all_data, MODULE_INPUTS, strip_attributes = TRUE)
 
+    # Calculate net trade again based on the final values
+    L2262.Production_refinedLiquids_tra %>%
+      group_by(year, subsector) %>%
+      mutate(region = gsub(supplysector, "", subsector),
+             region = gsub(" $", "", region),
+             sector = gsub("traded ", "", supplysector)) %>%
+      ungroup() %>%
+      select(region, year, sector, export = calOutputValue) %>%
+      full_join(
+        L2262.Production_refinedLiquids_reg_imp %>%
+          mutate(sector = gsub("regional ", "", supplysector)) %>%
+          select(region, year, sector, import = calOutputValue),
+        by = c("region", "year", "sector")
+      ) %>%
+      replace_na(list(export = 0, import = 0)) %>%
+      mutate(netexport = export - import) %>%
+      filter(netexport != 0) ->
+      refinedLiquids_netexport
+
+    # remove trade data for refined oil
+    refinedLiquids_netexport %>% filter(sector != "refined oil") ->
+      refinedLiquids_netexport
+
+    L1328.in_EJ_R_indenergy_F_Yh %>%
+      filter(fuel == "refined liquids") %>%
+      group_by(GCAM_region_ID, fuel, sector, year) %>%
+      summarize(value = sum(value), .groups = "drop") %>%
+      left_join_error_no_match(GCAM_region_names, by = "GCAM_region_ID") %>%
+      left_join(
+        refinedLiquids_netexport %>%
+          group_by(region, year) %>%
+          summarize(netexport = sum(netexport), .groups = "drop"),
+        by = c("year", "region")) %>%
+      replace_na(list(netexport = 0)) %>%
+      mutate(value = value - netexport) %>%
+      select(-netexport, -region) ->
+        L1328.in_EJ_R_indenergy_F_Yh_refinedliquids_adj
+
+
+    L1328.in_EJ_R_indenergy_F_Yh_refinedliquids_adj %>%
+      mutate(value = pmax(0, value)) ->
+      L1328.in_EJ_R_indenergy_F_Yh_refinedliquids_adj
+
+
+    L1328.in_EJ_R_indenergy_F_Yh %>%
+      filter(fuel != "refined liquids") %>%
+      bind_rows(
+        L1328.in_EJ_R_indenergy_F_Yh_refinedliquids_adj
+      ) ->
+      L1329.in_EJ_R_indenergy_F_Yh
+
+
+    # calculate regional biofuels
+    L2262.Production_refinedLiquids_reg_imp %>%
+      bind_rows(L2262.Production_refinedLiquids_reg_dom) %>%
+      group_by(region, year, minicam.energy.input = supplysector) %>%
+      summarize(calOutputValue = sum(calOutputValue), .groups = "drop") %>%
+      filter(minicam.energy.input != "regional refined oil") %>%
+      left_join_error_no_match(
+        L226.GlobalTechEff_en %>%
+          filter(sector.name != "refined liquids industrial") %>%
+          transmute(supplysector = sector.name,
+                    subsector = subsector.name,
+                    stub.technology = technology,
+                    minicam.energy.input, year),
+        by = c("year", "minicam.energy.input")) %>%
+      mutate(share.weight.year = year,
+             tech.share.weight = if_else(calOutputValue > 0, 1, 0),
+             subs.share.weight = tech.share.weight) %>%
+      select(-minicam.energy.input) ->
+      L2262.StubTechConsumption_refining_biofuels
+
 
     # right balance of refined liquids enduse demand
     # As we move 1G biofuels up in the nesting to be directly compete with
@@ -52,7 +132,7 @@ module_energy_en_distribution_xml <- function(command, ...) {
     # Now refined oil, biodiesel, and other biofuels are aggregated into
     # "refined liquids enduse".
 
-    # For some reason, we need the data for iniital calibration
+    # For some reason, we need the data for initial calibration
     # likely because "refined liquids enduse" is consumed in multiple placed
     # and the subsector input "refined oil" is also consumed in multiple places
     # ("refined liquids industrial" and "refined liquids enduse")
@@ -60,6 +140,17 @@ module_energy_en_distribution_xml <- function(command, ...) {
 
 
     # "refined liquids enduse" is used in 2 places:
+
+    # WRONG METHODS
+    # L131.in_EJ_R_Senduse_F_Yh %>%
+    #   filter(grepl("bld|trn", sector)) %>%
+    #   left_join_error_no_match(GCAM_region_names, by = "GCAM_region_ID") %>%
+    #   filter(fuel == "refined liquids", year %in% MODEL_BASE_YEARS) %>%
+    #   group_by(region, year) %>%
+    #   summarize(value = sum(value), .groups = "drop") ->
+    #   L226.StubTechProd_RefinedLiquidsEnduse1
+
+    # Alternatively:
     # transportation (L254.StubTranTechCalInput)
     # and building (L244.StubTechCalInput_bld)
     # we need to calculate the values used there.
@@ -80,43 +171,32 @@ module_energy_en_distribution_xml <- function(command, ...) {
       summarize(calOutputValue = sum(value), .groups = "drop") ->
       L226.StubTechProd_RefinedLiquidsEnduse
 
-    # The we need to split "refined liquids enduse" by "biodiesel and "refined oil"
+
+    # Then we need to split "refined liquids enduse" by "biodiesel", "ethanol" and "refined oil"
 
     #  This is biodiesel data
-    L222.StubTechProd_refining %>%
-      filter(grepl("biodiesel", supplysector)) %>%
-      mutate(supplysector = "refined liquids enduse", subsector = "biodiesel",
-             stub.technology = paste0(stub.technology, " refining")) %>%
-      rename(share.weight.year = year.share.weight, tech.share.weight = share.weight) ->
+    L2262.StubTechConsumption_refining_biofuels %>%
+      filter(subsector == "biodiesel")%>%
+      group_by(region, year, subsector) %>%
+      mutate(subs.share.weight = if_else(sum(calOutputValue)>0, 1, 0)) %>%
+      ungroup() ->
       L226.StubTechProd_biodiesel
 
-    L226.StubTechProd_biodiesel %>%
-      mutate(coefficient = 1, market.name = region,
-             minicam.energy.input = gsub(" refining", "", stub.technology)) %>%
-      select(names(L226.StubTechCoef_gaspipe)) ->
-      L226.StubTechCoef_biodiesel
-
     #  This is ethanol data
-    L222.StubTechProd_refining %>%
-      filter(grepl("ethanol", supplysector)) %>%
-      mutate(supplysector = "refined liquids enduse", subsector = "ethanol",
-             stub.technology = paste0(stub.technology, " refining")) %>%
-      rename(share.weight.year = year.share.weight, tech.share.weight = share.weight) ->
+    L2262.StubTechConsumption_refining_biofuels %>%
+      filter(subsector == "ethanol") ->
       L226.StubTechProd_ethanol
-
-    L226.StubTechProd_ethanol %>%
-      mutate(coefficient = 1, market.name = region,
-             minicam.energy.input = gsub(" refining", "", stub.technology)) %>%
-      select(names(L226.StubTechCoef_gaspipe)) ->
-      L226.StubTechCoef_ethanol
 
     # add cellulosic ethanol
     L226.StubTechProd_ethanol %>%
       distinct(region, supplysector, subsector, year) %>%
       mutate(stub.technology = "cellulosic ethanol refining",
-             share.weight.year = 0, tech.share.weight = 0, subs.share.weight = tech.share.weight,
+             share.weight.year = year, tech.share.weight = 0, subs.share.weight = tech.share.weight,
              calOutputValue = 0) %>%
-      bind_rows(L226.StubTechProd_ethanol) ->
+      bind_rows(L226.StubTechProd_ethanol) %>%
+      group_by(region, year, subsector) %>%
+      mutate(subs.share.weight = if_else(sum(calOutputValue)>0, 1, 0)) %>%
+      ungroup() ->
       L226.StubTechProd_ethanol
 
     # subtract biodiesel and ethanol  from the total to get refined oil consumption
@@ -137,7 +217,7 @@ module_energy_en_distribution_xml <- function(command, ...) {
       L226.StubTechProd_refinedoil_in_RefinedLiquidsEnduse
 
 
-    # More importantly, clean up techs in refined liquids enduse
+    # Clean up techs in refined liquids enduse
 
     L226.StubTech_en %>% filter(subsector == "biodiesel") %>%
       distinct(region, subsector, stub.technology) %>%
@@ -164,17 +244,6 @@ module_energy_en_distribution_xml <- function(command, ...) {
                 by = c("region", "subsector", "stub.technology")) ->
       L226.StubTech_en
 
-    # remove interpolation when tech is zero
-    # L226.SubsectorInterp_en %>%
-    #   anti_join(
-    #     L226.StubTechProd_biodiesel %>%
-    #       filter(year == MODEL_FINAL_BASE_YEAR) %>%
-    #       group_by(region, supplysector, subsector) %>%
-    #       summarize(calOutputValue = sum(calOutputValue)) %>%
-    #       filter(calOutputValue == 0),
-    #     by = c("region", "supplysector", "subsector")
-    #   ) ->
-    #   L226.SubsectorInterp_en
 
 
     # ===================================================
@@ -220,9 +289,7 @@ module_energy_en_distribution_xml <- function(command, ...) {
       add_xml_data(L226.StubTechCoef_elecownuse, "StubTechCoef") %>%
       add_xml_data(L226.StubTechCoef_electd, "StubTechCoef") %>%
       add_xml_data(L226.StubTechCoef_gaspipe, "StubTechCoef") %>%
-      #add_xml_data(L226.StubTechCoef_biodiesel, "StubTechCoef") %>%
       add_xml_data(L226.StubTechProd_biodiesel, "StubTechProd") %>%
-      #add_xml_data(L226.StubTechCoef_ethanol, "StubTechCoef") %>%
       add_xml_data(L226.StubTechProd_ethanol, "StubTechProd") %>%
       add_xml_data(L226.StubTechProd_refinedoil_in_RefinedLiquidsEnduse, "StubTechProd") %>%
       add_precursors(MODULE_INPUTS) ->

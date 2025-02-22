@@ -37,8 +37,7 @@ module_emissions_all_energy_emissions_xml <- function(command, ...) {
     return(input_names)
   } else if(command == driver.DECLARE_OUTPUTS) {
     return(c(XML = "all_energy_emissions.xml",
-             XML = "all_energy_emissions_MAC.xml",
-             XML = "all_energy_emissions_adder.xml"))
+             XML = "all_energy_emissions_MAC.xml"))
   } else if(command == driver.MAKE) {
 
     all_data <- list(...)[[1]]
@@ -90,10 +89,10 @@ module_emissions_all_energy_emissions_xml <- function(command, ...) {
       add_xml_data(L232.nonco2_prc, "StbTechOutputEmissions") %>%
       add_xml_data(L232.nonco2_max_reduction, "GDPCtrlMax") %>%
       add_xml_data(L232.nonco2_steepness, "GDPCtrlSteep") %>%
-      # add_xml_data(L241.nonco2_tech_coeff, "InputEmissCoeff") %>%
-      # add_xml_data(L241.OutputEmissCoeff_elec, "OutputEmissCoeff") %>%
-      # add_xml_data(L241.nonco2_max_reduction, "GDPCtrlMax") %>%
-      # add_xml_data(L241.nonco2_steepness, "GDPCtrlSteep") %>%
+      add_xml_data(L241.nonco2_tech_coeff, "InputEmissCoeff") %>%
+      add_xml_data(L241.OutputEmissCoeff_elec, "OutputEmissCoeff") %>%
+      add_xml_data(L241.nonco2_max_reduction, "GDPCtrlMax") %>%
+      add_xml_data(L241.nonco2_steepness, "GDPCtrlSteep") %>%
       add_precursors("L201.en_pol_emissions", "L201.en_ghg_emissions",
                      "L201.en_iron_and_steel_ef", "L201.OutputEmissions_elec",
                      "L201.nonghg_max_reduction", "L201.nonghg_steepness", "L201.nonghg_max_reduction_res",
@@ -103,21 +102,6 @@ module_emissions_all_energy_emissions_xml <- function(command, ...) {
                      "L241.OutputEmissCoeff_elec", "L241.nonco2_max_reduction", "L241.nonco2_steepness") ->
       all_energy_emissions.xml
 
-    # XZ for whatever reason, GCAM would stop parsing this file if not separating them
-    create_xml("all_energy_emissions_adder.xml") %>%
-      add_xml_data(L241.nonco2_tech_coeff, "InputEmissCoeff") %>%
-      add_xml_data(L241.OutputEmissCoeff_elec, "OutputEmissCoeff") %>%
-      add_xml_data(L241.nonco2_max_reduction, "GDPCtrlMax") %>%
-      add_xml_data(L241.nonco2_steepness, "GDPCtrlSteep") %>%
-      add_precursors("L241.nonco2_tech_coeff",
-                     "L241.OutputEmissCoeff_elec", "L241.nonco2_max_reduction", "L241.nonco2_steepness") ->
-      all_energy_emissions_adder.xml
-
-    # need to call add_precursors indirectly to ensure input_names gets "unlisted"
-    #all_energy_emissions.xml <- do.call("add_precursors", c(list(all_energy_emissions.xml), input_names))
-
-
-
     create_xml("all_energy_emissions_MAC.xml") %>%
       add_xml_data(L252.ResMAC_fos, "ResMAC") %>%
       add_xml_data(L252.ResMAC_fos_tc_average, "ResMACTC") %>%
@@ -126,8 +110,7 @@ module_emissions_all_energy_emissions_xml <- function(command, ...) {
       all_energy_emissions_MAC.xml
 
     return_data(all_energy_emissions.xml,
-                all_energy_emissions_MAC.xml,
-                all_energy_emissions_adder.xml)
+                all_energy_emissions_MAC.xml)
   } else {
     stop("Unknown command")
   }

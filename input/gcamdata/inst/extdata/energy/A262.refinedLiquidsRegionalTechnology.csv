@@ -1,0 +1,22 @@
+# File: A262.refinedLiquidsRegionalTechnology.csv
+# Title: Technology-level assumptions of regional refined oil markets
+# Units: Various
+# Comments: pass-through subsectors; there is no technology competition
+# Source: NA
+# Column types: ccccnnnc 
+# ----------
+supplysector,subsector,technology,minicam.energy.input,coefficient,input.cost,share.weight,market.name
+regional refined oil,domestic refined oil,domestic refined oil,refining,1,0,1,regional
+regional refined oil,imported refined oil,imported refined oil,traded refined oil,1,0,1,USA
+regional corn ethanol,domestic corn ethanol,domestic corn ethanol,corn ethanol,1,0,1,regional
+regional corn ethanol,imported corn ethanol,imported corn ethanol,traded corn ethanol,1,0,1,USA
+regional sugar cane ethanol,domestic sugar cane ethanol,domestic sugar cane ethanol,sugar cane ethanol,1,0,1,regional
+regional sugar cane ethanol,imported sugar cane ethanol,imported sugar cane ethanol,traded sugar cane ethanol,1,0,1,USA
+regional oilcrop biodiesel,domestic oilcrop biodiesel,domestic oilcrop biodiesel,oilcrop biodiesel,1,0,1,regional
+regional oilpalm biodiesel,domestic oilpalm biodiesel,domestic oilpalm biodiesel,oilpalm biodiesel,1,0,1,regional
+regional rapeseed biodiesel,domestic rapeseed biodiesel,domestic rapeseed biodiesel,rapeseed biodiesel,1,0,1,regional
+regional soybean biodiesel,domestic soybean biodiesel,domestic soybean biodiesel,soybean biodiesel,1,0,1,regional
+regional oilcrop biodiesel,imported oilcrop biodiesel,imported oilcrop biodiesel,traded oilcrop biodiesel,1,0,1,USA
+regional oilpalm biodiesel,imported oilpalm biodiesel,imported oilpalm biodiesel,traded oilpalm biodiesel,1,0,1,USA
+regional rapeseed biodiesel,imported rapeseed biodiesel,imported rapeseed biodiesel,traded rapeseed biodiesel,1,0,1,USA
+regional soybean biodiesel,imported soybean biodiesel,imported soybean biodiesel,traded soybean biodiesel,1,0,1,USA
