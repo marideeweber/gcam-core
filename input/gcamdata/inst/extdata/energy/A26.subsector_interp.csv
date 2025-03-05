@@ -16,8 +16,6 @@ gas pipeline,gas pipeline,share-weight,final-calibration-year,end-year,,linear
 wholesale gas,wholesale gas,share-weight,final-calibration-year,end-year,,linear
 delivered gas,delivered gas,share-weight,final-calibration-year,end-year,,linear
 refined liquids enduse,refined oil,share-weight,final-calibration-year,end-year,,linear
-refined liquids enduse,ethanol,share-weight,final-calibration-year,initial-future-year,,fixed
-refined liquids enduse,ethanol,share-weight,initial-future-year,end-year,,linear
 refined liquids enduse,biodiesel,share-weight,final-calibration-year,initial-future-year,,fixed
 refined liquids enduse,biodiesel,share-weight,initial-future-year,end-year,,linear
 refined liquids industrial,refined liquids industrial,share-weight,final-calibration-year,end-year,,linear

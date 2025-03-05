@@ -31,6 +31,8 @@ module_energy_en_distribution_xml <- function(command, ...) {
       "L254.StubTranTechCalInput",
       "L244.StubTechCalInput_bld",
 
+      "L2261.GlobalTechEff_en",
+
       # temp include the residual energy inputs into other_ind
       "L1328.in_EJ_R_indenergy_F_Yh",
       #"L131.in_EJ_R_Senduse_F_Yh",
@@ -113,6 +115,7 @@ module_energy_en_distribution_xml <- function(command, ...) {
       filter(minicam.energy.input != "regional refined oil") %>%
       left_join_error_no_match(
         L226.GlobalTechEff_en %>%
+          bind_rows(L2261.GlobalTechEff_en %>% filter(subsector.name == "ethanol")) %>%
           filter(sector.name != "refined liquids industrial") %>%
           transmute(supplysector = sector.name,
                     subsector = subsector.name,
@@ -171,6 +174,16 @@ module_energy_en_distribution_xml <- function(command, ...) {
       summarize(calOutputValue = sum(value), .groups = "drop") ->
       L226.StubTechProd_RefinedLiquidsEnduse
 
+    L254.StubTranTechCalInput %>%
+      # there are multiple sce (scenarios), any one would work
+      filter(sce == "CORE",
+             minicam.energy.input == "refined liquids gasoline pool") %>%
+      group_by(region, year) %>%
+      summarize(value = sum(calibrated.value), .groups = "drop") %>%
+      group_by(region, year) %>%
+      summarize(calOutputValue = sum(value), .groups = "drop") ->
+      L226.StubTechProd_RefinedLiquidsGasPool
+
 
     # Then we need to split "refined liquids enduse" by "biodiesel", "ethanol" and "refined oil"
 
@@ -201,8 +214,9 @@ module_energy_en_distribution_xml <- function(command, ...) {
 
     # subtract biodiesel and ethanol  from the total to get refined oil consumption
 
+    # ethanol is now in gasoline pool
     L226.StubTechProd_biodiesel %>%
-      bind_rows(L226.StubTechProd_ethanol) %>%
+      #bind_rows(L226.StubTechProd_ethanol) %>%
       select(names(L226.StubTechProd_RefinedLiquidsEnduse)) %>%
       mutate(calOutputValue = -calOutputValue) %>%
       bind_rows(L226.StubTechProd_RefinedLiquidsEnduse) %>%
@@ -215,6 +229,22 @@ module_energy_en_distribution_xml <- function(command, ...) {
              tech.share.weight = if_else(calOutputValue > 0, 1, 0),
              subs.share.weight = tech.share.weight) ->
       L226.StubTechProd_refinedoil_in_RefinedLiquidsEnduse
+
+
+    # do the same for refined oil in gasoline pool
+    L226.StubTechProd_ethanol %>%
+      select(names(L226.StubTechProd_RefinedLiquidsGasPool)) %>%
+      mutate(calOutputValue = -calOutputValue) %>%
+      bind_rows(L226.StubTechProd_RefinedLiquidsGasPool) %>%
+      group_by_at(vars(-calOutputValue)) %>%
+      summarize(calOutputValue = sum(calOutputValue), .groups = "drop") %>%
+      mutate(supplysector = "refined liquids gasoline pool",
+             subsector = "refined oil",
+             stub.technology = "refined oil",
+             share.weight.year = year,
+             tech.share.weight = if_else(calOutputValue > 0, 1, 0),
+             subs.share.weight = tech.share.weight) ->
+      L226.StubTechProd_refinedoil_in_RefinedLiquidsGasPool
 
 
     # Clean up techs in refined liquids enduse
@@ -292,6 +322,7 @@ module_energy_en_distribution_xml <- function(command, ...) {
       add_xml_data(L226.StubTechProd_biodiesel, "StubTechProd") %>%
       add_xml_data(L226.StubTechProd_ethanol, "StubTechProd") %>%
       add_xml_data(L226.StubTechProd_refinedoil_in_RefinedLiquidsEnduse, "StubTechProd") %>%
+      add_xml_data(L226.StubTechProd_refinedoil_in_RefinedLiquidsGasPool, "StubTechProd") %>%
       add_precursors(MODULE_INPUTS) ->
       en_distribution.xml
 

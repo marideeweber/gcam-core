@@ -17,9 +17,6 @@ gas pipeline,gas pipeline,gas pipeline,gas processing,1,1,1
 wholesale gas,wholesale gas,wholesale gas,gas pipeline,1,1,1
 delivered gas,delivered gas,delivered gas,gas pipeline,1,1,1
 refined liquids enduse,refined oil,refined oil,refining,1,1,1
-refined liquids enduse,ethanol,corn ethanol refining,regional corn ethanol,1,1,1
-refined liquids enduse,ethanol,sugar cane ethanol refining,regional sugar cane ethanol,1,1,1
-refined liquids enduse,ethanol,cellulosic ethanol refining,cellulosic ethanol,1,1,1
 refined liquids enduse,biodiesel,soybean biodiesel refining,regional soybean biodiesel,1,1,1
 refined liquids enduse,biodiesel,oilcrop biodiesel refining,regional oilcrop biodiesel,1,1,1
 refined liquids enduse,biodiesel,rapeseed biodiesel refining,regional rapeseed biodiesel,1,1,1
