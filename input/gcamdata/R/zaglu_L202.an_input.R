@@ -656,7 +656,7 @@ module_aglu_L202.an_input <- function(command, ...) {
 
 
     L202.ag_Feed_P_share_R_C %>%
-      # not all stub.technology values are present as commodities in the price data; DDGS and feedcakes return NA and are dropped
+      # not all stub.technology values are present as commodities in the price data; DDGS return NA and are dropped
       left_join(L202.ag_Feed_Prices, by = c("region", "stub.technology" = "GCAM_commodity")) %>%
       drop_na(price) ->
       L202.ag_Feed_P_share_R_C

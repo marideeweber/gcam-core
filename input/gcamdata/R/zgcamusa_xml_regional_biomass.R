@@ -19,7 +19,6 @@ module_gcamusa_regional_biomass_xml <- function(command, ...) {
              "L2261.SubsectorLogit_bio_USA",
              "L2261.StubTech_bio_USA",
              "L2261.StubTechMarket_bio_USA",
-             "L2261.StubTechCoef_bioOil_USA",
              "L2261.StubTechShrwt_rbO_USA",
              "L2261.StubTechFractSecOut_bio_USA",
              "L2261.StubTechFractProd_bio_USA",
@@ -57,7 +56,6 @@ module_gcamusa_regional_biomass_xml <- function(command, ...) {
     L2261.SubsectorLogit_bio_USA <- get_data(all_data, "L2261.SubsectorLogit_bio_USA")
     L2261.StubTech_bio_USA <- get_data(all_data, "L2261.StubTech_bio_USA")
     L2261.StubTechMarket_bio_USA <- get_data(all_data, "L2261.StubTechMarket_bio_USA")
-    L2261.StubTechCoef_bioOil_USA   <- get_data(all_data,"L2261.StubTechCoef_bioOil_USA")
     L2261.StubTechShrwt_rbO_USA <- get_data(all_data, "L2261.StubTechShrwt_rbO_USA")
     L2261.StubTechFractSecOut_bio_USA <- get_data(all_data, "L2261.StubTechFractSecOut_bio_USA")
     L2261.StubTechFractProd_bio_USA <- get_data(all_data, "L2261.StubTechFractProd_bio_USA")
@@ -121,7 +119,6 @@ module_gcamusa_regional_biomass_xml <- function(command, ...) {
                      "L2261.SubsectorLogit_bio_USA",
                      "L2261.StubTech_bio_USA",
                      "L2261.StubTechMarket_bio_USA",
-                     "L2261.StubTechCoef_bioOil_USA",
                      "L2261.StubTechShrwt_rbO_USA",
                      "L2261.StubTechFractSecOut_bio_USA",
                      "L2261.StubTechFractProd_bio_USA",
@@ -146,11 +143,6 @@ module_gcamusa_regional_biomass_xml <- function(command, ...) {
       regional_biomass_USA.xml
 
 
-    if (nrow(L2261.StubTechCoef_bioOil_USA)>0) {
-      regional_biomass_USA.xml %>%
-        add_xml_data(L2261.StubTechCoef_bioOil_USA, "StubTechCoef") ->
-        regional_biomass_USA.xml
-    }
 
     if (nrow(L2261.StubTechShrwt_rbO_USA)>0) {
       regional_biomass_USA.xml %>%

@@ -570,7 +570,6 @@ prebuilt_data_names <- c(
   "L121.in_EJ_R_TPES_crude_Yh",
   "L121.in_EJ_R_TPES_unoil_Yh",
   "L121.share_R_TPES_biofuel_tech",
-  "L121.BiomassOilRatios_kgGJ_R_C",
 
   # output of module_aglu_LA100.GTAP_downscale_ctry
   "L100.GTAP_capital_stock",

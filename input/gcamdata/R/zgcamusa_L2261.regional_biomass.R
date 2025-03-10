@@ -35,7 +35,6 @@ module_gcamusa_L2261.regional_biomass <- function(command, ...) {
              "L122.out_EJ_state_refining_F",
              "L202.CarbonCoef",
              "L221.GlobalTechCoef_en",
-             "L221.StubTechCoef_bioOil",
              "L221.SubsectorInterp_en",
              "L221.StubTech_en",
              "L221.StubTechShrwt_bioOil",
@@ -62,7 +61,6 @@ module_gcamusa_L2261.regional_biomass <- function(command, ...) {
              "L2261.SubsectorLogit_bio_USA",
              "L2261.StubTech_bio_USA",
              "L2261.StubTechMarket_bio_USA",
-             "L2261.StubTechCoef_bioOil_USA",
              "L2261.StubTechShrwt_rbO_USA",
              "L2261.StubTechFractSecOut_bio_USA",
              "L2261.StubTechFractProd_bio_USA",
@@ -111,8 +109,6 @@ module_gcamusa_L2261.regional_biomass <- function(command, ...) {
     L122.out_EJ_state_refining_F <- get_data(all_data, "L122.out_EJ_state_refining_F")
     L202.CarbonCoef <- get_data(all_data, "L202.CarbonCoef", strip_attributes = TRUE)
     L221.GlobalTechCoef_en <- get_data(all_data, "L221.GlobalTechCoef_en", strip_attributes = TRUE)
-    #Adding in country level co-efficients for regional oil crop
-    L221.StubTechCoef_bioOil<- get_data(all_data, "L221.StubTechCoef_bioOil", strip_attributes = TRUE)
     L221.SubsectorInterp_en <- get_data(all_data, "L221.SubsectorInterp_en", strip_attributes = TRUE)
     L221.StubTech_en <- get_data(all_data, "L221.StubTech_en", strip_attributes = TRUE)
     L221.StubTechShrwt_bioOil <- get_data(all_data, "L221.StubTechShrwt_bioOil", strip_attributes = TRUE)
@@ -201,24 +197,6 @@ module_gcamusa_L2261.regional_biomass <- function(command, ...) {
       mutate(market.name = gcam.USA_REGION) %>%
       select(LEVEL2_DATA_NAMES$StubTechMarket) -> L2261.StubTechMarket_bio_USA
 
-    # kbn 2020
-    L221.StubTechCoef_bioOil %>%
-      filter(region=="USA")->
-      L221.StubTechCoef_bioOil
-
-    if (nrow(L221.StubTechCoef_bioOil) >0) {
-      L221.StubTechCoef_bioOil %>%
-        select(-region) %>%
-        repeat_add_columns(tibble(region = gcamusa.STATES)) %>%
-        mutate(market.name = gcam.USA_REGION) %>%
-        select(LEVEL2_DATA_NAMES$StubTechCoef)->L2261.StubTechCoef_bioOil_USA
-    } else{
-      L221.StubTechCoef_bioOil %>%
-        mutate(market.name = gcam.USA_REGION) %>%
-        select(LEVEL2_DATA_NAMES$StubTechCoef)->L2261.StubTechCoef_bioOil_USA
-    }
-
-
 
     # Technology share-weights of state-level regional biomassOil sectors
     # kbn 2020-03-29 No longer writing out share-weights for some regions. But we need this for GCAM-USA
@@ -286,15 +264,15 @@ module_gcamusa_L2261.regional_biomass <- function(command, ...) {
       repeat_add_columns(tibble(region = gcamusa.STATES)) %>%
       select(LEVEL2_DATA_NAMES$StubTechInterp) -> L2261.StubTechInterp_bio_USA
 
-    # Connecting state-level DDGS & feedcakes secondary outputs to USA sector
-    # depletable resource info for state-level DDGS & feedcake secondary outputs
+    # Connecting state-level DDGS secondary outputs to USA sector
+    # depletable resource info for state-level DDGS secondary outputs
     L221.Rsrc_en %>%
       filter(region == gcam.USA_REGION) %>%
       select(-region) %>%
       repeat_add_columns(tibble(region = gcamusa.STATES)) %>%
       select(LEVEL2_DATA_NAMES$Rsrc) -> L2261.Rsrc_DDGS_USA
 
-    # Depletable resource prices for state-level DDGS & feedcake secondary outputs
+    # Depletable resource prices for state-level DDGS secondary outputs
     L221.RsrcPrice_en %>%
       filter(region == gcam.USA_REGION) %>%
       select(-region) %>%
@@ -507,16 +485,6 @@ module_gcamusa_L2261.regional_biomass <- function(command, ...) {
                      "L221.StubTech_en") ->
       L2261.StubTechMarket_bio_USA
 
-    L2261.StubTechCoef_bioOil_USA %>%
-      add_title("Technology coefficients specific crops at State-level Biomass Supply Sectors") %>%
-      add_units("NA") %>%
-      add_comments("Technology coefficients specific crops at State-level Biomass Supply Sectors") %>%
-      add_legacy_name("L2261.StubTechCoef_bioOil_USA") %>%
-      add_precursors("gcam-usa/A28.sector",
-                     "L221.StubTechCoef_bioOil") ->L2261.StubTechCoef_bioOil_USA
-
-
-
     L2261.StubTechShrwt_rbO_USA %>%
       add_title("Technology Shareweights for State-level Regional Biomass Oil Supply Sectors") %>%
       add_units("unitless") %>%
@@ -528,7 +496,7 @@ module_gcamusa_L2261.regional_biomass <- function(command, ...) {
     L2261.StubTechFractSecOut_bio_USA %>%
       add_title("Secondary Feed Outputs of State-level Biomass Supply Sectors") %>%
       add_units("fractions") %>%
-      add_comments("Secondary output (DDGS and feedcakes) generated from corn and biomassOil only") %>%
+      add_comments("Secondary output (DDGS) generated from corn and biomassOil only") %>%
       add_comments("Secondary outputs are only considered in future time periods") %>%
       add_legacy_name("L2261.StubTechFractSecOut_bio_USA") %>%
       add_precursors("gcam-usa/A28.sector",
@@ -539,7 +507,7 @@ module_gcamusa_L2261.regional_biomass <- function(command, ...) {
       add_title("Production Information for State-level Biomass Supply Sector Secondary Feed Outputs") %>%
       add_units("1975$ (price); fraction") %>%
       add_comments("Cost curve points (prices and production fraction) for producing secondary output feedcrops") %>%
-      add_comments("Secondary output (DDGS and feedcakes) generated from corn and biomassOil only") %>%
+      add_comments("Secondary output (DDGS) generated from corn and biomassOil only") %>%
       add_legacy_name("L2261.StubTechFractProd_bio_USA") %>%
       add_precursors("gcam-usa/A28.sector",
                      "L221.StubTechFractProd_en") ->
@@ -707,7 +675,6 @@ module_gcamusa_L2261.regional_biomass <- function(command, ...) {
                 L2261.SubsectorLogit_bio_USA,
                 L2261.StubTech_bio_USA,
                 L2261.StubTechMarket_bio_USA,
-                L2261.StubTechCoef_bioOil_USA,
                 L2261.StubTechShrwt_rbO_USA,
                 L2261.StubTechFractSecOut_bio_USA,
                 L2261.StubTechFractProd_bio_USA,

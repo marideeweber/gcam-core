@@ -5,4 +5,4 @@
 # Column types: ccciiiii 
 # ----------
 supplysector,subsector,technology,1971,2010,2011,2015,2100
-FeedCrops,DDGS and feedcakes,DDGS and feedcakes,0,0,1,1,1
+FeedCrops,DDGS,DDGS,0,0,1,1,1
