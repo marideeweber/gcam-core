@@ -1147,6 +1147,14 @@ module_aglu_L100.FAO_SUA_PrimaryEquivalent <- function(command, ...) {
                      "aglu/FAO/Mapping_item_FBS_GCAM") ->
       GCAM_AgLU_SUA_APE_1973_2019
 
+    GCAM_AgLU_SUA_APE_1973_2019_ProcessedUse %>%
+      add_title("GCAM_AgLU_SUA_APE_1973_2019_ProcessedUse") %>%
+      add_units("kton") %>%
+      add_comments("Supply utilization balance for processed GCAM commodities and regions in primary equivalent") %>%
+      same_precursors_as(GCAM_AgLU_SUA_APE_1973_2019) ->
+      GCAM_AgLU_SUA_APE_1973_2019_ProcessedUse
+
+
     FAO_AgProd_Kt_All %>%
       add_title("FAO_AgProd_Kt_All") %>%
       add_units("1000 tonnes") %>%

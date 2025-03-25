@@ -352,7 +352,7 @@ module_aglu_L108.ag_Feed_R_C_Y <- function(command, ...) {
       add_comments("FodderHerb: based on FAO production, but adjusted if this exceeds FodderHerb_Residue demand in IMAGE") %>%
       add_comments("Note: excess FodderGrass and FodderHerb production are mapped to OtherUses") %>%
       add_legacy_name("L108.ag_Feed_Mt_R_C_Y") %>%
-      add_precursors("common/iso_GCAM_regID", "L101.ag_Feed_Mt_R_C_Y",
+      add_precursors("common/iso_GCAM_regID", "L101.ag_Feed_Mt_R_C_Y", "L101.ag_Secondary_SUA_Mt_R_C_Y",
                      "L101.ag_Prod_Mt_R_C_Y", "L107.an_Feed_Mt_R_C_Sys_Fd_Y", "L122.FeedOut_Mt_R_C_Yh") ->
       L108.ag_Feed_Mt_R_C_Y
 

@@ -173,6 +173,7 @@ module_aglu_L113_ag_storage <- function(command, ...) {
                      "aglu/A_agStorageSector",
                      "L109.ag_ALL_Mt_R_C_Y",
                      "L109.an_ALL_Mt_R_C_Y",
+                     "L109_crushing_processed_ALL_Mt_R_C_Y",
                      "L1321.ag_prP_R_C_75USDkg",
                      "L1321.an_prP_R_C_75USDkg") ->
       L113.StorageTechAndPassThrough

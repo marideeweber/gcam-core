@@ -183,7 +183,7 @@ module_aglu_L202.an_input <- function(command, ...) {
     # Following datasets are already 'long' so just skip the old interpolate_and_melt step
     # Helper function to get_data, join with GCAM region names, and filter to base years
     get_join_filter <- function(x) {   #
-      get_data(all_data, x) %>%
+      get_data(all_data, x, strip_attributes = TRUE) %>%
         left_join_error_no_match(GCAM_region_names, by = "GCAM_region_ID") %>%
         filter(year %in% MODEL_BASE_YEARS)
     }

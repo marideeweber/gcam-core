@@ -326,6 +326,16 @@ module_energy_en_distribution_xml <- function(command, ...) {
       add_precursors(MODULE_INPUTS) ->
       en_distribution.xml
 
+    L1329.in_EJ_R_indenergy_F_Yh %>%
+      add_title("Industrial energy consumption adjusted for refined liquids trade") %>%
+      add_units("EJ") %>%
+      add_comments("Same as L1328.in_EJ_R_indenergy_F_Yh with net exports of refined liquids deducted") %>%
+      add_precursors("L1328.in_EJ_R_indenergy_F_Yh",
+                     "L2262.Production_refinedLiquids_tra",
+                     "L2262.Production_refinedLiquids_reg_imp",
+                     "L2262.Production_refinedLiquids_reg_dom") ->
+      L1329.in_EJ_R_indenergy_F_Yh
+
     return_data(MODULE_OUTPUTS)
   } else {
     stop("Unknown command")

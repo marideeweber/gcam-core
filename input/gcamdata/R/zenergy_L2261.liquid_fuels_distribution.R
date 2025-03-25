@@ -346,7 +346,7 @@ module_energy_L2261.liquid_fuels_distribution <- function(command, ...) {
                      "energy/A26.globaltech_eff",
                      "L244.StubTechCalInput_bld",
                      "L254.StubTranTechCalInput",
-                     "L122.StubTechFixOut_otherBiod",
+                     #"L122.StubTechFixOut_otherBiod",
                      "L2262.Production_refinedLiquids_reg_dom",
                      "L2262.Production_refinedLiquids_reg_imp",
                      "energy/bio_feed_mapping",
