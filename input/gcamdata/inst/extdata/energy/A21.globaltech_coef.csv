@@ -2,15 +2,15 @@
 # Title: Primary energy handling default coefficients
 # Units: Unitless
 # Source: Fine et al 2015. Food losses and waste in the french oilcrops sector. OCL.22.A302.10.1051/ocl/2015012
-# Comment: (Temp fix) soybean oil should be 25.6; we applied 0.3 to that for now since there are other non oil crop feedstock not included yet
+# Comment: (Temp fix) soybean oil should be 26.99; we applied 0.3 to that for now since there are other non oil crop feedstock not included yet
 # Column types: ccccnnn 
 # ----------
 supplysector,subsector,technology,minicam.energy.input,1971,2015,2100
 regional biomass,regional biomass,regional biomass,biomass,1,1,1
 regional corn for ethanol,regional corn for ethanol,regional corn for ethanol,regional corn,111.79,111.79,111.79
 regional sugar for ethanol,regional sugar for ethanol,regional sugar for ethanol,regional sugarcrop,582.48,582.48,582.48
-regional biomassOil oilcrop,regional biomassOil oilcrop,OilCrop oil,regional oilcrop oil,25.6,25.6,25.6
-regional biomassOil rapeseed,regional biomassOil rapeseed,Rapeseed oil,regional rapeseed oil,25.6,25.6,25.6
-regional biomassOil oilpalm,regional biomassOil oilpalm,OilPalm oil,regional oilpalm oil,25.6,25.6,25.6
+regional biomassOil oilcrop,regional biomassOil oilcrop,OilCrop oil,regional oilcrop oil,26.99,26.99,26.99
+regional biomassOil rapeseed,regional biomassOil rapeseed,Rapeseed oil,regional rapeseed oil,26.99,26.99,26.99
+regional biomassOil oilpalm,regional biomassOil oilpalm,OilPalm oil,regional oilpalm oil,26.99,26.99,26.99
 regional biomassOil soybean,regional biomassOil soybean,Soybean oil,regional soybean oil,8.533333333,8.533333333,8.533333333
 regional woodpulp for energy,regional woodpulp for energy,regional woodpulp for energy,woodpulp_energy,1,1,1
