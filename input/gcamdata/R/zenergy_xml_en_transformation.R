@@ -27,6 +27,7 @@ module_energy_en_transformation_xml <- function(command, ...) {
       "L222.GlobalTechCapture_en",
       "L222.GlobalTechSCurve_en",
       "L222.GlobalTechProfitShutdown_en",
+      "L222.StubTechLifetime_en",
       "L222.GlobalTechKeyword_en",
       "L222.StubTechProd_gasproc",
       "L222.StubTechProd_refining",
@@ -85,6 +86,7 @@ module_energy_en_transformation_xml <- function(command, ...) {
       add_xml_data(L222.GlobalTechCapture_en, "GlobalTechCapture") %>%
       add_xml_data(L222.GlobalTechSCurve_en, "GlobalTechSCurve") %>%
       add_xml_data(L222.GlobalTechProfitShutdown_en, "GlobalTechProfitShutdown") %>%
+      add_xml_data(L222.StubTechLifetime_en, "StubTechLifetime") %>%
       add_xml_data(L222.GlobalTechKeyword_en, "PrimaryConsKeyword") %>%
       add_xml_data(L222.StubTechProd_gasproc, "StubTechProd") %>%
       add_xml_data(L222.StubTechProd_refining, "StubTechProd") %>%

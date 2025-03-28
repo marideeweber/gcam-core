@@ -44,6 +44,7 @@ module_energy_L222.en_transformation <- function(command, ...) {
         FILE = "energy/A22.globaltech_interp",
         FILE = "energy/A22.globaltech_co2capture",
         FILE = "energy/A22.globaltech_retirement",
+        FILE = "energy/A22.stubtech_lifetime",
         FILE = "energy/A22.globaltech_keyword",
         "L122.out_EJ_R_gasproc_F_Yh",
         "L122.out_EJ_R_refining_F_Yh",
@@ -69,6 +70,7 @@ module_energy_L222.en_transformation <- function(command, ...) {
       "L222.GlobalTechSCurve_en",
       "L222.GlobalTechLifetime_en",
       "L222.GlobalTechProfitShutdown_en",
+      "L222.StubTechLifetime_en",
       "L222.GlobalTechKeyword_en",
       "L222.StubTechProd_gasproc",
       "L222.StubTechProd_refining",
@@ -381,6 +383,12 @@ module_energy_L222.en_transformation <- function(command, ...) {
         L222.GlobalTechProfitShutdown_en
     }
 
+    # Stub tech lifetime (in selected places)
+    L222.StubTechLifetime_en <- A22.stubtech_lifetime %>%
+      repeat_add_columns(tibble(year = c(MODEL_FINAL_BASE_YEAR, MODEL_FUTURE_YEARS))) %>%
+      rename(stub.technology = technology) %>%
+      select(LEVEL2_DATA_NAMES[["StubTechLifetime"]])
+
     # L222.GlobalTechKeyword_en: Global tech primary energy keywords to ensure first gen
     # biomass gets picked up by the primary energy queries
     A22.globaltech_keyword %>%
@@ -682,6 +690,13 @@ module_energy_L222.en_transformation <- function(command, ...) {
         add_legacy_name("energy/L222.GlobalTechProfitShutdown_en") ->
         L222.GlobalTechProfitShutdown_en
     }
+
+    L222.StubTechLifetime_en %>%
+      add_title("Stub tech lifetime in regions where specifically set") %>%
+      add_units("years") %>%
+      add_comments("Used to de-activate vintaging in selected regions") %>%
+      add_precursors("energy/A22.stubtech_lifetime") ->
+      L222.StubTechLifetime_en
 
     L222.GlobalTechKeyword_en %>%
         add_title("Global tech keywords") %>%
