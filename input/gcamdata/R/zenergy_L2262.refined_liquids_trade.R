@@ -45,6 +45,7 @@ module_energy_L2262.refined_liquids_trade <- function(command, ...) {
       "L2262.Supplysector_refinedLiquids_reg",
       "L2262.SubsectorAll_refinedLiquids_reg",
       "L2262.TechShrwt_refinedLiquids_reg",
+      "L2262.TechCost_refinedLiquids_reg",
       "L2262.TechCoef_refinedLiquids_reg",
       "L2262.Production_refinedLiquids_reg_imp",
       "L2262.Production_refinedLiquids_reg_dom")
@@ -313,10 +314,17 @@ module_energy_L2262.refined_liquids_trade <- function(command, ...) {
     A262.refinedLiquidsRegionalTechnology_R_Y <- repeat_add_columns(A262.refinedLiquidsRegionalTechnology,
                                                      tibble(year = MODEL_YEARS)) %>%
       repeat_add_columns(GCAM_region_names["region"]) %>%
-      mutate(market.name = if_else(market.name == "regional", region, market.name))
+      mutate(market.name = if_else(market.name == "regional", region, market.name)) %>%
+      filter(is.na(memo) | region == "USA" & memo == "USA only") %>%
+      select(-memo)
 
     # L2262.TechShrwt_refinedLiquids_tra: Share-weights of traded technologies
     L2262.TechShrwt_refinedLiquids_reg <- select(A262.refinedLiquidsRegionalTechnology_R_Y, LEVEL2_DATA_NAMES[["TechShrwt"]])
+
+    L2262.TechCost_refinedLiquids_reg <- A262.refinedLiquidsRegionalTechnology_R_Y %>%
+      mutate(minicam.non.energy.input = "non-energy") %>%
+      filter(input.cost != 0) %>%
+      select(LEVEL2_DATA_NAMES[["TechCost"]])
 
     # L2262.TechCoef_refinedLiquids_reg: Coefficient and market name of traded technologies
     L2262.TechCoef_refinedLiquids_reg <- select(A262.refinedLiquidsRegionalTechnology_R_Y, LEVEL2_DATA_NAMES[["TechCoef"]])
@@ -338,9 +346,10 @@ module_energy_L2262.refined_liquids_trade <- function(command, ...) {
       left_join_error_no_match(L2262.refinedLiquidsGrossImports_EJ_R_C_Y,
                                by = c("region", minicam.energy.input = "supplysector", "year")) %>%
       mutate(calOutputValue = round(gross_imports, energy.DIGITS_CALOUTPUT),
+             calOutputValue = if_else(technology != subsector, 0, calOutputValue),
              share.weight.year = year,
-             subs.share.weight = if_else(calOutputValue > 0, 1, 0),
-             tech.share.weight = subs.share.weight) %>%
+             tech.share.weight = if_else(calOutputValue > 0, 1, 0)) %>%
+      set_subsector_shrwt() %>%
       select(LEVEL2_DATA_NAMES[["Production"]])
 
 
@@ -358,6 +367,7 @@ module_energy_L2262.refined_liquids_trade <- function(command, ...) {
 
     # Consumption of domestic production: equal to production minus gross exports
     # The production table doesn't have all zeroes written out (ignore_columns -> replace_na
+    # 3/31/2025 gpk revision - the "exceed blend wall" techs have names that differ from their parent subsector, and have 0 calibration
     L2262.Production_refinedLiquids_reg_dom <- A262.refinedLiquidsRegionalTechnology_R_Y %>%
       filter(year %in% MODEL_BASE_YEARS,
              grepl( "domestic", subsector)) %>%
@@ -368,9 +378,10 @@ module_energy_L2262.refined_liquids_trade <- function(command, ...) {
                                ignore_columns = "Prod_EJ") %>%
       replace_na(list(Prod_EJ = 0)) %>%
       mutate(calOutputValue = round(Prod_EJ - gross_exports, energy.DIGITS_CALOUTPUT),
+             calOutputValue = if_else(technology != subsector, 0, calOutputValue),
              share.weight.year = year,
-             subs.share.weight = if_else(calOutputValue > 0, 1, 0),
-             tech.share.weight = subs.share.weight) %>%
+             tech.share.weight = if_else(calOutputValue > 0, 1, 0)) %>%
+      set_subsector_shrwt() %>%
       select(LEVEL2_DATA_NAMES[["Production"]])
 
     # FINAL STEP - filter out the region x biofuel markets that do not exist.
@@ -400,6 +411,8 @@ module_energy_L2262.refined_liquids_trade <- function(command, ...) {
                                                        by = c("region", "supplysector", "subsector"))
     L2262.TechShrwt_refinedLiquids_reg <- anti_join(L2262.TechShrwt_refinedLiquids_reg, L2262.biofuel_type_filter_reg,
                                                     by = c("region", "supplysector", "subsector"))
+    L2262.TechCost_refinedLiquids_reg <- anti_join(L2262.TechCost_refinedLiquids_reg, L2262.biofuel_type_filter_reg,
+                                                   by = c("region", "supplysector", "subsector"))
     L2262.TechCoef_refinedLiquids_reg <- anti_join(L2262.TechCoef_refinedLiquids_reg, L2262.biofuel_type_filter_reg,
                                                    by = c("region", "supplysector", "subsector"))
     L2262.Production_refinedLiquids_reg_dom <- anti_join(L2262.Production_refinedLiquids_reg_dom, L2262.biofuel_type_filter_reg,
@@ -413,7 +426,8 @@ module_energy_L2262.refined_liquids_trade <- function(command, ...) {
     # First we classify the regions as self-producers or importers based on their regional biodiesel in final calibration year:
     self_prod<-bind_rows(L2262.Production_refinedLiquids_reg_dom, L2262.Production_refinedLiquids_reg_imp) %>%
       filter(year == max(MODEL_BASE_YEARS),
-             grepl("biodiesel",supplysector) | grepl("ethanol",supplysector)) %>%
+             grepl("biodiesel",supplysector) | grepl("ethanol",supplysector),
+             subsector == technology) %>%
       select(region,supplysector,subsector,year,calOutputValue) %>%
       mutate(subsector = if_else(grepl("domestic",subsector),"domestic","imported")) %>%
       spread(subsector,calOutputValue) %>%
@@ -519,6 +533,13 @@ module_energy_L2262.refined_liquids_trade <- function(command, ...) {
                      "energy/A262.refinedLiquidsRegionalTechnology",
                      "L222.biofuel_type_filter_R") ->
       L2262.TechShrwt_refinedLiquids_reg
+
+    L2262.TechCost_refinedLiquids_reg %>%
+      add_title("Technology costs for regional refinedOil commodities") %>%
+      add_units("None") %>%
+      add_comments("only non-zero costs written") %>%
+      same_precursors_as(L2262.TechShrwt_refinedLiquids_reg) ->
+      L2262.TechCost_refinedLiquids_reg
 
     L2262.TechCoef_refinedLiquids_reg %>%
       add_title("Technology input-output coefficients for regional refinedOil commodities") %>%

@@ -112,6 +112,7 @@
         <Value name = "prune_ag">../input/gcamdata/xml/prune_empty_ag.xml</Value>
 
 		<Value name = "solver">../input/solution/cal_broyden_config.xml</Value>
+		<Value name = "blendwall">../input/otaq-xml/BlendWallTarget.xml</Value>
 		
 	</ScenarioComponents>
 	<Strings>
@@ -140,10 +141,10 @@
 		<Value name="numPointsForSD">21</Value>
 		<Value name="numPointsForCO2CostCurve">5</Value>
 		<Value name="carbon-output-start-year">1705</Value>
-		<Value name="climateOutputInterval">5</Value>
+		<Value name="climateOutputInterval">1</Value>
 		<Value name="parallel-grain-size">50</Value>
 		<Value name="stop-period">-1</Value>
-		<Value name="stop-year">-1</Value>
+		<Value name="stop-year">2060</Value>
 		<Value name="restart-period">-1</Value>
 		<Value name="restart-year">-1</Value>
 		<Value name="max-parallelism">-1</Value>

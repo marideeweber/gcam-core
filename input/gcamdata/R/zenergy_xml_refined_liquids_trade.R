@@ -20,6 +20,7 @@ module_energy_refined_liquids_trade_xml <- function(command, ...) {
       "L2262.Supplysector_refinedLiquids_reg",
       "L2262.SubsectorAll_refinedLiquids_reg",
       "L2262.TechShrwt_refinedLiquids_reg",
+      "L2262.TechCost_refinedLiquids_reg",
       "L2262.TechCoef_refinedLiquids_reg",
       "L2262.Production_refinedLiquids_reg_imp",
       "L2262.Production_refinedLiquids_reg_dom")
@@ -63,6 +64,7 @@ module_energy_refined_liquids_trade_xml <- function(command, ...) {
       add_logit_tables_xml(L2262.Supplysector_refinedLiquids_reg, "Supplysector") %>%
       add_logit_tables_xml(L2262.SubsectorAll_refinedLiquids_reg, "SubsectorAll", base_logit_header = "SubsectorLogit") %>%
       add_xml_data(L2262.TechShrwt_refinedLiquids_reg, "TechShrwt") %>%
+      add_xml_data(L2262.TechCost_refinedLiquids_reg, "TechCost") %>%
       add_xml_data(L2262.TechCoef_refinedLiquids_reg, "TechCoef") %>%
       add_xml_data(L2262.Production_refinedLiquids_reg_imp, "Production") %>%
       add_xml_data(L2262.Production_refinedLiquids_reg_dom, "Production") %>%
