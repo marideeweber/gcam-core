@@ -30,6 +30,7 @@ module_energy_en_distribution_xml <- function(command, ...) {
       "L226.StubTechCoef_gaspipe",
       "L254.StubTranTechCalInput",
       "L244.StubTechCalInput_bld",
+      "L122.StubTechFixOut_otherBiod",
 
       "L2261.GlobalTechEff_en",
 
@@ -214,10 +215,18 @@ module_energy_en_distribution_xml <- function(command, ...) {
 
     # subtract biodiesel and ethanol  from the total to get refined oil consumption
 
+    # 4/4/2025 GPK: the calibration of refined liquids enduse / refined oil needs to deduct the fixed output of other biodiesel
+    L122.StubTechFixOut_otherBiod %>%
+      filter(year %in% MODEL_BASE_YEARS) %>%
+      select(region, year, calOutputValue = fixedOutput) ->
+      L226.OtherBiodiesel
+
     # ethanol is now in gasoline pool
+
     L226.StubTechProd_biodiesel %>%
       #bind_rows(L226.StubTechProd_ethanol) %>%
       select(names(L226.StubTechProd_RefinedLiquidsEnduse)) %>%
+      bind_rows(L226.OtherBiodiesel) %>%
       mutate(calOutputValue = -calOutputValue) %>%
       bind_rows(L226.StubTechProd_RefinedLiquidsEnduse) %>%
       group_by_at(vars(-calOutputValue)) %>%

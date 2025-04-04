@@ -21,7 +21,7 @@ module_energy_liquid_fuels_distribution_xml <- function(command, ...) {
       "L2261.StubTechInterp_en",
       "L2261.StubTechProd_gsln",
       "L2261.StubTechProd_refliqend",
-      #"L2261.StubTechFixOut_otherBiod"
+      "L2261.StubTechFixOut_otherBiod",
       "L254.StubTranTechCalInput"
       )
 
@@ -55,7 +55,7 @@ module_energy_liquid_fuels_distribution_xml <- function(command, ...) {
       add_xml_data(L2261.StubTechInterp_en, "StubTechInterp") %>%
       #add_xml_data(L2261.StubTechProd_gsln, "StubTechProd") %>%
       #add_xml_data(L2261.StubTechProd_refliqend, "StubTechProd") %>%
-      #add_xml_data(L2261.StubTechFixOut_otherBiod, "StubTechFixOut_otherBiod") %>%
+      add_xml_data(L2261.StubTechFixOut_otherBiod, "StubTechFixOut") %>%
       add_precursors(MODULE_INPUTS) ->
       liquid_fuels_distribution.xml
 

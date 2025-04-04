@@ -30,7 +30,7 @@ module_energy_L2261.liquid_fuels_distribution <- function(command, ...) {
       FILE = "energy/A261.globaltech_cost",
       FILE = "energy/A261.globaltech_shrwt",
       FILE = "energy/A261.globaltech_interp",
-      #"L122.StubTechFixOut_otherBiod",
+      "L122.StubTechFixOut_otherBiod",
       "L244.StubTechCalInput_bld",
       "L254.StubTranTechCalInput",
       "L2262.Production_refinedLiquids_reg_imp",
@@ -48,7 +48,7 @@ module_energy_L2261.liquid_fuels_distribution <- function(command, ...) {
       "L2261.GlobalTechCost_en",
       "L2261.GlobalTechShrwt_en",
       "L2261.StubTechInterp_en",
-      #"L2261.StubTechFixOut_otherBiod",
+      "L2261.StubTechFixOut_otherBiod",
       "L2261.StubTechProd_gsln",
       "L2261.StubTechProd_refliqend")
 
@@ -213,10 +213,10 @@ module_energy_L2261.liquid_fuels_distribution <- function(command, ...) {
       filter(supplysector %in% L2261.ref_liq_inputs$minicam.energy.input) %>%
       select(supplysector, subsector, stub.technology = technology, minicam.energy.input)
 
-    # # Calibration of biodiesel in refined liquids enduse
-    # # Update the prefix of the fixed output biodiesel table for tracking provenance of data tables
-    # L2261.StubTechFixOut_otherBiod <- mutate(L122.StubTechFixOut_otherBiod,
-    #                                          fixedOutput = round(fixedOutput, digits = energy.DIGITS_CALOUTPUT))
+    # Calibration of biodiesel in refined liquids enduse
+    # Update the prefix of the fixed output biodiesel table for tracking provenance of data tables
+    L2261.StubTechFixOut_otherBiod <- mutate(L122.StubTechFixOut_otherBiod,
+                                             fixedOutput = round(fixedOutput, digits = energy.DIGITS_CALOUTPUT))
 
     L2261.StubTechProd_biodiesel <- bind_rows(
       filter(L2262.Production_refinedLiquids_reg_imp, grepl("biodiesel", supplysector)),
@@ -227,7 +227,7 @@ module_energy_L2261.liquid_fuels_distribution <- function(command, ...) {
       rename(minicam.energy.input = supplysector)
 
     L2261.TotalBiodiesel <- L2261.StubTechProd_biodiesel %>%
-      #bind_rows(select(L122.StubTechFixOut_otherBiod, region, year, calOutputValue = fixedOutput)) %>%
+      bind_rows(select(L122.StubTechFixOut_otherBiod, region, year, calOutputValue = fixedOutput)) %>%
       group_by(region, year) %>%
       summarise(biodiesel = sum(calOutputValue)) %>%
       ungroup()
@@ -320,12 +320,12 @@ module_energy_L2261.liquid_fuels_distribution <- function(command, ...) {
       L2261.StubTechInterp_en
 
 
-    # L2261.StubTechFixOut_otherBiod %>%
-    #   add_title("FixedOutput for other bidiesel") %>%
-    #   add_units("EJ") %>%
-    #   add_comments("This corrects the mismatch between otaq and IEA data") %>%
-    #   add_precursors("L122.StubTechFixOut_otherBiod") ->
-    #   L2261.StubTechFixOut_otherBiod
+    L2261.StubTechFixOut_otherBiod %>%
+      add_title("FixedOutput for other bidiesel") %>%
+      add_units("EJ") %>%
+      add_comments("This corrects the mismatch between otaq and IEA data") %>%
+      add_precursors("L122.StubTechFixOut_otherBiod") ->
+      L2261.StubTechFixOut_otherBiod
 
     L2261.StubTechProd_gsln %>%
       add_title("Motor gasoline technology calibration") %>%
@@ -346,7 +346,7 @@ module_energy_L2261.liquid_fuels_distribution <- function(command, ...) {
                      "energy/A26.globaltech_eff",
                      "L244.StubTechCalInput_bld",
                      "L254.StubTranTechCalInput",
-                     #"L122.StubTechFixOut_otherBiod",
+                     "L122.StubTechFixOut_otherBiod",
                      "L2262.Production_refinedLiquids_reg_dom",
                      "L2262.Production_refinedLiquids_reg_imp",
                      "energy/bio_feed_mapping",

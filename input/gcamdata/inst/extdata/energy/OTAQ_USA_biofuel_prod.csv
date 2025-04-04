@@ -1,0 +1,10 @@
+# File: OTAQ_USA_biofuel_prod.csv
+# Title: OTAQ provided biofuel values interpolated
+# Description: OTAQ provided biofuel values interpolated
+# Units: EJ
+# Source: OTAQ
+# Column types: cnnnnnnnnnnn
+# ----------
+sector,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015
+biodiesel,0.0123638,0.01612392,0.01988404,0.02364416,0.02740428,0.0311644,0.04773152,0.06429864,0.08086576,0.09743288,0.114
+corn ethanol,0.325115,0.466124,0.607133,0.748142,0.889151,1.03016,1.0487289,1.0672978,1.0858667,1.1044356,1.1230045

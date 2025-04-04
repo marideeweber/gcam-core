@@ -25,6 +25,7 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
       FILE = "energy/A21.globaltech_coef",
       FILE = "energy/A21.globaltech_secout",
       FILE = "energy/A22.globaltech_coef",
+      FILE = "energy/OTAQ_USA_biofuel_prod",
       "L1012.en_bal_EJ_R_Si_Fi_Yh",
       "L121.in_EJ_R_unoil_F_Yh",
       "L121.share_R_TPES_biofuel_tech")
@@ -36,7 +37,8 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
       "L122.out_EJ_R_refining_F_Yh",
       "L122.in_EJ_R_refining_F_Yh",
       "L122.in_Mt_R_C_Yh",
-      "L122.FeedOut_Mt_R_C_Yh")
+      "L122.FeedOut_Mt_R_C_Yh",
+      "L122.StubTechFixOut_otherBiod")
 
   if(command == driver.DECLARE_INPUTS) {
     return(MODULE_INPUTS)
@@ -64,6 +66,16 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
     L121.in_EJ_R_unoil_F_Yh %>%
       filter(year %in% HISTORICAL_YEARS) ->   # ensure temp data match our current history
       L121.in_EJ_R_unoil_F_Yh
+
+    L122.USA_soy_biodiesel <- OTAQ_USA_biofuel_prod %>%
+      gather_years() %>%
+      filter(sector == "biodiesel") %>%
+      mutate(biomassOil_tech = "Soybean oil",
+             GCAM_region_ID = 1) %>%
+      rename(value_soybiodiesel = value,
+             technology = sector) %>%
+      mutate(technology = "soybean biodiesel")
+
 
 
     # ===================================================
@@ -119,6 +131,52 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
       left_join(A_biofuel_types_R, by = c("GCAM_region_ID", "Biofuel")) %>%
       mutate(value = value * share) %>%
       select(GCAM_region_ID, technology, biomassOil_tech, year, value) -> L122.out_EJ_R_biofuel_Yh
+
+    # GPK 4/3/25: Total biodiesel from IEA balances minus soybean biodiesel from OTAQ -> "other biodiesel" for fixed outputs
+    L122.out_EJ_R_biofuel_Yh.usa <- L122.out_EJ_R_biofuel_Yh %>%
+      filter(GCAM_region_ID==1,
+             grepl("biodiesel",technology),
+             year>=2005) %>%
+      left_join_error_no_match(L122.USA_soy_biodiesel,
+                               by=c("GCAM_region_ID", "technology", "biomassOil_tech", "year")) %>%
+      mutate(value_otherbiodiesel = value - value_soybiodiesel)
+
+    L122.out_EJ_R_biofuel_Yh.usa.soybiodiesel <- L122.out_EJ_R_biofuel_Yh.usa %>%
+      select(GCAM_region_ID, technology, biomassOil_tech, year, value_soybiodiesel) %>%
+      rename(value = value_soybiodiesel) %>%
+      select(-biomassOil_tech)
+
+    L122.out_EJ_R_biofuel_Yh.usa.otherbiodiesel <- L122.out_EJ_R_biofuel_Yh.usa %>%
+      select(GCAM_region_ID, technology, biomassOil_tech, year, value_otherbiodiesel) %>%
+      rename(value = value_otherbiodiesel) %>%
+      mutate(technology = "other biodiesel",
+             biomassOil_tech = "other biodiesel")
+
+    L122.out_EJ_R_biofuel_Yh<- L122.out_EJ_R_biofuel_Yh %>%
+      filter(!(GCAM_region_ID==1 & technology %in% c("soybean biodiesel") & year>=2005)) %>%
+      bind_rows(L122.out_EJ_R_biofuel_Yh.usa.soybiodiesel)
+
+    # Create the fixed output table for other biodiesel
+    # Expand to all GCAM model years
+    StubTechFixOut_otherBiod<-L122.out_EJ_R_biofuel_Yh.usa.otherbiodiesel %>%
+      filter(year == 2015) %>%
+      select(-year) %>%
+      repeat_add_columns(tibble(year=MODEL_FUTURE_YEARS)) %>%
+      bind_rows(L122.out_EJ_R_biofuel_Yh.usa.otherbiodiesel) %>%
+      arrange(year)
+
+    L122.StubTechFixOut_otherBiod <- StubTechFixOut_otherBiod %>%
+      mutate(region = "USA",
+             supplysector = "refined liquids enduse",
+             subsector = "biodiesel",
+             share.weight.year = year,
+             subs.share.weight = 1,
+             tech.share.weight = 0) %>%
+      rename(stub.technology = technology,
+             fixedOutput = value) %>%
+      filter(year %in% MODEL_YEARS) %>%
+      select(LEVEL2_DATA_NAMES[["StubTechFixOut"]])
+
 
     # To get the inputs, left_join with the technology coefficients so as to repeat rows for techs with multiple inputs
     # (e.g., corn, gas, electricity inputs to corn ethanol technology)
@@ -463,6 +521,14 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
       same_precursors_as(L122.in_Mt_R_C_Yh) %>%
       add_precursors("energy/A21.globaltech_secout") ->
       L122.FeedOut_Mt_R_C_Yh
+
+    L122.StubTechFixOut_otherBiod %>%
+      add_title("FixedOutput for other bidiesel") %>%
+      add_units("EJ") %>%
+      add_comments("This accounts for the difference between soybean biodiesel (from OTAQ) and total biodiesel (from IEA)") %>%
+      same_precursors_as(L122.out_EJ_R_refining_F_Yh) %>%
+      add_precursors("energy/OTAQ_USA_biofuel_prod") ->
+      L122.StubTechFixOut_otherBiod
 
     return_data(MODULE_OUTPUTS)
   } else {
