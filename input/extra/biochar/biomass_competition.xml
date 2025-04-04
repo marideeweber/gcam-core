@@ -1068,11 +1068,11 @@
                     </period>
                     <period year="2045">
                         <minicam-energy-input name="biomassHerbaceous">
-                            <coefficient>0.063875</coefficient>
+                            <coefficient>1</coefficient>
                         </minicam-energy-input>
                         <CO2 name="CO2"/>
                         <minicam-non-energy-input name="non-energy">
-                            <input-cost>0.054</input-cost>
+                            <input-cost>0</input-cost>
                         </minicam-non-energy-input>
                         <share-weight>1</share-weight>
                     </period>
@@ -1293,11 +1293,11 @@
                     </period>
                     <period year="2045">
                         <minicam-energy-input name="biomass">
-                            <coefficient>0.063875</coefficient>
+                            <coefficient>1</coefficient>
                         </minicam-energy-input>
                         <CO2 name="CO2"/>
                         <minicam-non-energy-input name="non-energy">
-                            <input-cost>0.054</input-cost>
+                            <input-cost>0</input-cost>
                         </minicam-non-energy-input>
                         <share-weight>1</share-weight>
                     </period>
