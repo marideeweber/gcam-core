@@ -1,6 +1,6 @@
 # Copyright 2019 Battelle Memorial Institute; see the LICENSE file.
 
-#' module_gcamusa_L122.Refining
+#' module_gcamusa_L122.refining
 #'
 #' Downscales crude oil, corn ethanol, and biodiesel refining inputs and outputs to state-level.
 #'

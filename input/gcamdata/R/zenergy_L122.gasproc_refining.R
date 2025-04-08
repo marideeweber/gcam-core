@@ -30,8 +30,7 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
       "L1012.en_bal_EJ_R_Si_Fi_Yh",
       "L121.in_EJ_R_unoil_F_Yh",
       "L121.share_R_TPES_biofuel_tech",
-      "L1262.refinedOil_GrossTrade_EJ_R_C_Y",
-      "L1262.Biofuel_GrossTrade_EJ_R_C_Y")
+      "L1262.refinedOil_GrossTrade_EJ_R_C_Y")
 
   MODULE_OUTPUTS <-
     c("L122.out_EJ_R_gasproc_F_Yh",
@@ -246,7 +245,11 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
       left_join(en_bal_oil, by = c("GCAM_region_ID", "sector", "year")) %>%
       left_join(gtlctl_oil, by = c("GCAM_region_ID", "sector", "year")) %>%
       mutate(value = value_en_bal - value_gtlctl) %>%
-      select(-value_en_bal, -value_gtlctl) -> L122.out_EJ_R_oilrefining_Yh
+    # GPK 4/8/25: Adjust the oil refining output of each region to account for net_trade of refined oil products
+      left_join_error_no_match(L1262.refinedOil_GrossTrade_EJ_R_C_Y %>% select(GCAM_region_ID, year, net_trade), by = c("GCAM_region_ID", "year")) %>%
+      mutate(value = value + net_trade) %>%
+      select(GCAM_region_ID, sector, fuel, year, value) ->
+      L122.out_EJ_R_oilrefining_Yh
 
     # Oil refining: input of oil is equal to TPES, and input of other fuels is from net refinery energy use
     L1012.en_bal_EJ_R_Si_Fi_Yh %>%
@@ -484,7 +487,7 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
       add_legacy_name("L122.out_EJ_R_refining_F_Yh") %>%
       add_precursors("common/GCAM_region_names", "energy/calibrated_techs",
                      "energy/A_regions", "energy/A21.globaltech_coef", "energy/A22.globaltech_coef", "L1012.en_bal_EJ_R_Si_Fi_Yh",
-                     "L121.in_EJ_R_unoil_F_Yh")  ->
+                     "L1262.refinedOil_GrossTrade_EJ_R_C_Y", "L121.in_EJ_R_unoil_F_Yh")  ->
       L122.out_EJ_R_refining_F_Yh
 
     L122.in_EJ_R_refining_F_Yh %>%
@@ -502,7 +505,7 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
       add_units("Mt") %>%
       add_comments("Created by matching 1st generation bio with the global technologies coefficients for existing minicam energy inputs") %>%
       add_legacy_name("L122.in_Mt_R_C_Yh") %>%
-      add_precursors("common/GCAM_region_names", "energy/calibrated_techs",
+      add_precursors("common/GCAM_region_names", "energy/calibrated_techs", "energy/bio_feed_mapping",
                      "energy/A_regions", "energy/A21.globaltech_coef", "energy/A22.globaltech_coef", "L1012.en_bal_EJ_R_Si_Fi_Yh",
                      "L121.in_EJ_R_unoil_F_Yh", "aglu/A_agStorageSector", "L121.share_R_TPES_biofuel_tech") ->
       L122.in_Mt_R_C_Yh

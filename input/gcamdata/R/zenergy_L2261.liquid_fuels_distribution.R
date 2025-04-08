@@ -188,8 +188,7 @@ module_energy_L2261.liquid_fuels_distribution <- function(command, ...) {
       ungroup() %>%
       left_join_error_no_match(L2261.TotalEthanol, by = c("region", "year")) %>%
       mutate(calOutputValue = round(total_gsln - ethanol, digits = energy.DIGITS_CALOUTPUT),
-             minicam.energy.input = "refining") %>%
-             #minicam.energy.input = "regional refined oil") %>%
+             minicam.energy.input = "regional refined oil") %>%
       select(region, minicam.energy.input, year, calOutputValue) %>%
       bind_rows(L2261.StubTechProd_ethanol) %>%
       left_join_error_no_match(select(A261.globaltech_eff, supplysector, subsector, technology, minicam.energy.input),

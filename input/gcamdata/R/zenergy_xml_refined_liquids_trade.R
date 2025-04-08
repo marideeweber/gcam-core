@@ -41,17 +41,6 @@ module_energy_refined_liquids_trade_xml <- function(command, ...) {
 
     # #=======#=======#=======#=======#=======#=======#=========
 
-    Current_Envir <- environment()
-
-    # remove trade data for refined oil
-    lapply(MODULE_INPUTS, function(.df){
-      .df %>% get %>%
-        filter(!grepl("refined oil", supplysector)) %>%
-        assign(x = .df, value = .,
-               envir = Current_Envir)
-    })
-
-
     # Produce outputs
     create_xml("refined_liquids_trade.xml") %>%
       add_logit_tables_xml(L2262.Supplysector_refinedLiquids_tra, "Supplysector") %>%
