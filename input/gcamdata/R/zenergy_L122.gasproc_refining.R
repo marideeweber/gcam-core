@@ -25,10 +25,13 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
       FILE = "energy/A21.globaltech_coef",
       FILE = "energy/A21.globaltech_secout",
       FILE = "energy/A22.globaltech_coef",
+      FILE = "energy/bio_feed_mapping",
       FILE = "energy/OTAQ_USA_biofuel_prod",
       "L1012.en_bal_EJ_R_Si_Fi_Yh",
       "L121.in_EJ_R_unoil_F_Yh",
-      "L121.share_R_TPES_biofuel_tech")
+      "L121.share_R_TPES_biofuel_tech",
+      "L1262.refinedOil_GrossTrade_EJ_R_C_Y",
+      "L1262.Biofuel_GrossTrade_EJ_R_C_Y")
 
   MODULE_OUTPUTS <-
     c("L122.out_EJ_R_gasproc_F_Yh",
@@ -99,26 +102,17 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
     A_biofuel_types_R <- gather(select(A_regions, GCAM_region_ID, region, ethanol, biodiesel, biomassOil_tech),
                                 key = "Biofuel", value = "default_technology",
                                 -GCAM_region_ID, -region, -biomassOil_tech) %>%
+      # Add feedstock-specific technologies
+      left_join(bio_feed_mapping %>% select(technology,biomassOil_tech), by = "biomassOil_tech") %>%
+      mutate(technology = if_else(grepl("ethanol",Biofuel),default_technology,technology),
+             default_technology = technology) %>%
       filter(!region %in% aglu.NO_AGLU_REGIONS) %>%
+      select(-technology) %>%
       left_join(L121.share_R_TPES_biofuel_tech, by = c("GCAM_region_ID", "Biofuel")) %>%
       mutate(technology = if_else(is.na(technology), default_technology, technology),
-             biomassOil_tech = if_else(technology == "biodiesel" & !is.na(GCAM_commodity), GCAM_commodity, biomassOil_tech),
+             biomassOil_tech = if_else(Biofuel == "biodiesel" & !is.na(GCAM_commodity), GCAM_commodity, biomassOil_tech),
              share = if_else(is.na(share), 1, share)) %>%
       select(GCAM_region_ID, Biofuel, technology, biomassOil_tech, share)
-
-    # TEMP Adjustment!!! need to check data and mapping!
-
-    A_biofuel_types_R %>%
-      mutate(biomassOil_tech = if_else(technology == "soybean biodiesel", "Soybean oil", biomassOil_tech)) %>%
-      mutate(technology = if_else(biomassOil_tech == "Soybean oil" & technology == "biodiesel", "soybean biodiesel", technology) ) %>%
-      mutate(biomassOil_tech = if_else(technology == "rapeseed biodiesel", "Rapeseed oil", biomassOil_tech)) %>%
-      mutate(technology = if_else(biomassOil_tech == "Rapeseed oil" & technology == "biodiesel", "rapeseed biodiesel", technology) ) %>%
-      mutate(biomassOil_tech = if_else(technology == "oilpalm biodiesel", "OilPalm oil", biomassOil_tech)) %>%
-      mutate(technology = if_else(biomassOil_tech == "OilPalm oil" & technology == "biodiesel", "oilpalm biodiesel", technology) ) %>%
-      mutate(biomassOil_tech = if_else(technology == "oilcrop biodiesel", "OilCrop oil", biomassOil_tech)) %>%
-      mutate(technology = if_else(biomassOil_tech == "OilCrop oil" & technology == "biodiesel", "oilcrop biodiesel", technology) ) %>%
-      distinct() ->
-      A_biofuel_types_R
 
     # Creating fuel constant for biomass liquids that will be used to filter biofuels from L1012.en_bal_EJ_R_Si_Fi_Yh and to create L122.out_EJ_R_biofuel_Yh
     # Use left_join because the row # will increase for any region with multiple biofuel production technologies (e.g.,
