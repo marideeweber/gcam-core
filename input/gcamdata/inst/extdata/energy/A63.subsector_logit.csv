@@ -4,5 +4,4 @@
 # Column types: ccic 
 # ----------
 supplysector,subsector,logit.exponent,logit.type
-surface carbon-storage,inorganic-surface-storage,-6,
-CO2 removal,rock weathering,-6,
+CO2 removal,biomass burial,-6,

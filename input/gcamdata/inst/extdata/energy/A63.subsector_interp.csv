@@ -4,5 +4,5 @@
 # Column types: ccccccc
 # ----------
 supplysector,subsector,apply.to,from.year,to.year,to.value,interpolation.function
-CO2 removal,rock weathering,share-weight,2020,2050,,linear
-CO2 removal,rock weathering,share-weight,2050,end-year,,fixed
+CO2 removal,biomass burial,share-weight,2025,2050,,linear
+CO2 removal,biomass burial,share-weight,2050,end-year,,fixed
