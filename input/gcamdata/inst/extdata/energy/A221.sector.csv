@@ -5,4 +5,5 @@
 # Column types: ccccic 
 # ----------
 supplysector,output.unit,input.unit,price.unit,logit.exponent,logit.type
-biochar,Mt,EJ,1975$/kg,-6,absolute-cost-logit
+biochar_labile,Mt,EJ,1975$/kg,-6,absolute-cost-logit
+biochar_recalcitrant,Mt,EJ,1975$/kg,-6,absolute-cost-logit

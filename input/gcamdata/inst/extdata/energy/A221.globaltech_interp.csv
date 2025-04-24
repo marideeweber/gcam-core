@@ -5,7 +5,7 @@
 # Column types: ccccccc 
 # ----------
 supplysector,subsector,technology,apply.to,from.year,to.year,interpolation.function
-biochar,biochar,slow pyrolysis biochar herbaceous,share-weight,final-calibration-year,initial-future-year,linear
-biochar,biochar,slow pyrolysis biochar woody,share-weight,final-calibration-year,initial-future-year,linear
-biochar,biochar,fast pyrolysis biochar herbaceous,share-weight,final-calibration-year,initial-future-year,linear
-biochar,biochar,fast pyrolysis biochar woody,share-weight,final-calibration-year,initial-future-year,linear
+biochar_labile,biochar_labile,slow pyrolysis biochar herbaceous,share-weight,final-calibration-year,initial-future-year,linear
+biochar_labile,biochar_labile,slow pyrolysis biochar woody,share-weight,final-calibration-year,initial-future-year,linear
+biochar_recalcitrant,biochar_recalcitrant,fast pyrolysis biochar herbaceous,share-weight,final-calibration-year,initial-future-year,linear
+biochar_recalcitrant,biochar_recalcitrant,fast pyrolysis biochar woody,share-weight,final-calibration-year,initial-future-year,linear

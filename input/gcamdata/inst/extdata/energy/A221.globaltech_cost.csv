@@ -5,7 +5,7 @@
 # Column types: ccccnnnnnc 
 # ----------
 supplysector,subsector,technology,minicam.non.energy.input,1971,2010,2100,improvement.max,improvement.rate,improvement.shadow.technology
-biochar,biochar,slow pyrolysis biochar herbaceous,non-energy,0.02637,0.02637,0.02637,,,
-biochar,biochar,slow pyrolysis biochar woody,non-energy,0.05173,0.05173,0.05173,,,
-biochar,biochar,fast pyrolysis biochar herbaceous,non-energy,0.07749,0.07749,0.07749,,,
-biochar,biochar,fast pyrolysis biochar woody,non-energy,0.08813,0.08813,0.08813,,,
+biochar_labile,biochar_labile,slow pyrolysis biochar herbaceous,non-energy,0.02637,0.02637,0.02637,,,
+biochar_labile,biochar_labile,slow pyrolysis biochar woody,non-energy,0.05173,0.05173,0.05173,,,
+biochar_recalcitrant,biochar_recalcitrant,fast pyrolysis biochar herbaceous,non-energy,0.07749,0.07749,0.07749,,,
+biochar_recalcitrant,biochar_recalcitrant,fast pyrolysis biochar woody,non-energy,0.08813,0.08813,0.08813,,,

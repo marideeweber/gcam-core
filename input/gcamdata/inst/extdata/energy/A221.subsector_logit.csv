@@ -5,4 +5,5 @@
 # Column types: ccic 
 # ----------
 supplysector,subsector,logit.exponent,logit.type
-biochar,biochar,-6,absolute-cost-logit
+biochar_labile,biochar_labile,-6,absolute-cost-logit
+biochar_recalcitrant,biochar_recalcitrant,-6,absolute-cost-logit
