@@ -723,7 +723,8 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
              biochar.year_kg, prod_kg) %>%
       # Now compute coefficient as biochar.year_MT divided total crop production (as with fertilzier)
       # This is Megatons of biochar / Mt of crop produced in that land; or kf of biochar / kg of crop production
-      mutate(minicam.energy.input = "biochar",
+      # only biochar_labile can be used as a soil amendment
+      mutate(minicam.energy.input = "biochar_labile",
              coefficient = biochar.year_MT / calOutputValue,
              coefficient_kg = biochar.year_kg / prod_kg) %>%
       # Complete other years
