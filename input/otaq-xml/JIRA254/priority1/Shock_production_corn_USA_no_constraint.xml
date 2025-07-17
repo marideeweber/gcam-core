@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario>
+   <world>
+	<region name="USA">
+
+	  <!-- Corn ethanol production shock -->
+
+          <policy-portfolio-standard name="Corn-Ethanol-Production-Floor">
+            <policyType>subsidy</policyType>
+            <market>USA</market>
+            <min-price year="2020" fillout="1">-100</min-price>
+            <constraint year="2020">1.2295</constraint>
+            <constraint year="2025">1.2295</constraint>
+            <constraint year="2030">1.3107</constraint>
+            <constraint year="2035">1.3107</constraint>
+            <constraint year="2040">1.3107</constraint>
+            <constraint year="2045">1.3107</constraint>
+            <constraint year="2050">1.3107</constraint>
+            <constraint year="2055">1.3107</constraint>
+            <constraint year="2060">1.3107</constraint>
+         </policy-portfolio-standard>
+
+
+	<!-- APPLY PRODUCTION FLOORS -->
+
+
+	<supplysector name="corn ethanol">
+	    <subsector name="corn ethanol">
+		<stub-technology name="corn ethanol">
+		    <period year="2020">
+			<input-subsidy name="Corn-Ethanol-Production-Floor"/>
+		    </period>
+		    <period year="2025">
+			<input-subsidy name="Corn-Ethanol-Production-Floor"/>
+		    </period>
+		    <period year="2030">
+			<input-subsidy name="Corn-Ethanol-Production-Floor"/>
+		    </period>
+		    <period year="2035">
+			<input-subsidy name="Corn-Ethanol-Production-Floor"/>
+		    </period>
+		    <period year="2040">
+			<input-subsidy name="Corn-Ethanol-Production-Floor"/>
+		    </period>
+		    <period year="2045">
+			<input-subsidy name="Corn-Ethanol-Production-Floor"/>
+		    </period>
+		    <period year="2050">
+			<input-subsidy name="Corn-Ethanol-Production-Floor"/>
+		    </period>
+		    <period year="2055">
+			<input-subsidy name="Corn-Ethanol-Production-Floor"/>
+		    </period>
+		    <period year="2060">
+			<input-subsidy name="Corn-Ethanol-Production-Floor"/>
+		    </period>
+		</stub-technology>
+		<stub-technology name="corn ethanol (no constraint)">
+		    <period year="2020">
+			<input-subsidy name="Corn-Ethanol-Production-Floor"/>
+		    </period>
+		    <period year="2025">
+			<input-subsidy name="Corn-Ethanol-Production-Floor"/>
+		    </period>
+		    <period year="2030">
+			<input-subsidy name="Corn-Ethanol-Production-Floor"/>
+		    </period>
+		    <period year="2035">
+			<input-subsidy name="Corn-Ethanol-Production-Floor"/>
+		    </period>
+		    <period year="2040">
+			<input-subsidy name="Corn-Ethanol-Production-Floor"/>
+		    </period>
+		    <period year="2045">
+			<input-subsidy name="Corn-Ethanol-Production-Floor"/>
+		    </period>
+		    <period year="2050">
+			<input-subsidy name="Corn-Ethanol-Production-Floor"/>
+		    </period>
+		    <period year="2055">
+			<input-subsidy name="Corn-Ethanol-Production-Floor"/>
+		    </period>
+		    <period year="2060">
+			<input-subsidy name="Corn-Ethanol-Production-Floor"/>
+		    </period>
+		</stub-technology>
+
+	    </subsector>
+	</supplysector>
+
+	</region>
+
+
+   </world>
+</scenario>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario>
+   <world>
+	<region name="USA">
+
+	  <!-- Rapeseed biodiesel production shock -->
+
+          <policy-portfolio-standard name="Rapeseed-Biodiesel-Production-Floor">
+            <policyType>subsidy</policyType>
+            <market>USA</market>
+            <min-price year="2020" fillout="1">-100</min-price>
+            <constraint year="2020">0.0223</constraint>
+            <constraint year="2025">0.0223</constraint>
+            <constraint year="2030">0.0832</constraint>
+            <constraint year="2035">0.0832</constraint>
+            <constraint year="2040">0.0832</constraint>
+            <constraint year="2045">0.0832</constraint>
+            <constraint year="2050">0.0832</constraint>
+            <constraint year="2055">0.0832</constraint>
+            <constraint year="2060">0.0832</constraint>
+         </policy-portfolio-standard>
+
+
+	<!-- APPLY PRODUCTION FLOORS -->
+
+	<supplysector name="rapeseed biodiesel">
+	    <subsector name="rapeseed biodiesel">
+		<stub-technology name="rapeseed biodiesel">
+		    <period year="2020">
+			<input-subsidy name="Rapeseed-Biodiesel-Production-Floor"/>
+		    </period>
+		    <period year="2025">
+			<input-subsidy name="Rapeseed-Biodiesel-Production-Floor"/>
+		    </period>
+		    <period year="2030">
+			<input-subsidy name="Rapeseed-Biodiesel-Production-Floor"/>
+		    </period>
+		    <period year="2035">
+			<input-subsidy name="Rapeseed-Biodiesel-Production-Floor"/>
+		    </period>
+		    <period year="2040">
+			<input-subsidy name="Rapeseed-Biodiesel-Production-Floor"/>
+		    </period>
+		    <period year="2045">
+			<input-subsidy name="Rapeseed-Biodiesel-Production-Floor"/>
+		    </period>
+		    <period year="2050">
+			<input-subsidy name="Rapeseed-Biodiesel-Production-Floor"/>
+		    </period>
+		    <period year="2055">
+			<input-subsidy name="Rapeseed-Biodiesel-Production-Floor"/>
+		    </period>
+		    <period year="2060">
+			<input-subsidy name="Rapeseed-Biodiesel-Production-Floor"/>
+		    </period>
+		</stub-technology>
+
+	    </subsector>
+	</supplysector>
+    </region>
+
+   </world>
+</scenario>

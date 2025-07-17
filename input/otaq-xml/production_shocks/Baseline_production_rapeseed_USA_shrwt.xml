@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario>
+   <world>
+	<region name="USA">
+
+	<supplysector name="rapeseed biodiesel">
+	    <subsector name="rapeseed biodiesel">
+		<share-weight fillout="1" year="1975">0</share-weight>
+	    </subsector>
+	</supplysector>
+
+	<supplysector name="regional rapeseed biodiesel">
+	    <subsector name="domestic rapeseed biodiesel">
+		<share-weight year="2020">0</share-weight>
+		<interpolation-rule apply-to="share-weight" from-year="2020" to-year="2100" delete="1">
+		    <interpolation-function name="fixed"/>
+		</interpolation-rule>
+	    </subsector>
+	</supplysector>
+
+      </region>
+   </world>
+</scenario>

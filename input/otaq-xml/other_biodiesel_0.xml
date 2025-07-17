@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><scenario>
+    <world>
+        <region name="USA">
+		   <supplysector name="refined liquids enduse">
+                <subsector name="biodiesel">
+                    <stub-technology name="other biodiesel">
+                  		
+					 <period year="2005">
+                            <fixedOutput>2.68e-05</fixedOutput>
+                            <share-weight year="2005">0</share-weight>
+                        </period>
+                        <period year="2010">
+                            <fixedOutput>0.0046678</fixedOutput>
+                            <share-weight year="2010">0</share-weight>
+                        </period>
+                        <period year="2015">
+                            <fixedOutput>0.1013553</fixedOutput>
+                            <share-weight year="2015">0</share-weight>
+                        </period>
+                        <period year="2020">
+                            <fixedOutput>0</fixedOutput>
+                            <share-weight year="2020">0</share-weight>
+                        </period>
+                        <period year="2025">
+                            <fixedOutput>0</fixedOutput>
+                            <share-weight year="2025">0</share-weight>
+                        </period>
+                        <period year="2030">
+                            <fixedOutput>0</fixedOutput>
+                            <share-weight year="2030">0</share-weight>
+                        </period>
+                        <period year="2035">
+                            <fixedOutput>0</fixedOutput>
+                            <share-weight year="2035">0</share-weight>
+                        </period>
+                        <period year="2040">
+                            <fixedOutput>0</fixedOutput>
+                            <share-weight year="2040">0</share-weight>
+                        </period>
+                        <period year="2045">
+                            <fixedOutput>0</fixedOutput>
+                            <share-weight year="2045">0</share-weight>
+                        </period>
+                        <period year="2050">
+                            <fixedOutput>0</fixedOutput>
+                            <share-weight year="2050">0</share-weight>
+                        </period>
+                        <period year="2055">
+                            <fixedOutput>0</fixedOutput>
+                            <share-weight year="2055">0</share-weight>
+                        </period>
+                        <period year="2060">
+                            <fixedOutput>0</fixedOutput>
+                            <share-weight year="2060">0</share-weight>
+                        </period>
+                        <period year="2065">
+                            <fixedOutput>0</fixedOutput>
+                            <share-weight year="2065">0</share-weight>
+                        </period>
+                        <period year="2070">
+                            <fixedOutput>0</fixedOutput>
+                            <share-weight year="2070">0</share-weight>
+                        </period>
+                        <period year="2075">
+                            <fixedOutput>0</fixedOutput>
+                            <share-weight year="2075">0</share-weight>
+                        </period>
+                        <period year="2080">
+                            <fixedOutput>0</fixedOutput>
+                            <share-weight year="2080">0</share-weight>
+                        </period>
+                        <period year="2085">
+                            <fixedOutput>0</fixedOutput>
+                            <share-weight year="2085">0</share-weight>
+                        </period>
+                        <period year="2090">
+                            <fixedOutput>0</fixedOutput>
+                            <share-weight year="2090">0</share-weight>
+                        </period>
+                        <period year="2095">
+                            <fixedOutput>0</fixedOutput>
+                            <share-weight year="2095">0</share-weight>
+                        </period>
+                        <period year="2100">
+                            <fixedOutput>0</fixedOutput>
+                            <share-weight year="2100">0</share-weight>
+                        </period>
+
+                    </stub-technology>
+                </subsector>
+  		  </supplysector>
+		</region>
+	</world>
+</scenario>

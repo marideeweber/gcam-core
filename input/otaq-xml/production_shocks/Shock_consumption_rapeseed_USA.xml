@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario>
+   <world>
+	<region name="USA">
+
+	  <!-- Rapeseed biodiesel consumption: shock level (0.5 BG) -->
+
+          <policy-portfolio-standard name="Rapeseed-Biodiesel-Consumption-Floor">
+            <policyType>subsidy</policyType>
+            <market>USA</market>
+            <min-price year="2020" fillout="1">-100</min-price>
+            <constraint year="2020">0.032</constraint>
+            <constraint year="2025">0.0942</constraint>
+            <constraint year="2030">0.0942</constraint>
+            <constraint year="2035">0.0942</constraint>
+            <constraint year="2040">0.0942</constraint>
+            <constraint year="2045">0.0942</constraint>
+            <constraint year="2050">0.0942</constraint>
+            <constraint year="2055">0.0942</constraint>
+            <constraint year="2060">0.0942</constraint>
+         </policy-portfolio-standard>
+
+
+	<!-- APPLY CONSUMPTION FLOORS -->
+
+         <supplysector name="refined liquids enduse">
+            <subsector name="biodiesel">
+            	<technology name="rapeseed biodiesel">
+                   <period year="2020">
+                       <input-subsidy name="Rapeseed-Biodiesel-Consumption-Floor"/>
+                   </period>
+                   <period year="2025">
+                       <input-subsidy name="Rapeseed-Biodiesel-Consumption-Floor"/>
+                   </period>
+                   <period year="2030">
+                       <input-subsidy name="Rapeseed-Biodiesel-Consumption-Floor"/>
+                   </period>
+                   <period year="2035">
+                       <input-subsidy name="Rapeseed-Biodiesel-Consumption-Floor"/>
+                   </period>
+                   <period year="2040">
+                       <input-subsidy name="Rapeseed-Biodiesel-Consumption-Floor"/>
+                   </period>
+                   <period year="2045">
+                       <input-subsidy name="Rapeseed-Biodiesel-Consumption-Floor"/>
+                   </period>
+                   <period year="2050">
+                       <input-subsidy name="Rapeseed-Biodiesel-Consumption-Floor"/>
+                   </period>
+                   <period year="2055">
+                       <input-subsidy name="Rapeseed-Biodiesel-Consumption-Floor"/>
+                   </period>
+                   <period year="2060">
+                       <input-subsidy name="Rapeseed-Biodiesel-Consumption-Floor"/>
+                   </period>
+               </technology>
+             </subsector>
+         </supplysector>
+
+
+      </region>
+
+   </world>
+</scenario>
