@@ -308,7 +308,7 @@ module_energy_L221.en_supply <- function(command, ...) {
       select(-output.ratio) %>%
       mutate(P0 = 0) %>%
       left_join(L221.ag_FeedPrice_R_Yf, by = "region") %>%
-      mutate(P1 = round(feed_price, digits = energy.DIGITS_COST)) %>%
+      mutate(P1 = round(feed_price * (1 - aglu.FEEDCAKE_PRICE_MARGIN), digits = energy.DIGITS_COST)) %>%
       gather(key = "variable", value = "price", P0, P1) %>%
       mutate(fraction.produced = as.numeric( sub("P", "", variable ) )) %>%
       select(-variable, -feed_price, -GCAM_region_ID) -> L221.StubTechFractProd_en
