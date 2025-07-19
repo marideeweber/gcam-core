@@ -117,7 +117,8 @@ module_energy_L222.en_transformation <- function(command, ...) {
 
     L222.biofuel_type_filter_R <- select(L222.Supplysector_en, region, supplysector) %>%
       filter(supplysector %in% biofuel_types_R$technology) %>%
-      anti_join(biofuel_types_R, by = c("region", supplysector = "technology"))
+      anti_join(biofuel_types_R, by = c("region", supplysector = "technology")) %>%
+      filter(!(region == "USA" & supplysector == "rapeseed biodiesel")) # Turn on rapeseed biodiesel production in the US (OTAQ)
 
     #L222.Supplysector_en <- anti_join(L222.Supplysector_en, L222.biofuel_type_filter_R, by = c("region", "supplysector"))
 
