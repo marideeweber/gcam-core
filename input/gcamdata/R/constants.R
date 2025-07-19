@@ -429,6 +429,9 @@ aglu.LN1_PROTUNMGD_LOGIT_TYPE <- NA
 aglu.MGMT_LOGIT_EXP  <- 2.5
 aglu.MGMT_LOGIT_TYPE <- "absolute-cost-logit"
 
+# Margin for feedcake output ratio from veg oil production. When price of feedcakes drops this portion below the base-year level, sec out coef starts to decrease
+aglu.FEEDCAKE_PRICE_MARGIN <- 0.2
+
 # Statistical differences reconciliation: China's Vegetable production estimates are inconsistent between the PRODSTAT
 # ("Production") and SUA ("Commodity Balances"). Because the latter dataset is used for estimating food consumption in
 # GCAM, and because these SUA food consumption estimates are derived from production data that is about 20% higher than

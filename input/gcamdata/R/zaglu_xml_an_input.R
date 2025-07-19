@@ -15,6 +15,8 @@ module_aglu_an_input_xml <- function(command, ...) {
   MODULE_INPUTS <-
     c("L202.RenewRsrc",
       "L202.RenewRsrcPrice",
+      "L202.Rsrc",
+      "L202.RsrcPrice",
       "L202.maxSubResource",
       "L202.RenewRsrcCurves",
       "L202.ResTechShrwt",
@@ -35,19 +37,20 @@ module_aglu_an_input_xml <- function(command, ...) {
       "L202.StubTechProd_an",
       "L202.StubTechCoef_an",
       "L202.StubTechCost_an",
-       "L202.StubTechCost_For_proc",
+      "L202.ag_consP_R_C_75USDkg",
+      "L202.StubTechCost_For_proc",
       "L202.StubTechProd_in_Forest",
       "L202.StubTechProd_in_pulp_energy",
-      # crushing sector
+      # outputs for crushing
       "L202.Supplysector_oil",
       "L202.SubsectorAll_oil",
       "L202.GlobalTechShrwt_oil",
       "L202.GlobalTechCoef_oil",
-      "L202.GlobalTechSecOut_oil",
       "L202.StubTechProd_oil",
-      "L202.StubTechSecOut_oil",
-      "L202.StubTechCoef_oil"
-      )
+      "L202.StubTechFractSecOut_oil",
+      "L202.StubTechCoef_oil",
+      "L202.StubTechFractProd_oil",
+      "L202.StubTechFractCalPrice_oil")
 
   MODULE_OUTPUTS <-
     c(XML = "an_input.xml")
@@ -69,6 +72,8 @@ module_aglu_an_input_xml <- function(command, ...) {
     create_xml("an_input.xml") %>%
       add_xml_data(L202.RenewRsrc, "RenewRsrc") %>%
       add_xml_data(L202.RenewRsrcPrice, "RenewRsrcPrice") %>%
+      add_xml_data(L202.Rsrc, "Rsrc") %>%
+      add_xml_data(L202.RsrcPrice, "RsrcPrice") %>%
       add_xml_data(L202.maxSubResource, "maxSubResource") %>%
       add_xml_data(L202.RenewRsrcCurves, "RenewRsrcCurves") %>%
       add_node_equiv_xml("resource") %>%
@@ -81,9 +86,10 @@ module_aglu_an_input_xml <- function(command, ...) {
       add_logit_tables_xml(L202.SubsectorAll_oil, "SubsectorAll", "SubsectorLogit") %>%
       add_xml_data(L202.GlobalTechShrwt_oil, "GlobalTechShrwt") %>%
       add_xml_data(L202.GlobalTechCoef_oil, "GlobalTechCoef") %>%
-      add_xml_data(L202.GlobalTechSecOut_oil, "GlobalTechSecOut") %>%
       add_xml_data(L202.StubTechProd_oil, "StubTechProd") %>%
-      add_xml_data(L202.StubTechSecOut_oil, "StubTechSecOut") %>%
+      add_xml_data(L202.StubTechFractSecOut_oil, "StubTechFractSecOut") %>%
+      add_xml_data(L202.StubTechFractProd_oil, "StubTechFractProd") %>%
+      add_xml_data(L202.StubTechFractCalPrice_oil, "StubTechFractCalPrice") %>%
       add_xml_data(L202.StubTechCoef_oil, "StubTechCoef") %>%
 
       add_logit_tables_xml(L202.Supplysector_in, "Supplysector") %>%
