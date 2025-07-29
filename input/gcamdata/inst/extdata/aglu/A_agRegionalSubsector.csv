@@ -69,3 +69,5 @@ regional woodpulp,domestic woodpulp,-6,start-year,1,share-weight,final-calibrati
 regional woodpulp,imported woodpulp,-6,start-year,1,share-weight,final-calibration-year,end-year,fixed,
 regional industrial_roundwood,domestic industrial_roundwood,-6,start-year,1,share-weight,final-calibration-year,end-year,fixed,
 regional industrial_roundwood,imported industrial_roundwood,-6,start-year,1,share-weight,final-calibration-year,end-year,fixed,
+regional DDGS,domestic DDGS,-6,start-year,1,share-weight,final-calibration-year,end-year,fixed,
+regional DDGS,imported DDGS,-6,start-year,1,share-weight,final-calibration-year,end-year,fixed,

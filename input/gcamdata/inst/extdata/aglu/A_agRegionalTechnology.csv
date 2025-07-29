@@ -7,53 +7,53 @@
 # ----------
 supplysector,subsector,technology,minicam.energy.input,coefficient,input.cost,share.weight,market.name
 total corn,domestic corn,domestic corn,Corn,1,0,1,regional
-total corn,imported corn,imported corn,traded corn,1,0,1,USA
+total corn,imported corn,imported corn,traded corn,1,0.04,1,USA
 total fibercrop,domestic fibercrop,domestic fibercrop,FiberCrop,1,0,1,regional
-total fibercrop,imported fibercrop,imported fibercrop,traded fibercrop,1,0,1,USA
+total fibercrop,imported fibercrop,imported fibercrop,traded fibercrop,1,0.04,1,USA
 total fruits,domestic fruits,domestic fruits,Fruits,1,0,1,regional
-total fruits,imported fruits,imported fruits,traded fruits,1,0,1,USA
+total fruits,imported fruits,imported fruits,traded fruits,1,0.04,1,USA
 total legumes,domestic legumes,domestic legumes,Legumes,1,0,1,regional
-total legumes,imported legumes,imported legumes,traded legumes,1,0,1,USA
+total legumes,imported legumes,imported legumes,traded legumes,1,0.04,1,USA
 total misccrop,domestic misccrop,domestic misccrop,MiscCrop,1,0,1,regional
-total misccrop,imported misccrop,imported misccrop,traded misccrop,1,0,1,USA
+total misccrop,imported misccrop,imported misccrop,traded misccrop,1,0.04,1,USA
 total nuts_seeds,domestic nuts_seeds,domestic nuts_seeds,NutsSeeds,1,0,1,regional
-total nuts_seeds,imported nuts_seeds,imported nuts_seeds,traded nuts_seeds,1,0,1,USA
+total nuts_seeds,imported nuts_seeds,imported nuts_seeds,traded nuts_seeds,1,0.04,1,USA
 total oilcrop,domestic oilcrop,domestic oilcrop,OilCrop,1,0,1,regional
-total oilcrop,imported oilcrop,imported oilcrop,traded oilcrop,1,0,1,USA
+total oilcrop,imported oilcrop,imported oilcrop,traded oilcrop,1,0.04,1,USA
 total oilcrop oil,domestic oilcrop oil,domestic oilcrop oil,OilCrop oil,1,0,1,regional
-total oilcrop oil,imported oilcrop oil,imported oilcrop oil,traded oilcrop oil,1,0,1,USA
+total oilcrop oil,imported oilcrop oil,imported oilcrop oil,traded oilcrop oil,1,0.04,1,USA
 total oilcrop feedcake,domestic oilcrop feedcake,domestic oilcrop feedcake,OilCrop feedcake,1,0,1,regional
-total oilcrop feedcake,imported oilcrop feedcake,imported oilcrop feedcake,traded oilcrop feedcake,1,0,1,USA
+total oilcrop feedcake,imported oilcrop feedcake,imported oilcrop feedcake,traded oilcrop feedcake,1,0.04,1,USA
 total rapeseed,domestic rapeseed,domestic rapeseed,Rapeseed,1,0,1,regional
-total rapeseed,imported rapeseed,imported rapeseed,traded rapeseed,1,0,1,USA
+total rapeseed,imported rapeseed,imported rapeseed,traded rapeseed,1,0.04,1,USA
 total rapeseed oil,domestic rapeseed oil,domestic rapeseed oil,Rapeseed oil,1,0,1,regional
-total rapeseed oil,imported rapeseed oil,imported rapeseed oil,traded rapeseed oil,1,0,1,USA
+total rapeseed oil,imported rapeseed oil,imported rapeseed oil,traded rapeseed oil,1,0.04,1,USA
 total rapeseed feedcake,domestic rapeseed feedcake,domestic rapeseed feedcake,Rapeseed feedcake,1,0,1,regional
-total rapeseed feedcake,imported rapeseed feedcake,imported rapeseed feedcake,traded rapeseed feedcake,1,0,1,USA
+total rapeseed feedcake,imported rapeseed feedcake,imported rapeseed feedcake,traded rapeseed feedcake,1,0.04,1,USA
 total othergrain,domestic othergrain,domestic othergrain,OtherGrain,1,0,1,regional
-total othergrain,imported othergrain,imported othergrain,traded othergrain,1,0,1,USA
+total othergrain,imported othergrain,imported othergrain,traded othergrain,1,0.04,1,USA
 total oilpalm,domestic oilpalm,domestic oilpalm,OilPalm,1,0,1,regional
-total oilpalm,imported oilpalm,imported oilpalm,traded oilpalm,1,0,1,USA
+total oilpalm,imported oilpalm,imported oilpalm,traded oilpalm,1,0.04,1,USA
 total oilpalm oil,domestic oilpalm oil,domestic oilpalm oil,OilPalm oil,1,0,1,regional
-total oilpalm oil,imported oilpalm oil,imported oilpalm oil,traded oilpalm oil,1,0,1,USA
+total oilpalm oil,imported oilpalm oil,imported oilpalm oil,traded oilpalm oil,1,0.04,1,USA
 total oilpalm feedcake,domestic oilpalm feedcake,domestic oilpalm feedcake,OilPalm feedcake,1,0,1,regional
-total oilpalm feedcake,imported oilpalm feedcake,imported oilpalm feedcake,traded oilpalm feedcake,1,0,1,USA
+total oilpalm feedcake,imported oilpalm feedcake,imported oilpalm feedcake,traded oilpalm feedcake,1,0.04,1,USA
 total rice,domestic rice,domestic rice,Rice,1,0,1,regional
-total rice,imported rice,imported rice,traded rice,1,0,1,USA
+total rice,imported rice,imported rice,traded rice,1,0.04,1,USA
 total root_tuber,domestic root_tuber,domestic root_tuber,RootTuber,1,0,1,regional
-total root_tuber,imported root_tuber,imported root_tuber,traded root_tuber,1,0,1,USA
+total root_tuber,imported root_tuber,imported root_tuber,traded root_tuber,1,0.04,1,USA
 total soybean,domestic soybean,domestic soybean,Soybean,1,0,1,regional
-total soybean,imported soybean,imported soybean,traded soybean,1,0,1,USA
+total soybean,imported soybean,imported soybean,traded soybean,1,0.04,1,USA
 total soybean oil,domestic soybean oil,domestic soybean oil,Soybean oil,1,0,1,regional
-total soybean oil,imported soybean oil,imported soybean oil,traded soybean oil,1,0,1,USA
+total soybean oil,imported soybean oil,imported soybean oil,traded soybean oil,1,0.04,1,USA
 total soybean feedcake,domestic soybean feedcake,domestic soybean feedcake,Soybean feedcake,1,0,1,regional
-total soybean feedcake,imported soybean feedcake,imported soybean feedcake,traded soybean feedcake,1,0,1,USA
+total soybean feedcake,imported soybean feedcake,imported soybean feedcake,traded soybean feedcake,1,0.04,1,USA
 total sugarcrop,domestic sugarcrop,domestic sugarcrop,SugarCrop,1,0,1,regional
-total sugarcrop,imported sugarcrop,imported sugarcrop,traded sugarcrop,1,0,1,USA
+total sugarcrop,imported sugarcrop,imported sugarcrop,traded sugarcrop,1,0.04,1,USA
 total vegetables,domestic vegetables,domestic vegetables,Vegetables,1,0,1,regional
-total vegetables,imported vegetables,imported vegetables,traded vegetables,1,0,1,USA
+total vegetables,imported vegetables,imported vegetables,traded vegetables,1,0.04,1,USA
 total wheat,domestic wheat,domestic wheat,Wheat,1,0,1,regional
-total wheat,imported wheat,imported wheat,traded wheat,1,0,1,USA
+total wheat,imported wheat,imported wheat,traded wheat,1,0.04,1,USA
 total beef,domestic beef,domestic beef,Beef,1,0,1,regional
 total beef,imported beef,imported beef,traded beef,1,0,1,USA
 total dairy,domestic dairy,domestic dairy,Dairy,1,0,1,regional
@@ -70,3 +70,5 @@ regional woodpulp,domestic woodpulp,domestic woodpulp,woodpulp,1,0,1,regional
 regional woodpulp,imported woodpulp,imported woodpulp,traded woodpulp,1,0,1,USA
 regional industrial_roundwood,domestic industrial_roundwood,domestic industrial_roundwood,Forest,1,0,1,regional
 regional industrial_roundwood,imported industrial_roundwood,imported industrial_roundwood,traded industrial_roundwood,1,0,1,USA
+regional DDGS,domestic DDGS,domestic DDGS,DDGS,1,0,1,regional
+regional DDGS,imported DDGS,imported DDGS,traded DDGS,1,0.04,1,USA

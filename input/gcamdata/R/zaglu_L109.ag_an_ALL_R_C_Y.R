@@ -26,6 +26,7 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
       "L108.ag_Feed_Mt_R_C_Y",
       "L108.ag_NetExp_Mt_R_FodderHerb_Y",
       "L122.in_Mt_R_C_Yh",
+      "L122.FeedOut_Mt_R_C_Yh",
       "L101.GrossTrade_Mt_R_C_Y",
       "L101.ag_Storage_Mt_R_C_Y",
       "L101.FAO_SUA_APE_balance_Crushing",
@@ -75,8 +76,11 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
     # We will also generate the SUA data for the corresponding secondary products
 
     # List of commodities in production table ----
+    # GPK 7/26/2025 - while DDGS is a feed commodity, because it is not tracked by FAOSTAT, and because it is in the
+    # GrossTrade data table, it is treated within this code chunk as a primary commodity
     L101.ag_Prod_Mt_R_C_Y %>%
       pull(GCAM_commodity) %>%
+      c("DDGS") %>%
       unique() -> Primary_commodities
     # List of any commodities (e.g. pasture, residue, scavenging) in feed but not in production table
     L108.ag_Feed_Mt_R_C_Y %>%
@@ -113,6 +117,9 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
     # Name the flows in each table, and combine all tables
       bind_rows(L108.ag_NetExp_Mt_R_FodderHerb_Y %>% mutate(flow = "NetExp_Mt")) %>%
       bind_rows(mutate(L101.ag_Prod_Mt_R_C_Y, flow = "Prod_Mt")) %>%
+      bind_rows(mutate(L122.FeedOut_Mt_R_C_Yh %>%
+                         select(-GCAM_commodity) %>%
+                         rename(GCAM_commodity = fractional.secondary.output), flow = "Prod_Mt")) %>%
       bind_rows(mutate(L101.ag_Food_Mt_R_C_Y, flow = "Food_Mt")) %>%
       bind_rows(mutate(L108.ag_Feed_Mt_R_C_Y %>%
                          filter(!GCAM_commodity %in% Crushing_Secondary_commodities), flow = "Feed_Mt")) %>%
@@ -798,6 +805,7 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
       add_comments("Adjusts global and regional net exports to remove net negative other uses") %>%
       add_legacy_name("L109.ag_ALL_Mt_R_C_Y") %>%
       add_precursors("L122.in_Mt_R_C_Yh",
+                     "L122.FeedOut_Mt_R_C_Yh",
                      "L101.GrossTrade_Mt_R_C_Y",
                      "L101.ag_Storage_Mt_R_C_Y",
                      "L101.ag_Secondary_SUA_Mt_R_C_Y") ->

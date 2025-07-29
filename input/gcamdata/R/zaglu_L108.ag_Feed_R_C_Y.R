@@ -24,6 +24,7 @@ module_aglu_L108.ag_Feed_R_C_Y <- function(command, ...) {
     c(FILE = "common/iso_GCAM_regID",
       "L101.ag_Feed_Mt_R_C_Y",
       "L101.ag_Prod_Mt_R_C_Y",
+      "L101.GrossTrade_Mt_R_C_Y",
       "L107.an_Feed_Mt_R_C_Sys_Fd_Y",
       "L101.ag_Secondary_SUA_Mt_R_C_Y",
       "L122.FeedOut_Mt_R_C_Yh")
@@ -72,18 +73,22 @@ module_aglu_L108.ag_Feed_R_C_Y <- function(command, ...) {
 
     # Part 1: Compute regional feedcrop demands by GCAM region, commodity, and year in Mt/yr ----
     # FEEDCROPS
-
-    L108.DDGS <-
+    # 7/26/2025 GPK - method of estimating DDGS consumption revised to account for DDGS trade.
+    L108.DDGS_Cons <-
       select(L122.FeedOut_Mt_R_C_Yh, -GCAM_commodity) %>%
       filter(year %in% aglu.AGLU_HISTORICAL_YEARS) %>%
       rename(GCAM_commodity = fractional.secondary.output) %>%
+      complete(nesting(GCAM_commodity, year), GCAM_region_ID = sort(unique(iso_GCAM_regID$GCAM_region_ID)),
+               fill = list(value = 0)) %>%
+      left_join_error_no_match(L101.GrossTrade_Mt_R_C_Y,
+                               by = c("GCAM_region_ID", "GCAM_commodity", "year")) %>%
+      mutate(value = value + GrossImp_Mt - GrossExp_Mt) %>%
       group_by(GCAM_region_ID, GCAM_commodity, year) %>%
       summarise(value = sum(value)) %>%
       ungroup() %>%
       complete(nesting(GCAM_commodity, year), GCAM_region_ID = sort(unique(iso_GCAM_regID$GCAM_region_ID)),
                fill = list(value = 0)) %>%
       select(GCAM_region_ID, GCAM_commodity, year, value)
-
 
     # Use crop-specific information from FAO, in combination with feed totals from IMAGE,
     # to calculate region/crop specific information. This ensures totals match IMAGE and shares match FAO.
@@ -108,7 +113,7 @@ module_aglu_L108.ag_Feed_R_C_Y <- function(command, ...) {
 
 
     # 4/12/2019 revision, cont'd: because DDGS and biofuel-related feedcakes are coming from calibrated energy
-    # technologies in quantities that can not be scaled, the values in L108.DDGS need to be subtracted from
+    # technologies in quantities that can not be scaled, the values in L108.DDGS_Cons need to be subtracted from
     # this IMAGE-based animal feed total, with the remainder apportioned to the (non-DDGS and biofuel-related feedcakes).
     # The steps below deduct the DDGS and feedcakes totals from the animal feed quantity computed above.
 
@@ -117,7 +122,7 @@ module_aglu_L108.ag_Feed_R_C_Y <- function(command, ...) {
     # fractions computed above
     # an_Feed_Mt_R_C_Y %>%
     #   filter(feed == "FeedCrops") %>%                                                              # Filter to only include "FeedCrops"
-    #   left_join_error_no_match(select(L108.DDGS, GCAM_region_ID, year, ddgs_feedcakes = value),
+    #   left_join_error_no_match(select(L108.DDGS_Cons, GCAM_region_ID, year, ddgs_feedcakes = value),
     #                            by = c("GCAM_region_ID", "year")) %>%
     #   mutate(value = value - ddgs_feedcakes) %>%
     #   select(-ddgs_feedcakes) %>%
@@ -125,7 +130,7 @@ module_aglu_L108.ag_Feed_R_C_Y <- function(command, ...) {
     #              by = c("GCAM_region_ID", "year")) %>%                                             # Map in feed fractions computed from FAO data
     #   mutate(value = value * Feedfrac) %>%                                                         # Compute FAO-IMAGE adjusted feed crop demand
     #   select(-feed, -Feedfrac) %>%
-    #   bind_rows(L108.DDGS) ->                                                            # Bind with the DDGS and feedcakes commodity(s)
+    #   bind_rows(L108.DDGS_Cons) ->                                                            # Bind with the DDGS and feedcakes commodity(s)
     #   ag_Feed_Mt_R_Cnf_Y_adj
 
     # 9/18/2022 Update to the NEW method:
@@ -137,7 +142,7 @@ module_aglu_L108.ag_Feed_R_C_Y <- function(command, ...) {
 
     ag_Feed_Mt_R_Cnf_Y %>%
       select(-Feedfrac) %>%
-      bind_rows(L108.DDGS) ->
+      bind_rows(L108.DDGS_Cons) ->
       ag_Feed_Mt_R_Cnf_Y_adj
 
 
@@ -352,7 +357,7 @@ module_aglu_L108.ag_Feed_R_C_Y <- function(command, ...) {
       add_comments("FodderHerb: based on FAO production, but adjusted if this exceeds FodderHerb_Residue demand in IMAGE") %>%
       add_comments("Note: excess FodderGrass and FodderHerb production are mapped to OtherUses") %>%
       add_legacy_name("L108.ag_Feed_Mt_R_C_Y") %>%
-      add_precursors("common/iso_GCAM_regID", "L101.ag_Feed_Mt_R_C_Y", "L101.ag_Secondary_SUA_Mt_R_C_Y",
+      add_precursors("common/iso_GCAM_regID", "L101.ag_Feed_Mt_R_C_Y", "L101.ag_Secondary_SUA_Mt_R_C_Y", "L101.GrossTrade_Mt_R_C_Y",
                      "L101.ag_Prod_Mt_R_C_Y", "L107.an_Feed_Mt_R_C_Sys_Fd_Y", "L122.FeedOut_Mt_R_C_Yh") ->
       L108.ag_Feed_Mt_R_C_Y
 

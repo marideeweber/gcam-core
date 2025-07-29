@@ -22,6 +22,9 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
       FILE = "aglu/FAO/FAO_an_items_PRODSTAT",
       FILE = "aglu/A_agStorageSector",
       FILE = "aglu/A_Crushing_min_max_rate",
+      FILE = "aglu/UN_ComTrade_DDGS",
+      FILE = "common/iso_GCAM_regID",
+      FILE = "energy/A_regions",
       "GCAM_AgLU_SUA_APE_1973_2019",
       "GCAM_AgLU_SUA_APE_1973_2019_ProcessedUse",
       "FAO_AgProd_Kt_All",
@@ -76,7 +79,7 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
     COMM_MEAT <- FAO_an_items_PRODSTAT %>% filter(!is.na(GCAM_commodity)) %>% distinct(GCAM_commodity) %>% pull
     COMM_STORAGE <- A_agStorageSector %>% filter(storage_model == TRUE) %>% distinct(GCAM_commodity) %>% pull
 
-    COMM_CURSHING_PRIMARY <- c("Soybean", "OilPalm", "OilCrop", "Rapeseed")
+    COMM_CRUSHING_PRIMARY <- c("Soybean", "OilPalm", "OilCrop", "Rapeseed")
     COMM_CRUSHING_SECONDARY <- c("Soybean oil", "Soybean feedcake", "OilPalm oil", "OilPalm feedcake",
                                  "OilCrop oil", "OilCrop feedcake", "Rapeseed oil", "Rapeseed feedcake")
     COMM_CRUSHING_SECONDARY_FEEDCAKE <- COMM_CRUSHING_SECONDARY[grepl("feedcake", x = COMM_CRUSHING_SECONDARY)]
@@ -160,10 +163,10 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
       filter(year %in% aglu.AGLU_HISTORICAL_YEARS)
 
 
-    # prepare the corresponding processed use for COMM_CURSHING_PRIMARY (e.g., oilseeds)
+    # prepare the corresponding processed use for COMM_CRUSHING_PRIMARY (e.g., oilseeds)
     L101.FAO_SUA_APE_balance_Crushing <-
       GCAM_AgLU_SUA_APE_1973_2019_ProcessedUse %>%
-      filter(GCAM_commodity %in% COMM_CURSHING_PRIMARY) %>%
+      filter(GCAM_commodity %in% COMM_CRUSHING_PRIMARY) %>%
       select(-unit) %>%
       left_join_error_no_match(GCAM_region_names, by = "region") %>%
       select(-region) %>%
@@ -412,6 +415,57 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
       spread(element, value) %>%
       rename(GrossExp_Mt = Export, GrossImp_Mt = Import)
 
+    # 2025-07-26 gpk - add in DDGS trade here
+    # DDGS is not being tracked by FAO but is in UN Comtrade database
+    iso_map <- iso_GCAM_regID %>%
+      mutate(ISO = toupper(iso)) %>%
+      select(ISO, GCAM_region_ID)
+
+    # Set up filter to block off any DDGS trade involving countries within regions where we assume
+    # no corn ethanol (i.e., that all fuel ethanol is from sugar cane)
+    corn_ethanol_regions <- A_regions$GCAM_region_ID[A_regions$ethanol == "corn ethanol"]
+
+    # The method below also includes a hack to remove DDGS exports from several countries that don't have
+    # any fuel ethanol production in the base year. This avoids negative DDGS production in L108.
+    L101.DDGS_GrossTrade_Mt_R <- UN_ComTrade_DDGS %>%
+      select(reporterISO, partnerISO, qty) %>%
+      inner_join(iso_map, by = c("reporterISO" = "ISO")) %>%
+      rename(Exporter_regID = GCAM_region_ID) %>%
+      inner_join(iso_map, by = c("partnerISO" = "ISO")) %>%
+      rename(Importer_regID = GCAM_region_ID) %>%
+      filter(Exporter_regID != Importer_regID,
+             Exporter_regID %in% corn_ethanol_regions,
+             Importer_regID %in% corn_ethanol_regions,
+             !reporterISO %in% c("GEO", "KAZ", "RUS")) %>%
+      group_by(Exporter_regID, Importer_regID) %>%
+      summarise(Trade_Mt = sum(qty / 1e9)) %>%
+      ungroup()
+
+    # Aggregate imports and exports by region separately, and join to a single data table
+    L101.DDGS_GrossExports_Mt_R <- L101.DDGS_GrossTrade_Mt_R %>%
+      select(GCAM_region_ID = Exporter_regID, GrossExp_Mt = Trade_Mt) %>%
+      group_by(GCAM_region_ID) %>%
+      summarise(GrossExp_Mt = sum(GrossExp_Mt)) %>%
+      ungroup()
+
+    L101.DDGS_GrossImports_Mt_R <- L101.DDGS_GrossTrade_Mt_R %>%
+      select(GCAM_region_ID = Importer_regID, GrossImp_Mt = Trade_Mt) %>%
+      group_by(GCAM_region_ID) %>%
+      summarise(GrossImp_Mt = sum(GrossImp_Mt)) %>%
+      ungroup()
+
+    L101.DDGS_GrossTrade_Mt_R_fby <- full_join(L101.DDGS_GrossExports_Mt_R, L101.DDGS_GrossImports_Mt_R,
+                                                by = "GCAM_region_ID") %>%
+      replace_na(list(GrossExp_Mt = 0, GrossImp_Mt = 0)) %>%
+      mutate(GrossExp_Mt = GrossExp_Mt * sum(GrossImp_Mt) / sum(GrossExp_Mt),
+             year = max(MODEL_BASE_YEARS))
+
+    L101.DDGS_GrossTrade_Mt_R_Y <- distinct(L101.GrossTrade_Mt_R_C_Y, year, GCAM_region_ID) %>%
+      mutate(GCAM_commodity = "DDGS") %>%
+      left_join(L101.DDGS_GrossTrade_Mt_R_fby, by = c("GCAM_region_ID", "year")) %>%
+      replace_na(list(GrossExp_Mt = 0, GrossImp_Mt = 0))
+
+    L101.GrossTrade_Mt_R_C_Y <- bind_rows(L101.GrossTrade_Mt_R_C_Y, L101.DDGS_GrossTrade_Mt_R_Y)
     # 5. Ag post-harvest storage loss rate and Ag storage ----
 
     # For estimating loss rate, it could be complicated due to trade
@@ -501,19 +555,19 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
     # Check and improve crushing rates
     L101.FAO_SUA_APE_balance_Crushing %>%
       filter(element == "Processed") %>%
-      transmute(year, COMM_Curshing_Primary = GCAM_commodity, GCAM_region_ID, Crushing_Mt = value) %>%
+      transmute(year, COMM_Crushing_Primary = GCAM_commodity, GCAM_region_ID, Crushing_Mt = value) %>%
       left_join_error_no_match(
         L101.ag_Secondary_SUA_Mt_R_C_Y_1 %>%
           filter(element == "Production") %>% spread(element, value) %>%
           # separate feedcake and oil from primary name
-          tidyr::separate(GCAM_commodity, into =c("COMM_Curshing_Primary", "Oil_Cake")) %>%
+          tidyr::separate(GCAM_commodity, into =c("COMM_Crushing_Primary", "Oil_Cake")) %>%
           spread(Oil_Cake, Production) %>%
           mutate(feedcake = if_else(is.na(feedcake) & oil == 0, 0, feedcake)),
-        by = c("year", "GCAM_region_ID", "COMM_Curshing_Primary")
+        by = c("year", "GCAM_region_ID", "COMM_Crushing_Primary")
       ) %>%
       left_join_error_no_match(
-        A_Crushing_min_max_rate, by = c("COMM_Curshing_Primary") ) %>%
-      # adjustments if curshing_Mt = 0, oil and cake should be 0
+        A_Crushing_min_max_rate, by = c("COMM_Crushing_Primary") ) %>%
+      # adjustments if crushing_Mt = 0, oil and cake should be 0
       mutate(oil = if_else(Crushing_Mt == 0, 0, oil),
              feedcake = if_else(Crushing_Mt == 0, 0, feedcake),
             # set lower and upper limits here for crushing rate
@@ -534,9 +588,9 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
 
     # bind back adjusted production
     L101.ag_Secondary_SUA_Mt_R_C_Y_Crushing_Rate %>%
-      select(year, GCAM_region_ID, COMM_Curshing_Primary, oil, feedcake) %>%
+      select(year, GCAM_region_ID, COMM_Crushing_Primary, oil, feedcake) %>%
       gather(oil_cake, value, oil, feedcake) %>%
-      transmute(year, GCAM_region_ID, GCAM_commodity = paste(COMM_Curshing_Primary, oil_cake, sep = " "),
+      transmute(year, GCAM_region_ID, GCAM_commodity = paste(COMM_Crushing_Primary, oil_cake, sep = " "),
                 element = "Production", value) %>%
       bind_rows(
         L101.ag_Secondary_SUA_Mt_R_C_Y_1 %>%
@@ -718,7 +772,8 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
       add_comments("Balanced gross trade of GCAM Ag commodities") %>%
       add_units("Mt") %>%
       add_legacy_name("L101.GrossTrade_Mt_R_C_Y") %>%
-      add_precursors("GCAM_AgLU_SUA_APE_1973_2019") ->
+      add_precursors("GCAM_AgLU_SUA_APE_1973_2019", "aglu/UN_ComTrade_DDGS", "common/iso_GCAM_regID",
+                     "energy/A_regions") ->
       L101.GrossTrade_Mt_R_C_Y
 
     L101.ag_Storage_Mt_R_C_Y %>%

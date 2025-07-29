@@ -30,6 +30,7 @@ module_aglu_L240.ag_trade <- function(command, ...) {
       FILE = "aglu/A_agTradedSubsector",
       FILE = "aglu/A_agTradedTechnology",
       FILE = "common/iso_GCAM_regID",
+      FILE = "energy/A_regions",
       "L109.ag_ALL_Mt_R_C_Y",
       "L109_crushing_processed_ALL_Mt_R_C_Y",
       "L109.an_ALL_Mt_R_C_Y",
@@ -47,6 +48,7 @@ module_aglu_L240.ag_trade <- function(command, ...) {
       "L240.Supplysector_reg",
       "L240.SubsectorAll_reg",
       "L240.TechShrwt_reg",
+      "L240.TechCost_reg",
       "L240.TechCoef_reg",
       "L240.Production_reg_imp",
       "L240.Production_reg_dom")
@@ -103,12 +105,16 @@ module_aglu_L240.ag_trade <- function(command, ...) {
     L240.SectorUseTrialMarket_tra <- select(A_agTradedSector, region, supplysector) %>%
       mutate(use.trial.market = 1)
 
+    # Set up filter to remove DDGS trade from regions where corn ethanol production is not allowed.
+    no_DDGS_regions <- A_regions$region[A_regions$ethanol != "corn ethanol"]
+
     # L240.SubsectorAll_tra: generic subsector info for traded ag commodities
     # Traded commodities have the region set to USA and the subsector gets the region name pre-pended
     L240.SubsectorAll_tra <- write_to_all_regions(A_agTradedSubsector,
                                                   c(LEVEL2_DATA_NAMES[["SubsectorAll"]], "logit.type"),
                                                   filter(GCAM_region_names, !region %in% aglu.NO_AGLU_REGIONS),
-                                                  has_traded = TRUE)
+                                                  has_traded = TRUE) %>%
+      filter(!subsector %in% paste(no_DDGS_regions, "traded DDGS"))
 
     # Base technology-level table for several tables to be written out")
     A_agTradedTechnology_R_Y <- repeat_add_columns(A_agTradedTechnology,
@@ -117,7 +123,8 @@ module_aglu_L240.ag_trade <- function(command, ...) {
       mutate(subsector = paste(region, subsector, sep = " "),
              technology = subsector,
              market.name = region,
-             region = gcam.USA_REGION)
+             region = gcam.USA_REGION) %>%
+      filter(!subsector %in% paste(no_DDGS_regions, "traded DDGS"))
 
     # L240.TechShrwt_tra: Share-weights of traded technologies
     L240.TechShrwt_tra <- select(A_agTradedTechnology_R_Y, LEVEL2_DATA_NAMES[["TechShrwt"]])
@@ -152,18 +159,21 @@ module_aglu_L240.ag_trade <- function(command, ...) {
     # L240.Supplysector_reg: generic supplysector info for regional ag commodities
     L240.Supplysector_reg <- mutate(A_agRegionalSector, logit.year.fillout = min(MODEL_BASE_YEARS)) %>%
       write_to_all_regions(c(LEVEL2_DATA_NAMES[["Supplysector"]], "logit.type"),
-                           filter(GCAM_region_names, !region %in% aglu.NO_AGLU_REGIONS))
+                           filter(GCAM_region_names, !region %in% aglu.NO_AGLU_REGIONS)) %>%
+      filter(!paste(region, supplysector) %in% paste(no_DDGS_regions, "regional DDGS"))
 
     # L240.SubsectorAll_reg: generic subsector info for regional ag commodities (competing domestic prod vs intl imports)
     L240.SubsectorAll_reg <- write_to_all_regions(A_agRegionalSubsector,
                                                   c(LEVEL2_DATA_NAMES[["SubsectorAll"]], "logit.type"),
-                                                  filter(GCAM_region_names, !region %in% aglu.NO_AGLU_REGIONS))
+                                                  filter(GCAM_region_names, !region %in% aglu.NO_AGLU_REGIONS)) %>%
+      filter(!paste(region, supplysector) %in% paste(no_DDGS_regions, "regional DDGS"))
 
     # Base technology-level table for several tables to be written out")
     A_agRegionalTechnology_R_Y <- repeat_add_columns(A_agRegionalTechnology,
                                                      tibble(year = MODEL_YEARS)) %>%
       repeat_add_columns(filter(GCAM_region_names["region"], !region %in% aglu.NO_AGLU_REGIONS)) %>%
-      mutate(market.name = if_else(market.name == "regional", region, market.name))
+      mutate(market.name = if_else(market.name == "regional", region, market.name)) %>%
+      filter(!paste(region, supplysector) %in% paste(no_DDGS_regions, "regional DDGS"))
 
     # L240.TechShrwt_tra: Share-weights of traded technologies
     L240.TechShrwt_reg <- select(A_agRegionalTechnology_R_Y, LEVEL2_DATA_NAMES[["TechShrwt"]])
@@ -172,11 +182,17 @@ module_aglu_L240.ag_trade <- function(command, ...) {
     L240.TechCoef_reg <- select(A_agRegionalTechnology_R_Y, LEVEL2_DATA_NAMES[["TechCoef"]]) %>%
                          mutate(minicam.energy.input= if_else(minicam.energy.input %in% aglu.FOREST_COMMODITIES, paste0(minicam.energy.input, "_processing"),minicam.energy.input))
 
+    L240.TechCost_reg <- A_agRegionalTechnology_R_Y %>%
+      filter(input.cost > 0) %>%
+      mutate(minicam.non.energy.input = "import cost") %>%
+      select(LEVEL2_DATA_NAMES[["TechCost"]])
+
     # L240.Production_reg_imp: Output (flow) of gross imports
     # Imports are equal to the gross imports calculated in L1091
     L240.GrossImports_Mt_R_C_Y <- left_join_error_no_match(L1091.GrossTrade_Mt_R_C_Y,
                                                            GCAM_region_names,
                                                            by = "GCAM_region_ID") %>%
+      filter(!paste(region, GCAM_commodity) %in% paste(no_DDGS_regions, "DDGS")) %>%
       left_join(select(A_agTradedTechnology, supplysector, minicam.energy.input),
                 by = c(GCAM_commodity = "minicam.energy.input")) %>%
       select(region, supplysector, year, GrossImp_Mt)
@@ -198,6 +214,7 @@ module_aglu_L240.ag_trade <- function(command, ...) {
     L240.GrossExports_Mt_R_C_Y <- left_join_error_no_match(L1091.GrossTrade_Mt_R_C_Y,
                                                            GCAM_region_names,
                                                            by = "GCAM_region_ID") %>%
+      filter(!paste(region, GCAM_commodity) %in% paste(no_DDGS_regions, "DDGS")) %>%
       select(region, GCAM_commodity, year, GrossExp_Mt)
 
     L240.Prod_Mt_R_C_Y <- left_join_error_no_match(L109.ag_an_for_ALL_Mt_R_C_Y,
@@ -263,7 +280,8 @@ module_aglu_L240.ag_trade <- function(command, ...) {
       add_units("None") %>%
       add_comments("We remove any regions for which agriculture and land use are not modeled.") %>%
       add_precursors("common/GCAM_region_names",
-                     "aglu/A_agTradedSubsector") ->
+                     "aglu/A_agTradedSubsector",
+                     "energy/A_regions") ->
       L240.SubsectorAll_tra
 
     L240.TechShrwt_tra %>%
@@ -317,7 +335,8 @@ module_aglu_L240.ag_trade <- function(command, ...) {
       add_units("None") %>%
       add_comments("We remove any regions for which agriculture and land use are not modeled.") %>%
       add_precursors("common/GCAM_region_names",
-                     "aglu/A_agRegionalSubsector") ->
+                     "aglu/A_agRegionalSubsector",
+                     "energy/A_regions") ->
       L240.SubsectorAll_reg
 
     L240.TechShrwt_reg %>%
@@ -327,6 +346,14 @@ module_aglu_L240.ag_trade <- function(command, ...) {
       add_precursors("common/GCAM_region_names",
                      "aglu/A_agRegionalTechnology") ->
       L240.TechShrwt_reg
+
+    L240.TechCost_reg %>%
+      add_title("Cost adders for regional / imported ag commodities") %>%
+      add_units("1975$/kg") %>%
+      add_comments("Only import costs considered") %>%
+      same_precursors_as(L240.TechShrwt_reg) ->
+      L240.TechCost_reg
+
 
     L240.TechCoef_reg %>%
       add_title("Technology input-output coefficients for regional ag commodities") %>%
