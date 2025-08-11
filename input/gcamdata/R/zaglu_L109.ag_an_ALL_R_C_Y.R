@@ -113,7 +113,7 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
   L101.GrossTrade_Mt_R_C_Y %>%
     filter(GCAM_commodity %in% Primary_commodities) %>%
     mutate(NetExp_Mt = GrossExp_Mt - GrossImp_Mt) %>%
-    gather(flow, value, -GCAM_region_ID, -GCAM_commodity, -year) %>%
+    tidyr::gather(flow, value, -GCAM_region_ID, -GCAM_commodity, -year) %>%
     # Name the flows in each table, and combine all tables
       bind_rows(L108.ag_NetExp_Mt_R_FodderHerb_Y %>% mutate(flow = "NetExp_Mt")) %>%
       bind_rows(mutate(L101.ag_Prod_Mt_R_C_Y, flow = "Prod_Mt")) %>%
@@ -234,7 +234,7 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
     L109.ag_ALL_Mt_R_C_Y %>%
     filter(GCAM_commodity %in% c("FodderHerb", Feed_commodities))
     ) %>%
-    gather(element, value, -GCAM_region_ID, -GCAM_commodity, -year) %>%
+    tidyr::gather(element, value, -GCAM_region_ID, -GCAM_commodity, -year) %>%
     mutate(value = round(value, aglu.DIGITS_CALOUTPUT))->
     L109.ag_ALL_Mt_R_C_Y_3
 
@@ -711,7 +711,8 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
                                    (Prod_Mt + `Opening stocks`), GrossExp_Mt)) ->
       L109.ag_ALL_Mt_R_C_Y_a
 
-    # Method 1 is not used since there would be more errors (palm and suger crops related) due to the adjustments
+    # Method 1 is not used since there would be more errors (palm and sugar crops related) due to the adjustments
+    # because there may be not enough import for adjustments (leading to negative import)
 
     # Method 2 (old method; now used with special cases):  adjustments to ensure export < production
     L109.ag_ALL_Mt_R_C_Y %>%
@@ -725,17 +726,18 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
     # remove trade adj for a special case to avoid negative trade values
     # two cases added for now
     L109.ag_ALL_Mt_R_C_Y %>%
-      filter((year == 1975 & GCAM_region_ID == 10 & GCAM_commodity == "Soybean") |
-               #(year == 1975 & GCAM_region_ID == 18 & GCAM_commodity == "OtherGrain") |
+      filter((year == 1975 & GCAM_region_ID == 5 & GCAM_commodity == "MiscCrop") |
+               (year == 1975 & GCAM_region_ID == 10 & GCAM_commodity == "Soybean") |
+               (year == 1975 & GCAM_region_ID == 18 & GCAM_commodity == "OtherGrain") |
                (year == 2021 & GCAM_region_ID == 8 & GCAM_commodity == "Legumes")) %>%
       bind_rows(
         L109.ag_ALL_Mt_R_C_Y_b %>%
-          filter(!(year == 1975 & GCAM_region_ID == 10 & GCAM_commodity == "Soybean") &
-                   #!(year == 1975 & GCAM_region_ID == 18 & GCAM_commodity == "OtherGrain") &
+          filter(!(year == 1975 & GCAM_region_ID == 5 & GCAM_commodity == "MiscCrop") &
+                   !(year == 1975 & GCAM_region_ID == 10 & GCAM_commodity == "Soybean") &
+                   !(year == 1975 & GCAM_region_ID == 18 & GCAM_commodity == "OtherGrain") &
                    !(year == 2021 & GCAM_region_ID == 8 & GCAM_commodity == "Legumes"))
       ) ->
       L109.ag_ALL_Mt_R_C_Y
-
 
     if(any(filter(L109.ag_ALL_Mt_R_C_Y, year %in% MODEL_BASE_YEARS)$GrossImp_Mt < 0)){
       stop("Negative trade values.") }

@@ -53,9 +53,8 @@
 #include "technologies/include/technology.h"
 #include "technologies/include/itechnology.h"
 #include "technologies/include/default_technology.h"
+#include "technologies/include/backup_intermittent_technology.h"
 #include "technologies/include/intermittent_technology.h"
-#include "technologies/include/wind_technology.h"
-#include "technologies/include/solar_technology.h"
 #include "technologies/include/nuke_fuel_technology.h"
 #include "technologies/include/tran_technology.h"
 #include "technologies/include/ag_production_technology.h"
@@ -127,9 +126,8 @@ ITechnologyContainer* TechnologyContainer::clone() const {
  */
 bool TechnologyContainer::hasTechnologyType( const string& aTechNodeName ) {
     return ( aTechNodeName == DefaultTechnology::getXMLNameStatic() ||
+             aTechNodeName == BackupIntermittentTechnology::getXMLNameStatic() ||
              aTechNodeName == IntermittentTechnology::getXMLNameStatic() ||
-             aTechNodeName == WindTechnology::getXMLNameStatic() ||
-             aTechNodeName == SolarTechnology::getXMLNameStatic() ||
              aTechNodeName == NukeFuelTechnology::getXMLNameStatic() ||
              aTechNodeName == TranTechnology::getXMLNameStatic() ||
              aTechNodeName == AgProductionTechnology::getXMLNameStatic() ||
@@ -258,13 +256,13 @@ void TechnologyContainer::toDebugXML( const int aPeriod, ostream& aOut, Tabs* aT
     }
 }
 
-const string& TechnologyContainer::getName() const {
+const gcamstr& TechnologyContainer::getName() const {
     return mName;
 }
 
-void TechnologyContainer::completeInit( const string& aRegionName,
-                                        const string& aSectorName,
-                                        const string& aSubsectorName,
+void TechnologyContainer::completeInit( const gcamstr& aRegionName,
+                                        const gcamstr& aSectorName,
+                                        const gcamstr& aSubsectorName,
                                         const IInfo* aSubsecInfo,
                                         ILandAllocator* aLandAllocator )
 {
@@ -350,7 +348,7 @@ void TechnologyContainer::completeInit( const string& aRegionName,
     }
 }
 
-void TechnologyContainer::initCalc( const string& aRegionName, const string& aSectorName,
+void TechnologyContainer::initCalc( const gcamstr& aRegionName, const gcamstr& aSectorName,
                                     const IInfo* aSubsecInfo, const Demographic* aDemographic,
                                     const int aPeriod )
 {
@@ -408,7 +406,7 @@ void TechnologyContainer::initCalc( const string& aRegionName, const string& aSe
     mCachedVintageRangePeriod = aPeriod;
 }
 
-void TechnologyContainer::postCalc( const string& aRegionName, const int aPeriod ) {
+void TechnologyContainer::postCalc( const gcamstr& aRegionName, const int aPeriod ) {
     for( VintageIterator vintageIt = mVintages.begin(); vintageIt != mVintages.end(); ++vintageIt ) {
         ( *vintageIt ).second->postCalc( aRegionName, aPeriod );
     }

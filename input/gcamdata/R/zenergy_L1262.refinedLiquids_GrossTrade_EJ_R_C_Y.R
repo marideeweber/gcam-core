@@ -172,7 +172,7 @@ module_energy_L1262.refinedOil_GrossTrade <- function(command, ...) {
 
       # Modifications to trade volumes for consistency with actual use of the fuels in each region
       L1011.en_bal_EJ_R_Si_Fi_Yh %>%
-        filter(sector == "TPES",
+        filter(sector == energy.TPES_FLOW,
                fuel %in% c("refined biofuels_ethanol", "refined biofuels_FT", "refined liquids"),
                year %in% unique(L1262.XregTrade_EJ_R_C$year)) %>%
         mutate(GCAM_commodity = if_else(fuel == "refined liquids", "refining",
@@ -182,7 +182,7 @@ module_energy_L1262.refinedOil_GrossTrade <- function(command, ...) {
 
       # Do not allow imports to exceed total primary energy supply. Reduce trade by this amount.
       L1262.XregTrade_EJ_R_C <- L1262.XregTrade_EJ_R_C %>%
-        left_join_error_no_match(L1262.in_EJ_R_TPES_liq,
+        left_join(L1262.in_EJ_R_TPES_liq,
                                  by = c("GCAM_region_ID", "GCAM_commodity", "year")) %>%
         mutate(trade_reduction = if_else(gross_imports > TPES, gross_imports - TPES, 0),
                gross_exports = pmax(0, gross_exports - trade_reduction),

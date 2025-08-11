@@ -25,12 +25,12 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
       FILE = "aglu/UN_ComTrade_DDGS",
       FILE = "common/iso_GCAM_regID",
       FILE = "energy/A_regions",
-      "GCAM_AgLU_SUA_APE_1973_2019",
-      "GCAM_AgLU_SUA_APE_1973_2019_ProcessedUse",
+      "GCAM_AgLU_SUA_APE",
+      "GCAM_AgLU_SUA_APE_ProcessedUse",
       "FAO_AgProd_Kt_All",
       "FAO_AgArea_Kha_All",
-      "FAO_Food_Macronutrient_All_2010_2019",
-      "FAO_Food_MacronutrientRate_2010_2019_MaxValue")
+      "FAO_Food_Macronutrient_All",
+      "FAO_Food_MacronutrientRate_MaxValue")
 
   MODULE_OUTPUTS <-
     c("L100.FAO_SUA_APE_balance",
@@ -66,8 +66,8 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
     # to remove
     FAO_AgProd_Kt_All %>% filter(year >= min(aglu.AGLU_HISTORICAL_YEARS)) -> FAO_AgProd_Kt_All
     FAO_AgArea_Kha_All %>% filter(year >= min(aglu.AGLU_HISTORICAL_YEARS)) -> FAO_AgArea_Kha_All
-    GCAM_AgLU_SUA_APE_1973_2019 %>% filter(year >= min(aglu.AGLU_HISTORICAL_YEARS)) -> GCAM_AgLU_SUA_APE_1973_2019
-    assertthat::assert_that(unique(c(min(GCAM_AgLU_SUA_APE_1973_2019$year),
+    GCAM_AgLU_SUA_APE %>% filter(year >= min(aglu.AGLU_HISTORICAL_YEARS)) -> GCAM_AgLU_SUA_APE
+    assertthat::assert_that(unique(c(min(GCAM_AgLU_SUA_APE$year),
                                    min(FAO_AgProd_Kt_All$year),
                                    min(FAO_AgArea_Kha_All$year)) ) %>% length() == 1,
                              msg = "Check data years to ensure they have the same starting years, e.g., 1973; it matters for 5-year average for initial years"
@@ -97,7 +97,7 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
     # In most cases, adjustments are only needed in years before 2010 (won't affect base year mean)
 
     # Step_0.1 Fill in opening and closing stock using base year stock and variations
-    GCAM_AgLU_SUA_APE_1973_2019 %>%
+    GCAM_AgLU_SUA_APE %>%
       spread(element, value) %>%
       group_by(GCAM_commodity, region) %>%
       arrange(-year) %>%
@@ -106,7 +106,7 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
              OpenStock = BaseYearClosingStock - CumStockVar,
              CloseStock = OpenStock +`Stock Variation`) %>%
       ungroup ->
-      GCAM_AgLU_SUA_APE_1973_2019_StockAdj1
+      GCAM_AgLU_SUA_APE_StockAdj1
 
 
     # Step_0.2 Deal with negative storage
@@ -114,7 +114,7 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
     # and recalculate all
     # GCAM base year data won't be affected since data after 2010 are good
 
-    GCAM_AgLU_SUA_APE_1973_2019_StockAdj1 %>%
+    GCAM_AgLU_SUA_APE_StockAdj1 %>%
       mutate(`Stock Variation` = if_else(OpenStock < 0.001, 0, `Stock Variation`)) %>%
       group_by(GCAM_commodity, region) %>%
       arrange(-year) %>%
@@ -126,27 +126,27 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
       # other use is also removed here; it will be re-balanced later in L109
       select(-CumStockVar, -BaseYearClosingStock, -`Closing stocks`, -`Opening stocks`, - `Other uses`) %>%
       rename(`Opening stocks` = OpenStock, `Closing stocks` = CloseStock) ->
-      GCAM_AgLU_SUA_APE_1973_2019_StockAdj2
+      GCAM_AgLU_SUA_APE_StockAdj2
 
     # Step_0.3 Move food consumption of feedcakes to feed
     # they are mostly tiny (only in C. Asia) and we won't introduce food use of feedcake
 
-    GCAM_AgLU_SUA_APE_1973_2019_StockAdj2 %>%
+    GCAM_AgLU_SUA_APE_StockAdj2 %>%
       filter(GCAM_commodity %in% COMM_CRUSHING_SECONDARY_FEEDCAKE) %>%
       mutate(Feed = Feed + Food,
              Food = 0) %>%
       bind_rows(
-        GCAM_AgLU_SUA_APE_1973_2019_StockAdj2 %>%
+        GCAM_AgLU_SUA_APE_StockAdj2 %>%
           filter(!GCAM_commodity %in% COMM_CRUSHING_SECONDARY_FEEDCAKE)
       ) ->
-      GCAM_AgLU_SUA_APE_1973_2019_StockAdj3
+      GCAM_AgLU_SUA_APE_StockAdj3
 
 
     # 1. Supply-utilization accounting balance ----
     # Change unit and year for later uses
     # data was balanced already and in GCAM regions
     L100.FAO_SUA_APE_balance <-
-      GCAM_AgLU_SUA_APE_1973_2019_StockAdj3 %>%
+      GCAM_AgLU_SUA_APE_StockAdj3 %>%
       mutate(Net_Export = Export - Import) %>%
       select(-unit) %>%
       left_join_error_no_match(GCAM_region_names, by = "region") %>%
@@ -165,7 +165,7 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
 
     # prepare the corresponding processed use for COMM_CRUSHING_PRIMARY (e.g., oilseeds)
     L101.FAO_SUA_APE_balance_Crushing <-
-      GCAM_AgLU_SUA_APE_1973_2019_ProcessedUse %>%
+      GCAM_AgLU_SUA_APE_ProcessedUse %>%
       filter(GCAM_commodity %in% COMM_CRUSHING_PRIMARY) %>%
       select(-unit) %>%
       left_join_error_no_match(GCAM_region_names, by = "region") %>%
@@ -303,7 +303,7 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
 
     # 3 Food consumption in SUA and Calories----
 
-    FAO_Food_Macronutrient_All_2010_2019 %>%
+    FAO_Food_Macronutrient_All %>%
       filter(year %in% aglu.MODEL_MACRONUTRIENT_YEARS) %>%
       # Aggregate to region and GCAM commodity
       dplyr::group_by_at(vars(GCAM_region_ID, GCAM_commodity, year, macronutrient)) %>%
@@ -327,7 +327,7 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
       right_join(
         L100.FAO_SUA_APE_balance %>% # Unit is Mt
           filter(element == "Food",
-                 year == dplyr::last(MODEL_BASE_YEARS)),
+                 year == MODEL_FINAL_BASE_YEAR),
         by = c("GCAM_region_ID", "GCAM_commodity")
       ) %>%
     # Both data were average already
@@ -343,7 +343,7 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
       tidyr::gather(macronutrient, value, calperg:proteinperc) %>%
       # Join max regional conversion for adjustments later
       left_join(
-        FAO_Food_MacronutrientRate_2010_2019_MaxValue,
+        FAO_Food_MacronutrientRate_MaxValue,
         by = c("GCAM_commodity", "macronutrient")
       ) %>%
       # In rare cases, primary equivalent resulted in lower food mass consumption
@@ -664,7 +664,7 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
       add_title("Regional agricultural commodity prices for all traded primary GCAM AGLU commodities") %>%
       add_units("1000 tonnes") %>%
       add_comments("Supply utilization balance for GCAM commodities and regions in primary equivalent") %>%
-      add_precursors("GCAM_AgLU_SUA_APE_1973_2019",
+      add_precursors("GCAM_AgLU_SUA_APE",
                      "common/GCAM_region_names") ->
       L100.FAO_SUA_APE_balance
 
@@ -672,14 +672,14 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
       add_title("Regional crushing demand of primary crops") %>%
       add_units("Mt") %>%
       add_comments("Processed demand for commodities that are processed in GCAM; 5-year average") %>%
-      add_precursors("GCAM_AgLU_SUA_APE_1973_2019_ProcessedUse") ->
+      add_precursors("GCAM_AgLU_SUA_APE_ProcessedUse") ->
       L101.FAO_SUA_APE_balance_Crushing
 
     L101.ag_Secondary_SUA_Mt_R_C_Y %>%
       add_title("Regional SUA for secondary GCAM AGLU commodities") %>%
       add_units("Mt") %>%
       add_comments("Supply utilization balance for secondary GCAM commodities") %>%
-      add_precursors("GCAM_AgLU_SUA_APE_1973_2019",
+      add_precursors("GCAM_AgLU_SUA_APE",
                      "aglu/A_Crushing_min_max_rate") ->
       L101.ag_Secondary_SUA_Mt_R_C_Y
 
@@ -732,8 +732,8 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
       add_legacy_name("L101.ag_Food_Mt_R_C_Y") %>%
       add_precursors("common/GCAM_region_names",
                      "aglu/FAO/FAO_ag_items_PRODSTAT",
-                     "FAO_Food_Macronutrient_All_2010_2019",
-                     "FAO_Food_MacronutrientRate_2010_2019_MaxValue") ->
+                     "FAO_Food_Macronutrient_All",
+                     "FAO_Food_MacronutrientRate_MaxValue") ->
       L101.ag_Food_Mt_R_C_Y
 
     L101.CropMeat_Food_Pcal_R_C_Y %>%
@@ -752,10 +752,10 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
       add_comments("Convert data from ton to Mt") %>%
       add_legacy_name("L101.an_Food_Mt_R_C_Y") %>%
       add_precursors("common/GCAM_region_names",
-                     "GCAM_AgLU_SUA_APE_1973_2019",
+                     "GCAM_AgLU_SUA_APE",
                      "aglu/FAO/FAO_an_items_PRODSTAT",
-                     "FAO_Food_Macronutrient_All_2010_2019",
-                     "FAO_Food_MacronutrientRate_2010_2019_MaxValue") ->
+                     "FAO_Food_Macronutrient_All",
+                     "FAO_Food_MacronutrientRate_MaxValue") ->
       L101.an_Food_Mt_R_C_Y
 
     L101.ag_Feed_Mt_R_C_Y %>%
@@ -763,7 +763,7 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
       add_comments("Feed consumption of GCAM Ag commodities; they will be adjusted in L108") %>%
       add_units("Mt") %>%
       add_legacy_name("L101.ag_Feed_Mt_R_C_Y") %>%
-      add_precursors("GCAM_AgLU_SUA_APE_1973_2019",
+      add_precursors("GCAM_AgLU_SUA_APE",
                      "aglu/FAO/FAO_ag_items_PRODSTAT") ->
       L101.ag_Feed_Mt_R_C_Y
 
@@ -772,7 +772,7 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
       add_comments("Balanced gross trade of GCAM Ag commodities") %>%
       add_units("Mt") %>%
       add_legacy_name("L101.GrossTrade_Mt_R_C_Y") %>%
-      add_precursors("GCAM_AgLU_SUA_APE_1973_2019", "aglu/UN_ComTrade_DDGS", "common/iso_GCAM_regID",
+      add_precursors("GCAM_AgLU_SUA_APE", "aglu/UN_ComTrade_DDGS", "common/iso_GCAM_regID",
                      "energy/A_regions") ->
       L101.GrossTrade_Mt_R_C_Y
 
@@ -781,7 +781,7 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
       add_comments("Balanced element in SUA for GCAM Ag commodities") %>%
       add_units("Mt") %>%
       add_legacy_name("L101.ag_Storage_Mt_R_C_Y") %>%
-      add_precursors("GCAM_AgLU_SUA_APE_1973_2019",
+      add_precursors("GCAM_AgLU_SUA_APE",
                      "aglu/A_agStorageSector") ->
       L101.ag_Storage_Mt_R_C_Y
 

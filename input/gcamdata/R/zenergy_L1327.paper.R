@@ -64,7 +64,7 @@ module_energy_L1327.paper <- function(command, ...) {
 
 
     L100.FAO_For_Prod_m3 %>%
-      filter(item_code == 1875) %>% #item == "Paper and paperboard"
+      filter(item_code == 1876) %>% #item == "Paper and paperboard"
       group_by(GCAM_region_ID, sector = "paper", year) %>%
       summarise(value = sum(value) * CONV_TON_MEGATON) %>%
       mutate(unit = "Mt") %>%
@@ -167,7 +167,28 @@ module_energy_L1327.paper <- function(command, ...) {
       ungroup() ->
       L1327.china_biomass
 
+    max_china_bio_year <- max(L1327.china_biomass$year)
+    if(max_china_bio_year < MODEL_FINAL_BASE_YEAR) {
+      warning("Extending A327.china_biomass using growth in paper output from L1327.out_Mt_R_paper_Yh")
+      L1327.out_Mt_R_paper_Yh %>%
+        filter(year >= max_china_bio_year) %>%
+        group_by(GCAM_region_ID) %>%
+        mutate(growth = value / value[year == max_china_bio_year]) %>%
+        select(GCAM_region_ID, year, growth) ->
+        paper_out_growth
+      L1327.china_biomass %>%
+        filter(year == max_china_bio_year) %>%
+        select(-year) %>%
+        inner_join(paper_out_growth, ., by=c("GCAM_region_ID")) %>%
+        mutate(value = value * growth) %>%
+        select(names(L1327.china_biomass)) %>%
+        filter(year > max_china_bio_year) %>%
+        bind_rows(L1327.china_biomass, .) ->
+        L1327.china_biomass
+    }
+
     L1327.in_EJ_R_paper_F_Yh %>%
+      anti_join(L1327.china_biomass, by=c("GCAM_region_ID", "fuel", "sector", "year")) %>%
       bind_rows(L1327.china_biomass) ->
       L1327.in_EJ_R_paper_F_Yh
 
@@ -181,17 +202,22 @@ module_energy_L1327.paper <- function(command, ...) {
       filter(grepl("pulp", GCAM_commodity)) %>%
       select(GCAM_region_ID, year, prod_tons = Prod_bm3, netExp_tons = NetExp_bm3, woodpulp_tons = Cons_bm3) %>% #correct unit labeling for clarity
       # Calculate IO coefficients for woodpulp to pulp energy (using IEA biomass in paper industry)
-      left_join(L1327.in_EJ_R_paper_F_Yh %>%
+      left_join_error_no_match(L1327.in_EJ_R_paper_F_Yh %>%
                   filter(grepl("biomass", fuel)) %>%
                   group_by(GCAM_region_ID, year) %>%
                   summarize(biomass_EJ = sum(value)) %>%
                   ungroup(), by = c("GCAM_region_ID", "year")) %>%
 
-      left_join(L1327.out_Mt_R_paper_Yh %>% rename(paper_prod=value) %>% select(-sector), by = c("GCAM_region_ID","year")) %>%
+      left_join_error_no_match(L1327.out_Mt_R_paper_Yh %>% rename(paper_prod=value) %>% select(-sector), by = c("GCAM_region_ID","year")) %>%
       mutate(paper_prod=if_else(is.na(paper_prod),0,paper_prod),
+    # We can have cases where a very small amount of non-zero biomass is initialized from IEA.
+    #This is problematic because it results in large values of pulp, forest being consumed to produce miniscule biomass.
+    #We correct this by first calculating the energy coefficient and replacing the biomass with a 0 when coefficients are over 100.
+    # Note that when biomass is set to 0, it is initialized based on actual paper production below which results in a more realistic coefficient.
+             coefficient = woodpulp_tons / biomass_EJ,
       ## Manual adjustment for Africa_Northern - fix extremely high coefficient by setting biomass to zero (will be replaced with default value)
              biomass_EJ = if_else(GCAM_region_ID == 3, 0, biomass_EJ),
-
+      biomass_EJ = if_else(coefficient>100, 0, biomass_EJ),
              coefficient = woodpulp_tons / biomass_EJ)
 
     # Where reported biomass is 0, replace Inf coefficient with global median,
