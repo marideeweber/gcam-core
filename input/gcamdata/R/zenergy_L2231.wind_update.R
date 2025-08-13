@@ -22,7 +22,7 @@ module_energy_L2231.wind_update <- function(command, ...) {
     return(c(FILE = "common/iso_GCAM_regID",
              FILE = "common/GCAM_region_names",
              FILE = "energy/A20.wind_class_CFs",
-             FILE =  "energy/mappings/NREL_wind_ctry",
+             FILE = "energy/mappings/NREL_wind_ctry",
              FILE = "energy/NREL_onshore_energy",
              FILE = "energy/onshore_wind_grid_cost",
              FILE = "energy/NREL_wind_energy_distance_range",
@@ -345,7 +345,7 @@ module_energy_L2231.wind_update <- function(command, ...) {
       add_comments("Resource curve and prices for onshore wind by region") %>%
       add_legacy_name("L2231.SmthRenewRsrcCurves_onshore_wind") %>%
       add_precursors( "common/iso_GCAM_regID", "common/GCAM_region_names",
-                      "energy/mappings/fuel_energy_input",  "energy/A20.wind_class_CFs",
+                      "energy/A20.wind_class_CFs",
                       "L113.globaltech_capital_ATB", "L113.globaltech_OMfixed_ATB",
                       "energy/NREL_onshore_energy", "energy/mappings/NREL_wind_ctry",
                       "L223.StubTechCapFactor_elec") ->
