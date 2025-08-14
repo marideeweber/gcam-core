@@ -167,6 +167,23 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
   # Assign negative other net uses to imports, and adjust global trade to maintain balances
   # Changes in global net exports are apportioned among regions with positive other uses, according to regional shares
 
+
+    ### quick adjustment of negative OtherUses_Mt of Rapeseed in Canada in 1975 by lowering InterAnnualStockLoss ----
+    L109.ag_ALL_Mt_R_C_Y %>%
+      filter(year %in% 1975 & GCAM_commodity == "Rapeseed" & GCAM_region_ID == 8) %>%
+      mutate(OtherUses_Mt = OtherUses_Mt + InterAnnualStockLoss * .5,
+             InterAnnualStockLoss = InterAnnualStockLoss * .5) %>%
+      ## Update other uses
+      mutate(Supply_Mt = `Opening stocks` + Prod_Mt - NetExp_Mt,
+             OtherUses_Mt = Supply_Mt - Food_Mt - Feed_Mt - Biofuels_Mt - `Closing stocks` - InterAnnualStockLoss,
+             `Closing stocks` = `Closing stocks` +  InterAnnualStockLoss) %>%
+      bind_rows(
+        L109.ag_ALL_Mt_R_C_Y %>%
+          filter(!(year %in% 1975 & GCAM_commodity == "Rapeseed" & GCAM_region_ID == 8))
+      ) ->
+      L109.ag_ALL_Mt_R_C_Y
+
+
   if(any(L109.ag_ALL_Mt_R_C_Y$OtherUses_Mt < 0)){
   # Filter commodities that may be imbalanced
   L109.ag_ALL_Mt_R_C_Y %>%

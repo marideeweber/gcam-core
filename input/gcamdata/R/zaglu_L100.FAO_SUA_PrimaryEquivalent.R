@@ -74,6 +74,81 @@ module_aglu_L100.FAO_SUA_PrimaryEquivalent <- function(command, ...) {
     All_Bal_element <- levels(GCAMFAOSTAT_SUA$element)
     All_Bal_element <- factor(All_Bal_element, levels = All_Bal_element)
 
+
+    # Section 0: FAO raw data adjustments ----
+    # There was a known issue for teh Brazil soybean SUA data
+    # see https://github.com/JGCRI/gcamfaostat/issues/22
+    # We have reported the issue to FAOSTAT and they are working on revisions
+    # These adjustments are added here temporarily and they will be moved to gcamfaostat or remove once data is updated through gcamfaostat
+    # In short, we increased production of Brazil soybean in 2019-2022 by the "loss" in SUA
+    # So it matches better other sources (https://ipad.fas.usda.gov/countrysummary/Default.aspx?id=BR&crop=Soybean)
+    # And residuals in SUA became smaller
+    # The goal here is to avoid a balancing problem in L109
+
+    GCAMFAOSTAT_SUA  %>%
+      # Brazil (21) soybean (236)
+      filter(item_code == 236, area_code == 21) %>%
+      filter(year >= 2019, year <= 2022) %>%
+      spread(element, value) %>%
+      mutate(Production = Production + Loss,
+             Residuals = Residuals + Loss,
+             `Regional supply` = `Regional supply` + Loss,
+             `Regional demand` = `Regional demand` + Loss) %>%
+      gather(element, value, -area_code:-year) ->
+      GCAMFAOSTAT_SUA_BrazilSoyBeanFix
+
+    GCAMFAOSTAT_SUA %>%
+      anti_join(
+        GCAMFAOSTAT_SUA_BrazilSoyBeanFix %>%
+          distinct(area_code, item_code, year),
+        by = c("area_code", "item_code", "year")
+      ) %>%
+      bind_rows(
+        GCAMFAOSTAT_SUA_BrazilSoyBeanFix
+      ) %>%
+      arrange(area_code, item_code, year, element) %>%
+      mutate(element = factor(element, levels = All_Bal_element))->
+      GCAMFAOSTAT_SUA
+
+
+    GCAMFAOSTAT_NonFodderProdArea %>%
+      filter(item_code == 236, area_code == 21) %>%
+      gather_years() %>%
+      spread(element, value) %>%
+      mutate(yield0 = Production / `Area harvested`) %>%
+      left_join(
+        GCAMFAOSTAT_SUA_BrazilSoyBeanFix %>%
+          spread(element, value) %>%
+          select(area_code, item_code, year, Loss, Prod_SUA = Production),
+        by = c("area_code", "item_code", "year")
+      ) %>%
+      # yield is calculated for checking purposes
+      # set loss to 0 in years where no adjustments needed
+      replace_na(list(Loss = 0)) %>%
+      mutate(Production = Production + Loss,
+             yield = Production / `Area harvested`) %>%
+      select(area_code:Production) %>%
+      gather(element, value, `Area harvested`, Production) %>%
+      spread(year, value) ->
+      GCAMFAOSTAT_NonFodderProdArea_BrazilSoyBeanFix
+
+    GCAMFAOSTAT_NonFodderProdArea %>%
+      anti_join(
+        GCAMFAOSTAT_NonFodderProdArea_BrazilSoyBeanFix %>%
+          distinct(area_code, item_code, element),
+        by = c("area_code", "item_code", "element")
+      ) %>%
+      bind_rows(
+        GCAMFAOSTAT_NonFodderProdArea_BrazilSoyBeanFix
+      ) %>%
+      arrange(area_code, item_code) ->
+      GCAMFAOSTAT_NonFodderProdArea
+
+    ## Done Section 0 ----
+
+
+
+
     # Bilateral trade item indicator is added to SUA_item_code_map
     # filter GCAMFAOSTAT_BiTrade to only include bilateral trade item to be
     # consistent with GCAMFAOSTAT_SUA
