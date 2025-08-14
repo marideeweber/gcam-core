@@ -607,6 +607,7 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
     # adding an adjustment ratio
     Feed_OtherUse_ratio_adjuster_OilPalmFeed = 0.8
     Feed_OtherUse_ratio_adjuster_OilCropFeed = 0.7
+    Feed_OtherUse_ratio_adjuster_SoycakeFeed = 0.98
     # move negative other use into feed
 
     L101.ag_Secondary_SUA_Mt_R_C_Y_2 %>%
@@ -622,13 +623,19 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
                               year %in% MODEL_BASE_YEARS,
                             Feed + OtherUse * Feed_OtherUse_ratio_adjuster_OilPalmFeed,
                             Feed) ) %>%
-      # add another special adjustment to lower feed in region 13
+      # add another special adjustment to lower feed in region 13 in 1975
       # to avoid the AG_OTHERUSE_WARNING_Crushing in L109
       mutate(Feed = if_else(GCAM_commodity == "OilPalm feedcake" &
                               year %in% 1975 & GCAM_region_ID == 13,
-                            Feed - 0.1,
+                            Feed - 0.11,
                             Feed) ) %>%
-      # adding the same adjustment make for OilPalm feedcake balance to OilCrop feedcake
+      # And further lower feed use of OilPalm feedcake in 2021 (lower feed use by 10%)
+      # to avoid the AG_OTHERUSE_WARNING_Crushing in L109
+      mutate(Feed = if_else(GCAM_commodity == "OilPalm feedcake" &
+                              year %in% 2021,
+                            Feed * 0.9,
+                            Feed) ) %>%
+      # adding the same adjustment made for OilPalm feedcake balance to OilCrop feedcake
       # L109 had balancing error for OilCrop mainly in 2005 and 1990
       # we lower feed use to reduce negative values in other use of OilCrop
       mutate(Feed = if_else(Feed > 0 &
@@ -647,9 +654,18 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
                               year %in% 2005 & GCAM_region_ID %in% c(13, 17),
                             Feed - 1,
                             Feed) ) %>%
+      # minor adjustments for soybean feedcake to lower feed use by 2% in 2021
+      mutate(Feed = if_else(Feed > 0 &
+                              OtherUse_Feed_Ratio < 0 &
+                              OtherUse_Feed_Ratio > -1 &
+                              GCAM_commodity == "Soybean feedcake" &
+                              year %in% 2021,
+                            Feed + OtherUse * Feed_OtherUse_ratio_adjuster_SoycakeFeed,
+                            Feed) ) %>%
       select(-`Regional supply`, -`Regional demand`, -OtherUse, -OtherUse_Feed_Ratio) %>%
       gather(element, value, -year, -GCAM_region_ID, -GCAM_commodity) ->
       L101.ag_Secondary_SUA_Mt_R_C_Y_3
+
 
     # complete GCAM regions (e.g., for some feedcakes, all elements could be zero in a year)
     L101.ag_Secondary_SUA_Mt_R_C_Y_3 %>%

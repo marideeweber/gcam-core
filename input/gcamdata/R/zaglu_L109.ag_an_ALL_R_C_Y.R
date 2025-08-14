@@ -765,7 +765,9 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
       mutate(GrossImp_Mt = if_else(GrossExp_Mt > Prod_Mt,
                                    GrossImp_Mt - (GrossExp_Mt - Prod_Mt),GrossImp_Mt),
              GrossExp_Mt = if_else(GrossExp_Mt > Prod_Mt,
-                                   Prod_Mt, GrossExp_Mt)) ->
+                                   Prod_Mt, GrossExp_Mt),
+             # avoid tiny negative due to rounding
+             GrossImp_Mt = round(GrossImp_Mt,digits = 6)) ->
       L109_crushing_processed_ALL_Mt_R_C_Y
 
     # # further reduce export and import to ensure production > pmin(GrossExp_Mt, GrossImp_Mt) by at least 10%
