@@ -13,3 +13,7 @@ biochar_recalcitrant,biochar_recalcitrant,fast pyrolysis biochar herbaceous,natu
 biochar_recalcitrant,biochar_recalcitrant,fast pyrolysis biochar herbaceous,refined liquids enduse,0.005618089
 biochar_recalcitrant,biochar_recalcitrant,fast pyrolysis biochar woody,natural gas,0.002096438
 biochar_recalcitrant,biochar_recalcitrant,fast pyrolysis biochar woody,refined liquids enduse,0.008302106
+biochar_labile,biochar_labile,slow pyrolysis biochar herbaceous,refined_liquids_marine_credit,0.001057415
+biochar_labile,biochar_labile,slow pyrolysis biochar woody,refined_liquids_marine_credit,0.004627962
+biochar_recalcitrant,biochar_recalcitrant,fast pyrolysis biochar herbaceous,refined_liquids_aviation_credit,0.005618089
+biochar_recalcitrant,biochar_recalcitrant,fast pyrolysis biochar woody,refined_liquids_aviation_credit,0.008302106
