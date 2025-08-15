@@ -191,20 +191,20 @@ module_energy_L2262.refined_liquids_trade <- function(command, ...) {
     # Xin: temp adj of biofuels trade to reduce net trade of refined liquids
     # adjustment later would be fine (avoiding negative values later)
     L2262.Biofuel_GrossTrade_EJ_R_C_Y %>%
-      filter(year == 2015 & sector == "rapeseed biodiesel") %>%
+      filter(year == max(MODEL_BASE_YEARS) & sector == "rapeseed biodiesel") %>%
       mutate(gross_exports = gross_exports * 0.2,
              gross_imports = gross_imports * 0.2,
              net_trade = gross_exports - gross_imports) %>%
       bind_rows(
         L2262.Biofuel_GrossTrade_EJ_R_C_Y %>%
-          filter(year == 2015 & sector == "oilcrop biodiesel") %>%
+          filter(year == max(MODEL_BASE_YEARS) & sector == "oilcrop biodiesel") %>%
           mutate(gross_exports = gross_exports * 0.5,
                  gross_imports = gross_imports * 0.5,
                  net_trade = gross_exports - gross_imports)
       ) %>%
       bind_rows(
         L2262.Biofuel_GrossTrade_EJ_R_C_Y %>%
-          filter(!(year == 2015 &
+          filter(!(year == max(MODEL_BASE_YEARS) &
                      sector %in% c("oilcrop biodiesel", "rapeseed biodiesel")))
       ) ->
       L2262.Biofuel_GrossTrade_EJ_R_C_Y

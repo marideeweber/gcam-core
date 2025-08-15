@@ -65,6 +65,7 @@ module_energy_L1262.refinedOil_GrossTrade <- function(command, ...) {
       # actually exist during the time frame for which gross trade is being assessed, there's no benefit to downscaling.
       # Comtrade has several ISOs that GCAM doesn't use/need (e.g. wld to represent net trade by country). These are filtered
       # out to keep only relevent countries. All filtered regions are small (minor outlying islands) or unneccessary (wld)
+      # GPK 8/15/25: assign the year as the final calibration year. This is the only base year gross trade is represented.
         left_join_keep_first_only(comtrade_ISO%>%select(Country_Code, ISO3),
                                   by=c(`Reporter Code` = "Country_Code")) %>%
         rename(iso.reporter = ISO3) %>%
@@ -72,13 +73,12 @@ module_energy_L1262.refinedOil_GrossTrade <- function(command, ...) {
                                   by=c(`Partner Code` = "Country_Code")) %>%
         rename(iso.partner = ISO3,
                value = `Netweight (kg)`,
-               year = Year,
                Element = Trade) %>%
-        mutate(iso.reporter = tolower(iso.reporter),
+        mutate(year = max(MODEL_BASE_YEARS),
+               iso.reporter = tolower(iso.reporter),
                iso.partner = tolower(iso.partner)) %>%
         select(year, iso.reporter, iso.partner, Element, `Commodity Code`, value) %>%
         drop_na(iso.partner) %>%
-        gather_years() %>%
         drop_na(value) %>%
         filter(!iso.reporter %in% non_GCAM_ISO, !iso.partner %in% non_GCAM_ISO)
 

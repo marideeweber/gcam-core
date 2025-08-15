@@ -150,7 +150,7 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
     # Create the fixed output table for other biodiesel
     # Expand to all GCAM model years
     StubTechFixOut_otherBiod<-L122.out_EJ_R_biofuel_Yh.usa.otherbiodiesel %>%
-      filter(year == 2015) %>%
+      filter(year == max(MODEL_BASE_YEARS)) %>%
       select(-year) %>%
       repeat_add_columns(tibble(year=MODEL_FUTURE_YEARS)) %>%
       bind_rows(L122.out_EJ_R_biofuel_Yh.usa.otherbiodiesel) %>%
