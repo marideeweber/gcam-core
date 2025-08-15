@@ -7,10 +7,6 @@
                     <interpolation-rule delete = "1" apply-to="share-weight" from-year="2060" to-year="2100">
                         <interpolation-function name="fixed"/>
                     </interpolation-rule>
-                  		
-                        <period year="2020">
-                            <share-weight>0</share-weight>
-						</period>
                         <period year="2025">
                             <share-weight>0</share-weight>
 						</period>

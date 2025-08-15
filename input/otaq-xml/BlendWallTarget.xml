@@ -5,12 +5,7 @@
          <supplysector name="refined liquids gasoline pool">
             <subsector name="ethanol">
                <technology name="corn ethanol refining">
-                  <period year="2015">
-                     <res-secondary-output name="Blend Wall Credit">
-                        <output-ratio>0.0687</output-ratio>
-                     </res-secondary-output>
-                  </period>
-                  <period year="2020">
+                  <period year="2021">
                      <res-secondary-output name="Blend Wall Credit">
                         <output-ratio>0.0714</output-ratio>
                      </res-secondary-output>
@@ -97,12 +92,7 @@
                   </period>
                </technology>
                <technology name="sugar cane ethanol refining">
-                  <period year="2015">
-                     <res-secondary-output name="Blend Wall Credit">
-                        <output-ratio>0.0687</output-ratio>
-                     </res-secondary-output>
-                  </period>
-                  <period year="2020">
+                  <period year="2021">
                      <res-secondary-output name="Blend Wall Credit">
                         <output-ratio>0.0714</output-ratio>
                      </res-secondary-output>
@@ -191,12 +181,7 @@
             </subsector>
             <subsector name="refined oil">
                <technology name="refined oil">
-                  <period year="2015">
-                     <res-secondary-output name="Blend Wall Credit">
-                        <output-ratio>0.0687</output-ratio>
-                     </res-secondary-output>
-                  </period>
-                  <period year="2020">
+                  <period year="2021">
                      <res-secondary-output name="Blend Wall Credit">
                         <output-ratio>0.0714</output-ratio>
                      </res-secondary-output>
@@ -287,12 +272,7 @@
          <supplysector name="regional corn ethanol">
             <subsector name="domestic corn ethanol">
                <technology name="domestic corn ethanol">
-                  <period year="2015">
-                     <minicam-energy-input name="Blend Wall Credit">
-                        <coefficient>1</coefficient>
-                     </minicam-energy-input>
-                  </period>
-                  <period year="2020">
+                  <period year="2021">
                      <minicam-energy-input name="Blend Wall Credit">
                         <coefficient>1</coefficient>
                      </minicam-energy-input>
@@ -381,12 +361,7 @@
             </subsector>
             <subsector name="imported corn ethanol">
                <technology name="imported corn ethanol">
-                  <period year="2015">
-                     <minicam-energy-input name="Blend Wall Credit">
-                        <coefficient>1</coefficient>
-                     </minicam-energy-input>
-                  </period>
-                  <period year="2020">
+                  <period year="2021">
                      <minicam-energy-input name="Blend Wall Credit">
                         <coefficient>1</coefficient>
                      </minicam-energy-input>
@@ -477,12 +452,7 @@
          <supplysector name="regional sugar cane ethanol">
             <subsector name="imported sugar cane ethanol">
                <technology name="imported sugar cane ethanol">
-                  <period year="2015">
-                     <minicam-energy-input name="Blend Wall Credit">
-                        <coefficient>1</coefficient>
-                     </minicam-energy-input>
-                  </period>
-                  <period year="2020">
+                  <period year="2021">
                      <minicam-energy-input name="Blend Wall Credit">
                         <coefficient>1</coefficient>
                      </minicam-energy-input>
@@ -573,7 +543,6 @@
          <policy-portfolio-standard name="Blend Wall Credit">
             <market>USA</market>
             <policyType>RES</policyType>
-            <constraint year="2020">1</constraint>
             <constraint year="2025">1</constraint>
             <constraint year="2030">1</constraint>
             <constraint year="2035">1</constraint>

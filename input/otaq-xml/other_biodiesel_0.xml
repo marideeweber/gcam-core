@@ -4,8 +4,7 @@
 		   <supplysector name="refined liquids enduse">
                 <subsector name="biodiesel">
                     <stub-technology name="other biodiesel">
-                  		
-					 <period year="2005">
+                        <period year="2005">
                             <fixedOutput>2.68e-05</fixedOutput>
                             <share-weight year="2005">0</share-weight>
                         </period>
@@ -14,12 +13,12 @@
                             <share-weight year="2010">0</share-weight>
                         </period>
                         <period year="2015">
-                            <fixedOutput>0.1013553</fixedOutput>
-                            <share-weight year="2015">0</share-weight>
+                            <fixedOutput>0.1379135</fixedOutput>
+                            <share-weight>0</share-weight>
                         </period>
-                        <period year="2020">
-                            <fixedOutput>0</fixedOutput>
-                            <share-weight year="2020">0</share-weight>
+                        <period year="2021">
+                            <fixedOutput>0.2224685</fixedOutput>
+                            <share-weight>0</share-weight>
                         </period>
                         <period year="2025">
                             <fixedOutput>0</fixedOutput>
@@ -85,7 +84,6 @@
                             <fixedOutput>0</fixedOutput>
                             <share-weight year="2100">0</share-weight>
                         </period>
-
                     </stub-technology>
                 </subsector>
   		  </supplysector>

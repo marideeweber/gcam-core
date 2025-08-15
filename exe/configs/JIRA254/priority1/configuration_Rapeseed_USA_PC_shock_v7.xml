@@ -130,9 +130,6 @@
 <!--End set file for biofuel shock scenario-->
 		<Value name = "otaq_blendwall">../input/otaq-xml/BlendWallTarget.xml</Value>
 
-        <!--Value name = "usaCoal">../input/otaq-xml/USA_elec_coal_adj.xml</Value-->
-
-		
 	</ScenarioComponents>
 	<Strings>
 		<Value name="scenarioName">RAPESEED_USA</Value>
