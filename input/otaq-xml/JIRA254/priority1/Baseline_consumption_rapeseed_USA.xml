@@ -6,8 +6,7 @@
          <policy-portfolio-standard name="Rapeseed-Biodiesel-Consumption-Floor">
             <policyType>subsidy</policyType>
             <market>USA</market>
-            <min-price year="2020" fillout="1">-100</min-price>
-            <constraint year="2020">0.0297</constraint>
+            <min-price year="2025" fillout="1">-100</min-price>
             <constraint year="2025">0.06123</constraint>
             <constraint year="2030">0.06123</constraint>
             <constraint year="2035">0.06123</constraint>
@@ -22,9 +21,6 @@
          <supplysector name="refined liquids enduse">
             <subsector name="biodiesel">
              	<technology name="rapeseed biodiesel refining">
-                   <period year="2020">
-                       <input-subsidy name="Rapeseed-Biodiesel-Consumption-Floor"/>
-                   </period>
                    <period year="2025">
                        <input-subsidy name="Rapeseed-Biodiesel-Consumption-Floor"/>
                    </period>

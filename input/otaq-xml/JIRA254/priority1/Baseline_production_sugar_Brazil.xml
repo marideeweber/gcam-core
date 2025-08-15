@@ -6,8 +6,7 @@
           <policy-portfolio-standard name="Sugarcane-Ethanol-Production-Floor">
             <policyType>subsidy</policyType>
             <market>Brazil</market>
-            <min-price year="2020" fillout="1">-100</min-price>
-            <constraint year="2020">0.6596</constraint>
+            <min-price year="2025" fillout="1">-100</min-price>
             <constraint year="2025">0.6596</constraint>
             <constraint year="2030">0.6596</constraint>
             <constraint year="2035">0.6596</constraint>
@@ -22,12 +21,6 @@
 	<supplysector name="sugar cane ethanol">
 	    <subsector name="sugar cane ethanol">
 		<stub-technology name="sugar cane ethanol">
-		    <period year="2015">
-			<input-subsidy name="Sugarcane-Ethanol-Production-Floor"/>
-		    </period>
-		    <period year="2020">
-			<input-subsidy name="Sugarcane-Ethanol-Production-Floor"/>
-		    </period>
 		    <period year="2025">
 			<input-subsidy name="Sugarcane-Ethanol-Production-Floor"/>
 		    </period>

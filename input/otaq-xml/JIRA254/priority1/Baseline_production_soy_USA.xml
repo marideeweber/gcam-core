@@ -5,8 +5,7 @@
           <policy-portfolio-standard name="Soy-Biodiesel-Production-Floor">
             <policyType>subsidy</policyType>
             <market>USA</market>
-            <min-price year="2020" fillout="1">-100</min-price>
-            <constraint year="2020">0.1470</constraint>
+            <min-price year="2025" fillout="1">-100</min-price>
             <constraint year="2025">0.1470</constraint>
             <constraint year="2030">0.1470</constraint>
             <constraint year="2035">0.1470</constraint>
@@ -20,12 +19,6 @@
  	<supplysector name="soybean biodiesel">
 	    <subsector name="soybean biodiesel">
 		<stub-technology name="soybean biodiesel">
-		    <period year="2015">
-			<input-subsidy name="Soy-Biodiesel-Production-Floor"/>
-		    </period>
-		    <period year="2020">
-			<input-subsidy name="Soy-Biodiesel-Production-Floor"/>
-		    </period>
 		    <period year="2025">
 			<input-subsidy name="Soy-Biodiesel-Production-Floor"/>
 		    </period>

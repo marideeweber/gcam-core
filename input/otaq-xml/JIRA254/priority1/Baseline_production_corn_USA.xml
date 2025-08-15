@@ -6,8 +6,7 @@
           <policy-portfolio-standard name="Corn-Ethanol-Production-Floor">
             <policyType>subsidy</policyType>
             <market>USA</market>
-            <min-price year="2020" fillout="1">-100</min-price>
-            <constraint year="2020">1.2295</constraint>
+            <min-price year="2025" fillout="1">-100</min-price>
             <constraint year="2025">1.2295</constraint>
             <constraint year="2030">1.2295</constraint>
             <constraint year="2035">1.2295</constraint>
@@ -22,13 +21,6 @@
 	<supplysector name="corn ethanol">
 	    <subsector name="corn ethanol">
 		<stub-technology name="corn ethanol">
-		    <period year="2015">
-			<input-subsidy name="Corn-Ethanol-Production-Floor"/>
-		    </period>
-
-		    <period year="2020">
-			<input-subsidy name="Corn-Ethanol-Production-Floor"/>
-		    </period>
 		    <period year="2025">
 			<input-subsidy name="Corn-Ethanol-Production-Floor"/>
 		    </period>
