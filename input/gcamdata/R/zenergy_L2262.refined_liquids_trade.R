@@ -104,116 +104,35 @@ module_energy_L2262.refined_liquids_trade <- function(command, ...) {
       full_join(L2262.Biofuel_Exports_EJ_R_C_Y,
                 L2262.Biofuel_Imports_EJ_R_C_Y,
                 by = c("GCAM_region_ID", "GCAM_commodity", "sector", "year")) %>%
-      replace_na(list(gross_exports = 0, gross_imports = 0)) %>%
-      mutate(net_trade = gross_exports - gross_imports)
+      replace_na(list(gross_exports = 0, gross_imports = 0))
 
-
-    # XZ 2/20/2025
-    # There are regions with zero production but positive export
-    # We will remove export in those cases so that later processing won't generate negative trade
-
-    # move this up for production
-    L122.out_EJ_R_refining_F_Yh_adj <-
-      L122.out_EJ_R_refining_F_Yh %>%
-      left_join(select(bio_feed_mapping, Biofuel, fuel, technology),
-                by = c(sector = "Biofuel", "fuel")) %>%
-      mutate(sector = if_else(sector == "biodiesel", technology,sector)) %>%
-      select(colnames(L122.out_EJ_R_refining_F_Yh))
-
-    # if prod < net_trade, make gross_exports = prod
-    # then rebalance trade
+    # GPK 8/19/2025 use production as a cap on exports, and adjust trade accordingly
     L2262.Biofuel_GrossTrade_EJ_R_C_Y_0 %>%
-      left_join(L122.out_EJ_R_refining_F_Yh_adj %>%
+      left_join(L122.out_EJ_R_refining_F_Yh %>%
                   rename(prod = value),
                 by = c("GCAM_region_ID", "sector", "year")) %>%
-      replace_na(list(prod = 0)) ->
+      replace_na(list(prod = 0)) %>%
+      mutate(gross_exp_adj = if_else(gross_exports > prod, prod, gross_exports)) ->
       L2262.Biofuel_GrossTrade_EJ_R_C_Y_1
 
     L2262.Biofuel_GrossTrade_EJ_R_C_Y_1 %>%
-      filter(prod < net_trade) %>%
-      distinct(GCAM_commodity, sector, year) ->
-      L2262.Biofuel_GrossTrade_EJ_R_C_Y_trade_adj_needed
+      mutate(export_revision = gross_exp_adj - gross_exports) %>%
+      group_by(GCAM_commodity, sector, year) %>%
+      summarize(export_revision = sum(export_revision),
+                import_total = sum(gross_imports)) %>%
+      ungroup() %>%
+      mutate(import_scaler = (import_total + export_revision) / import_total) %>%
+      select(GCAM_commodity, sector, year, import_scaler) %>%
+      drop_na() ->
+      L2262.Biofuel_ImportScalers_C_Y
 
     L2262.Biofuel_GrossTrade_EJ_R_C_Y_1 %>%
-      anti_join(L2262.Biofuel_GrossTrade_EJ_R_C_Y_trade_adj_needed,
-                by = c("GCAM_commodity", "sector", "year")) %>%
-      select(names(L2262.Biofuel_GrossTrade_EJ_R_C_Y_0))->
-      L2262.Biofuel_GrossTrade_EJ_R_C_Y_2_no_adj
-
-    L2262.Biofuel_GrossTrade_EJ_R_C_Y_1 %>%
-      inner_join(L2262.Biofuel_GrossTrade_EJ_R_C_Y_trade_adj_needed,
-                by = c("GCAM_commodity", "sector", "year")) ->
-      L2262.Biofuel_GrossTrade_EJ_R_C_Y_2_yes_adj
-
-    L2262.Biofuel_GrossTrade_EJ_R_C_Y_2_yes_adj %>%
-      #if prod < net_trade, make gross_exports = prod
-      mutate(gross_exports = if_else(prod < net_trade, prod, gross_exports)) ->
-      L2262.Biofuel_GrossTrade_EJ_R_C_Y_3
-
-    # Now rebalance gross trade following GROSS_TRADE_ADJUST
-
-    L2262.Biofuel_GrossTrade_EJ_R_C_Y_3 %>%
-      dplyr::group_by_at(vars(GCAM_commodity, sector, year)) %>%
-      # filter out items with zero world trade or production
-      # and replace na to zero later for scaler
-      replace_na(list(gross_exports = 0, gross_imports = 0, prod = 0)) %>%
-      filter(sum(gross_exports) != 0, sum(gross_imports) != 0, sum(prod) != 0) %>%
-    # finally,
-    # use average gross trade value to calculate trade scaler
-    # the trade scalers will be applied to all regions
-    mutate(ExportScaler = (sum(gross_exports) + sum(gross_imports))/ 2 / sum(gross_exports),
-           ImportScaler = (sum(gross_exports) + sum(gross_imports))/ 2 / sum(gross_imports)) %>%
-      ungroup %>%
-      select(GCAM_region_ID, GCAM_commodity, sector, year, ExportScaler, ImportScaler) ->
-      L2262.Biofuel_GrossTrade_EJ_R_C_Y_3_scalers
-
-    L2262.Biofuel_GrossTrade_EJ_R_C_Y_3 %>%
-      # Join ExportScaler and ImportScaler
-      left_join(
-        L2262.Biofuel_GrossTrade_EJ_R_C_Y_3_scalers,
-        by = c("GCAM_region_ID", "GCAM_commodity", "sector", "year")
-      ) %>%
-      replace_na(list(ExportScaler = 0, ImportScaler = 0)) %>%
-      # If world export, import, or prod is 0, trade will be zero
-      mutate(
-        gross_exports = gross_exports * ExportScaler,
-        gross_imports = gross_imports * ImportScaler,
-        net_trade = gross_exports - gross_imports
-      ) %>%
-      select(-ExportScaler, -ImportScaler, -prod, -fuel) ->
-      L2262.Biofuel_GrossTrade_EJ_R_C_Y_4
-
-
-    L2262.Biofuel_GrossTrade_EJ_R_C_Y_4 %>%
-      bind_rows(L2262.Biofuel_GrossTrade_EJ_R_C_Y_2_no_adj) ->
-      L2262.Biofuel_GrossTrade_EJ_R_C_Y
-
-    # Xin: temp adj of biofuels trade to reduce net trade of refined liquids
-    # adjustment later would be fine (avoiding negative values later)
-    L2262.Biofuel_GrossTrade_EJ_R_C_Y %>%
-      filter(year == max(MODEL_BASE_YEARS) & sector == "rapeseed biodiesel") %>%
-      mutate(gross_exports = gross_exports * 0.2,
-             gross_imports = gross_imports * 0.2,
+      left_join(L2262.Biofuel_ImportScalers_C_Y, by = c("GCAM_commodity", "sector", "year")) %>%
+      mutate(gross_exports = gross_exp_adj,
+             gross_imports = if_else(is.na(import_scaler), gross_imports, gross_imports * import_scaler),
              net_trade = gross_exports - gross_imports) %>%
-      bind_rows(
-        L2262.Biofuel_GrossTrade_EJ_R_C_Y %>%
-          filter(year == max(MODEL_BASE_YEARS) & sector == "oilcrop biodiesel") %>%
-          mutate(gross_exports = gross_exports * 0.5,
-                 gross_imports = gross_imports * 0.5,
-                 net_trade = gross_exports - gross_imports)
-      ) %>%
-      bind_rows(
-        L2262.Biofuel_GrossTrade_EJ_R_C_Y %>%
-          filter(!(year == max(MODEL_BASE_YEARS) &
-                     sector %in% c("oilcrop biodiesel", "rapeseed biodiesel")))
-      ) ->
+      select(GCAM_region_ID, GCAM_commodity, sector, year, gross_exports, gross_imports, net_trade) ->
       L2262.Biofuel_GrossTrade_EJ_R_C_Y
-
-
-
-
-
-
 
     # Modify the oil refining gross trade table to have similar format as the biofuels, and combine
     L2262.refinedLiquids_GrossTrade_EJ_R_C_Y <- L1262.refinedOil_GrossTrade_EJ_R_C_Y %>%
@@ -225,10 +144,8 @@ module_energy_L2262.refined_liquids_trade <- function(command, ...) {
     # The refined liquids trade data can include regions where the gross exports are greater than the total refinery output (production)
     # This is because the L1262 data on gross trade were assembled without reference to the energy balances.
     # At present this is seen in the Africa_Southern region for oil refining.
-
-
     L2262.refinedLiquids_GrossTrade_EJ_R_C_Y %>%
-      left_join(L122.out_EJ_R_refining_F_Yh_adj,
+      left_join(L122.out_EJ_R_refining_F_Yh,
                 by = c("GCAM_region_ID", "sector", "year")) %>%
       replace_na(list(value = 0)) %>%
       mutate(imbalance = pmax(0, gross_exports - value),

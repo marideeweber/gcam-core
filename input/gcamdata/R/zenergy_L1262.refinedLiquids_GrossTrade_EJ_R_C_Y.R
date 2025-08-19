@@ -150,10 +150,10 @@ module_energy_L1262.refinedOil_GrossTrade <- function(command, ...) {
         left_join_error_no_match(iso_mapping_partner,
                                  by = "iso.partner") %>%
         filter(GCAM_region_ID != GCAMreg.partner) %>%
-        mutate(value = value * CONV_KG_T * CONV_TONNE_GJ_DISTILLATE * CONV_GJ_EJ,
-               var = tolower(sub(" Quantity", "", Element))) %>%
-        left_join(comtrade_commodity_GCAM%>%select(Commodity_Code, GCAM_commodity),
+        left_join(comtrade_commodity_GCAM%>%select(Commodity_Code, GCAM_commodity, GJ_per_tonne),
                   by = c(`Commodity Code` = "Commodity_Code")) %>%
+        mutate(value = value * CONV_KG_T * GJ_per_tonne * CONV_GJ_EJ,
+               var = tolower(sub(" Quantity", "", Element))) %>%
         filter(GCAM_commodity %in% c("refining", "ethanol", "biodiesel")) %>%
         group_by(GCAM_region_ID, GCAM_commodity, var, year) %>%
         summarise(value = sum(value)) %>%
