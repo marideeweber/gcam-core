@@ -50,7 +50,7 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
 
     EcYield_kgm2_hi <- EcYield_kgm2_lo <- GCAM_commodity <- GCAM_region_ID <- GLU <-
       Irr_Rfd <- LC_bm2_hi <- LC_bm2_lo <- biodiesel <- biomassOil_tech <- ethanol <- fuel <-
-      fuel.x <- fuelInput <- gas_coef <- hist_year <- in_value <- landshare_hi <-
+      fuel.x <- fuelInput <- gas_coef <- in_value <- landshare_hi <-
       landshare_lo <- level <- minicam.energy.input <- passthrough.sector <- sector <-
       subsector <- supplysector <- technology <- value <- value.x <- value.y <- valueInput <-
       value_ctl_oil <- value_en_bal <- value_en_bal_TPES <- value_en_bal_net_oil <-
@@ -81,17 +81,14 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
     # Perform computations: Will start with refining
 
     # Most of the technologies (in calibrated_techs.csv) have inputs from outputs based on exogenous coefficients (A22.globaltech_coef).
-    # Extracting those coefficients and interpolating them to 2010.
-    # Remove "x" year
     A22.globaltech_coef %>%
       semi_join(select(calibrated_techs, supplysector, subsector, technology), by = c("supplysector", "subsector", "technology")) %>%
       left_join(select(calibrated_techs, supplysector, subsector, technology, minicam.energy.input, sector, fuel), by = c("supplysector", "subsector", "technology", "minicam.energy.input")) %>%
-      gather(hist_year, value, -supplysector, -subsector, -technology, -minicam.energy.input, -sector, -fuel) %>%
-      set_years() %>%
-      mutate(hist_year = as.numeric(hist_year)) %>%
-      filter(hist_year == min(HISTORICAL_YEARS)) %>%
-      repeat_add_columns(tibble(year = HISTORICAL_YEARS)) %>%
-      select(-hist_year) -> L122.globaltech_coef
+      gather_years() %>%
+      complete(nesting(supplysector, subsector, technology, minicam.energy.input, sector, fuel), year = HISTORICAL_YEARS) %>%
+      group_by(supplysector, subsector, technology, minicam.energy.input, sector, fuel) %>%
+      mutate(value = approx_fun(year, value)) %>%
+      ungroup() -> L122.globaltech_coef
 
     # BIOMASS LIQUIDS: Ethanol and biodiesel output are equal to regional TPES
     # Modify the A_regions assignments based on the technologies available in L121.share_R_TPES_biofuel_tech

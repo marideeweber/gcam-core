@@ -3,7 +3,7 @@
 # Units: Unitless
 # Column types: ccccnnnnnnnnnn
 # ----------
-supplysector,subsector,technology,minicam.energy.input,1971,2015,2020,initial-future-year,2030,2035,2040,2045,2050,2100
+supplysector,subsector,technology,minicam.energy.input,1971,2015,final-calibration-year,initial-future-year,2030,2035,2040,2045,2050,2100
 gas processing,natural gas,natural gas,regional natural gas,1,1,1,1,1,1,1,1,1,1
 gas processing,biomass gasification,biomass gasification,regional biomass,1.343,1.343,1.343,1.33575,1.3285,1.32125,1.314,1.30675,1.2995,1.227
 gas processing,coal gasification,coal gasification,regional coal,1.326,1.326,1.326,1.3188125,1.311625,1.3044375,1.29725,1.2900625,1.282875,1.211

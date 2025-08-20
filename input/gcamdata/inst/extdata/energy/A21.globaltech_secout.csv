@@ -3,5 +3,5 @@
 # Units: NA
 # Column types: ccccnnnnnnnnn
 # ----------
-supplysector,subsector,technology,fractional.secondary.output,1971,2020,2025,2030,2035,2040,2045,2050,2100
+supplysector,subsector,technology,fractional.secondary.output,1971,final-calibration-year,initial-future-year,2030,2035,2040,2045,2050,2100
 regional corn for ethanol,regional corn for ethanol,regional corn for ethanol,DDGS,33.3,33.3,32.9,32.1,31.3,30.5,29.7,29.1,29.1
