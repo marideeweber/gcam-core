@@ -30,7 +30,8 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
       "L1012.en_bal_EJ_R_Si_Fi_Yh",
       "L121.in_EJ_R_unoil_F_Yh",
       "L121.share_R_TPES_biofuel_tech",
-      "L1262.refinedOil_GrossTrade_EJ_R_C_Y")
+      "L1262.refinedOil_GrossTrade_EJ_R_C_Y",
+      "L1262.Biofuel_GrossTrade_EJ_R_C_Y")
 
   MODULE_OUTPUTS <-
     c("L122.out_EJ_R_gasproc_F_Yh",
@@ -116,6 +117,10 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
       filter(sector == energy.TPES_FLOW,
              fuel %in% BIOMASS_LIQUIDS) %>%
       mutate(Biofuel = if_else(fuel == "refined biofuels_ethanol", "ethanol", "biodiesel")) %>%
+      # GPK 8/21/25: Adjust the biofuel output of each region to account for net_trade of biofuels
+      left_join_error_no_match(L1262.Biofuel_GrossTrade_EJ_R_C_Y %>% select(GCAM_region_ID, Biofuel = GCAM_commodity, year, net_trade),
+                               by = c("GCAM_region_ID", "Biofuel", "year")) %>%
+      mutate(value = pmax(0, value + net_trade)) %>%
       left_join(A_biofuel_types_R, by = c("GCAM_region_ID", "Biofuel")) %>%
       mutate(value = value * share) %>%
       select(GCAM_region_ID, technology, biomassOil_tech, year, value) -> L122.out_EJ_R_biofuel_Yh
@@ -192,10 +197,10 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
       select(GCAM_region_ID, sector, fuel, year, value) -> L122.in_EJ_R_gtlctl_F_Yh
 
     # CRUDE OIL REFINING
-    # Copied from original text:
     # NOTE*1: This is complicated. The outputs of CTL and GTL have the same fuel name as the output of oil refining,
     # so need to be deducted from TPES in order to calculate regional output of oil refining.
-    # In contrast, biofuels are assigned different names, so they are not in the TPES of refined liquids.
+    # (In contrast, biofuels are assigned different names, so they are not in the TPES of refined liquids.)
+    # Oil refining output = (TPES of refined liquids) - (outputs of CTL and GTL) + (net exports of refined liquids)
 
     # Create tibble with appropriate sector and fuels for oil refining (output) for L122.out_EJ_R_oilrefining_Yh and add historical years
     tibble(GCAM_region_ID = GCAM_region_names$GCAM_region_ID, sector = "oil refining", fuel = "oil")%>%
@@ -219,13 +224,13 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
       mutate(value_en_bal = value_en_bal_TPES - value_en_bal_net_oil) %>%
       select(-value_en_bal_TPES, -value_en_bal_net_oil) -> en_bal_oil
 
-    # Output for coal for CTL sector
+    # Output of refined liquids from CTL
     L122.out_EJ_R_gtlctl_Yh %>%
       filter(sector == "ctl", fuel == "coal") %>%
       select(GCAM_region_ID, sector, year, value_ctl_oil = value) %>%
       mutate(sector = "oil refining") -> ctl_OIL
 
-    # Output for coal for GTL sector
+    # Output of refined liquids from GTL
     L122.out_EJ_R_gtlctl_Yh %>%
       filter(sector == "gtl", fuel == "gas") %>%
       select(GCAM_region_ID, sector, year, value_gtl_oil = value) %>%
@@ -234,7 +239,7 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
       mutate(value_gtlctl = value_ctl_oil + value_gtl_oil) %>%
       select(-value_ctl_oil, -value_gtl_oil) -> gtlctl_oil
 
-    # Final adjustments to fuel outputs for CTL and GTL to tackle the Note (NOTE*1) made above
+    # Adjustments to fuel outputs of oil refining, to deduct any fuels produced by CTL and GTL
     # left_join_error_no_match could be used here since it has some problems with the timeshifting test
     L122.out_EJ_R_oilrefining_Yh %>%
       left_join(en_bal_oil, by = c("GCAM_region_ID", "sector", "year")) %>%
@@ -246,16 +251,17 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
       select(GCAM_region_ID, sector, fuel, year, value) ->
       L122.out_EJ_R_oilrefining_Yh
 
-    # Oil refining: input of oil is equal to TPES, and input of other fuels is from net refinery energy use
+    # Oil refining inputs: input of oil is equal to output of refined liquids plus refinery energy use of refined liquids.
+    # Input of other fuels is exactly as reported in "net_oil refining" sector
     L1012.en_bal_EJ_R_Si_Fi_Yh %>%
       filter(sector == "net_oil refining") %>%
-      filter(fuel == "refined liquids") %>%
-      left_join_error_no_match(select(filter(L1012.en_bal_EJ_R_Si_Fi_Yh, sector == energy.TPES_FLOW, fuel == "refined liquids"), -sector), by = c("GCAM_region_ID", "fuel", "year")) %>%
-      select(-value.x) %>%
-      rename(value = value.y) %>%
-      bind_rows(filter(L1012.en_bal_EJ_R_Si_Fi_Yh, sector == "net_oil refining", fuel!= "refined liquids")) %>%
       mutate(sector = "oil refining",
-             fuel = if_else(fuel == "refined liquids", "oil", fuel)) -> L122.in_EJ_R_oilrefining_F_Yh
+             fuel = if_else(fuel == "refined liquids", "oil", fuel)) %>%
+      left_join(L122.out_EJ_R_oilrefining_Yh, by = c("GCAM_region_ID", "sector", "fuel", "year"),
+                suffix = c(".energyuse", ".output")) %>%
+      replace_na(list(value.output = 0)) %>%
+      mutate(value = value.energyuse + value.output) %>%
+      select(-value.energyuse, -value.output) -> L122.in_EJ_R_oilrefining_F_Yh
 
     # Calculate region- and fuel-specific coefficients of crude oil refining
     L122.in_EJ_R_oilrefining_F_Yh %>%

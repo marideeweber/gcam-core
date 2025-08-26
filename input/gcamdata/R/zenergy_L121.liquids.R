@@ -30,7 +30,8 @@ module_energy_L121.liquids <- function(command, ...) {
       FILE = "energy/A21.globalrsrctech_coef",
       "L100.IEA_en_bal_ctry_hist",
       "L1012.en_bal_EJ_R_Si_Fi_Yh",
-      "L111.Prod_EJ_R_F_Yh")
+      "L111.Prod_EJ_R_F_Yh",
+      "L1262.refinedOil_GrossTrade_EJ_R_C_Y")
 
   MODULE_OUTPUTS <-
     c("L121.in_EJ_R_unoil_F_Yh",
@@ -151,16 +152,30 @@ module_energy_L121.liquids <- function(command, ...) {
       L111.Prod_EJ_R_F_Yh %>%
         filter(technology=="unconventional oil") -> unoil_prod
 
-      # Conventional (crude) oil: calculate as liquids TPES - unconventional oil
+      # Conventional (crude) oil: calculate as liquids TPES + net exports - unconventional oil - CTL/GTL production
       L1012.en_bal_EJ_R_Si_Fi_Yh %>%
         filter(sector == energy.TPES_FLOW, fuel == "refined liquids") -> L121.in_EJ_R_TPES_liq_Yh
+
+      L1012.en_bal_EJ_R_Si_Fi_Yh %>%
+        filter(sector %in% c("out_ctl", "out_gtl")) %>%
+        group_by(GCAM_region_ID, year) %>%
+        summarise(value_ctlgtl = sum(value)) %>%
+        ungroup() -> L121.in_EJ_R_CTLGTL_liq_Yh
+
+      L1262.refinedOil_GrossTrade_EJ_R_C_Y %>%
+        filter(year == MODEL_FINAL_BASE_YEAR) %>%
+        select(GCAM_region_ID, year, net_trade) ->
+        L121.NetExp_EJ_R_RefOil_fby
 
       L121.in_EJ_R_TPES_liq_Yh %>%
         select(GCAM_region_ID, sector, fuel, year, value) %>%
         mutate(fuel = "crude oil") %>%
+        left_join(L121.NetExp_EJ_R_RefOil_fby, by = c("GCAM_region_ID", "year")) %>%
         left_join(rename(L121.in_EJ_R_TPES_unoil_Yh, value_unoil = value, unoil = fuel), by = c("GCAM_region_ID", "sector", "year")) %>%
-        mutate(value_unoil = if_else(is.na(value_unoil), 0, value_unoil),
-               value = value - value_unoil) %>%
+        replace_na(list(value_unoil = 0,
+                        net_trade = 0)) %>%
+        left_join_error_no_match(L121.in_EJ_R_CTLGTL_liq_Yh, by = c("GCAM_region_ID", "year")) %>%
+        mutate(value = value + net_trade - value_unoil - value_ctlgtl) %>%
         select(GCAM_region_ID, sector, fuel, year, value) -> L121.in_EJ_R_TPES_crude_Yh
 
       L111.Prod_EJ_R_F_Yh %>%

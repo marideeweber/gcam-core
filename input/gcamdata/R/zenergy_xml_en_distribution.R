@@ -42,8 +42,7 @@ module_energy_en_distribution_xml <- function(command, ...) {
       "L2262.Production_refinedLiquids_reg_dom")
 
   MODULE_OUTPUTS <-
-    c(XML = "en_distribution.xml",
-      "L1329.in_EJ_R_indenergy_F_Yh")
+    c(XML = "en_distribution.xml")
 
   if(command == driver.DECLARE_INPUTS) {
     return(MODULE_INPUTS)
@@ -55,58 +54,6 @@ module_energy_en_distribution_xml <- function(command, ...) {
 
     # Load required inputs ----
     get_data_list(all_data, MODULE_INPUTS, strip_attributes = TRUE)
-
-    # Calculate net trade again based on the final values
-    L2262.Production_refinedLiquids_tra %>%
-      group_by(year, subsector) %>%
-      mutate(region = gsub(supplysector, "", subsector),
-             region = gsub(" $", "", region),
-             sector = gsub("traded ", "", supplysector)) %>%
-      ungroup() %>%
-      select(region, year, sector, export = calOutputValue) %>%
-      full_join(
-        L2262.Production_refinedLiquids_reg_imp %>%
-          mutate(sector = gsub("regional ", "", supplysector)) %>%
-          select(region, year, sector, import = calOutputValue),
-        by = c("region", "year", "sector")
-      ) %>%
-      replace_na(list(export = 0, import = 0)) %>%
-      mutate(netexport = export - import) %>%
-      filter(netexport != 0) ->
-      refinedLiquids_netexport
-
-    # remove trade data for refined oil
-    refinedLiquids_netexport %>% filter(sector != "refined oil") ->
-      refinedLiquids_netexport
-
-    L1328.in_EJ_R_indenergy_F_Yh %>%
-      filter(fuel == "refined liquids") %>%
-      group_by(GCAM_region_ID, fuel, sector, year) %>%
-      summarize(value = sum(value), .groups = "drop") %>%
-      left_join_error_no_match(GCAM_region_names, by = "GCAM_region_ID") %>%
-      left_join(
-        refinedLiquids_netexport %>%
-          group_by(region, year) %>%
-          summarize(netexport = sum(netexport), .groups = "drop"),
-        by = c("year", "region")) %>%
-      replace_na(list(netexport = 0)) %>%
-      mutate(value = value - netexport) %>%
-      select(-netexport, -region) ->
-        L1328.in_EJ_R_indenergy_F_Yh_refinedliquids_adj
-
-
-    L1328.in_EJ_R_indenergy_F_Yh_refinedliquids_adj %>%
-      mutate(value = pmax(0, value)) ->
-      L1328.in_EJ_R_indenergy_F_Yh_refinedliquids_adj
-
-
-    L1328.in_EJ_R_indenergy_F_Yh %>%
-      filter(fuel != "refined liquids") %>%
-      bind_rows(
-        L1328.in_EJ_R_indenergy_F_Yh_refinedliquids_adj
-      ) ->
-      L1329.in_EJ_R_indenergy_F_Yh
-
 
     # calculate regional biofuels
     L2262.Production_refinedLiquids_reg_imp %>%
@@ -334,16 +281,6 @@ module_energy_en_distribution_xml <- function(command, ...) {
       add_xml_data(L226.StubTechProd_refinedoil_in_RefinedLiquidsGasPool, "StubTechProd") %>%
       add_precursors(MODULE_INPUTS) ->
       en_distribution.xml
-
-    L1329.in_EJ_R_indenergy_F_Yh %>%
-      add_title("Industrial energy consumption adjusted for refined liquids trade") %>%
-      add_units("EJ") %>%
-      add_comments("Same as L1328.in_EJ_R_indenergy_F_Yh with net exports of refined liquids deducted") %>%
-      add_precursors("L1328.in_EJ_R_indenergy_F_Yh",
-                     "L2262.Production_refinedLiquids_tra",
-                     "L2262.Production_refinedLiquids_reg_imp",
-                     "L2262.Production_refinedLiquids_reg_dom") ->
-      L1329.in_EJ_R_indenergy_F_Yh
 
     return_data(MODULE_OUTPUTS)
   } else {
