@@ -71,6 +71,7 @@ module_aglu_ag_trade_xml <- function(command, ...) {
                      "L240.Supplysector_reg",
                      "L240.SubsectorAll_reg",
                      "L240.TechShrwt_reg",
+                     "L240.TechCost_reg",
                      "L240.TechCoef_reg",
                      "L240.Production_reg_imp",
                      "L240.Production_reg_dom") ->
