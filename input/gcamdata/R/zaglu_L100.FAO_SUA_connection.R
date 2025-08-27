@@ -145,6 +145,9 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
     # 1. Supply-utilization accounting balance ----
     # Change unit and year for later uses
     # data was balanced already and in GCAM regions
+    # 8/27/25 GPK - some of the oil palm commodities have discontinuities in the time series of minor
+    # regions for these commodities. Leaving them in the data causes imbalances in global exports and imports
+    # when applying the Moving_average() function. All cases have been examined and replacing with 0 is okay.
     L100.FAO_SUA_APE_balance <-
       GCAM_AgLU_SUA_APE_StockAdj3 %>%
       mutate(Net_Export = Export - Import) %>%
@@ -152,6 +155,9 @@ module_aglu_L100.FAO_SUA_connection <- function(command, ...) {
       left_join_error_no_match(GCAM_region_names, by = "region") %>%
       select(-region) %>%
       gather(element, value, -GCAM_region_ID, -GCAM_commodity, -year) %>%
+      # expand to all combinations, filling missing values as zeroes
+      complete(nesting(GCAM_region_ID, GCAM_commodity, element), year = aglu.AGLU_HISTORICAL_YEARS,
+               fill = list(value = 0)) %>%
       # change unit to Mt
       mutate(value = value / 1000) %>%
       # Adding 5-year moving average here
