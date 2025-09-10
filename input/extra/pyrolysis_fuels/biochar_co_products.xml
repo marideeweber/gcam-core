@@ -1,0 +1,990 @@
+<?xml version="1.0" encoding="UTF-8"?><scenario>
+    <world>
+        <region name="USA">
+            <supplysector name="biochar_labile">
+                <subsector name="biochar_labile">
+                    <technology name="slow pyrolysis biochar herbaceous">
+                        <period year="1975">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000918114</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.001057415</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.001057415</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="1990">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000918114</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.001057415</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.001057415</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2005">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000918114</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.001057415</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.001057415</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2010">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000918114</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.001057415</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.001057415</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2015">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000918114</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.001057415</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.001057415</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2020">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000918114</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.001057415</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.001057415</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2025">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000918114</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.001057415</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.001057415</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2030">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000918114</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.001057415</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.001057415</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2035">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000918114</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.001057415</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.001057415</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2040">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000918114</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.001057415</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.001057415</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2045">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000918114</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.001057415</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.001057415</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2050">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000918114</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.001057415</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.001057415</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2055">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000918114</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.001057415</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.001057415</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2060">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000918114</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.001057415</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.001057415</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2065">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000918114</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.001057415</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.001057415</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2070">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000918114</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.001057415</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.001057415</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2075">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000918114</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.001057415</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.001057415</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2080">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000918114</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.001057415</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.001057415</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2085">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000918114</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.001057415</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.001057415</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2090">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000918114</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.001057415</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.001057415</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2095">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000918114</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.001057415</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.001057415</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2100">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000918114</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.001057415</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.001057415</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                    </technology>
+                    <technology name="slow pyrolysis biochar woody">
+                        <period year="1975">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.001484356</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.004627962</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.004627962</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="1990">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.001484356</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.004627962</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.004627962</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2005">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.001484356</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.004627962</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.004627962</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2010">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.001484356</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.004627962</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.004627962</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2015">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.001484356</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.004627962</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.004627962</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2020">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.001484356</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.004627962</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.004627962</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2025">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.001484356</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.004627962</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.004627962</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2030">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.001484356</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.004627962</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.004627962</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2035">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.001484356</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.004627962</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.004627962</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2040">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.001484356</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.004627962</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.004627962</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2045">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.001484356</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.004627962</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.004627962</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2050">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.001484356</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.004627962</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.004627962</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2055">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.001484356</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.004627962</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.004627962</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2060">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.001484356</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.004627962</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.004627962</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2065">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.001484356</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.004627962</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.004627962</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2070">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.001484356</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.004627962</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.004627962</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2075">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.001484356</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.004627962</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.004627962</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2080">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.001484356</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.004627962</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.004627962</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2085">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.001484356</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.004627962</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.004627962</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2090">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.001484356</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.004627962</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.004627962</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2095">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.001484356</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.004627962</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.004627962</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2100">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.001484356</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.004627962</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_marine_credit">
+                                <output-ratio>0.004627962</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+            <supplysector name="biochar_recalcitrant">
+                <subsector name="biochar_recalcitrant">
+                    <technology name="fast pyrolysis biochar herbaceous">
+                        <period year="1975">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000859476</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.005618089</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.005618089</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="1990">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000859476</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.005618089</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.005618089</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2005">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000859476</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.005618089</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.005618089</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2010">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000859476</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.005618089</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.005618089</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2015">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000859476</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.005618089</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.005618089</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2020">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000859476</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.005618089</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.005618089</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2025">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000859476</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.005618089</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.005618089</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2030">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000859476</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.005618089</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.005618089</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2035">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000859476</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.005618089</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.005618089</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2040">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000859476</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.005618089</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.005618089</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2045">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000859476</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.005618089</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.005618089</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2050">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000859476</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.005618089</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.005618089</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2055">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000859476</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.005618089</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.005618089</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2060">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000859476</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.005618089</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.005618089</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2065">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000859476</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.005618089</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.005618089</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2070">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000859476</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.005618089</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.005618089</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2075">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000859476</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.005618089</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.005618089</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2080">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000859476</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.005618089</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.005618089</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2085">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000859476</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.005618089</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.005618089</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2090">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000859476</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.005618089</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.005618089</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2095">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000859476</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.005618089</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.005618089</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2100">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.000859476</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.005618089</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.005618089</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                    </technology>
+                    <technology name="fast pyrolysis biochar woody">
+                        <period year="1975">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.002096438</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.008302106</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.008302106</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="1990">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.002096438</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.008302106</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.008302106</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2005">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.002096438</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.008302106</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.008302106</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2010">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.002096438</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.008302106</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.008302106</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2015">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.002096438</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.008302106</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.008302106</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2020">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.002096438</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.008302106</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.008302106</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2025">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.002096438</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.008302106</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.008302106</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2030">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.002096438</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.008302106</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.008302106</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2035">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.002096438</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.008302106</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.008302106</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2040">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.002096438</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.008302106</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.008302106</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2045">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.002096438</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.008302106</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.008302106</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2050">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.002096438</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.008302106</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.008302106</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2055">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.002096438</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.008302106</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.008302106</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2060">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.002096438</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.008302106</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.008302106</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2065">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.002096438</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.008302106</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.008302106</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2070">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.002096438</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.008302106</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.008302106</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2075">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.002096438</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.008302106</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.008302106</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2080">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.002096438</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.008302106</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.008302106</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2085">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.002096438</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.008302106</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.008302106</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2090">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.002096438</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.008302106</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.008302106</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2095">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.002096438</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.008302106</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.008302106</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                        <period year="2100">
+                            <secondary-output name="natural gas">
+                                <output-ratio>0.002096438</output-ratio>
+                            </secondary-output>
+                            <secondary-output name="refined liquids enduse">
+                                <output-ratio>0.008302106</output-ratio>
+                            </secondary-output>
+                            <res-secondary-output name="refined_liquids_aviation_credit">
+                                <output-ratio>0.008302106</output-ratio>
+                            </res-secondary-output>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+    </world>
+</scenario>

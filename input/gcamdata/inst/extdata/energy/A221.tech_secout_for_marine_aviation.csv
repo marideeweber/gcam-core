@@ -1,0 +1,19 @@
+# File: A221.tech_secout.csv
+# Title: Secondary outputs for biochar production
+# Units: GJ out / kg biochar
+# Column types: ccccn
+# Source: NREL TEA
+# ----------
+supplysector,subsector,technology,secondary.output,output.ratio
+biochar_labile,biochar_labile,slow pyrolysis biochar herbaceous,natural gas,0.000918114
+biochar_labile,biochar_labile,slow pyrolysis biochar herbaceous,refined liquids enduse,0.001057415
+biochar_labile,biochar_labile,slow pyrolysis biochar woody,natural gas,0.001484356
+biochar_labile,biochar_labile,slow pyrolysis biochar woody,refined liquids enduse,0.004627962
+biochar_recalcitrant,biochar_recalcitrant,fast pyrolysis biochar herbaceous,natural gas,0.000859476
+biochar_recalcitrant,biochar_recalcitrant,fast pyrolysis biochar herbaceous,refined liquids enduse,0.005618089
+biochar_recalcitrant,biochar_recalcitrant,fast pyrolysis biochar woody,natural gas,0.002096438
+biochar_recalcitrant,biochar_recalcitrant,fast pyrolysis biochar woody,refined liquids enduse,0.008302106
+biochar_labile,biochar_labile,slow pyrolysis biochar herbaceous,refined_liquids_marine_credit,0.001057415
+biochar_labile,biochar_labile,slow pyrolysis biochar woody,refined_liquids_marine_credit,0.004627962
+biochar_recalcitrant,biochar_recalcitrant,fast pyrolysis biochar herbaceous,refined_liquids_aviation_credit,0.005618089
+biochar_recalcitrant,biochar_recalcitrant,fast pyrolysis biochar woody,refined_liquids_aviation_credit,0.008302106

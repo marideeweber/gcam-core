@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 3 U (http://www.xmlspy.com) by Staff (PNNL) -->
+<scenario>
+	<world>
+		<region name="USA">
+	 		<policy-portfolio-standard name="Slow-Pyrolysis-Herb-Floor">
+				<market>USA</market>
+				<policyType>subsidy</policyType>
+                <min-price year="2025" fillout="1">-100000</min-price>
+				<constraint year="2025">12.667955</constraint>
+				<constraint year="2030">26.54226202</constraint>
+				<constraint year="2035">40.75074142</constraint>
+				<constraint year="2040">55.93601093</constraint>
+				<constraint year="2045">71.95958087</constraint>
+				<constraint year="2050">88.68453578</constraint>
+			</policy-portfolio-standard>
+	 		<policy-portfolio-standard name="Slow-Pyrolysis-Woody-Floor">
+				<market>USA</market>
+				<policyType>subsidy</policyType>
+                <min-price year="2025" fillout="1">-100000</min-price>
+				<constraint year="2025">12.667955</constraint>
+				<constraint year="2030">26.54226202</constraint>
+				<constraint year="2035">40.75074142</constraint>
+				<constraint year="2040">55.93601093</constraint>
+				<constraint year="2045">71.95958087</constraint>
+				<constraint year="2050">88.68453578</constraint>
+			</policy-portfolio-standard> 
+	 		<policy-portfolio-standard name="Fast-Pyrolysis-Herb-Floor">
+				<market>USA</market>
+				<policyType>subsidy</policyType>
+                <min-price year="2025" fillout="1">-100000</min-price>
+				<constraint year="2025">12.41609403</constraint>
+				<constraint year="2030">22.53247099</constraint>
+				<constraint year="2035">32.40919039</constraint>
+				<constraint year="2040">44.40848278</constraint>
+				<constraint year="2045">56.64264832</constraint>
+				<constraint year="2050">68.30204246</constraint>
+			</policy-portfolio-standard> 
+	 		<policy-portfolio-standard name="Fast-Pyrolysis-Woody-Floor">
+				<market>USA</market>
+				<policyType>subsidy</policyType>
+                <min-price year="2025" fillout="1">-100000</min-price>
+				<constraint year="2025">12.41609403</constraint>
+				<constraint year="2030">22.53247099</constraint>
+				<constraint year="2035">32.40919039</constraint>
+				<constraint year="2040">44.40848278</constraint>
+				<constraint year="2045">56.64264832</constraint>
+				<constraint year="2050">68.30204246</constraint>
+			</policy-portfolio-standard> 
+		</region>
+	</world>
+</scenario>

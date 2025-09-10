@@ -1,0 +1,1436 @@
+<?xml version="1.0" encoding="UTF-8"?><scenario>
+    <world>
+        <region name="USA">
+            <policy-portfolio-standard name="refined_liquids_marine_credit">
+                <market>USA</market>
+                <policyType>RES</policyType>
+                <constraint fillout="1" year="2025">1</constraint>
+            </policy-portfolio-standard>
+            <policy-portfolio-standard name="refined_liquids_aviation_credit">
+                <market>USA</market>
+                <policyType>RES</policyType>
+                <constraint fillout="1" year="2025">1</constraint>
+            </policy-portfolio-standard>
+            <supplysector name="trn_shipping_intl" nocreate="1">
+                <tranSubsector name="International Ship">
+                    <stub-technology name="Liquids" nocreate="1">
+                        <period year="2015">
+                            <minicam-energy-input name="refined_liquids_marine_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">98678.28729</current-coef>
+                                <current-coef year="2030">337759.4627</current-coef>
+                                <current-coef year="2035">574437.7405</current-coef>
+                                <current-coef year="2040">808774.1418</current-coef>
+                                <current-coef year="2045">1040743.437</current-coef>
+                                <current-coef year="2050">1270345.625</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2020">
+                            <minicam-energy-input name="refined_liquids_marine_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">98678.28729</current-coef>
+                                <current-coef year="2030">337759.4627</current-coef>
+                                <current-coef year="2035">574437.7405</current-coef>
+                                <current-coef year="2040">808774.1418</current-coef>
+                                <current-coef year="2045">1040743.437</current-coef>
+                                <current-coef year="2050">1270345.625</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2025">
+                            <minicam-energy-input name="refined_liquids_marine_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">98678.28729</current-coef>
+                                <current-coef year="2030">337759.4627</current-coef>
+                                <current-coef year="2035">574437.7405</current-coef>
+                                <current-coef year="2040">808774.1418</current-coef>
+                                <current-coef year="2045">1040743.437</current-coef>
+                                <current-coef year="2050">1270345.625</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2030">
+                            <minicam-energy-input name="refined_liquids_marine_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">98678.28729</current-coef>
+                                <current-coef year="2030">337759.4627</current-coef>
+                                <current-coef year="2035">574437.7405</current-coef>
+                                <current-coef year="2040">808774.1418</current-coef>
+                                <current-coef year="2045">1040743.437</current-coef>
+                                <current-coef year="2050">1270345.625</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2035">
+                            <minicam-energy-input name="refined_liquids_marine_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">98678.28729</current-coef>
+                                <current-coef year="2030">337759.4627</current-coef>
+                                <current-coef year="2035">574437.7405</current-coef>
+                                <current-coef year="2040">808774.1418</current-coef>
+                                <current-coef year="2045">1040743.437</current-coef>
+                                <current-coef year="2050">1270345.625</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2040">
+                            <minicam-energy-input name="refined_liquids_marine_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">98678.28729</current-coef>
+                                <current-coef year="2030">337759.4627</current-coef>
+                                <current-coef year="2035">574437.7405</current-coef>
+                                <current-coef year="2040">808774.1418</current-coef>
+                                <current-coef year="2045">1040743.437</current-coef>
+                                <current-coef year="2050">1270345.625</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2045">
+                            <minicam-energy-input name="refined_liquids_marine_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">98678.28729</current-coef>
+                                <current-coef year="2030">337759.4627</current-coef>
+                                <current-coef year="2035">574437.7405</current-coef>
+                                <current-coef year="2040">808774.1418</current-coef>
+                                <current-coef year="2045">1040743.437</current-coef>
+                                <current-coef year="2050">1270345.625</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2050">
+                            <minicam-energy-input name="refined_liquids_marine_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">98678.28729</current-coef>
+                                <current-coef year="2030">337759.4627</current-coef>
+                                <current-coef year="2035">574437.7405</current-coef>
+                                <current-coef year="2040">808774.1418</current-coef>
+                                <current-coef year="2045">1040743.437</current-coef>
+                                <current-coef year="2050">1270345.625</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                    </stub-technology>
+                </tranSubsector>
+            </supplysector>
+            <supplysector name="trn_shipping_intl" nocreate="1">
+                <tranSubsector name="International Ship">
+                    <stub-technology name="Hybrid Liquids" nocreate="1">
+                        <period year="2015">
+                            <minicam-energy-input name="refined_liquids_marine_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">78942.62986</current-coef>
+                                <current-coef year="2030">270207.57</current-coef>
+                                <current-coef year="2035">459550.1924</current-coef>
+                                <current-coef year="2040">647019.3134</current-coef>
+                                <current-coef year="2045">832594.7492</current-coef>
+                                <current-coef year="2050">1016276.5</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2020">
+                            <minicam-energy-input name="refined_liquids_marine_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">78942.62986</current-coef>
+                                <current-coef year="2030">270207.57</current-coef>
+                                <current-coef year="2035">459550.1924</current-coef>
+                                <current-coef year="2040">647019.3134</current-coef>
+                                <current-coef year="2045">832594.7492</current-coef>
+                                <current-coef year="2050">1016276.5</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2025">
+                            <minicam-energy-input name="refined_liquids_marine_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">78942.62986</current-coef>
+                                <current-coef year="2030">270207.57</current-coef>
+                                <current-coef year="2035">459550.1924</current-coef>
+                                <current-coef year="2040">647019.3134</current-coef>
+                                <current-coef year="2045">832594.7492</current-coef>
+                                <current-coef year="2050">1016276.5</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2030">
+                            <minicam-energy-input name="refined_liquids_marine_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">78942.62986</current-coef>
+                                <current-coef year="2030">270207.57</current-coef>
+                                <current-coef year="2035">459550.1924</current-coef>
+                                <current-coef year="2040">647019.3134</current-coef>
+                                <current-coef year="2045">832594.7492</current-coef>
+                                <current-coef year="2050">1016276.5</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2035">
+                            <minicam-energy-input name="refined_liquids_marine_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">78942.62986</current-coef>
+                                <current-coef year="2030">270207.57</current-coef>
+                                <current-coef year="2035">459550.1924</current-coef>
+                                <current-coef year="2040">647019.3134</current-coef>
+                                <current-coef year="2045">832594.7492</current-coef>
+                                <current-coef year="2050">1016276.5</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2040">
+                            <minicam-energy-input name="refined_liquids_marine_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">78942.62986</current-coef>
+                                <current-coef year="2030">270207.57</current-coef>
+                                <current-coef year="2035">459550.1924</current-coef>
+                                <current-coef year="2040">647019.3134</current-coef>
+                                <current-coef year="2045">832594.7492</current-coef>
+                                <current-coef year="2050">1016276.5</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2045">
+                            <minicam-energy-input name="refined_liquids_marine_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">78942.62986</current-coef>
+                                <current-coef year="2030">270207.57</current-coef>
+                                <current-coef year="2035">459550.1924</current-coef>
+                                <current-coef year="2040">647019.3134</current-coef>
+                                <current-coef year="2045">832594.7492</current-coef>
+                                <current-coef year="2050">1016276.5</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2050">
+                            <minicam-energy-input name="refined_liquids_marine_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">78942.62986</current-coef>
+                                <current-coef year="2030">270207.57</current-coef>
+                                <current-coef year="2035">459550.1924</current-coef>
+                                <current-coef year="2040">647019.3134</current-coef>
+                                <current-coef year="2045">832594.7492</current-coef>
+                                <current-coef year="2050">1016276.5</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                    </stub-technology>
+                </tranSubsector>
+            </supplysector>
+<supplysector name="trn_shipping_intl" nocreate="1">
+                <tranSubsector name="International Ship">
+                    <stub-technology name="BEV" nocreate="1">
+                        <period year="2015">
+                            <minicam-energy-input name="refined_liquids_marine_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">49339.14367</current-coef>
+                                <current-coef year="2030">168879.7313</current-coef>
+                                <current-coef year="2035">287218.8703</current-coef>
+                                <current-coef year="2040">404387.0709</current-coef>
+                                <current-coef year="2045">520371.7183</current-coef>
+                                <current-coef year="2050">635172.8125</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2020">
+                            <minicam-energy-input name="refined_liquids_marine_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">49339.14367</current-coef>
+                                <current-coef year="2030">168879.7313</current-coef>
+                                <current-coef year="2035">287218.8703</current-coef>
+                                <current-coef year="2040">404387.0709</current-coef>
+                                <current-coef year="2045">520371.7183</current-coef>
+                                <current-coef year="2050">635172.8125</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2025">
+                            <minicam-energy-input name="refined_liquids_marine_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">49339.14367</current-coef>
+                                <current-coef year="2030">168879.7313</current-coef>
+                                <current-coef year="2035">287218.8703</current-coef>
+                                <current-coef year="2040">404387.0709</current-coef>
+                                <current-coef year="2045">520371.7183</current-coef>
+                                <current-coef year="2050">635172.8125</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2030">
+                            <minicam-energy-input name="refined_liquids_marine_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">49339.14367</current-coef>
+                                <current-coef year="2030">168879.7313</current-coef>
+                                <current-coef year="2035">287218.8703</current-coef>
+                                <current-coef year="2040">404387.0709</current-coef>
+                                <current-coef year="2045">520371.7183</current-coef>
+                                <current-coef year="2050">635172.8125</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2035">
+                            <minicam-energy-input name="refined_liquids_marine_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">49339.14367</current-coef>
+                                <current-coef year="2030">168879.7313</current-coef>
+                                <current-coef year="2035">287218.8703</current-coef>
+                                <current-coef year="2040">404387.0709</current-coef>
+                                <current-coef year="2045">520371.7183</current-coef>
+                                <current-coef year="2050">635172.8125</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2040">
+                            <minicam-energy-input name="refined_liquids_marine_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">49339.14367</current-coef>
+                                <current-coef year="2030">168879.7313</current-coef>
+                                <current-coef year="2035">287218.8703</current-coef>
+                                <current-coef year="2040">404387.0709</current-coef>
+                                <current-coef year="2045">520371.7183</current-coef>
+                                <current-coef year="2050">635172.8125</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2045">
+                            <minicam-energy-input name="refined_liquids_marine_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">49339.14367</current-coef>
+                                <current-coef year="2030">168879.7313</current-coef>
+                                <current-coef year="2035">287218.8703</current-coef>
+                                <current-coef year="2040">404387.0709</current-coef>
+                                <current-coef year="2045">520371.7183</current-coef>
+                                <current-coef year="2050">635172.8125</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2050">
+                            <minicam-energy-input name="refined_liquids_marine_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">49339.14367</current-coef>
+                                <current-coef year="2030">168879.7313</current-coef>
+                                <current-coef year="2035">287218.8703</current-coef>
+                                <current-coef year="2040">404387.0709</current-coef>
+                                <current-coef year="2045">520371.7183</current-coef>
+                                <current-coef year="2050">635172.8125</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                    </stub-technology>
+                </tranSubsector>
+            </supplysector>
+<supplysector name="trn_shipping_intl" nocreate="1">
+                <tranSubsector name="International Ship">
+                    <stub-technology name="FCEV" nocreate="1">
+                        <period year="2015">
+                            <minicam-energy-input name="refined_liquids_marine_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">65785.52486</current-coef>
+                                <current-coef year="2030">225172.9751</current-coef>
+                                <current-coef year="2035">382958.4936</current-coef>
+                                <current-coef year="2040">539182.7613</current-coef>
+                                <current-coef year="2045">693828.9577</current-coef>
+                                <current-coef year="2050">846897.0831</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2020">
+                            <minicam-energy-input name="refined_liquids_marine_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">65785.52486</current-coef>
+                                <current-coef year="2030">225172.9751</current-coef>
+                                <current-coef year="2035">382958.4936</current-coef>
+                                <current-coef year="2040">539182.7613</current-coef>
+                                <current-coef year="2045">693828.9577</current-coef>
+                                <current-coef year="2050">846897.0831</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2025">
+                            <minicam-energy-input name="refined_liquids_marine_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">65785.52486</current-coef>
+                                <current-coef year="2030">225172.9751</current-coef>
+                                <current-coef year="2035">382958.4936</current-coef>
+                                <current-coef year="2040">539182.7613</current-coef>
+                                <current-coef year="2045">693828.9577</current-coef>
+                                <current-coef year="2050">846897.0831</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2030">
+                            <minicam-energy-input name="refined_liquids_marine_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">65785.52486</current-coef>
+                                <current-coef year="2030">225172.9751</current-coef>
+                                <current-coef year="2035">382958.4936</current-coef>
+                                <current-coef year="2040">539182.7613</current-coef>
+                                <current-coef year="2045">693828.9577</current-coef>
+                                <current-coef year="2050">846897.0831</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2035">
+                            <minicam-energy-input name="refined_liquids_marine_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">65785.52486</current-coef>
+                                <current-coef year="2030">225172.9751</current-coef>
+                                <current-coef year="2035">382958.4936</current-coef>
+                                <current-coef year="2040">539182.7613</current-coef>
+                                <current-coef year="2045">693828.9577</current-coef>
+                                <current-coef year="2050">846897.0831</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2040">
+                            <minicam-energy-input name="refined_liquids_marine_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">65785.52486</current-coef>
+                                <current-coef year="2030">225172.9751</current-coef>
+                                <current-coef year="2035">382958.4936</current-coef>
+                                <current-coef year="2040">539182.7613</current-coef>
+                                <current-coef year="2045">693828.9577</current-coef>
+                                <current-coef year="2050">846897.0831</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2045">
+                            <minicam-energy-input name="refined_liquids_marine_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">65785.52486</current-coef>
+                                <current-coef year="2030">225172.9751</current-coef>
+                                <current-coef year="2035">382958.4936</current-coef>
+                                <current-coef year="2040">539182.7613</current-coef>
+                                <current-coef year="2045">693828.9577</current-coef>
+                                <current-coef year="2050">846897.0831</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2050">
+                            <minicam-energy-input name="refined_liquids_marine_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">65785.52486</current-coef>
+                                <current-coef year="2030">225172.9751</current-coef>
+                                <current-coef year="2035">382958.4936</current-coef>
+                                <current-coef year="2040">539182.7613</current-coef>
+                                <current-coef year="2045">693828.9577</current-coef>
+                                <current-coef year="2050">846897.0831</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                    </stub-technology>
+                </tranSubsector>
+            </supplysector>
+            <supplysector name="trn_aviation_intl" nocreate="1">
+                <tranSubsector name="International Aviation">
+                    <stub-technology name="Liquids" nocreate="1">
+                        <period year="2015">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">17525.58619</current-coef>
+                                <current-coef year="2030">44164.09373</current-coef>
+                                <current-coef year="2035">68321.7817</current-coef>
+                                <current-coef year="2040">95056.39193</current-coef>
+                                <current-coef year="2045">121791.0022</current-coef>
+                                <current-coef year="2050">148525.6124</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2020">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">17525.58619</current-coef>
+                                <current-coef year="2030">44164.09373</current-coef>
+                                <current-coef year="2035">68321.7817</current-coef>
+                                <current-coef year="2040">95056.39193</current-coef>
+                                <current-coef year="2045">121791.0022</current-coef>
+                                <current-coef year="2050">148525.6124</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2025">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">17525.58619</current-coef>
+                                <current-coef year="2030">44164.09373</current-coef>
+                                <current-coef year="2035">68321.7817</current-coef>
+                                <current-coef year="2040">95056.39193</current-coef>
+                                <current-coef year="2045">121791.0022</current-coef>
+                                <current-coef year="2050">148525.6124</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2030">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">17525.58619</current-coef>
+                                <current-coef year="2030">44164.09373</current-coef>
+                                <current-coef year="2035">68321.7817</current-coef>
+                                <current-coef year="2040">95056.39193</current-coef>
+                                <current-coef year="2045">121791.0022</current-coef>
+                                <current-coef year="2050">148525.6124</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2035">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">17525.58619</current-coef>
+                                <current-coef year="2030">44164.09373</current-coef>
+                                <current-coef year="2035">68321.7817</current-coef>
+                                <current-coef year="2040">95056.39193</current-coef>
+                                <current-coef year="2045">121791.0022</current-coef>
+                                <current-coef year="2050">148525.6124</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2040">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">17525.58619</current-coef>
+                                <current-coef year="2030">44164.09373</current-coef>
+                                <current-coef year="2035">68321.7817</current-coef>
+                                <current-coef year="2040">95056.39193</current-coef>
+                                <current-coef year="2045">121791.0022</current-coef>
+                                <current-coef year="2050">148525.6124</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2045">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">17525.58619</current-coef>
+                                <current-coef year="2030">44164.09373</current-coef>
+                                <current-coef year="2035">68321.7817</current-coef>
+                                <current-coef year="2040">95056.39193</current-coef>
+                                <current-coef year="2045">121791.0022</current-coef>
+                                <current-coef year="2050">148525.6124</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2050">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">17525.58619</current-coef>
+                                <current-coef year="2030">44164.09373</current-coef>
+                                <current-coef year="2035">68321.7817</current-coef>
+                                <current-coef year="2040">95056.39193</current-coef>
+                                <current-coef year="2045">121791.0022</current-coef>
+                                <current-coef year="2050">148525.6124</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                    </stub-technology>
+                </tranSubsector>
+            </supplysector>
+<supplysector name="trn_aviation_intl" nocreate="1">
+                <tranSubsector name="International Aviation">
+                    <stub-technology name="BEV" nocreate="1">
+                        <period year="2015">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">14852.56124</current-coef>
+                                <current-coef year="2030">41587.17147</current-coef>
+                                <current-coef year="2035">68321.7817</current-coef>
+                                <current-coef year="2040">95056.39193</current-coef>
+                                <current-coef year="2045">121791.0022</current-coef>
+                                <current-coef year="2050">148525.6124</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2020">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">14852.56124</current-coef>
+                                <current-coef year="2030">41587.17147</current-coef>
+                                <current-coef year="2035">68321.7817</current-coef>
+                                <current-coef year="2040">95056.39193</current-coef>
+                                <current-coef year="2045">121791.0022</current-coef>
+                                <current-coef year="2050">148525.6124</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2025">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">14852.56124</current-coef>
+                                <current-coef year="2030">41587.17147</current-coef>
+                                <current-coef year="2035">68321.7817</current-coef>
+                                <current-coef year="2040">95056.39193</current-coef>
+                                <current-coef year="2045">121791.0022</current-coef>
+                                <current-coef year="2050">148525.6124</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2030">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">14852.56124</current-coef>
+                                <current-coef year="2030">41587.17147</current-coef>
+                                <current-coef year="2035">68321.7817</current-coef>
+                                <current-coef year="2040">95056.39193</current-coef>
+                                <current-coef year="2045">121791.0022</current-coef>
+                                <current-coef year="2050">148525.6124</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2035">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">14852.56124</current-coef>
+                                <current-coef year="2030">41587.17147</current-coef>
+                                <current-coef year="2035">68321.7817</current-coef>
+                                <current-coef year="2040">95056.39193</current-coef>
+                                <current-coef year="2045">121791.0022</current-coef>
+                                <current-coef year="2050">148525.6124</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2040">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">14852.56124</current-coef>
+                                <current-coef year="2030">41587.17147</current-coef>
+                                <current-coef year="2035">68321.7817</current-coef>
+                                <current-coef year="2040">95056.39193</current-coef>
+                                <current-coef year="2045">121791.0022</current-coef>
+                                <current-coef year="2050">148525.6124</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2045">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">14852.56124</current-coef>
+                                <current-coef year="2030">41587.17147</current-coef>
+                                <current-coef year="2035">68321.7817</current-coef>
+                                <current-coef year="2040">95056.39193</current-coef>
+                                <current-coef year="2045">121791.0022</current-coef>
+                                <current-coef year="2050">148525.6124</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2050">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">14852.56124</current-coef>
+                                <current-coef year="2030">41587.17147</current-coef>
+                                <current-coef year="2035">68321.7817</current-coef>
+                                <current-coef year="2040">95056.39193</current-coef>
+                                <current-coef year="2045">121791.0022</current-coef>
+                                <current-coef year="2050">148525.6124</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                    </stub-technology>
+                </tranSubsector>
+            </supplysector>
+<supplysector name="trn_aviation_intl" nocreate="1">
+                <tranSubsector name="International Aviation">
+                    <stub-technology name="Hydrogen" nocreate="1">
+                        <period year="2015">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">14852.56124</current-coef>
+                                <current-coef year="2030">41587.17147</current-coef>
+                                <current-coef year="2035">68321.7817</current-coef>
+                                <current-coef year="2040">95056.39193</current-coef>
+                                <current-coef year="2045">121791.0022</current-coef>
+                                <current-coef year="2050">148525.6124</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2020">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">14852.56124</current-coef>
+                                <current-coef year="2030">41587.17147</current-coef>
+                                <current-coef year="2035">68321.7817</current-coef>
+                                <current-coef year="2040">95056.39193</current-coef>
+                                <current-coef year="2045">121791.0022</current-coef>
+                                <current-coef year="2050">148525.6124</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2025">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">14852.56124</current-coef>
+                                <current-coef year="2030">41587.17147</current-coef>
+                                <current-coef year="2035">68321.7817</current-coef>
+                                <current-coef year="2040">95056.39193</current-coef>
+                                <current-coef year="2045">121791.0022</current-coef>
+                                <current-coef year="2050">148525.6124</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2030">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">14852.56124</current-coef>
+                                <current-coef year="2030">41587.17147</current-coef>
+                                <current-coef year="2035">68321.7817</current-coef>
+                                <current-coef year="2040">95056.39193</current-coef>
+                                <current-coef year="2045">121791.0022</current-coef>
+                                <current-coef year="2050">148525.6124</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2035">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">14852.56124</current-coef>
+                                <current-coef year="2030">41587.17147</current-coef>
+                                <current-coef year="2035">68321.7817</current-coef>
+                                <current-coef year="2040">95056.39193</current-coef>
+                                <current-coef year="2045">121791.0022</current-coef>
+                                <current-coef year="2050">148525.6124</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2040">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">14852.56124</current-coef>
+                                <current-coef year="2030">41587.17147</current-coef>
+                                <current-coef year="2035">68321.7817</current-coef>
+                                <current-coef year="2040">95056.39193</current-coef>
+                                <current-coef year="2045">121791.0022</current-coef>
+                                <current-coef year="2050">148525.6124</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2045">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">14852.56124</current-coef>
+                                <current-coef year="2030">41587.17147</current-coef>
+                                <current-coef year="2035">68321.7817</current-coef>
+                                <current-coef year="2040">95056.39193</current-coef>
+                                <current-coef year="2045">121791.0022</current-coef>
+                                <current-coef year="2050">148525.6124</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2050">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">14852.56124</current-coef>
+                                <current-coef year="2030">41587.17147</current-coef>
+                                <current-coef year="2035">68321.7817</current-coef>
+                                <current-coef year="2040">95056.39193</current-coef>
+                                <current-coef year="2045">121791.0022</current-coef>
+                                <current-coef year="2050">148525.6124</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                    </stub-technology>
+                </tranSubsector>
+            </supplysector>
+            <supplysector name="trn_pass" nocreate="1">
+                <tranSubsector name="Domestic Aviation">
+                    <stub-technology name="Liquids" nocreate="1">
+                        <period year="2015">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">15630.37813</current-coef>
+                                <current-coef year="2030">39388.2132</current-coef>
+                                <current-coef year="2035">60933.49035</current-coef>
+                                <current-coef year="2040">84777.03006</current-coef>
+                                <current-coef year="2045">108620.5698</current-coef>
+                                <current-coef year="2050">132464.1095</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2020">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">15630.37813</current-coef>
+                                <current-coef year="2030">39388.2132</current-coef>
+                                <current-coef year="2035">60933.49035</current-coef>
+                                <current-coef year="2040">84777.03006</current-coef>
+                                <current-coef year="2045">108620.5698</current-coef>
+                                <current-coef year="2050">132464.1095</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2025">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">15630.37813</current-coef>
+                                <current-coef year="2030">39388.2132</current-coef>
+                                <current-coef year="2035">60933.49035</current-coef>
+                                <current-coef year="2040">84777.03006</current-coef>
+                                <current-coef year="2045">108620.5698</current-coef>
+                                <current-coef year="2050">132464.1095</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2030">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">15630.37813</current-coef>
+                                <current-coef year="2030">39388.2132</current-coef>
+                                <current-coef year="2035">60933.49035</current-coef>
+                                <current-coef year="2040">84777.03006</current-coef>
+                                <current-coef year="2045">108620.5698</current-coef>
+                                <current-coef year="2050">132464.1095</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2035">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">15630.37813</current-coef>
+                                <current-coef year="2030">39388.2132</current-coef>
+                                <current-coef year="2035">60933.49035</current-coef>
+                                <current-coef year="2040">84777.03006</current-coef>
+                                <current-coef year="2045">108620.5698</current-coef>
+                                <current-coef year="2050">132464.1095</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2040">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">15630.37813</current-coef>
+                                <current-coef year="2030">39388.2132</current-coef>
+                                <current-coef year="2035">60933.49035</current-coef>
+                                <current-coef year="2040">84777.03006</current-coef>
+                                <current-coef year="2045">108620.5698</current-coef>
+                                <current-coef year="2050">132464.1095</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2045">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">15630.37813</current-coef>
+                                <current-coef year="2030">39388.2132</current-coef>
+                                <current-coef year="2035">60933.49035</current-coef>
+                                <current-coef year="2040">84777.03006</current-coef>
+                                <current-coef year="2045">108620.5698</current-coef>
+                                <current-coef year="2050">132464.1095</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2050">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">15630.37813</current-coef>
+                                <current-coef year="2030">39388.2132</current-coef>
+                                <current-coef year="2035">60933.49035</current-coef>
+                                <current-coef year="2040">84777.03006</current-coef>
+                                <current-coef year="2045">108620.5698</current-coef>
+                                <current-coef year="2050">132464.1095</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                    </stub-technology>
+                </tranSubsector>
+            </supplysector>
+<supplysector name="trn_pass" nocreate="1">
+                <tranSubsector name="Domestic Aviation">
+                    <stub-technology name="BEV" nocreate="1">
+                        <period year="2015">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">13246.41095</current-coef>
+                                <current-coef year="2030">37089.95065</current-coef>
+                                <current-coef year="2035">60933.49035</current-coef>
+                                <current-coef year="2040">84777.03006</current-coef>
+                                <current-coef year="2045">108620.5698</current-coef>
+                                <current-coef year="2050">132464.1095</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2020">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">13246.41095</current-coef>
+                                <current-coef year="2030">37089.95065</current-coef>
+                                <current-coef year="2035">60933.49035</current-coef>
+                                <current-coef year="2040">84777.03006</current-coef>
+                                <current-coef year="2045">108620.5698</current-coef>
+                                <current-coef year="2050">132464.1095</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2025">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">13246.41095</current-coef>
+                                <current-coef year="2030">37089.95065</current-coef>
+                                <current-coef year="2035">60933.49035</current-coef>
+                                <current-coef year="2040">84777.03006</current-coef>
+                                <current-coef year="2045">108620.5698</current-coef>
+                                <current-coef year="2050">132464.1095</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2030">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">13246.41095</current-coef>
+                                <current-coef year="2030">37089.95065</current-coef>
+                                <current-coef year="2035">60933.49035</current-coef>
+                                <current-coef year="2040">84777.03006</current-coef>
+                                <current-coef year="2045">108620.5698</current-coef>
+                                <current-coef year="2050">132464.1095</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2035">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">13246.41095</current-coef>
+                                <current-coef year="2030">37089.95065</current-coef>
+                                <current-coef year="2035">60933.49035</current-coef>
+                                <current-coef year="2040">84777.03006</current-coef>
+                                <current-coef year="2045">108620.5698</current-coef>
+                                <current-coef year="2050">132464.1095</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2040">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">13246.41095</current-coef>
+                                <current-coef year="2030">37089.95065</current-coef>
+                                <current-coef year="2035">60933.49035</current-coef>
+                                <current-coef year="2040">84777.03006</current-coef>
+                                <current-coef year="2045">108620.5698</current-coef>
+                                <current-coef year="2050">132464.1095</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2045">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">13246.41095</current-coef>
+                                <current-coef year="2030">37089.95065</current-coef>
+                                <current-coef year="2035">60933.49035</current-coef>
+                                <current-coef year="2040">84777.03006</current-coef>
+                                <current-coef year="2045">108620.5698</current-coef>
+                                <current-coef year="2050">132464.1095</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2050">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">13246.41095</current-coef>
+                                <current-coef year="2030">37089.95065</current-coef>
+                                <current-coef year="2035">60933.49035</current-coef>
+                                <current-coef year="2040">84777.03006</current-coef>
+                                <current-coef year="2045">108620.5698</current-coef>
+                                <current-coef year="2050">132464.1095</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                    </stub-technology>
+                </tranSubsector>
+            </supplysector>
+<supplysector name="trn_pass" nocreate="1">
+                <tranSubsector name="Domestic Aviation">
+                    <stub-technology name="Hydrogen" nocreate="1">
+                        <period year="2015">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">13246.41095</current-coef>
+                                <current-coef year="2030">37089.95065</current-coef>
+                                <current-coef year="2035">60933.49035</current-coef>
+                                <current-coef year="2040">84777.03006</current-coef>
+                                <current-coef year="2045">108620.5698</current-coef>
+                                <current-coef year="2050">132464.1095</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2020">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">13246.41095</current-coef>
+                                <current-coef year="2030">37089.95065</current-coef>
+                                <current-coef year="2035">60933.49035</current-coef>
+                                <current-coef year="2040">84777.03006</current-coef>
+                                <current-coef year="2045">108620.5698</current-coef>
+                                <current-coef year="2050">132464.1095</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2025">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">13246.41095</current-coef>
+                                <current-coef year="2030">37089.95065</current-coef>
+                                <current-coef year="2035">60933.49035</current-coef>
+                                <current-coef year="2040">84777.03006</current-coef>
+                                <current-coef year="2045">108620.5698</current-coef>
+                                <current-coef year="2050">132464.1095</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2030">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">13246.41095</current-coef>
+                                <current-coef year="2030">37089.95065</current-coef>
+                                <current-coef year="2035">60933.49035</current-coef>
+                                <current-coef year="2040">84777.03006</current-coef>
+                                <current-coef year="2045">108620.5698</current-coef>
+                                <current-coef year="2050">132464.1095</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2035">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">13246.41095</current-coef>
+                                <current-coef year="2030">37089.95065</current-coef>
+                                <current-coef year="2035">60933.49035</current-coef>
+                                <current-coef year="2040">84777.03006</current-coef>
+                                <current-coef year="2045">108620.5698</current-coef>
+                                <current-coef year="2050">132464.1095</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2040">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">13246.41095</current-coef>
+                                <current-coef year="2030">37089.95065</current-coef>
+                                <current-coef year="2035">60933.49035</current-coef>
+                                <current-coef year="2040">84777.03006</current-coef>
+                                <current-coef year="2045">108620.5698</current-coef>
+                                <current-coef year="2050">132464.1095</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2045">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">13246.41095</current-coef>
+                                <current-coef year="2030">37089.95065</current-coef>
+                                <current-coef year="2035">60933.49035</current-coef>
+                                <current-coef year="2040">84777.03006</current-coef>
+                                <current-coef year="2045">108620.5698</current-coef>
+                                <current-coef year="2050">132464.1095</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                        <period year="2050">
+                            <minicam-energy-input name="refined_liquids_aviation_credit">
+                                <market-name>USA</market-name>
+                                <current-coef year="1975">0</current-coef>
+                                <current-coef year="1990">0</current-coef>
+                                <current-coef year="2005">0</current-coef>
+                                <current-coef year="2010">0</current-coef>
+                                <current-coef year="2015">0</current-coef>
+                                <current-coef year="2020">0</current-coef>
+                                <current-coef year="2025">13246.41095</current-coef>
+                                <current-coef year="2030">37089.95065</current-coef>
+                                <current-coef year="2035">60933.49035</current-coef>
+                                <current-coef year="2040">84777.03006</current-coef>
+                                <current-coef year="2045">108620.5698</current-coef>
+                                <current-coef year="2050">132464.1095</current-coef>
+                            </minicam-energy-input>
+                        </period>
+                    </stub-technology>
+                </tranSubsector>
+            </supplysector>
+        </region>
+    </world>
+</scenario>

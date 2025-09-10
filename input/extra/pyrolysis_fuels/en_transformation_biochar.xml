@@ -1,0 +1,1870 @@
+<?xml version="1.0" encoding="UTF-8"?><scenario>
+    <world>
+        <region name="USA">
+            <supplysector name="biochar_labile">
+                <absolute-cost-logit>
+                    <logit-exponent fillout="1" year="1975">-3</logit-exponent>
+                </absolute-cost-logit>
+                <output-unit>Mt</output-unit>
+                <input-unit>EJ</input-unit>
+                <price-unit>1975$/kg</price-unit>
+                <subsector name="biochar_labile">
+                    <absolute-cost-logit>
+                        <logit-exponent fillout="1" year="1975">-3</logit-exponent>
+                    </absolute-cost-logit>
+                    <share-weight fillout="1" year="2020">1</share-weight>
+                    <interpolation-rule apply-to="share-weight" from-year="2015" to-year="2020">
+                        <interpolation-function name="linear"/>
+                    </interpolation-rule>
+                    <stub-technology name="slow pyrolysis biochar herbaceous"/>
+                    <stub-technology name="slow pyrolysis biochar woody"/>
+                </subsector>
+            </supplysector>
+            <supplysector name="biochar_recalcitrant">
+                <absolute-cost-logit>
+                    <logit-exponent fillout="1" year="1975">-3</logit-exponent>
+                </absolute-cost-logit>
+                <output-unit>Mt</output-unit>
+                <input-unit>EJ</input-unit>
+                <price-unit>1975$/kg</price-unit>
+                <subsector name="biochar_recalcitrant">
+                    <absolute-cost-logit>
+                        <logit-exponent fillout="1" year="1975">-3</logit-exponent>
+                    </absolute-cost-logit>
+                    <share-weight fillout="1" year="2020">1</share-weight>
+                    <interpolation-rule apply-to="share-weight" from-year="2015" to-year="2020">
+                        <interpolation-function name="linear"/>
+                    </interpolation-rule>
+                    <stub-technology name="fast pyrolysis biochar herbaceous"/>
+                    <stub-technology name="fast pyrolysis biochar woody"/>
+                </subsector>
+            </supplysector>
+        </region>
+        <global-technology-database>
+            <location-info sector-name="biochar_labile" subsector-name="biochar_labile">
+                <technology name="slow pyrolysis biochar herbaceous">
+                    <interpolation-rule apply-to="share-weight" from-year="2015" to-year="2020">
+                        <interpolation-function name="linear"/>
+                    </interpolation-rule>
+                    <period year="1975">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.0183579</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0264</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0</share-weight>
+                    </period>
+                    <period year="1990">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.0183579</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0264</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0</share-weight>
+                    </period>
+                    <period year="2005">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.0183579</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0264</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0</share-weight>
+                    </period>
+                    <period year="2010">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.0183579</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0264</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0</share-weight>
+                    </period>
+                    <period year="2015">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.0183579</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0264</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0</share-weight>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.2</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2020">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.0183579</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0264</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0.333</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.85</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2025">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.0183579</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0264</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0.444166666666667</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.85</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2030">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.0183579</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0264</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0.555333333333333</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.85</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2035">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.0183579</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0264</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0.6665</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.85</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2040">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.0183579</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0264</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0.777666666666667</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.85</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2045">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.0183579</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0264</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0.888833333333333</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.85</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2050">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.0183579</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0264</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.85</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2055">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.0183579</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0264</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.85</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2060">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.0183579</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0264</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.85</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2065">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.0183579</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0264</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.85</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2070">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.0183579</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0264</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.85</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2075">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.0183579</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0264</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.85</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2080">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.0183579</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0264</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.85</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2085">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.0183579</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0264</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.85</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2090">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.0183579</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0264</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.85</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2095">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.0183579</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0264</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.85</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2100">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.0183579</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0264</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.85</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                </technology>
+                <technology name="slow pyrolysis biochar woody">
+                    <interpolation-rule apply-to="share-weight" from-year="2015" to-year="2020">
+                        <interpolation-function name="linear"/>
+                    </interpolation-rule>
+                    <period year="1975">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.056947</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0517</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0</share-weight>
+                    </period>
+                    <period year="1990">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.056947</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0517</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0</share-weight>
+                    </period>
+                    <period year="2005">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.056947</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0517</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0</share-weight>
+                    </period>
+                    <period year="2010">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.056947</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0517</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0</share-weight>
+                    </period>
+                    <period year="2015">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.056947</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0517</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0</share-weight>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.2</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2020">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.056947</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0517</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0.333</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.7</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2025">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.056947</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0517</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0.444166666666667</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.7</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2030">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.056947</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0517</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0.555333333333333</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.7</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2035">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.056947</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0517</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0.6665</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.7</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2040">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.056947</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0517</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0.777666666666667</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.7</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2045">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.056947</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0517</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0.888833333333333</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.7</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2050">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.056947</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0517</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.7</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2055">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.056947</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0517</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.7</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2060">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.056947</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0517</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.7</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2065">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.056947</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0517</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.7</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2070">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.056947</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0517</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.7</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2075">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.056947</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0517</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.7</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2080">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.056947</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0517</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.7</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2085">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.056947</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0517</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.7</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2090">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.056947</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0517</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.7</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2095">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.056947</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0517</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.7</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2100">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.056947</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0517</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.7</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                </technology>
+            </location-info>
+            <location-info sector-name="biochar_recalcitrant" subsector-name="biochar_recalcitrant">
+                <technology name="fast pyrolysis biochar herbaceous">
+                    <interpolation-rule apply-to="share-weight" from-year="2015" to-year="2020">
+                        <interpolation-function name="linear"/>
+                    </interpolation-rule>
+                    <period year="1975">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.044255</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0775</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0</share-weight>
+                    </period>
+                    <period year="1990">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.044255</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0775</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0</share-weight>
+                    </period>
+                    <period year="2005">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.044255</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0775</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0</share-weight>
+                    </period>
+                    <period year="2010">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.044255</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0775</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0</share-weight>
+                    </period>
+                    <period year="2015">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.044255</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0775</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0</share-weight>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.2</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2020">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.044255</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0775</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0.333</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.71</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2025">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.044255</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0775</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0.444166666666667</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.71</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2030">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.044255</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0775</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0.555333333333333</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.71</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2035">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.044255</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0775</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0.6665</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.71</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2040">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.044255</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0775</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0.777666666666667</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.71</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2045">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.044255</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0775</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0.888833333333333</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.71</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2050">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.044255</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0775</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.71</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2055">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.044255</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0775</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.71</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2060">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.044255</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0775</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.71</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2065">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.044255</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0775</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.71</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2070">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.044255</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0775</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.71</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2075">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.044255</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0775</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.71</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2080">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.044255</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0775</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.71</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2085">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.044255</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0775</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.71</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2090">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.044255</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0775</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.71</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2095">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.044255</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0775</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.71</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2100">
+                        <minicam-energy-input name="biomassHerbaceous_forBiochar">
+                            <coefficient>0.044255</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0775</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.71</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                </technology>
+                <technology name="fast pyrolysis biochar woody">
+                    <interpolation-rule apply-to="share-weight" from-year="2015" to-year="2020">
+                        <interpolation-function name="linear"/>
+                    </interpolation-rule>
+                    <period year="1975">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.064665</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0881</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0</share-weight>
+                    </period>
+                    <period year="1990">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.064665</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0881</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0</share-weight>
+                    </period>
+                    <period year="2005">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.064665</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0881</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0</share-weight>
+                    </period>
+                    <period year="2010">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.064665</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0881</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0</share-weight>
+                    </period>
+                    <period year="2015">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.064665</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0881</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0</share-weight>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.2</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2020">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.064665</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0881</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0.333</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.6</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2025">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.064665</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0881</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0.444166666666667</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.6</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2030">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.064665</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0881</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0.555333333333333</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.6</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2035">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.064665</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0881</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0.6665</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.6</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2040">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.064665</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0881</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0.777666666666667</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.6</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2045">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.064665</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0881</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>0.888833333333333</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.6</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2050">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.064665</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0881</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.6</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2055">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.064665</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0881</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.6</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2060">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.064665</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0881</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.6</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2065">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.064665</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0881</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.6</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2070">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.064665</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0881</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.6</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2075">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.064665</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0881</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.6</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2080">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.064665</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0881</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.6</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2085">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.064665</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0881</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.6</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2090">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.064665</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0881</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.6</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2095">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.064665</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0881</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.6</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                    <period year="2100">
+                        <minicam-energy-input name="biomassWoody_forBiochar">
+                            <coefficient>0.064665</coefficient>
+                        </minicam-energy-input>
+                        <CO2 name="CO2"/>
+                        <minicam-non-energy-input name="non-energy">
+                            <input-cost>0.0881</input-cost>
+                        </minicam-non-energy-input>
+                        <share-weight>1</share-weight>
+                        <standard-capture-component>
+                            <remove-fraction>0.6</remove-fraction>
+                            <storage-market>carbon-storage-biochar</storage-market>
+                        </standard-capture-component>
+                        <lifetime>30</lifetime>
+                        <s-curve-shutdown-decider name="s-curve">
+                            <steepness>0.3</steepness>
+                            <half-life>20</half-life>
+                        </s-curve-shutdown-decider>
+                        <profit-shutdown-decider name="profit">
+                            <median-shutdown-point>-0.1</median-shutdown-point>
+                            <steepness>10</steepness>
+                        </profit-shutdown-decider>
+                    </period>
+                </technology>
+            </location-info>
+        </global-technology-database>
+    </world>
+</scenario>
