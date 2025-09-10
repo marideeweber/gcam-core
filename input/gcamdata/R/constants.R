@@ -440,8 +440,8 @@ aglu.DIGITS_WATER_CONTENT <- 2
 # Biochar constants ======================================================================
 
 km2.to.ha <- 100 # From  km2 to ha
-biochar.rate <- 5 # Assumed applicaiton rate of 10 tons of biochar per acre, in line with literature
-assumed.biochar.years <- 80 # We use 80 since biochar application begins in 2020
+biochar.rate <- 16.6 # Assumed application rate of 16.6 tons of biochar per acre, average of our three tech options (5, 15, 30)
+assumed.biochar.years <- 75 # We use 75 since biochar application begins in 2100
 
 #Land leaf names used in the data system for different land types
 aglu.PASTURE_NODE_NAMES <- "Pasture"

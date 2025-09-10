@@ -673,10 +673,10 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
 
     # We use similar approach with biochar demand (assumed) divided by agriculture production in the base year
     # Steps:
-    # 1. First filter for base year, and for high tech crops
-    # 2. from total land allocation get total biochar application (assuming certain biochar application rate from literature)
-    # 3. We assume that the total from step 2 is absolute maximum biochar application. To get the rate per year we divide total by 80
-    #(which are the years modeled, since biochar application starts in 2020)
+    # 1. First filter for base year, and for biochar crops
+    # 2. from total land allocation get total biochar application (assuming certain biochar application rates)
+    # 3. We assume that the total from step 2 is absolute maximum biochar application. To get the rate per year we divide total by 75
+    #(which are the years modeled, since biochar application starts in 2025)
     # 4. Then that biochar per year application (in Mt) is divided by the agricultural production (in Mt) to get the coefficient
 
     ## L2221.AgCoef_Biochar_ag_irr_mgmt
@@ -687,22 +687,23 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
       filter(region %in% test.region,
              year == MODEL_FINAL_BASE_YEAR,
              LandLeaf %in% biochar.techs) %>%
-      # TODO: Need help with this for different rates
+      full_join(biochar_techs, by=c("LandLeaf" = "technology"), relationship = "many-to-many") %>%
+      unite("AgProductionTechnology", c(LandLeaf, treatment)) %>%
+      mutate(biochar_rate = str_extract(AgProductionTechnology, "[^_]+$"),
+             biochar_rate = as.numeric(biochar_rate)) %>%
       # Units are in thousand km2 and we need them in hectares
-      # Then we assume certain biochar application rate named at the constant "biochar.rate"
+      # Then we assume certain biochar application rate - we allow 5, 15, or 30 tons/hectare
       # This is expected to be the absolute maximum (total amount of land times "X" tons per hectare)
       # Then divide by the remaining modeled years to get a rate (from constant "assumed.biochar.years")
       # This will give us the demand in a given year for biochar
       mutate(allocation_ha = allocation * 1000 * km2.to.ha,
              # 10^6 since we need units in megatons, and rate is in tons
-             max.bicohar_MT = (allocation_ha * biochar.rate) / 10^6,
-             biochar.year_MT = max.bicohar_MT / assumed.biochar.years,
+             max.biochar_MT = (allocation_ha * biochar_rate) / 10^6,
+             biochar.year_MT = max.biochar_MT / assumed.biochar.years,
              #Get allocation in kg per hectare, since units are in kg of biochar per kg of crop
              biochar.year_kg = biochar.year_MT * 10^9) %>%
-      rename("AgSupplySubsector" = "LandNode4", "AgProductionTechnology" =  "LandLeaf") %>%
-      # Add in technology suffixes
-      full_join(biochar_techs, by=c("AgProductionTechnology" = "technology"), relationship = "many-to-many") %>%
-      unite("AgProductionTechnology", c(AgProductionTechnology, treatment)) -> L2252.LN5_MgdAllocation_crop_biochar
+      rename("AgSupplySubsector" = "LandNode4") %>%
+      select(-biochar_rate) -> L2252.LN5_MgdAllocation_crop_biochar
 
     # Now prepare the table with the agricultural production
     L2012.AgProduction_ag_irr_mgmt %>%
