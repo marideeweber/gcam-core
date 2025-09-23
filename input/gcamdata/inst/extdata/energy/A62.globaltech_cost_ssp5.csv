@@ -16,3 +16,5 @@ refining,dac to liquids,on-site electrolysis (grid electricity),non-energy,0.813
 CO2 removal,dac,direct ocean capture (stand-alone),non-energy,1.635004398,1.635004398,1.635004398,1.635004398
 desalinated water,direct ocean capture,direct ocean capture (co-located with desal),desal only,0.38,0.38,0.38,0.38
 desalinated water,direct ocean capture,direct ocean capture (co-located with desal),carbon capture,0.023666136,0.023666136,0.023666136,0.023666136
+CO2 removal,biomass burial,biomass burial,non-energy,0.12155,0.12155,0.08,0.06
+CO2 removal,biochar burial,biochar burial,non-energy,0.001,0.001,0.001,0.001

@@ -8,44 +8,44 @@
 				<policyType>subsidy</policyType>
                 <min-price year="2025" fillout="1">-100000</min-price>
 				<constraint year="2025">12.667955</constraint>
-				<constraint year="2030">43.0685761</constraint>
-				<constraint year="2035">73.95504924</constraint>
-				<constraint year="2040">106.740277</constraint>
-				<constraint year="2045">141.2928997</constraint>
-				<constraint year="2050">177.3690716</constraint>
+				<constraint year="2030">26.54226202</constraint>
+				<constraint year="2035">40.75074142</constraint>
+				<constraint year="2040">55.93601093</constraint>
+				<constraint year="2045">71.95958087</constraint>
+				<constraint year="2050">88.68453578</constraint>
 			</policy-portfolio-standard>
 	 		<policy-portfolio-standard name="Slow-Pyrolysis-Woody-Floor">
 				<market>USA</market>
 				<policyType>subsidy</policyType>
                 <min-price year="2025" fillout="1">-100000</min-price>
 				<constraint year="2025">12.667955</constraint>
-				<constraint year="2030">43.0685761</constraint>
-				<constraint year="2035">73.95504924</constraint>
-				<constraint year="2040">106.740277</constraint>
-				<constraint year="2045">141.2928997</constraint>
-				<constraint year="2050">177.3690716</constraint>
+				<constraint year="2030">26.54226202</constraint>
+				<constraint year="2035">40.75074142</constraint>
+				<constraint year="2040">55.93601093</constraint>
+				<constraint year="2045">71.95958087</constraint>
+				<constraint year="2050">88.68453578</constraint>
 			</policy-portfolio-standard> 
 	 		<policy-portfolio-standard name="Fast-Pyrolysis-Herb-Floor">
 				<market>USA</market>
 				<policyType>subsidy</policyType>
                 <min-price year="2025" fillout="1">-100000</min-price>
-				<constraint year="2025">12.41609403</constraint>
-				<constraint year="2030">35.05051043</constraint>
-				<constraint year="2035">57.33933684</constraint>
-				<constraint year="2040">83.59243818</constraint>
-				<constraint year="2045">110.5880277</constraint>
-				<constraint year="2050">136.6040849</constraint>
+				<constraint year="2025">6.208047014</constraint>
+				<constraint year="2030">15.02164733</constraint>
+				<constraint year="2035">23.68363913</constraint>
+				<constraint year="2040">33.95942801</constraint>
+				<constraint year="2045">44.50493797</constraint>
+				<constraint year="2050">54.64163397</constraint>
 			</policy-portfolio-standard> 
 	 		<policy-portfolio-standard name="Fast-Pyrolysis-Woody-Floor">
 				<market>USA</market>
 				<policyType>subsidy</policyType>
                 <min-price year="2025" fillout="1">-100000</min-price>
-				<constraint year="2025">12.41609403</constraint>
-				<constraint year="2030">35.05051043</constraint>
-				<constraint year="2035">57.33933684</constraint>
-				<constraint year="2040">83.59243818</constraint>
-				<constraint year="2045">110.5880277</constraint>
-				<constraint year="2050">136.6040849</constraint>
+				<constraint year="2025">6.208047014</constraint>
+				<constraint year="2030">15.02164733</constraint>
+				<constraint year="2035">23.68363913</constraint>
+				<constraint year="2040">33.95942801</constraint>
+				<constraint year="2045">44.50493797</constraint>
+				<constraint year="2050">54.64163397</constraint>
 			</policy-portfolio-standard> 
 		</region>
 	</world>

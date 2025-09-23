@@ -12,3 +12,7 @@ desalinated water,direct ocean capture,share-weight,2020,2050,,linear
 desalinated water,direct ocean capture,share-weight,2050,end-year,,fixed
 refining,dac to liquids,share-weight,2020,2050,,linear
 refining,dac to liquids,share-weight,2050,end-year,,fixed
+CO2 removal,biomass burial,share-weight,2025,2050,,linear
+CO2 removal,biomass burial,share-weight,2050,end-year,,fixed
+CO2 removal,biochar burial,share-weight,2025,2050,,linear
+CO2 removal,biochar burial,share-weight,2050,end-year,,fixed
