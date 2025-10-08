@@ -46,26 +46,15 @@ module_energy_L263.carbon_burial <- function(command, ...) {
              FILE = "energy/A63.subsector_interp",
              FILE = "energy/A63.globaltech_retirement"))
   } else if(command == driver.DECLARE_OUTPUTS) {
-    return(c("L263.Rsrc",
-             "L263.RsrcCurves_C",
-             "L263.ResTechShrwt_C",
-             "L263.Supplysector_C",
-             "L263.SubsectorLogit_C",
+    return(c("L263.SubsectorLogit_C",
              "L263.SubsectorShrwtFllt_C",
              "L263.StubTech_C",
              "L263.GlobalTechCoef_C",
              "L263.GlobalTechCost_C",
              "L263.GlobalTechShrwt_C",
-             "L263.RsrcCurves_C_high",
-             "L263.RsrcCurves_C_low",
-             "L263.RsrcCurves_C_lowest",
-             "L263.RsrcPrice",
-             "L263.WeatheringRsrcMax",
              "L263.GlobalTechCSeq",
              "L263.SubsectorInterp",
-             "L263.GlobalTechInputPMult",
-             "L263.GlobalTechSCurve",
-             "L263.GlobalTechProfitShutdown"))
+             "L263.GlobalTechInputPMult"))
   } else if(command == driver.MAKE) {
 
     all_data <- list(...)[[1]]
@@ -268,7 +257,14 @@ module_energy_L263.carbon_burial <- function(command, ...) {
 
 
 
-    return_data(L263.SubsectorLogit_C, L263.SubsectorShrwtFllt_C, L263.StubTech_C, L263.GlobalTechCoef_C, L263.GlobalTechCost_C, L263.GlobalTechShrwt_C, L263.GlobalTechCSeq, L263.SubsectorInterp,
+    return_data(L263.SubsectorLogit_C,
+                L263.SubsectorShrwtFllt_C,
+                L263.StubTech_C,
+                L263.GlobalTechCoef_C,
+                L263.GlobalTechCost_C,
+                L263.GlobalTechShrwt_C,
+                L263.GlobalTechCSeq,
+                L263.SubsectorInterp,
                 L263.GlobalTechInputPMult)
   } else {
     stop("Unknown command")
