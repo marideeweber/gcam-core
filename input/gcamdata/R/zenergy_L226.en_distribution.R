@@ -144,13 +144,6 @@ module_energy_L226.en_distribution <- function(command, ...) {
         L226.SubsectorInterpTo_en
     }
 
-
-    # Note from otaq (Xin); not sure if needed
-    # 9/14/2021 hack (GPK) - we can't get rid of interpolation rules subsequently,
-    # and ref liq enduse / biodiesel share-weights are set individually, period by period
-    L226.SubsectorInterp_en <- filter(L226.SubsectorInterp_en,
-                                      !(region == "USA" & subsector == "biodiesel"))
-
     # 2c. Technology information
 
     # L226.StubTech_en: Identification of stub technologies of energy distribution
