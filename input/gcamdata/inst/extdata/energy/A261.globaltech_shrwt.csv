@@ -6,5 +6,5 @@
 supplysector,subsector,technology,1971,2015,2020,2030,2100
 refined liquids gasoline pool,refined oil,refined oil,1,1,1,1,1
 refined liquids gasoline pool,ethanol,corn ethanol refining,0,0,1,1,1
-refined liquids gasoline pool,ethanol,sugar cane ethanol refining,0,0,1,1,,1
+refined liquids gasoline pool,ethanol,sugar cane ethanol refining,0,0,1,1,1
 refined liquids gasoline pool,ethanol,cellulosic ethanol refining,0,0,0,1,1
