@@ -1,8 +1,0 @@
-# File: A63.subsector_logit.csv
-# Title: Carbon storage subsector logit exponents
-# Units: Unitless for logit exponent
-# Column types: ccic
-# ----------
-supplysector,subsector,logit.exponent,logit.type
-surface carbon-storage,inorganic-surface-storage,-6,
-CO2 removal,rock weathering,-6,
