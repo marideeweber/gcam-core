@@ -57,13 +57,13 @@ module_energy_dac_xml <- function(command, ...) {
 
     for(sce in TECH_PARAMETRIZATION_INPUTS){
     # Load required inputs
-    L262.CarbonCoef_dac <- get_data(all_data, "L262.CarbonCoef_dac") %>% filter(region == "USA")
-    L262.Supplysector_dac <- get_data(all_data, "L262.Supplysector_dac") %>% filter(region == "USA")
-    L262.FinalEnergyKeyword_dac <- get_data(all_data, "L262.FinalEnergyKeyword_dac") %>% filter(region == "USA")
-    L262.SubsectorLogit_dac <- get_data(all_data, "L262.SubsectorLogit_dac") %>% filter(region == "USA")
-    L262.SubsectorShrwtFllt_dac <- get_data(all_data, "L262.SubsectorShrwtFllt_dac") %>% filter(region == "USA")
-    L262.SubsectorInterp_dac <- get_data(all_data, "L262.SubsectorInterp_dac") %>% filter(region == "USA")
-    L262.StubTech_dac <- get_data(all_data, "L262.StubTech_dac") %>% filter(region == "USA")
+    L262.CarbonCoef_dac <- get_data(all_data, "L262.CarbonCoef_dac")
+    L262.Supplysector_dac <- get_data(all_data, "L262.Supplysector_dac")
+    L262.FinalEnergyKeyword_dac <- get_data(all_data, "L262.FinalEnergyKeyword_dac")
+    L262.SubsectorLogit_dac <- get_data(all_data, "L262.SubsectorLogit_dac")
+    L262.SubsectorShrwtFllt_dac <- get_data(all_data, "L262.SubsectorShrwtFllt_dac")
+    L262.SubsectorInterp_dac <- get_data(all_data, "L262.SubsectorInterp_dac")
+    L262.StubTech_dac <- get_data(all_data, "L262.StubTech_dac")
     L262.GlobalTechShrwt_dac <- get_data(all_data, "L262.GlobalTechShrwt_dac")
 
     coef_name <- paste0("L262.GlobalTechCoef_dac_",sce)
@@ -72,12 +72,12 @@ module_energy_dac_xml <- function(command, ...) {
     L262.GlobalTechCoef_dac <- get_data(all_data, coef_name)
     L262.GlobalTechCost_dac <- get_data(all_data, cost_name)
 
-    L262.StubTechCost_dac <- get_data(all_data, "L262.StubTechCost_dac") %>% filter(region == "USA")
+    L262.StubTechCost_dac <- get_data(all_data, "L262.StubTechCost_dac")
     L262.GlobalTechCapture_dac <- get_data(all_data, "L262.GlobalTechCapture_dac")
-    L262.StubTechProd_dac <- get_data(all_data, "L262.StubTechProd_dac") %>% filter(region == "USA")
-    L262.PerCapitaBased_dac <- get_data(all_data, "L262.PerCapitaBased_dac") %>% filter(region == "USA")
-    L262.BaseService_dac <- get_data(all_data, "L262.BaseService_dac") %>% filter(region == "USA")
-    L262.PriceElasticity_dac <- get_data(all_data, "L262.PriceElasticity_dac") %>% filter(region == "USA")
+    L262.StubTechProd_dac <- get_data(all_data, "L262.StubTechProd_dac")
+    L262.PerCapitaBased_dac <- get_data(all_data, "L262.PerCapitaBased_dac")
+    L262.BaseService_dac <- get_data(all_data, "L262.BaseService_dac")
+    L262.PriceElasticity_dac <- get_data(all_data, "L262.PriceElasticity_dac")
     L262.GlobalTechSCurve_dac <- get_data(all_data, "L262.GlobalTechSCurve_dac")
     L262.GlobalTechProfitShutdown_dac <- get_data(all_data, "L262.GlobalTechProfitShutdown_dac")
 
@@ -91,16 +91,13 @@ module_energy_dac_xml <- function(command, ...) {
         dac_sectors <- c('CO2 removal','process heat dac','airCO2')
 
         L262.SubsectorLogit_dac <- L262.SubsectorLogit_dac %>%
-          filter(supplysector %in% dac_sectors,
-                 region == "USA")
+          filter(supplysector %in% dac_sectors)
 
         L262.SubsectorShrwtFllt_dac <- L262.SubsectorShrwtFllt_dac %>%
-          filter(supplysector %in% dac_sectors,
-                 region == "USA")
+          filter(supplysector %in% dac_sectors)
 
         L262.SubsectorInterp_dac <- L262.SubsectorInterp_dac %>%
-          filter(supplysector %in% dac_sectors,
-                 region == "USA")
+          filter(supplysector %in% dac_sectors)
 
 
 

@@ -1,6 +1,6 @@
 # Copyright 2019 Battelle Memorial Institute; see the LICENSE file.
 
-#' module_energy_L263.carbon_burial
+#' module_energy_L263.Cstorage
 #'
 #' Calculate carbon storage resource supply curves, shareweights, technology coefficients and costs, and other carbon storage information.
 #'
@@ -32,7 +32,7 @@
 #' @importFrom dplyr bind_rows distinct filter mutate select
 #' @importFrom tidyr complete nesting
 #' @author AJS August 2017
-module_energy_L263.carbon_burial <- function(command, ...) {
+module_energy_L263.Weathering <- function(command, ...) {
   if(command == driver.DECLARE_INPUTS) {
     return(c(FILE = "common/GCAM_region_names",
              FILE = "energy/A63.rsrc_info",
@@ -44,7 +44,8 @@ module_energy_L263.carbon_burial <- function(command, ...) {
              FILE = "energy/A63.globaltech_shrwt",
              FILE = "energy/A63.nonenergy_Cseq",
              FILE = "energy/A63.subsector_interp",
-             FILE = "energy/A63.globaltech_retirement"))
+             FILE = "energy/A63.globaltech_retirement",
+             "L163.RsrcCurves_Mt"))
   } else if(command == driver.DECLARE_OUTPUTS) {
     return(c("L263.SubsectorLogit_C",
              "L263.SubsectorShrwtFllt_C",
@@ -60,7 +61,9 @@ module_energy_L263.carbon_burial <- function(command, ...) {
     all_data <- list(...)[[1]]
 
     # Load required inputs
-    GCAM_region_names <- get_data(all_data, "common/GCAM_region_names") %>% filter(region == "USA")
+    GCAM_region_names <- get_data(all_data, "common/GCAM_region_names")
+    A63.rsrc_info <- get_data(all_data, "energy/A63.rsrc_info", strip_attributes = TRUE)
+    A63.sector <- get_data(all_data, "energy/A63.sector", strip_attributes = TRUE)
     A63.subsector_logit <- get_data(all_data, "energy/A63.subsector_logit", strip_attributes = TRUE)
     A63.subsector_shrwt <- get_data(all_data, "energy/A63.subsector_shrwt", strip_attributes = TRUE)
     A63.globaltech_coef <- get_data(all_data, "energy/A63.globaltech_coef",strip_attributes = TRUE)
@@ -68,6 +71,8 @@ module_energy_L263.carbon_burial <- function(command, ...) {
     A63.globaltech_shrwt <- get_data(all_data, "energy/A63.globaltech_shrwt", strip_attributes = TRUE)
     A63.nonenergy_Cseq <- get_data(all_data, "energy/A63.nonenergy_Cseq", strip_attributes = TRUE)
     A63.subsector_interp <- get_data(all_data, "energy/A63.subsector_interp", strip_attributes = TRUE)
+    A63.globaltech_retirement <- get_data(all_data, "energy/A63.globaltech_retirement", strip_attributes = TRUE)
+    L163.RsrcCurves_Mt <- get_data(all_data, "L163.RsrcCurves_Mt", strip_attributes = TRUE)
 
     # ===================================================
 
@@ -78,6 +83,127 @@ module_energy_L263.carbon_burial <- function(command, ...) {
       subresource <- subsector <- subsector.name <- supplysector <- technology <-
       value <- year <- region <- resource <- output.unit <- price.unit <-
       market <- logit.exponent <- coefficient <- input.cost <- NULL
+
+    # A
+    # Create tables for carbon storage resource information
+    # A63.rsrc_info provides carbon storage resource info (output unit, price unit, capacity factor, market, etc)
+    A63.rsrc_info %>%
+      gather_years() %>%
+      # Expand table to incorporate GCAM region names (use ID to ensure correct region ordering)
+      # We will use these specific region names to replace the broad term, regional, in the market column.
+      repeat_add_columns(select(GCAM_region_names,region)) %>%
+      # Reset regional markets to the names of the specific regions
+      mutate(market = replace(market, market == "regional", region[market == "regional"]),
+             capacity.factor = as.numeric(capacity.factor)) %>%
+      rename(output.unit = `output-unit`, price.unit = `price-unit`) ->
+      L263.rsrc_info
+
+    # Split different types of resources into separate tables
+
+
+    # Create table reporting carbon storage information
+    L263.rsrc_info %>%
+      select(region, renewresource=resource, output.unit, price.unit, market) ->
+      L263.Rsrc # This is a final ouput table.
+
+
+    L263.rsrc_info %>%
+      filter(year %in% MODEL_BASE_YEARS) %>%
+      select(region, renewresource=resource, year, price = value) ->
+      L263.RsrcPrice
+    # Retirement information
+    A63.globaltech_retirement %>%
+      set_years %>%
+      mutate(year = as.integer(year)) %>%
+      rename(sector.name = supplysector, subsector.name = subsector) ->
+      A63.globaltech_retirement_with_years
+
+    # Copy the data in the last base year period through to the end year
+    A63.globaltech_retirement_with_years %>%
+      filter(year == max(MODEL_BASE_YEARS)) ->
+      A63.globaltech_retirement_max_baseyear
+
+    A63.globaltech_retirement_with_years %>%
+      filter(year == min(MODEL_FUTURE_YEARS)) %>%
+      select(-year) %>%
+      repeat_add_columns(tibble(year = MODEL_FUTURE_YEARS)) %>%
+      bind_rows(A63.globaltech_retirement_max_baseyear) ->
+      L263.globaltech_retirement
+
+    # Retirement may consist of any of three types of retirement function (phased, s-curve, or none)
+    # All of these options have different headers, and all are allowed
+
+    # L263.GlobalTechSCurve: Global tech lifetime and s-curve retirement function
+    L263.globaltech_retirement %>%
+      filter(!is.na(half.life)) %>%
+      select(LEVEL2_DATA_NAMES[["GlobalTechYr"]], "lifetime", "steepness", "half.life") ->
+      L263.GlobalTechSCurve
+
+    # L263.GlobalTechProfitShutdown: Global tech profit shutdown decider.
+    L263.globaltech_retirement %>%
+      filter(!is.na(median.shutdown.point)) %>%
+      select(LEVEL2_DATA_NAMES[["GlobalTechYr"]], "median.shutdown.point", "profit.shutdown.steepness") ->
+      L263.GlobalTechProfitShutdown
+
+
+
+    # B
+    # Supply curves of carbon storage resources
+    # First, define number of decimal places
+    DIGITS_COST <- 1
+
+    # L163.RsrcCurves_Mt reports carbon storage resource supply curves by GCAM region.
+    L163.RsrcCurves_Mt %>%
+      # Match in GCAM region names using region ID
+      left_join_error_no_match(GCAM_region_names, by = "GCAM_region_ID") %>%
+      #mutate(available = round(available, DIGITS_COST)) %>%
+      select(region, renewresource = resource, sub.renewable.resource = subresource, grade, available, extractioncost) ->
+      L263.RsrcCurves_C # This is a final output table.
+
+    L263.RsrcCurves_C %>%
+      select(region, resource = renewresource , subresource = sub.renewable.resource) %>%
+      distinct() %>%
+      repeat_add_columns(tibble(year = MODEL_YEARS)) %>%
+      mutate(technology = subresource,
+             share.weight = 1.0) %>%
+      select(LEVEL2_DATA_NAMES[["ResTechShrwt"]]) ->
+      L263.ResTechShrwt_C
+
+
+    L263.WeatheringRsrcMax <- L263.RsrcCurves_C %>%
+      filter(grade == "Grade 1") %>%
+      mutate(year.fillout = min(MODEL_BASE_YEARS),
+             maxSubResource = 1) %>%
+      select(LEVEL2_DATA_NAMES[["maxSubResource"]])
+
+
+    # Calculate three different supply curves of carbon storage resources: high, low, and lowest.
+    # Multiply the extraction cost by its respective multiplier below.
+    # Note that the multipliers were created for the SSPs and that high, low, and lowest is the level of CCS use and not cost.
+    HI_CCS_COST_MULT <- 0.8
+
+    LO_CCS_COST_MULT <- 3
+
+    LOWEST_CCS_COST_MULT <- 10
+
+    # Note that these will produce final output tables.
+    # High supply curves of carbon storage resources
+    L263.RsrcCurves_C_high <- mutate(L263.RsrcCurves_C, extractioncost = extractioncost * HI_CCS_COST_MULT)
+
+    # Low supply curves of carbon storage resources
+    L263.RsrcCurves_C_low <- mutate(L263.RsrcCurves_C, extractioncost = extractioncost * LO_CCS_COST_MULT)
+
+    # Lowest supply curves of carbon storage resources
+    L263.RsrcCurves_C_lowest <- mutate(L263.RsrcCurves_C, extractioncost = extractioncost * LOWEST_CCS_COST_MULT)
+
+
+    # C
+    # Carbon storage sector information
+    A63.sector %>%
+      mutate(logit.exponent = as.numeric(logit.exponent)) %>%
+      write_to_all_regions(c(LEVEL2_DATA_NAMES[["Supplysector"]], LOGIT_TYPE_COLNAME),
+                           GCAM_region_names = GCAM_region_names) ->
+      L263.Supplysector_C # This is a final output table.
 
 
     # D
@@ -156,6 +282,7 @@ module_energy_L263.carbon_burial <- function(command, ...) {
       ungroup() %>%
       select(sector.name = supplysector, subsector.name = subsector, technology, year, minicam.non.energy.input, input.cost) ->
       L263.GlobalTechCost_C # This is a final output table.
+.
 
     # Shareweights of global technologies for energy transformation
     A63.globaltech_shrwt %>%
@@ -185,6 +312,62 @@ module_energy_L263.carbon_burial <- function(command, ...) {
 
     # ===================================================
 
+    L263.Rsrc %>%
+      add_title("Carbon storage information") %>%
+      add_units("Output unit as listed (MtC), price unit as listed (1990$/tC)") %>%
+      add_comments("Carbon storage resource information was expanded to include GCAM region names") %>%
+      add_comments("and filtered for only depletable resources") %>%
+      add_legacy_name("L263.Rsrc") %>%
+      add_precursors("common/GCAM_region_names", "energy/A63.rsrc_info") ->
+      L263.Rsrc
+
+
+    L263.RsrcCurves_C %>%
+      add_title("Supply curve of carbon storage resources") %>%
+      add_units("Available in MtCO2, Extraction Cost in 1990$/tCO2") %>%
+      add_comments("GCAM region names were added to the resource supply curves generated in level 1") %>%
+      add_legacy_name("L263.RsrcCurves_C") %>%
+      add_precursors("common/GCAM_region_names", "L163.RsrcCurves_Mt") ->
+      L263.RsrcCurves_C
+
+    L263.ResTechShrwt_C %>%
+      add_title("Technology share-weights for the carbon storage resource") %>%
+      add_units("NA") %>%
+      add_comments("Mostly just to provide a shell of a technology for the resource to use") %>%
+      same_precursors_as(L263.RsrcCurves_C) ->
+      L263.ResTechShrwt_C
+
+    L263.RsrcCurves_C_high %>%
+      add_title("High supply curve of onshore carbon storage resources") %>%
+      add_units("Available in MtCO2, Extraction Cost in 1990$/tCO2") %>%
+      add_comments("A multiplier (based on high level of CCS use) was applied to the extraction cost to generate a high supply curve") %>%
+      add_legacy_name("L263.RsrcCurves_C_high") %>%
+      add_precursors("common/GCAM_region_names", "L163.RsrcCurves_Mt") ->
+      L263.RsrcCurves_C_high
+
+    L263.RsrcCurves_C_low %>%
+      add_title("Low supply curve of onshore carbon storage resources") %>%
+      add_units("Available in MtCO2, Extraction Cost in 1990$/tCO2") %>%
+      add_comments("A multiplier (based on low level of CCS use) was applied to the extraction cost to generate a low supply curve") %>%
+      add_legacy_name("L263.RsrcCurves_C_low") %>%
+      add_precursors("common/GCAM_region_names", "L163.RsrcCurves_Mt") ->
+      L263.RsrcCurves_C_low
+
+    L263.RsrcCurves_C_lowest %>%
+      add_title("Lowest supply curve of onshore carbon storage resources") %>%
+      add_units("Available in MtCO2, Extraction Cost in 1990$/tCO2") %>%
+      add_comments("A multiplier (based on lowest level of CCS use) was applied to the extraction cost to generate a lowest supply curve") %>%
+      add_legacy_name("L263.RsrcCurves_C_lowest") %>%
+      add_precursors("common/GCAM_region_names", "L163.RsrcCurves_Mt") ->
+      L263.RsrcCurves_C_lowest
+
+    L263.Supplysector_C %>%
+      add_title("Carbon storage sector information") %>%
+      add_units("Output, input, and price units are as listed; exponent is unitless") %>%
+      add_comments("Carbon storage sector information was expanded to include GCAM region names") %>%
+      add_legacy_name("L263.Supplysector_C") %>%
+      add_precursors("common/GCAM_region_names", "energy/A63.sector") ->
+      L263.Supplysector_C
 
     L263.SubsectorLogit_C %>%
       add_title("Subsector logit exponents of carbon storage sector") %>%
@@ -234,18 +417,33 @@ module_energy_L263.carbon_burial <- function(command, ...) {
       add_precursors("energy/A63.globaltech_shrwt") ->
       L263.GlobalTechShrwt_C
 
+    L263.RsrcPrice %>%
+      add_title("Numerical zero price for silicate rock resource") %>%
+      add_units("1975$/kg") %>%
+      add_comments("A63.rsrc_info written to all regions") %>%
+      add_legacy_name("L263.RsrcPrice") %>%
+      same_precursors_as(L263.Rsrc) ->
+      L263.RsrcPrice
+
+    L263.WeatheringRsrcMax %>%
+      add_title("Default max sub resource of weathering resources") %>%
+      add_units("Unitless") %>%
+      add_comments("Value of 1 assigned for all regions") %>%
+      add_legacy_name("L263.WeatheringRsrcMax") %>%
+      same_precursors_as(L263.RsrcCurves_C) ->
+      L263.WeatheringRsrcMax
 
     L263.GlobalTechCSeq %>%
-      add_title("CO2 capture fractions for rock carbon_burial") %>%
+      add_title("CO2 capture fractions for rock weathering") %>%
       add_units("Unitless") %>%
       add_comments("Remove fractions from A63.nonenergy_Cseq are expanded into all model years") %>%
       add_precursors("energy/A63.nonenergy_Cseq") ->
       L263.GlobalTechCSeq
 
     L263.SubsectorInterp %>%
-      add_title("Subsector shareweight interpolation of carbon_burial subsector") %>%
+      add_title("Subsector shareweight interpolation of weathering subsector") %>%
       add_units("NA") %>%
-      add_comments("For enhanced carbon_burial sector, the subsector shareweight interpolation function infromation from A63.subsector_interp is expanded into all GCAM regions") %>%
+      add_comments("For enhanced weathering sector, the subsector shareweight interpolation function infromation from A63.subsector_interp is expanded into all GCAM regions") %>%
       add_precursors("energy/A63.subsector_interp", "common/GCAM_region_names") ->
       L263.SubsectorInterp
 
@@ -255,17 +453,27 @@ module_energy_L263.carbon_burial <- function(command, ...) {
       add_units("Unitless") ->
       L263.GlobalTechInputPMult
 
+    L263.GlobalTechSCurve %>%
+      add_title("Global tech lifetime and s-curve retirement function") %>%
+      add_units("year for lifetime and halflife; Unitless for steepness") %>%
+      add_comments("The values are extracted from L263.globaltech_retirement for entries that half life value is not NA") %>%
+      add_legacy_name("L263.GlobalTechSCurve") %>%
+      add_precursors("energy/A63.globaltech_retirement") ->
+      L263.GlobalTechSCurve
+
+    L263.GlobalTechProfitShutdown %>%
+      add_title("Global tech profit shutdown decider") %>%
+      add_units("Unitless") %>%
+      add_comments("The values are extracted from L263.globaltech_retirement for entries that median shutdown point is not NA") %>%
+      add_legacy_name("L263.GlobalTechProfitShutdown") %>%
+      add_precursors("energy/A63.globaltech_retirement") ->
+      L263.GlobalTechProfitShutdown
 
 
-    return_data(L263.SubsectorLogit_C,
-                L263.SubsectorShrwtFllt_C,
-                L263.StubTech_C,
-                L263.GlobalTechCoef_C,
-                L263.GlobalTechCost_C,
-                L263.GlobalTechShrwt_C,
-                L263.GlobalTechCSeq,
-                L263.SubsectorInterp,
-                L263.GlobalTechInputPMult)
+
+    return_data(L263.Rsrc, L263.RsrcCurves_C, L263.ResTechShrwt_C, L263.Supplysector_C, L263.SubsectorLogit_C, L263.SubsectorShrwtFllt_C, L263.StubTech_C, L263.GlobalTechCoef_C, L263.GlobalTechCost_C, L263.GlobalTechShrwt_C, L263.RsrcCurves_C_high, L263.RsrcCurves_C_low, L263.RsrcCurves_C_lowest,L263.RsrcPrice,L263.WeatheringRsrcMax,L263.GlobalTechCSeq,L263.SubsectorInterp,
+                L263.GlobalTechInputPMult,
+                L263.GlobalTechSCurve,L263.GlobalTechProfitShutdown)
   } else {
     stop("Unknown command")
   }
