@@ -1,10 +1,12 @@
 # File: A63.subsector_shrwt.csv
 # Title: Carbon storage subsector shareweights
 # Units: Unitless for share weight
-# Column types: cccic
+# Column types: cccic 
 # ----------
 supplysector,subsector,year.fillout,share.weight,logit.type
-surface carbon-storage,inorganic-surface-storage,start-year,1,
-CO2 removal,rock weathering,start-year,0,
-CO2 removal,rock weathering,2020,0,
-CO2 removal,rock weathering,2050,1,
+CO2 removal,biomass burial,start-year,0,
+CO2 removal,biomass burial,2025,1,
+CO2 removal,biomass burial,2050,1,
+CO2 removal,biochar burial,start-year,0,
+CO2 removal,biochar burial,2025,1,
+CO2 removal,biochar burial,2050,1,
