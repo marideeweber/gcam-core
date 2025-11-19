@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario>
+   <world>
+      <region name="USA">
+         <supplysector name="biochar_recalcitrant">
+				<subsector name="biochar_recalcitrant">
+               <stub-technology name="fast pyrolysis biochar herbaceous">
+                  <period year="2025">
+                     <input-subsidy name="Fast-Pyrolysis-Herb-Floor"/>
+                  </period>
+                  <period year="2030">
+                     <input-subsidy name="Fast-Pyrolysis-Herb-Floor"/>
+                  </period>
+                  <period year="2035">
+                     <input-subsidy name="Fast-Pyrolysis-Herb-Floor"/>
+                  </period>
+                  <period year="2040">
+                     <input-subsidy name="Fast-Pyrolysis-Herb-Floor"/>
+                  </period>
+                  <period year="2045">
+                     <input-subsidy name="Fast-Pyrolysis-Herb-Floor"/>
+                  </period>
+                  <period year="2050">
+                     <input-subsidy name="Fast-Pyrolysis-Herb-Floor"/>
+                  </period>
+               </stub-technology>
+               <stub-technology name="fast pyrolysis biochar woody">
+                  <period year="2025">
+                     <input-subsidy name="Fast-Pyrolysis-Woody-Floor"/>
+                  </period>
+                  <period year="2030">
+                     <input-subsidy name="Fast-Pyrolysis-Woody-Floor"/>
+                  </period>
+                  <period year="2035">
+                     <input-subsidy name="Fast-Pyrolysis-Woody-Floor"/>
+                  </period>
+                  <period year="2040">
+                     <input-subsidy name="Fast-Pyrolysis-Woody-Floor"/>
+                  </period>
+                  <period year="2045">
+                     <input-subsidy name="Fast-Pyrolysis-Woody-Floor"/>
+                  </period>
+                  <period year="2050">
+                     <input-subsidy name="Fast-Pyrolysis-Woody-Floor"/>
+                  </period>
+               </stub-technology>
+            </subsector>        
+         </supplysector>
+      </region>
+   </world>
+</scenario>

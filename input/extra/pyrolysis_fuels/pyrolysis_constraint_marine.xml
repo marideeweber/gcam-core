@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 3 U (http://www.xmlspy.com) by Staff (PNNL) -->
+<scenario>
+	<world>
+		<region name="USA">
+	 		<policy-portfolio-standard name="Slow-Pyrolysis-Herb-Floor">
+				<market>USA</market>
+				<policyType>subsidy</policyType>
+                <min-price year="2025" fillout="1">-100000</min-price>
+				<constraint year="2025">12.667955</constraint>
+				<constraint year="2030">20.03189586</constraint>
+				<constraint year="2035">27.67025652</constraint>
+				<constraint year="2040">35.92220885</constraint>
+				<constraint year="2045">44.64645528</constraint>
+				<constraint year="2050">53.74820351</constraint>
+			</policy-portfolio-standard>
+	 		<policy-portfolio-standard name="Slow-Pyrolysis-Woody-Floor">
+				<market>USA</market>
+				<policyType>subsidy</policyType>
+                <min-price year="2025" fillout="1">-100000</min-price>
+				<constraint year="2025">12.667955</constraint>
+				<constraint year="2030">20.03189586</constraint>
+				<constraint year="2035">27.67025652</constraint>
+				<constraint year="2040">35.92220885</constraint>
+				<constraint year="2045">44.64645528</constraint>
+				<constraint year="2050">53.74820351</constraint>
+			</policy-portfolio-standard> 
+		</region>
+	</world>
+</scenario>

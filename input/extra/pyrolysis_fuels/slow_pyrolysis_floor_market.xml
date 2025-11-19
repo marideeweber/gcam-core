@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario>
+   <world>
+      <region name="USA">
+         <supplysector name="biochar_labile">
+				<subsector name="biochar_labile">
+               <stub-technology name="slow pyrolysis biochar herbaceous">
+                  <period year="2025">
+                     <input-subsidy name="Slow-Pyrolysis-Herb-Floor"/>
+                  </period>
+                  <period year="2030">
+                     <input-subsidy name="Slow-Pyrolysis-Herb-Floor"/>
+                  </period>
+                  <period year="2035">
+                     <input-subsidy name="Slow-Pyrolysis-Herb-Floor"/>
+                  </period>
+                  <period year="2040">
+                     <input-subsidy name="Slow-Pyrolysis-Herb-Floor"/>
+                  </period>
+                  <period year="2045">
+                     <input-subsidy name="Slow-Pyrolysis-Herb-Floor"/>
+                  </period>
+                  <period year="2050">
+                     <input-subsidy name="Slow-Pyrolysis-Herb-Floor"/>
+                  </period>
+               </stub-technology>
+               <stub-technology name="slow pyrolysis biochar woody">
+                  <period year="2025">
+                     <input-subsidy name="Slow-Pyrolysis-Woody-Floor"/>
+                  </period>
+                  <period year="2030">
+                     <input-subsidy name="Slow-Pyrolysis-Woody-Floor"/>
+                  </period>
+                  <period year="2035">
+                     <input-subsidy name="Slow-Pyrolysis-Woody-Floor"/>
+                  </period>
+                  <period year="2040">
+                     <input-subsidy name="Slow-Pyrolysis-Woody-Floor"/>
+                  </period>
+                  <period year="2045">
+                     <input-subsidy name="Slow-Pyrolysis-Woody-Floor"/>
+                  </period>
+                  <period year="2050">
+                     <input-subsidy name="Slow-Pyrolysis-Woody-Floor"/>
+                  </period>
+               </stub-technology>
+            </subsector>        
+         </supplysector>
+      </region>
+   </world>
+</scenario>
