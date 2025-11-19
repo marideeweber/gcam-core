@@ -1,0 +1,11 @@
+# File: A63.globaltech_coef.csv
+# Title: Carbon storage global technology coefficient
+# Units: Unitless
+# Column types: ccccnnnnnn
+# ----------
+supplysector,subsector,technology,minicam.energy.input,price.unit.conversion,1971,2015,2020,2050,2100
+surface carbon-storage,inorganic-surface-storage,inorganic-surface-storage,inorganic-surface-storage,,1,1,1,1,1
+CO2 removal,rock weathering,rock weathering,airCO2,,1,1,1,1,1
+CO2 removal,rock weathering,rock weathering,elect_td_ind,,0.0075,0.0075,0.0075,0.0075,0.0075
+CO2 removal,rock weathering,rock weathering,surface carbon-storage,,1,1,1,1,1
+CO2 removal,rock weathering,rock weathering,trn_freight,0.0004521,3.67,3.67,3.67,3.67,3.67

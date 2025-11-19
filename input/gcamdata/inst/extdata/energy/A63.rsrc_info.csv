@@ -1,0 +1,7 @@
+# File: A63.rsrc_info.csv
+# Title: Resource info for silicates and other alkaline materials that can be used to chemically bind CO2 from the atmosphere
+# Units: Mt for output unit; 1975$/kg for price unit; unitless for capacity factor
+# Column types: cccccicnnnnnn
+# ----------
+resource,resource_type,market,output-unit,price-unit,capacity.factor,subresource,1971,1975,1990,2005,2010,2015
+inorganic-surface-storage,resource,regional,Mt,1975$/kg,,inorganic-surface-storage,0.001,0.001,0.001,0.001,0.001,0.001

@@ -1,0 +1,8 @@
+# File: A63.subsector_interp.csv
+# Title: cdr subsector shareweight interpolation
+# Units: NA
+# Column types: ccccccc
+# ----------
+supplysector,subsector,apply.to,from.year,to.year,to.value,interpolation.function
+CO2 removal,rock weathering,share-weight,2020,2050,,linear
+CO2 removal,rock weathering,share-weight,2050,end-year,,fixed

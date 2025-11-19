@@ -1,0 +1,7 @@
+# File: A63.subrsrc_info.csv
+# Title: Information about resources types in each region
+# Units: NA
+# Column types: cccc
+# ----------
+resource,resource_type,subresource,subresource_type
+inorganic-surface-storage,renewresource,inorganic-surface-storage,sub-renewable-resource

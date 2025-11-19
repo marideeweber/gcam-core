@@ -1,0 +1,10 @@
+# File: A63.globaltech_cost.csv
+# Title: Enhanced weathering carbon storage cost
+# Units: 1975$/kg
+# Source: Streffler et al 2018 Figure 4
+# Comments: Costs are assumed to decrease from the upper bound of non-energy non-transport costs in 2020, to the best estimate from Streffler in 2050.  The difference between these is taken for the initial period, and decreased to zero in 2050 as the supply curves for inorganic carbon storage already account non-energy cost.
+# Column types: ccccnnnn
+# ----------
+supplysector,subsector,technology,minicam.non.energy.input,1971,2020,2050,2100
+surface carbon-storage,inorganic-surface-storage,inorganic-surface-storage,non-energy,0.001,0.001,0.001,0.001
+CO2 removal,rock weathering,rock weathering,non-energy,0.13338245,0.13338245,0.13338245,0.13338245
