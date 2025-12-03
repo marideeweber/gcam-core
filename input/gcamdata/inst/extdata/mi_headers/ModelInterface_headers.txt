@@ -7,13 +7,9 @@ ModelTime, modeltime/+{time-step}start-year, modeltime/+start-year, modeltime/+f
 
 ModelTimeInterYears, modeltime/+{time-step}inter-year, modeltime/+inter-year, modeltime/+{dummy-tag}inter-year, scenario, scenario/modeltime
 
-MAGICC, MagiccModel/+last-historical-year, MagiccModel/+bc-unit-forcing, MagiccModel/+ghgInputFileName, scenario, scenario/world, world/MagiccModel
-
 hector, HectorModel/+hector-end-year, HectorModel/+emissions-switch-year, HectorModel/+hector-ini-file, scenario, scenario/world, world/HectorModel
 
 NoClimateModel, world/no-climate-model, scenario, scenario/world, 
-
-DeleteMAGICC, world/{delete=1}MagiccModel, scenario, scenario/world
 
 DeleteHector, world/{delete=1}HectorModel, scenario, scenario/world
 
@@ -50,11 +46,13 @@ GDP, world/+{name}region, nationalAccountContainer/+{year}nationalAccount, natio
 
 PPPConvert, world/+{name}region, nationalAccountContainer/+gdp-ppp-conversion, scenario, scenario/world, region/nationalAccountContainer
 
-NationalAccount, world/+{name}region, nationalAccountContainer/+{year}nationalAccount, nationalAccount/+capital-stock, nationalAccount/+depreciation-rate, nationalAccount/+savings-rate, nationalAccount/+energy-investment, nationalAccount/+labor-wages, nationalAccount/+capital-value, nationalAccount/+labor-force-share, nationalAccount/+capital-net-export, scenario, scenario/world, region/nationalAccountContainer
+NationalAccount, world/+{name}region, nationalAccountContainer/+{year}nationalAccount, nationalAccount/+capital-stock, nationalAccount/+depreciation-rate, nationalAccount/+savings-rate, nationalAccount/+energy-investment, nationalAccount/+labor-wages, nationalAccount/+capital-value, nationalAccount/+capital-net-export, scenario, scenario/world, region/nationalAccountContainer
 
 GDPMacroFunction, world/+{name}region, nationalAccountContainer/+{name}gdp-macro-function, gdp-macro-function/+rho, gdp-macro-function/+{name}factor-input-node, factor-input-node/+node-gamma, factor-input-node/+{name}factor-input-leaf, factor-input-leaf/+is-primary-factor, factor-input-leaf/+is-capital, factor-input-leaf/+is-labor, factor-input-leaf/+is-energy, scenario, scenario/world, region/nationalAccountContainer
 
 SavingsRateParams, world/+{name}region, nationalAccountContainer/+saving-rate-param-base, nationalAccountContainer/+saving-rate-param-GR-coef, nationalAccountContainer/+saving-rate-param-SR-coef, scenario, scenario/world, region/nationalAccountContainer
+
+LaborForceShare, world/+{name}region, nationalAccountContainer/+{year}nationalAccount, nationalAccount/+labor-force-share, scenario, scenario/world, region/nationalAccountContainer
 
 TotalFactorProductivity, world/+{name}region, nationalAccountContainer/+{year}nationalAccount, nationalAccount/+total-factor-productivity, scenario, scenario/world, region/nationalAccountContainer
 
