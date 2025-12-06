@@ -11,6 +11,8 @@
 			<Value name = "heat">../input/gcamdata/xml/heat.xml</Value>
 			<Value name = "hydrogen">../input/gcamdata/xml/hydrogen.xml</Value>
 			<Value name = "energy_distribution">../input/gcamdata/xml/en_distribution.xml</Value>
+			<Value name = "energy_distribution2">../input/gcamdata/xml/liquid_fuels_distribution.xml</Value>
+		    <Value name = "refined_liquid_trade">../input/gcamdata/xml/refined_liquids_trade.xml</Value>
 			<Value name = "industry">../input/gcamdata/xml/other_industry.xml</Value>
  			<Value name = "iron_steel">../input/gcamdata/xml/iron_steel.xml</Value>
 			<Value name = "iron_steel trade">../input/gcamdata/xml/iron_steel_trade.xml</Value>   
@@ -79,6 +81,7 @@
             <Value name = "gas_trade">../input/gcamdata/xml/gas_trade.xml</Value>
 
 			<Value name = "solver">../input/solution/cal_broyden_config.xml</Value>
+			<Value name = "blendwall">../input/policy/BlendWallTarget.xml</Value>
 
 		</FileSet>
 	</ComponentSet>
