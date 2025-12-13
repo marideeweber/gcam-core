@@ -134,7 +134,7 @@
 		<Value name="numPointsForCO2CostCurve">5</Value>
 		<Value name="carbon-output-start-year">1705</Value>
 		<Value name="stop-period">-1</Value>
-		<Value name="stop-year">2060</Value>
+		<Value name="stop-year">-1</Value>
 		<Value name="restart-period">-1</Value>
 		<Value name="restart-year">-1</Value>
 		<Value name="xmldb-buffer-size">100</Value>
