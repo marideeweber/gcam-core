@@ -37,6 +37,7 @@ module_gcamusa_L226.en_distribution <- function(command, ...) {
              FILE = "energy/A21.sector",
              FILE = "energy/A_ff_RegionalSector",
              FILE = "energy/A26.sector",
+             FILE = "energy/A261.sector",
              FILE = "gcam-usa/EIA_state_energy_prices",
              "L202.CarbonCoef",
              "L226.Supplysector_en",
@@ -74,6 +75,7 @@ module_gcamusa_L226.en_distribution <- function(command, ...) {
     A21.sector <- get_data(all_data, "energy/A21.sector", strip_attributes = TRUE)
     A_ff_regional_sector <- get_data(all_data, "energy/A_ff_RegionalSector", strip_attributes = TRUE) %>% mutate(traded=0)
     A26.sector <- get_data(all_data, "energy/A26.sector", strip_attributes = TRUE)
+    A261.sector <- get_data(all_data, "energy/A261.sector", strip_attributes = TRUE)
     EIA_state_energy_prices <- get_data(all_data, "gcam-usa/EIA_state_energy_prices", strip_attributes = TRUE)
     L202.CarbonCoef <- get_data(all_data, "L202.CarbonCoef", strip_attributes = TRUE)
     L226.Supplysector_en <- get_data(all_data, "L226.Supplysector_en", strip_attributes = TRUE)
@@ -128,6 +130,7 @@ module_gcamusa_L226.en_distribution <- function(command, ...) {
       A21.tmp
 
     A26.sector  %>%
+      bind_rows(A261.sector) %>%
       select(supplysector, output.unit, input.unit, price.unit, logit.exponent, logit.type) %>%
       filter(supplysector %in% gcamusa.REGIONAL_FUEL_MARKETS) %>%
       bind_rows(A21.tmp) %>%
