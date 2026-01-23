@@ -508,6 +508,22 @@ local:generate-sector-input-coefs(remove($outputNameQueue, 1), $currTree, $coefs
                         <rewrite from="global solar resource" to="h solar"/>
                         <rewrite from="traded LA pipeline gas" to="b natural gas"/>
                         <rewrite from="regional woodpulp for energy" to="d biomass"/>
+						<rewrite from="traded corn ethanol" to="d biomass"/>
+						<rewrite from="traded sugar cane ethanol" to="d biomass"/>
+						<rewrite from="traded oilcrop biodiesel" to="d biomass"/>
+						<rewrite from="traded oilpalm biodiesel" to="d biomass"/>
+						<rewrite from="traded rapeseed biodiesel" to="d biomass"/>
+						<rewrite from="traded soybean" to="d biomass"/>
+						<rewrite from="traded soybean biodiesel" to="d biomass"/>
+						<rewrite from="traded rapeseed" to="d biomass"/>
+						<rewrite from="traded oilcrop" to="d biomass"/>
+						<rewrite from="traded oilpalm" to="d biomass"/>
+						<rewrite from="traded refined oil" to="a oil"/>
+						<rewrite from="traded soybean oil" to="a oil"/>
+						<rewrite from="traded rapeseed oil" to="a oil"/>
+						<rewrite from="traded oilcrop oil" to="a oil"/>
+						<rewrite from="traded oilpalm oil" to="a oil"/>
+						<rewrite from="traded refined oil CCS" to="a oil CCS"/>
                     </level>
                 </labelRewriteList>
             </supplyDemandQuery>
@@ -3786,6 +3802,7 @@ element input {
                         <rewrite from="Softwood_Forest" to="forest (managed)"/>
                         <rewrite from="UnmanagedSoftwood_Forest" to="forest (unmanaged)"/>
                         <rewrite from="Tundra" to="tundra"/>
+						<rewrite from="Rapeseed" to="crops"/>
                     </level>
                 </labelRewriteList>
             </query>
