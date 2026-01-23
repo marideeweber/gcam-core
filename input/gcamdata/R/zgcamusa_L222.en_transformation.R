@@ -27,6 +27,7 @@ module_gcamusa_L222.en_transformation <- function(command, ...) {
   if(command == driver.DECLARE_INPUTS) {
     return(c(FILE = "gcam-usa/states_subregions",
              FILE = "energy/calibrated_techs",
+             FILE = "gcam-usa/A22.subsector_basevalue",
              FILE = "gcam-usa/SEDS_refining_feedstock_prod",
              "L222.Supplysector_en",
              "L222.SubsectorLogit_en",
@@ -42,7 +43,8 @@ module_gcamusa_L222.en_transformation <- function(command, ...) {
              "L122.out_EJ_state_refining_F",
              "L202.CarbonCoef"))
   } else if(command == driver.DECLARE_OUTPUTS) {
-    return(c("L222.DeleteStubTech_USAen",
+    return(c("L222.AbsoluteLogitBaseValue_USAen",
+             "L222.DeleteStubTech_USAen",
              "L222.PassThroughSector_USAen",
              "L222.Tech_USAen",
              "L222.TechShrwt_USAen",
@@ -71,6 +73,7 @@ module_gcamusa_L222.en_transformation <- function(command, ...) {
     # Load required inputs
     states_subregions <- get_data(all_data, "gcam-usa/states_subregions")
     calibrated_techs <- get_data(all_data, "energy/calibrated_techs")
+    A22.subsector_basevalue <- get_data(all_data, "gcam-usa/A22.subsector_basevalue", strip_attributes = TRUE)
     SEDS_refining_feedstock_prod <- get_data(all_data, "gcam-usa/SEDS_refining_feedstock_prod")
     L222.Supplysector_en <- get_data(all_data, "L222.Supplysector_en")
     L222.SubsectorLogit_en <- get_data(all_data, "L222.SubsectorLogit_en", strip_attributes = TRUE)
@@ -169,6 +172,8 @@ module_gcamusa_L222.en_transformation <- function(command, ...) {
       filter(value > 0) %>%
       pull(state) ->
       oil_refining_states
+
+    L222.AbsoluteLogitBaseValue_USAen <- A22.subsector_basevalue
 
     # L222.DeleteStubTech_USAen: remove existing stub technologies in the USA region.
     # The supplysector and subsector structure in the sectors defined in gcamusa.SECTOR_EN_NAMES are retained
@@ -403,6 +408,14 @@ module_gcamusa_L222.en_transformation <- function(command, ...) {
         L222.CarbonCoef_en_USA
 
     # Produce outputs
+    L222.AbsoluteLogitBaseValue_USAen %>%
+      add_title("Assign base-value to selected subsectors") %>%
+      add_units("1975$/GJ") %>%
+      add_comments("In GCAM-USA the state-level passthroughs do not determine base-year costs for selected technologies")  %>%
+      add_precursors("gcam-usa/A22.subsector_basevalue") ->
+      L222.AbsoluteLogitBaseValue_USAen
+
+
     L222.DeleteStubTech_USAen %>%
       mutate(region = region) %>%  # strip off attributes so we can re-write title, etc.
       add_title("Removes existing stub technologies in the USA region") %>%
@@ -602,7 +615,7 @@ module_gcamusa_L222.en_transformation <- function(command, ...) {
       add_precursors("L222.GlobalTechCapture_en") ->
       L222.GlobalTechCapture_en_USA
 
-    return_data(L222.DeleteStubTech_USAen, L222.PassThroughSector_USAen, L222.Tech_USAen,
+    return_data(L222.AbsoluteLogitBaseValue_USAen, L222.DeleteStubTech_USAen, L222.PassThroughSector_USAen, L222.Tech_USAen,
                 L222.TechShrwt_USAen, L222.TechInterp_USAen, L222.TechCoef_USAen, L222.Production_USArefining,
                 L222.Supplysector_en_USA, L222.SubsectorShrwtFllt_en_USA, L222.StubTechProd_refining_USA, L222.StubTechMarket_en_USA,
                 L222.CarbonCoef_en_USA, L222.GlobalTechSCurve_en_USA, L222.GlobalTechProfitShutdown_en_USA,
