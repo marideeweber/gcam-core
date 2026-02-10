@@ -4,5 +4,4 @@
 # Column types: ccic 
 # ----------
 supplysector,subsector,logit.exponent,logit.type
-CO2 removal,biomass burial,-6,
 CO2 removal,biochar burial,-6,

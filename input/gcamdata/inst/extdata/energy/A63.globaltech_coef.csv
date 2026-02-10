@@ -4,5 +4,4 @@
 # Column types: ccccnnnnnn 
 # ----------
 supplysector,subsector,technology,minicam.energy.input,price.unit.conversion,1971,2015,2020,2050,2100
-CO2 removal,biomass burial,biomass burial,regional biomass,,0.043478261,0.043478261,0.043478261,0.043478261,0.043478261
 CO2 removal,biochar burial,biochar burial,biochar_recalcitrant,,0.043478261,0.043478261,0.043478261,0.043478261,0.043478261

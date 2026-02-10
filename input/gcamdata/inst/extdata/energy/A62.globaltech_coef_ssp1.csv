@@ -30,5 +30,4 @@ refining,dac to liquids,on-site electrolysis (solar),airCO2,19.6,19.6,19.6,19.6
 refining,dac to liquids,on-site electrolysis (solar),global solar resource,0.43128624,0.43128624,0.36531264,0.36531264
 refining,dac to liquids,on-site electrolysis (grid electricity),airCO2,19.6,19.6,19.6,19.6
 refining,dac to liquids,on-site electrolysis (grid electricity),elect_td_ind,0.43128624,0.43128624,0.36531264,0.36531264
-CO2 removal,biomass burial,biomass burial,regional biomass,0.043478261,0.043478261,0.043478261,0.043478261
 CO2 removal,biochar burial,biochar burial,biochar_recalcitrant,0.043478261,0.043478261,0.043478261,0.043478261
