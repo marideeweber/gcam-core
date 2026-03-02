@@ -7,7 +7,7 @@
 # Update2024: 773 (Flax_processed but not spun) is updated to 771 (Flax_raw or retted)
 # Update2024: Brazil nuts, with shell (216) and Mushrooms and truffles (449) are removed since FAO removed area harvested
 # Sources: FAO and other databases
-# Date of last update: 2024-06-11 (XZ)
+# Date of last update: 2025-01-16 (XZ)
 # Column types: ccilcccciccccccccccc
 # ----------
 item,item_name2023,item_code,price_item,GTAP_crop,GCAM_commodity,GCAM_subsector,CROSIT_crop,CROSIT_cropID,IFA2002_crop,IFA_commodity,MIRCA_crop_name,MIRCA_crop,MIRCA_Crop24and26,MH_crop,MH2011_crop,MH2014_proxy,GTAP_use,Nfix,Suffix
@@ -125,10 +125,10 @@ Kapok fruit,Kapok fruit,310,TRUE,KapksdShell,OilCrop,OilCropTree,,,,,Others (per
 Karite nuts (sheanuts),Karite nuts (sheanuts),263,TRUE,KrtNtSheant,OilCrop,OilCropTree,OILC,20,,Other,Others (perennial) ,Crop24,,,Nuts,,osd,,Tree
 Linseed,Linseed,333,TRUE,Linseed,OilCrop,OilCrop,OILC,20,Linseed,OtherOilSeeds,Others (annual),Crop26,Linseed,,Oilcrops other,,osd,,
 Melonseed,Melonseed,299,TRUE,Melonseed,OilCrop,OilCrop,OILC,20,,Other,Others (annual),Crop26,Melonseed,,Oilcrops other,,osd,,
-Mustard seed,Mustard seed,292,TRUE,MustardSeed,OilCrop,OilCrop,OILC,20,Mustard,OtherOilSeeds,Others (annual),Crop26,Mustardseed,,Rapeseed,,osd,,
+Mustard seed,Mustard seed,292,TRUE,MustardSeed,Rapeseed,Rapeseed,RAPE,21,Mustard,OtherOilSeeds,Others (annual),Crop26,Mustardseed,,Rapeseed,,osd,,
 "Other oil seeds, n.e.c.",Oilseeds nes,339,TRUE,Oilseedsnes,OilCrop,OilCrop,OILC,20,Oilseeds,OtherOilSeeds,Others (annual),Crop26,Oilseeds_Nes,,Oilcrops other,,osd,,
 Olives,Olives,260,TRUE,Olives,OilCrop,OilCropTree,OILC,20,Olive,OtherOilSeeds,Others (perennial) ,Crop24,Olives,Olives,Olives,,osd,,Tree
-Rape or colza seed,Rapeseed,270,TRUE,Rapeseed,OilCrop,OilCrop,RAPE,21,Rapeseed,OtherOilSeeds,Rapeseed,Crop15,,Rapeseed,Rapeseed,,osd,,
+Rape or colza seed,Rapeseed,270,TRUE,Rapeseed,Rapeseed,Rapeseed,RAPE,21,Rapeseed,OtherOilSeeds,Rapeseed,Crop15,,Rapeseed,Rapeseed,,osd,,
 Safflower seed,Safflower seed,280,TRUE,SfflwrSeed,OilCrop,OilCrop,OILC,20,Safflower,OtherOilSeeds,Others (annual),Crop26,Safflowerseed,,Oilcrops other,,osd,,
 Sesame seed,Sesame seed,289,TRUE,SesameSeed,OilCrop,OilCrop,SESA,26,Sesame,OtherOilSeeds,Others (annual),Crop26,Sesameseed,,Sesameseed,,osd,,
 Sunflower seed,Sunflower seed,267,TRUE,SnflwrSeed,OilCrop,OilCrop,SUNF,25,Sunflower,OtherOilSeeds,Sunflower,Crop9,,Sunflower,Sunflower,,osd,,

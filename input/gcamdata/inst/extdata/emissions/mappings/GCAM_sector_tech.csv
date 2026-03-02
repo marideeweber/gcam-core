@@ -1,7 +1,7 @@
 # File: GCAM_sector_tech.csv
 # Title: Mapping between GCAM agriculture technologies to EPA aggregate sectors, aggregte fuels, EDGAR aggregate sector, RCP aggregate sector, BCOC aggregate sectore, EPA MACC sector, and IIASA sector
 # Units: None
-# Comments: The fuel column should not be taken literally for all sectors. For agriculture, transportation, and others it is used simply for matching purposes and does not represent a fuel.
+# Comments: The fuel column should not be taken literally for all sectors. For agriculture, transportation, and others it is used simply for matching purposes and does not represent a fuel
 # Source: internal
 # Column types: ccccccccccccccc
 # ----------
@@ -127,6 +127,7 @@ ammonia,gas,gas,ammonia,gas,gas,industry_energy,gas,gas,industry_energy,ind,indu
 ammonia,refined liquids,refined liquids,ammonia,refined liquids,refined liquids,industry_energy,refined liquids,refined liquids,industry_energy,ind,industry_energy,refined liquids,,
 NutsSeeds,,,NutsSeeds,,,,,,,,,,Cropland Management,
 OilCrop,,,OilCrop,,,,,,,,,,Cropland Management,
+Rapeseed,,,Rapeseed,,,,,,,,,,Cropland Management,
 OtherGrain,,,OtherGrain,,,,,,,,,,Cropland Management,
 out_resources,coal,coal,out_resources,coal,coal,coal,all,all,coal,,,,Coal Mining Activities,
 out_resources,unconventional oil,unconventional oil,out_resources,unconventional oil,unconventional oil,oil_gas,all,all,oil_gas,,,,Natural Gas and Oil Systems,

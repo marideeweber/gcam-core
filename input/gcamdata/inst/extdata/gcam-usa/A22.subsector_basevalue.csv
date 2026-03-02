@@ -1,0 +1,9 @@
+# File: A22.subsector_basevalue.csv
+# Title: Base value of absolute cost logit for subsectors where none can be determined
+# Units: 1975$/GJ
+# Description: the pass-thru structure fails to resolve a base cost (should be the most expensive tech within the subsector)
+# Column types: cccin
+# ----------
+region,supplysector,subsector,is.base.value.parsed,base.value
+USA,refining,biomass liquids,1,11.7
+USA,cellulosic ethanol,cellulosic ethanol,1,9.8

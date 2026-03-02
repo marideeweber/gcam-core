@@ -1,15 +1,16 @@
 # File: A21.globaltech_coef.csv
 # Title: Primary energy handling default coefficients
 # Units: Unitless
-#Source: Fine et al 2015. Food losses and waste in the french oilcrops sector. OCL.22.A302.10.1051/ocl/2015012
-# Column types: ccccnnn 
+# Source: Fine et al 2015. Food losses and waste in the french oilcrops sector. OCL.22.A302.10.1051/ocl/2015012
+# Comment: (Temp fix) soybean oil should be 26.99; we applied 0.3 to that for now since there are other non oil crop feedstock not included yet
+# Column types: ccccnnnnnnnnnn
 # ----------
-supplysector,subsector,technology,minicam.energy.input,1971,2015,2100
-regional biomass,regional biomass,regional biomass,biomass,1,1,1
-regional corn for ethanol,regional corn for ethanol,regional corn for ethanol,regional corn,111.79,111.79,111.79
-regional sugar for ethanol,regional sugar for ethanol,regional sugar for ethanol,regional sugarcrop,582.48,582.48,582.48
-regional biomassOil,regional biomassOil,biomassOil,biomassOil,1,1,1
-regional biomassOil,regional biomassOil,OilCrop,regional oilcrop,61.3,61.3,61.3
-regional biomassOil,regional biomassOil,OilPalm,regional oilpalm,128,128,128
-regional biomassOil,regional biomassOil,Soybean,regional soybean,142.57,142.57,142.57
-regional woodpulp for energy,regional woodpulp for energy,regional woodpulp for energy,woodpulp_energy,1,1,1
+supplysector,subsector,technology,minicam.energy.input,1971,2015,final-calibration-year,initial-future-year,2030,2035,2040,2045,2050,2100
+regional biomass,regional biomass,regional biomass,biomass,1,1,1,1,1,1,1,1,1,1
+regional corn for ethanol,regional corn for ethanol,regional corn for ethanol,regional corn,111.79,111.79,113.9513761,113.1374377,111.0513361,109.0036993,106.9938183,105.0209967,103.4894098,103.4894098
+regional sugar for ethanol,regional sugar for ethanol,regional sugar for ethanol,regional sugarcrop,582.48,582.48,582.48,582.48,582.48,582.48,582.48,582.48,582.48,582.48
+regional biomassOil oilcrop,regional biomassOil oilcrop,OilCrop oil,regional oilcrop oil,26.99,26.99,26.99,26.99,26.99,26.99,26.99,26.99,26.99,26.99
+regional biomassOil rapeseed,regional biomassOil rapeseed,Rapeseed oil,regional rapeseed oil,26.99,26.99,26.99,26.99,26.99,26.99,26.99,26.99,26.99,26.99
+regional biomassOil oilpalm,regional biomassOil oilpalm,OilPalm oil,regional oilpalm oil,26.99,26.99,26.99,26.99,26.99,26.99,26.99,26.99,26.99,26.99
+regional biomassOil soybean,regional biomassOil soybean,Soybean oil,regional soybean oil,26.99,26.99,26.99,26.99,26.99,26.99,26.99,26.99,26.99,26.99
+regional woodpulp for energy,regional woodpulp for energy,regional woodpulp for energy,woodpulp_energy,1,1,1,1,1,1,1,1,1,1

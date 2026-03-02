@@ -1,0 +1,10 @@
+# File: bio_feed_mapping.csv
+# Title: Mapping biodiesel feedstocks and techs
+# Units: n/a
+# Column types: ccccccc
+# ----------
+Biofuel,sector,subsector,technology,biomassOil_tech,minicam.energy.input,fuel
+biodiesel,oilcrop biodiesel,oilcrop biodiesel,oilcrop biodiesel,OilCrop oil,regional biomassOil oilcrop,oilcrop biomass oil
+biodiesel,rapeseed biodiesel,rapeseed biodiesel,rapeseed biodiesel,Rapeseed oil,regional biomassOil rapeseed,rapeseed biomass oil
+biodiesel,oilpalm biodiesel,oilpalm biodiesel,oilpalm biodiesel,OilPalm oil,regional biomassOil oilpalm,oilpalm biomass oil
+biodiesel,soybean biodiesel,soybean biodiesel,soybean biodiesel,Soybean oil,regional biomassOil soybean,soybean biomass oil

@@ -87,7 +87,10 @@ module_emissions_L201.en_nonco2 <- function(command, ...) {
     bind_rows(
       get_data(all_data, "energy/calibrated_techs") %>% select(supplysector, subsector, fuel, technology, minicam.energy.input),
       get_data(all_data, "energy/calibrated_techs_bld_det") %>% select(supplysector, subsector, fuel, technology, minicam.energy.input),
-      get_data(all_data, UCD_tech_map_name) %>% select(supplysector, subsector = tranSubsector, fuel, technology = tranTechnology, minicam.energy.input)) %>%
+      get_data(all_data, UCD_tech_map_name) %>%
+        select(supplysector, subsector = tranSubsector, fuel, technology = tranTechnology,
+               # OTAQ gasoline pool
+               minicam.energy.input = rev_input)) %>%
       left_join(ind_subsector_revised %>% select(supplysector, subsector.emissions, fuel, technology, minicam.energy.input),
                 by=c("supplysector","fuel","technology","minicam.energy.input")) %>% #remap iron and steel subsector to match emissions data
       mutate(subsector = if_else(!is.na(subsector.emissions),subsector.emissions,subsector)) %>%

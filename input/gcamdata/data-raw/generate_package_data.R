@@ -120,6 +120,7 @@ generate_level2_data_names <- function() {
   level2_data_names[["tranSubsector_relative-cost-logit"]] <- c("region", "supplysector", "tranSubsector")
   level2_data_names[["DeleteSubsector"]] <- level2_data_names[["Subsector"]]
   level2_data_names[["DeleteNestingSubsector1"]] <- c("region", "supplysector", "nesting-subsector")
+  level2_data_names[["AbsoluteLogitBaseValue"]] <- c("region", "supplysector", "subsector", "is.base.value.parsed", "base.value")
 
   # Technologies
   level2_data_names[["Tech"]] <- c("region", "supplysector", "subsector", "technology")
@@ -569,7 +570,6 @@ prebuilt_data_names <- c(
   "L121.in_EJ_R_TPES_crude_Yh",
   "L121.in_EJ_R_TPES_unoil_Yh",
   "L121.share_R_TPES_biofuel_tech",
-  "L121.BiomassOilRatios_kgGJ_R_C",
 
   # output of module_energy_L1328.food_processing, based on IEA data
   "L1328.en_bal_frac_industry_food_inonspec_R_Yh",

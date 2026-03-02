@@ -108,7 +108,7 @@ module_energy_L254.transportation_UCD <- function(command, ...) {
       fuelprefElasticity <- tranSubsector <- share.weight <- calibrated.value <- subs.share.weight <- loadFactor <-
       coefficient <- stub.technology <- output <- output_agg <- output_cum <- share.weight.year <- tech.share.weight <-
       calOutputValue <- energy.final.demand <- base.service <- object <- r_ss <- UCD_region <- size.class <- sce <-
-      steepness <- profit.shutdown.steepness <- NULL
+      steepness <- profit.shutdown.steepness <- rev_input <- NULL
 
     # Load required inputs
     GCAM_region_names <- get_data(all_data, "common/GCAM_region_names",strip_attributes = TRUE)
@@ -526,6 +526,9 @@ module_energy_L254.transportation_UCD <- function(command, ...) {
       left_join_error_no_match(GCAM_region_names, by = "GCAM_region_ID") %>%
       left_join_keep_first_only(UCD_techs, by = c("UCD_sector", "mode", "size.class",
                                                  "UCD_technology", "UCD_fuel")) %>%
+      # OTAQ: use the revised input in place of the default minicam.energy.input
+      # include gasoline pool
+      mutate(minicam.energy.input = rev_input) %>%
       select(region, supplysector, tranSubsector, stub.technology = tranTechnology,
              year, minicam.energy.input, calibrated.value) ->
       L254.StubTranTechCalInput_basetable
@@ -618,7 +621,10 @@ module_energy_L254.transportation_UCD <- function(command, ...) {
       left_join_keep_first_only(UCD_techs, by = c("UCD_sector", "mode", "size.class", "UCD_technology", "UCD_fuel")) %>%
       rename(stub.technology = tranTechnology) %>%
       # Currently, the market names for the fuels will be the same as the region
-      mutate(market.name = region) %>%
+      mutate(market.name = region,
+             # OTAQ: use the revised input in place of the default minicam.energy.input
+             # use gasoline pool
+             minicam.energy.input = rev_input) %>%
       #kbn 2020-06-02 adding sce here (See description of changes using search string kbn 2020-06-02 Making changes to generate xmls for SSPs flexibly)
       select(LEVEL2_DATA_NAMES[["StubTranTechCoef"]],sce) ->
       L254.StubTranTechCoef # OUTPUT

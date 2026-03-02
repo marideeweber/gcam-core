@@ -1,6 +1,6 @@
 # File: A_an_input_technology.csv
 # Title: Technologies of inputs to animal production
-# Comments: Note, forest product parameters are included here as well granted the processing steps are largely independent from animal production.
+# Comments: Note, forest product parameters are included here as well granted the processing steps are largely independent from animal production; remove PalmFruit
 # Units: NA
 # Source: NA
 # Column types: cccccccci
@@ -17,15 +17,19 @@ FeedCrops,Legumes,Legumes,share-weight,final-calibration-year,end-year,fixed,reg
 FeedCrops,MiscCrop,MiscCrop,share-weight,final-calibration-year,end-year,fixed,regional misccrop,1
 FeedCrops,NutsSeeds,NutsSeeds,share-weight,final-calibration-year,end-year,fixed,regional nuts_seeds,1
 FeedCrops,OilCrop,OilCrop,share-weight,final-calibration-year,end-year,fixed,regional oilcrop,1
+FeedCrops,OilCrop feedcake,OilCrop feedcake,share-weight,final-calibration-year,end-year,fixed,regional oilcrop feedcake,1
+FeedCrops,Rapeseed,Rapeseed,share-weight,final-calibration-year,end-year,fixed,regional rapeseed,1
+FeedCrops,Rapeseed feedcake,Rapeseed feedcake,share-weight,final-calibration-year,end-year,fixed,regional rapeseed feedcake,1
 FeedCrops,OtherGrain,OtherGrain,share-weight,final-calibration-year,end-year,fixed,regional othergrain,1
-FeedCrops,OilPalm,OilPalm,share-weight,final-calibration-year,end-year,fixed,regional oilpalm,1
+FeedCrops,OilPalm feedcake,OilPalm feedcake,share-weight,final-calibration-year,end-year,fixed,regional oilpalm feedcake,1
 FeedCrops,Rice,Rice,share-weight,final-calibration-year,end-year,fixed,regional rice,1
 FeedCrops,RootTuber,RootTuber,share-weight,final-calibration-year,end-year,fixed,regional root_tuber,1
 FeedCrops,Soybean,Soybean,share-weight,final-calibration-year,end-year,fixed,regional soybean,1
+FeedCrops,Soybean feedcake,Soybean feedcake,share-weight,final-calibration-year,end-year,fixed,regional soybean feedcake,1
 FeedCrops,SugarCrop,SugarCrop,share-weight,final-calibration-year,end-year,fixed,regional sugarcrop,1
 FeedCrops,Vegetables,Vegetables,share-weight,final-calibration-year,end-year,fixed,regional vegetables,1
 FeedCrops,Wheat,Wheat,share-weight,final-calibration-year,end-year,fixed,regional wheat,1
-FeedCrops,DDGS and feedcakes,DDGS and feedcakes,share-weight,initial-future-year,end-year,fixed,DDGS and feedcakes,1
+FeedCrops,DDGS,DDGS,share-weight,initial-future-year,end-year,fixed,regional DDGS,1
 Scavenging_Other,Scavenging_Other,Scavenging_Other,share-weight,final-calibration-year,end-year,fixed,Scavenging_Other_Rsrc,1
 sawnwood_processing,sawnwood,sawnwood,share-weight,final-calibration-year,end-year,fixed,regional industrial_roundwood,1
 woodpulp_processing,woodpulp,woodpulp,share-weight,final-calibration-year,end-year,fixed,regional industrial_roundwood,1

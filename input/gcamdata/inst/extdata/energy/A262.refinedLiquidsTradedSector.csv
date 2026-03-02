@@ -1,0 +1,15 @@
+# File: A262.refinedLiquidsTradedSector.csv
+# Title: Supplysector assumptions for traded refined oil and biofuel markets (including logit exponent for subsector competition)
+# Units: Various
+# Comments: These sectors compete different regions in supplying the pool of globally traded refined oil and biofuels
+# Source: NA
+# Column types: ccccinc
+# ----------
+supplysector,output.unit,input.unit,price.unit,traded,logit.exponent,logit.type
+traded refined oil,EJ,EJ,1975$/GJ,1,-6,
+traded oilcrop biodiesel,EJ,EJ,1975$/GJ,1,-6,
+traded oilpalm biodiesel,EJ,EJ,1975$/GJ,1,-6,
+traded rapeseed biodiesel,EJ,EJ,1975$/GJ,1,-6,
+traded soybean biodiesel,EJ,EJ,1975$/GJ,1,-6,
+traded corn ethanol,EJ,EJ,1975$/GJ,1,-6,
+traded sugar cane ethanol,EJ,EJ,1975$/GJ,1,-6,

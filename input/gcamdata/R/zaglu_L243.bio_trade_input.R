@@ -34,6 +34,7 @@ module_aglu_L243.bio_trade_input <- function(command, ...) {
              FILE = "aglu/A_bio_subsector",
              FILE = "aglu/A_agRegionalSector",
              FILE = "aglu/A_agTradedSubsector",
+             FILE = "energy/A_regions",
              "L120.LC_bm2_R_LT_Yh_GLU",
              "L102.pcgdp_thous90USD_Scen_R_Y"))
   } else if(command == driver.DECLARE_OUTPUTS) {
@@ -73,6 +74,7 @@ module_aglu_L243.bio_trade_input <- function(command, ...) {
     A_bio_subsector <- get_data(all_data, "aglu/A_bio_subsector")
     A_agRegionalSector <- get_data(all_data, "aglu/A_agRegionalSector", strip_attributes = TRUE)
     A_agTradedSubsector <- get_data(all_data, "aglu/A_agTradedSubsector", strip_attributes = TRUE)
+    A_regions <- get_data(all_data, "energy/A_regions", strip_attributes = TRUE)
     L120.LC_bm2_R_LT_Yh_GLU <- get_data(all_data, "L120.LC_bm2_R_LT_Yh_GLU")
     L102.pcgdp_thous90USD_Scen_R_Y <- get_data(all_data, "L102.pcgdp_thous90USD_Scen_R_Y")
 
@@ -281,15 +283,19 @@ module_aglu_L243.bio_trade_input <- function(command, ...) {
 
     # SSP4 ag trade, cont'd - for the export market (sharing regions), decrease the share-weights from their base-year
     # calibrated values towards zero in some year beyond the analysis window
+    # Set up filter to remove DDGS trade from regions where corn ethanol production is not allowed.
+    DDGS_regions <- A_regions$region[A_regions$ethanol == "corn ethanol"]
     SSP4_ZERO_EXPORT_YEAR_LOW <- 2150
     A_agTradedSubsector_SSP4 <- mutate(A_agTradedSubsector, to.value = 0,
                                        to.year = SSP4_ZERO_EXPORT_YEAR_LOW,
                                        interpolation.function = "linear")
     L243.SubsectorInterpTo_tra_SSP4 <- write_to_all_regions(A_agTradedSubsector_SSP4,
                                                             LEVEL2_DATA_NAMES[["SubsectorInterpTo"]],
-                                                            filter(GCAM_region_names, region %in% get_ssp_regions(L102.pcgdp_thous90USD_Scen_R_Y, GCAM_region_names, "low")),
+                                                            filter(GCAM_region_names, region %in% DDGS_regions,
+                                                                   region %in% get_ssp_regions(L102.pcgdp_thous90USD_Scen_R_Y, GCAM_region_names, "low")),
                                                             has_traded = TRUE) %>%
       mutate(region = gcam.USA_REGION)   # need to manually set the region name to gcam.USA_REGION, where the traded commodities are housed
+
 
 
     # Produce outputs

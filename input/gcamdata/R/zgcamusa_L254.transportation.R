@@ -121,11 +121,12 @@ module_gcamusa_L254.transportation <- function(command, ...) {
 
       UCD_techs<-UCD_techs %>%
         inner_join(Size_class_New, by=c("mode","size.class"))%>%
-        select(-mode,-size.class)%>%
+        select(-mode,-size.class, -minicam.energy.input)%>%
         distinct()
 
       colnames(UCD_techs)[colnames(UCD_techs)=='rev_size.class']<-'size.class'
       colnames(UCD_techs)[colnames(UCD_techs)=='rev.mode']<-'mode'
+      colnames(UCD_techs)[colnames(UCD_techs)=='rev_input']<-'minicam.energy.input'
     }
 
     A54.globaltech_nonmotor <- get_data(all_data, "energy/A54.globaltech_nonmotor",strip_attributes = TRUE)

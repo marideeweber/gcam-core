@@ -1,0 +1,9 @@
+# File: A_agRenewRsrc.csv
+# Title: Sets the characteristics and supply curves of the  inputs to animal production that are modeled as resources
+# Units: Various
+# Source: NA
+# Column types: cccc 
+# ----------
+renewresource,output.unit,price.unit,market
+Residue,Mt,1975$/kg,global
+Scavenging_Other_Rsrc,Mt,1975$/kg,global

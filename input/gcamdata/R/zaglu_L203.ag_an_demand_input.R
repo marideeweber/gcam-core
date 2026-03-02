@@ -38,6 +38,7 @@ module_aglu_L203.ag_an_demand_input <- function(command, ...) {
       FILE = "aglu/A_diet_bias",
       "L101.CropMeat_Food_Pcal_R_C_Y",
       "L109.ag_ALL_Mt_R_C_Y",
+      "L109_crushing_processed_ALL_Mt_R_C_Y",
       "L109.an_ALL_Mt_R_C_Y",
       "L110.For_ALL_bm3_R_Y")
 
@@ -95,7 +96,6 @@ module_aglu_L203.ag_an_demand_input <- function(command, ...) {
       assign(nm, get_data(all_data, d, strip_attributes = T),
              envir = parent.env(environment()))  })
 
-
     # Get mass-calories conversion rates for food commodities----
     # Note that food consumption in Mt in L109 files should be finalized
     # So the conversion rates are finalized here (after any potential earlier food adjustments)
@@ -104,6 +104,7 @@ module_aglu_L203.ag_an_demand_input <- function(command, ...) {
     # base year (5-year average) mass-to-calories conversion rates
     L109.ag_ALL_Mt_R_C_Y %>%
       # Combine the balance tables of crop and meat in Mt
+      bind_rows(L109_crushing_processed_ALL_Mt_R_C_Y) %>%
       bind_rows(L109.an_ALL_Mt_R_C_Y) %>%
       select(GCAM_region_ID, GCAM_commodity, year, Food_Mt) %>%
       # keep food commodities only
@@ -232,7 +233,8 @@ module_aglu_L203.ag_an_demand_input <- function(command, ...) {
 
     # NonFoodDemands
     L109.ag_ALL_Mt_R_C_Y %>%
-      # Combine the balance tables of crop and meat in Mt
+      # Combine the balance tables of crop, meat, and processed in Mt
+      bind_rows(L109_crushing_processed_ALL_Mt_R_C_Y) %>%
       bind_rows(L109.an_ALL_Mt_R_C_Y) %>%
       filter(year %in% MODEL_BASE_YEARS) %>%
       left_join_error_no_match(GCAM_region_names, by = "GCAM_region_ID") %>%
@@ -517,6 +519,7 @@ module_aglu_L203.ag_an_demand_input <- function(command, ...) {
       add_legacy_name("L203.StubTechProd_nonfood_crop") %>%
       add_precursors("common/GCAM_region_names",
                      "aglu/A_demand_technology",
+                     "L109_crushing_processed_ALL_Mt_R_C_Y",
                      "L109.ag_ALL_Mt_R_C_Y") ->
       L203.StubTechProd_nonfood_crop
 
@@ -555,6 +558,7 @@ module_aglu_L203.ag_an_demand_input <- function(command, ...) {
                      "aglu/A_demand_technology",
                      "L101.CropMeat_Food_Pcal_R_C_Y",
                      "L109.ag_ALL_Mt_R_C_Y",
+                     "L109_crushing_processed_ALL_Mt_R_C_Y",
                      "L109.an_ALL_Mt_R_C_Y") ->
       L203.StubCalorieContent
 
@@ -579,6 +583,7 @@ module_aglu_L203.ag_an_demand_input <- function(command, ...) {
                      "aglu/A_demand_technology",
                      "L101.CropMeat_Food_Pcal_R_C_Y",
                      "L109.ag_ALL_Mt_R_C_Y",
+                     "L109_crushing_processed_ALL_Mt_R_C_Y",
                      "L109.an_ALL_Mt_R_C_Y",
                      "L110.For_ALL_bm3_R_Y") ->
       L203.BaseService

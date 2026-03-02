@@ -1,0 +1,8 @@
+# File: A261.globaltech_interp.csv
+# Title: Energy distribution technology interpolation functions
+# Units: NA
+# Column types: ccccccc 
+# ----------
+supplysector,subsector,technology,apply.to,from.year,to.year,interpolation.function
+refined liquids gasoline pool,ethanol,corn ethanol refining,share-weight,final-calibration-year,end-year,fixed
+refined liquids gasoline pool,ethanol,sugar cane ethanol refining,share-weight,final-calibration-year,end-year,fixed

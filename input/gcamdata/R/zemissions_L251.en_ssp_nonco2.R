@@ -76,7 +76,7 @@ module_emissions_L251.en_ssp_nonco2 <- function(command, ...) {
     bind_rows(
       get_data(all_data, "energy/calibrated_techs") %>% select(supplysector, subsector, technology, minicam.energy.input),
       get_data(all_data, "energy/calibrated_techs_bld_det") %>% select(supplysector, subsector, technology, minicam.energy.input),
-      get_data(all_data, UCD_tech_map_name) %>% select(supplysector, subsector = tranSubsector, technology = tranTechnology, minicam.energy.input)
+      get_data(all_data, UCD_tech_map_name) %>% select(supplysector, subsector = tranSubsector, technology = tranTechnology, rev_input) %>% rename(minicam.energy.input = rev_input)
     ) %>%
       rename(stub.technology = technology,
              input.name = minicam.energy.input) %>%

@@ -1,9 +1,11 @@
 # File: A_agRsrc.csv
-# Title: Sets the characteristics and supply curves of the non-modeled inputs to animal production
+# Title: Sets the characteristics and supply curves of the  inputs to animal production that are modeled as resources
 # Units: Various
 # Source: NA
 # Column types: cccc 
 # ----------
-renewresource,output.unit,price.unit,market
-Residue,Mt,1975$/kg,global
-Scavenging_Other_Rsrc,Mt,1975$/kg,global
+resource,output.unit,price.unit,market
+Soybean feedcake,Mt,1975$/kg,regional
+OilPalm feedcake,Mt,1975$/kg,regional
+OilCrop feedcake,Mt,1975$/kg,regional
+Rapeseed feedcake,Mt,1975$/kg,regional

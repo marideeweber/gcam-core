@@ -19,24 +19,30 @@
 #' @importFrom tidyr complete nesting
 #' @author JDH June 2017, ed GPK April 2019
 module_energy_L121.liquids <- function(command, ...) {
+
+  MODULE_INPUTS <-
+    c(FILE = "common/iso_GCAM_regID",
+      FILE = "aglu/IIASA_biofuel_production",
+      FILE = "aglu/IIASA_biofuel_tech_mapping",
+      FILE = "aglu/IIASA_biofuel_region_mapping",
+      FILE = "energy/mappings/IEA_product_rsrc",
+      FILE = "energy/A21.unoil_demandshares",
+      FILE = "energy/A21.globalrsrctech_coef",
+      "L100.IEA_en_bal_ctry_hist",
+      "L1012.en_bal_EJ_R_Si_Fi_Yh",
+      "L111.Prod_EJ_R_F_Yh",
+      "L1262.refinedOil_GrossTrade_EJ_R_C_Y")
+
+  MODULE_OUTPUTS <-
+    c("L121.in_EJ_R_unoil_F_Yh",
+      "L121.in_EJ_R_TPES_crude_Yh",
+      "L121.in_EJ_R_TPES_unoil_Yh",
+      "L121.share_R_TPES_biofuel_tech")
+
   if(command == driver.DECLARE_INPUTS) {
-    return(c(FILE = "common/iso_GCAM_regID",
-             FILE = "aglu/IIASA_biofuel_production",
-             FILE = "aglu/IIASA_biofuel_tech_mapping",
-             FILE = "aglu/IIASA_biofuel_region_mapping",
-             FILE = "aglu/A_OilSeed_SecOut",
-             FILE = "energy/mappings/IEA_product_rsrc",
-             FILE = "energy/A21.unoil_demandshares",
-             FILE = "energy/A21.globalrsrctech_coef",
-             "L100.IEA_en_bal_ctry_hist",
-             "L1012.en_bal_EJ_R_Si_Fi_Yh",
-             "L111.Prod_EJ_R_F_Yh"))
+    return(MODULE_INPUTS)
   } else if(command == driver.DECLARE_OUTPUTS) {
-    return(c("L121.in_EJ_R_unoil_F_Yh",
-             "L121.in_EJ_R_TPES_crude_Yh",
-             "L121.in_EJ_R_TPES_unoil_Yh",
-             "L121.share_R_TPES_biofuel_tech",
-             "L121.BiomassOilRatios_kgGJ_R_C"))
+    return(MODULE_OUTPUTS)
   } else if(command == driver.MAKE) {
 
     ## silence package check.
@@ -50,17 +56,10 @@ module_energy_L121.liquids <- function(command, ...) {
 
     all_data <- list(...)[[1]]
 
-    # Load required inputs
-    iso_GCAM_regID <- get_data(all_data, "common/iso_GCAM_regID", strip_attributes = TRUE)
-    IIASA_biofuel_production <- get_data(all_data, "aglu/IIASA_biofuel_production", strip_attributes = TRUE)
-    IIASA_biofuel_tech_mapping <- get_data(all_data, "aglu/IIASA_biofuel_tech_mapping", strip_attributes = TRUE)
-    IIASA_biofuel_region_mapping <- get_data(all_data, "aglu/IIASA_biofuel_region_mapping", strip_attributes = TRUE)
-    A_OilSeed_SecOut <- get_data(all_data, "aglu/A_OilSeed_SecOut", strip_attributes = TRUE)
-    IEA_product_rsrc <- get_data(all_data, "energy/mappings/IEA_product_rsrc", strip_attributes = TRUE)
-    A21.unoil_demandshares <- get_data(all_data, "energy/A21.unoil_demandshares", strip_attributes = TRUE)
-    L100.IEA_en_bal_ctry_hist <- get_data(all_data, "L100.IEA_en_bal_ctry_hist", strip_attributes = TRUE)
-    L1012.en_bal_EJ_R_Si_Fi_Yh <- get_data(all_data, "L1012.en_bal_EJ_R_Si_Fi_Yh", strip_attributes = TRUE)
-    A21.globalrsrctech_coef_ngas <- get_data(all_data, "energy/A21.globalrsrctech_coef", strip_attributes = TRUE) %>%
+    # Load required inputs ----
+    get_data_list(all_data, MODULE_INPUTS, strip_attributes = TRUE)
+
+    A21.globalrsrctech_coef_ngas <- A21.globalrsrctech_coef %>%
       filter(minicam.energy.input == "regional natural gas") %>%
       gather_years(value_col = "gas_coef") %>%
       repeat_add_columns(tibble(region = c(iso_GCAM_regID$GCAM_region_ID)))
@@ -74,7 +73,6 @@ module_energy_L121.liquids <- function(command, ...) {
       L121.in_EJ_R_TPES_crude_Yh <- extract_prebuilt_data("L121.in_EJ_R_TPES_crude_Yh")
       L121.in_EJ_R_TPES_unoil_Yh <- extract_prebuilt_data("L121.in_EJ_R_TPES_unoil_Yh")
       L121.share_R_TPES_biofuel_tech <- extract_prebuilt_data("L121.share_R_TPES_biofuel_tech")
-      L121.BiomassOilRatios_kgGJ_R_C <- extract_prebuilt_data("L121.BiomassOilRatios_kgGJ_R_C")
     } else {
 
       L100.IEA_en_bal_ctry_hist %>%
@@ -154,16 +152,30 @@ module_energy_L121.liquids <- function(command, ...) {
       L111.Prod_EJ_R_F_Yh %>%
         filter(technology=="unconventional oil") -> unoil_prod
 
-      # Conventional (crude) oil: calculate as liquids TPES - unconventional oil
+      # Conventional (crude) oil: calculate as liquids TPES + net exports - unconventional oil - CTL/GTL production
       L1012.en_bal_EJ_R_Si_Fi_Yh %>%
         filter(sector == energy.TPES_FLOW, fuel == "refined liquids") -> L121.in_EJ_R_TPES_liq_Yh
+
+      L1012.en_bal_EJ_R_Si_Fi_Yh %>%
+        filter(sector %in% c("out_ctl", "out_gtl")) %>%
+        group_by(GCAM_region_ID, year) %>%
+        summarise(value_ctlgtl = sum(value)) %>%
+        ungroup() -> L121.in_EJ_R_CTLGTL_liq_Yh
+
+      L1262.refinedOil_GrossTrade_EJ_R_C_Y %>%
+        filter(year == MODEL_FINAL_BASE_YEAR) %>%
+        select(GCAM_region_ID, year, net_trade) ->
+        L121.NetExp_EJ_R_RefOil_fby
 
       L121.in_EJ_R_TPES_liq_Yh %>%
         select(GCAM_region_ID, sector, fuel, year, value) %>%
         mutate(fuel = "crude oil") %>%
+        left_join(L121.NetExp_EJ_R_RefOil_fby, by = c("GCAM_region_ID", "year")) %>%
         left_join(rename(L121.in_EJ_R_TPES_unoil_Yh, value_unoil = value, unoil = fuel), by = c("GCAM_region_ID", "sector", "year")) %>%
-        mutate(value_unoil = if_else(is.na(value_unoil), 0, value_unoil),
-               value = value - value_unoil) %>%
+        replace_na(list(value_unoil = 0,
+                        net_trade = 0)) %>%
+        left_join_error_no_match(L121.in_EJ_R_CTLGTL_liq_Yh, by = c("GCAM_region_ID", "year")) %>%
+        mutate(value = value + net_trade - value_unoil - value_ctlgtl) %>%
         select(GCAM_region_ID, sector, fuel, year, value) -> L121.in_EJ_R_TPES_crude_Yh
 
       L111.Prod_EJ_R_F_Yh %>%
@@ -214,28 +226,6 @@ module_energy_L121.liquids <- function(command, ...) {
         ungroup() %>%
         select(GCAM_region_ID, Biofuel, technology, GCAM_commodity, share)
 
-      # 02/2020 addition (gpk) - regional average oilcrop -> biomassOil -> secondary output of feed ratios
-      # vary considerably according to the feedstock type. Using a soybean-based secondary output coefficient
-      # will over-estimate this flow in countries using mostly rapeseed feedstocks, and vice versa. This is
-      # addressed by computing region-specific weighted average secondary output coefficients.
-      L121.BiomassOilRatios_kgGJ_R_C <- left_join(IIASA_biofuel_production,
-                                                       IIASA_biofuel_tech_mapping,
-                                                       by = c("Biofuel", "Crop")) %>%
-        left_join(IIASA_biofuel_region_mapping, by = "Region") %>%
-        left_join(A_OilSeed_SecOut, by = "Crop") %>%
-        filter(!is.na(SecOutRatio),
-               Production_ML > 0) %>%
-        mutate(Weighted_SecOutRatio = Production_ML * SecOutRatio,
-               Weighted_IOcoef = Production_ML * IOcoef) %>%
-        left_join_error_no_match(select(iso_GCAM_regID, GCAM_region_ID, iso), by = "iso") %>%
-        group_by(GCAM_region_ID, GCAM_commodity) %>%
-        summarise(Weight = sum(Production_ML),
-                  Weighted_IOcoef = sum(Weighted_IOcoef),
-                  Weighted_SecOutRatio = sum(Weighted_SecOutRatio)) %>%
-        ungroup() %>%
-        mutate(IOcoef = Weighted_IOcoef / Weight,
-               SecOutRatio = Weighted_SecOutRatio / Weight) %>%
-        select(GCAM_region_ID, GCAM_commodity, IOcoef, SecOutRatio)
 
       # ===================================================
       # Produce outputs
@@ -274,27 +264,14 @@ module_energy_L121.liquids <- function(command, ...) {
                        "aglu/IIASA_biofuel_tech_mapping", "L100.IEA_en_bal_ctry_hist", "common/iso_GCAM_regID") ->
         L121.share_R_TPES_biofuel_tech
 
-      L121.BiomassOilRatios_kgGJ_R_C %>%
-        add_title("BiomassOil input-output coefficient (kg crop / GJ oil) and secondary output ratio (kg feedcake / GJ oil) by region / feedstock", overwrite = TRUE) %>%
-        add_units("kg / GJ") %>%
-        add_comments("Calculated from weighted average OilCrop oil contents and assumptions about losses") %>%
-        add_precursors("aglu/IIASA_biofuel_production", "aglu/IIASA_biofuel_region_mapping",
-                       "aglu/IIASA_biofuel_tech_mapping", "aglu/A_OilSeed_SecOut", "common/iso_GCAM_regID") ->
-        L121.BiomassOilRatios_kgGJ_R_C
-
       # At this point the objects should be identical to the prebuilt objects
       verify_identical_prebuilt(L121.in_EJ_R_unoil_F_Yh,
                                 L121.in_EJ_R_TPES_crude_Yh,
                                 L121.in_EJ_R_TPES_unoil_Yh,
-                                L121.share_R_TPES_biofuel_tech,
-                                L121.BiomassOilRatios_kgGJ_R_C)
+                                L121.share_R_TPES_biofuel_tech)
     }
 
-    return_data(L121.in_EJ_R_unoil_F_Yh,
-                L121.in_EJ_R_TPES_crude_Yh,
-                L121.in_EJ_R_TPES_unoil_Yh,
-                L121.share_R_TPES_biofuel_tech,
-                L121.BiomassOilRatios_kgGJ_R_C)
+    return_data(MODULE_OUTPUTS)
   } else {
     stop("Unknown command")
   }

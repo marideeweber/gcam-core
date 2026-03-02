@@ -18,35 +18,43 @@
 #' @importFrom tidyr complete nesting
 #' @author CWR August 2017
 module_energy_L226.en_distribution <- function(command, ...) {
+
+  MODULE_INPUTS <-
+    c(FILE = "common/GCAM_region_names",
+      FILE = "energy/calibrated_techs",
+      FILE = "energy/A_regions",
+      FILE = "energy/A26.sector",
+      FILE = "energy/A26.subsector_logit",
+      FILE = "energy/A26.subsector_shrwt",
+      FILE = "energy/A26.subsector_interp",
+      FILE = "energy/A26.globaltech_eff",
+      FILE = "energy/A26.globaltech_cost",
+      FILE = "energy/A26.globaltech_interp",
+      FILE = "energy/A26.globaltech_shrwt",
+      "L126.IO_R_elecownuse_F_Yh",
+      "L126.IO_R_electd_F_Yh",
+      "L126.IO_R_gaspipe_F_Yh")
+
+  MODULE_OUTPUTS <-
+    c("L226.Supplysector_en",
+      "L226.SubsectorLogit_en",
+      "L226.SubsectorShrwt_en",
+      "L226.SubsectorShrwtFllt_en",
+      "L226.SubsectorInterp_en",
+      "L226.SubsectorInterpTo_en",
+      "L226.StubTech_en",
+      "L226.GlobalTechEff_en",
+      "L226.GlobalTechCost_en",
+      "L226.GlobalTechTrackCapital_en",
+      "L226.GlobalTechShrwt_en",
+      "L226.StubTechCoef_elecownuse",
+      "L226.StubTechCoef_electd",
+      "L226.StubTechCoef_gaspipe")
+
   if(command == driver.DECLARE_INPUTS) {
-    return(c(FILE = "common/GCAM_region_names",
-             FILE = "energy/calibrated_techs",
-             FILE = "energy/A_regions",
-             FILE = "energy/A26.sector",
-             FILE = "energy/A26.subsector_logit",
-             FILE = "energy/A26.subsector_shrwt",
-             FILE = "energy/A26.subsector_interp",
-             FILE = "energy/A26.globaltech_eff",
-             FILE = "energy/A26.globaltech_cost",
-             FILE = "energy/A26.globaltech_shrwt",
-             "L126.IO_R_elecownuse_F_Yh",
-             "L126.IO_R_electd_F_Yh",
-             "L126.IO_R_gaspipe_F_Yh"))
+    return(MODULE_INPUTS)
   } else if(command == driver.DECLARE_OUTPUTS) {
-    return(c("L226.Supplysector_en",
-             "L226.SubsectorLogit_en",
-             "L226.SubsectorShrwt_en",
-             "L226.SubsectorShrwtFllt_en",
-             "L226.SubsectorInterp_en",
-             "L226.SubsectorInterpTo_en",
-             "L226.StubTech_en",
-             "L226.GlobalTechEff_en",
-             "L226.GlobalTechCost_en",
-             "L226.GlobalTechTrackCapital_en",
-             "L226.GlobalTechShrwt_en",
-             "L226.StubTechCoef_elecownuse",
-             "L226.StubTechCoef_electd",
-             "L226.StubTechCoef_gaspipe"))
+    return(MODULE_OUTPUTS)
   } else if(command == driver.MAKE) {
 
     # Silence global variable package check
@@ -57,20 +65,8 @@ module_energy_L226.en_distribution <- function(command, ...) {
 
     all_data <- list(...)[[1]]
 
-    # Load required inputs
-    GCAM_region_names <- get_data(all_data, "common/GCAM_region_names")
-    calibrated_techs <- get_data(all_data, "energy/calibrated_techs", strip_attributes = TRUE)
-    A_regions <- get_data(all_data, "energy/A_regions")
-    A26.sector <- get_data(all_data, "energy/A26.sector", strip_attributes = TRUE)
-    A26.subsector_logit <- get_data(all_data, "energy/A26.subsector_logit", strip_attributes = TRUE)
-    A26.subsector_shrwt <- get_data(all_data, "energy/A26.subsector_shrwt", strip_attributes = TRUE)
-    A26.subsector_interp <- get_data(all_data, "energy/A26.subsector_interp", strip_attributes = TRUE)
-    A26.globaltech_eff <- get_data(all_data, "energy/A26.globaltech_eff")
-    A26.globaltech_cost <- get_data(all_data, "energy/A26.globaltech_cost")
-    A26.globaltech_shrwt <- get_data(all_data, "energy/A26.globaltech_shrwt", strip_attributes = TRUE)
-    L126.IO_R_elecownuse_F_Yh <- get_data(all_data, "L126.IO_R_elecownuse_F_Yh", strip_attributes = TRUE)
-    L126.IO_R_electd_F_Yh <- get_data(all_data, "L126.IO_R_electd_F_Yh")
-    L126.IO_R_gaspipe_F_Yh <- get_data(all_data, "L126.IO_R_gaspipe_F_Yh")
+    # Load required inputs ----
+    get_data_list(all_data, MODULE_INPUTS, strip_attributes = TRUE)
 
 
     # ===================================================
@@ -157,6 +153,12 @@ module_energy_L226.en_distribution <- function(command, ...) {
       rename(stub.technology = technology) ->
       L226.StubTech_en
 
+    A26.globaltech_interp %>%
+      write_to_all_regions(LEVEL2_DATA_NAMES[["TechInterp"]], GCAM_region_names) %>%
+      rename(stub.technology = technology) ->
+      L226.StubTechInterp_en
+
+
     # Set number of digits to round final values of elecownuse, electd, and elecgaspipe coefficients, globaltech efficiency, and globaltech cost
     DIGITS_COEFFICIENT <- 7
     DIGITS_COST <- 4
@@ -206,7 +208,7 @@ module_energy_L226.en_distribution <- function(command, ...) {
     A26.globaltech_shrwt %>%
       gather_years(value_col = "share.weight") %>%
       complete(nesting(supplysector, subsector, technology), year = c(year, MODEL_BASE_YEARS, MODEL_FUTURE_YEARS)) %>%
-      arrange(supplysector, year) %>%
+      arrange(supplysector, subsector, technology,  year) %>%
       group_by(supplysector,subsector, technology) %>%
       mutate (share.weight = approx_fun(as.numeric(year), share.weight)) %>%
       ungroup() %>%
@@ -310,10 +312,7 @@ module_energy_L226.en_distribution <- function(command, ...) {
     # ===================================================
 
     # Produce outputs
-    # Temporary code below sends back empty data frames marked "don't test"
-    # Note that all precursor names (in `add_precursor`) must be in this chunk's inputs
-    # There's also a `same_precursors_as(x)` you can use
-    # If no precursors (very rare) don't call `add_precursor` at all
+
     L226.Supplysector_en %>%
       add_title("regional supplysector information") %>%
       add_units("NA") %>%
@@ -345,6 +344,20 @@ module_energy_L226.en_distribution <- function(command, ...) {
         add_legacy_name("energy/L226.SubsectorShrwt_en") ->
         L226.SubsectorShrwt_en
     }
+
+    if(exists("L226.StubTechInterp_en")) {
+      L226.StubTechInterp_en %>%
+        add_title("global energy distribution technology shareweight interpolation") %>%
+        add_units("unitless") %>%
+        add_comments("interpolated to all model years based on assumptions in A26.globaltech_interp") %>%
+        add_precursors("energy/A26.globaltech_interp") ->
+        L226.StubTechInterp_en
+    } else {
+      missing_data() %>%
+        add_legacy_name("energy/A26.globaltech_interp") ->
+        L226.StubTechInterp_en
+    }
+
 
     if(exists("L226.SubsectorShrwtFllt_en")) {
       L226.SubsectorShrwtFllt_en %>%
@@ -456,10 +469,7 @@ module_energy_L226.en_distribution <- function(command, ...) {
       add_precursors("L126.IO_R_gaspipe_F_Yh") ->
       L226.StubTechCoef_gaspipe
 
-    return_data(L226.Supplysector_en, L226.SubsectorLogit_en, L226.SubsectorShrwt_en,
-                L226.SubsectorShrwtFllt_en, L226.SubsectorInterp_en, L226.SubsectorInterpTo_en,
-                L226.StubTech_en, L226.GlobalTechEff_en, L226.GlobalTechCost_en, L226.GlobalTechTrackCapital_en, L226.GlobalTechShrwt_en,
-                L226.StubTechCoef_elecownuse, L226.StubTechCoef_electd, L226.StubTechCoef_gaspipe)
+    return_data(MODULE_OUTPUTS)
   } else {
     stop("Unknown command")
   }

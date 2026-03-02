@@ -1,6 +1,6 @@
 # Copyright 2019 Battelle Memorial Institute; see the LICENSE file.
 
-#' module_gcamusa_L122.Refining
+#' module_gcamusa_L122.refining
 #'
 #' Downscales crude oil, corn ethanol, and biodiesel refining inputs and outputs to state-level.
 #'
@@ -129,8 +129,8 @@ module_gcamusa_L122.refining <- function(command, ...) {
     # Joining EIA_biodiesel_Mgal.yr to all states and years
     L122.pct_state_btlbd <- tidyr::crossing(state = gcamusa.STATES,
                                             year = HISTORICAL_YEARS) %>%
-      mutate(sector = "biodiesel",
-             fuel = "biomass oil") %>%
+      mutate(sector = "soybean biodiesel",
+             fuel = "biomass oil soybean") %>%
       # Using left_join because not all states in EIA_biodiesel_Mgal.yr
       left_join(EIA_biodiesel_Mgal.yr, by = "state") %>%
       replace_na(list(pct = 0))
@@ -145,7 +145,7 @@ module_gcamusa_L122.refining <- function(command, ...) {
     # Biodiesel inputs by state and fuel
     # Biodiesel input fuels
     biodiesel_input_fuels <- L122.in_EJ_R_refining_F_Yh %>%
-      filter(sector == "biodiesel") %>%
+      filter(sector == "soybean biodiesel") %>%
       select(fuel) %>%
       distinct()
 

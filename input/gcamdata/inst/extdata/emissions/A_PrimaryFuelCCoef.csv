@@ -9,9 +9,19 @@ PrimaryFuelCO2Coef.name,PrimaryFuelCO2Coef,traded
 biomass,0,0
 regional biomass,23,0
 delivered biomass,23,0
-regional biomassOil,19.6,0
+regional biomassOil oilcrop,19.6,0
+regional biomassOil oilpalm,19.6,0
+regional biomassOil soybean,19.6,0
+regional biomassOil rapeseed,19.6,0
 regional sugar for ethanol,19.6,0
 regional corn for ethanol,19.6,0
+soybean biodiesel,19.6,0
+oilpalm biodiesel,19.6,0
+oilcrop biodiesel,19.6,0
+rapeseed biodiesel,19.6,0
+corn ethanol,19.6,0
+cellulosic ethanol,19.6,0
+sugar cane ethanol,19.6,0
 coal,27.3,0
 regional coal,27.3,0
 delivered coal,27.3,0
@@ -26,6 +36,7 @@ regional oil,19.6,0
 refining,19.6,0
 refined liquids industrial,19.6,0
 refined liquids enduse,19.6,0
+refined liquids gasoline pool,19.6,0
 limestone,0.08,0
 unconventional oil upscaling,1.5,0
 regional industrial_roundwood,0,0

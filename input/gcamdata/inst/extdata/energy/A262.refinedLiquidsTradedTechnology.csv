@@ -1,0 +1,15 @@
+# File: A262.refinedLiquidsTradedTechnology.csv
+# Title: Technology-level assumptions of traded refined oil markets
+# Units: Various
+# Comments: pass-through subsectors; there is no technology competition
+# Source: NA
+# Column types: ccccnnni 
+# ----------
+supplysector,subsector,technology,minicam.energy.input,coefficient,input.cost,share.weight,traded
+traded refined oil,traded refined oil,traded refined oil,refining,1,0,1,1
+traded corn ethanol,traded corn ethanol,traded corn ethanol,corn ethanol,1,0,1,1
+traded sugar cane ethanol,traded sugar cane ethanol,traded sugar cane ethanol,sugar cane ethanol,1,0,1,1
+traded oilcrop biodiesel,traded oilcrop biodiesel,traded oilcrop biodiesel,oilcrop biodiesel,1,0,1,1
+traded oilpalm biodiesel,traded oilpalm biodiesel,traded oilpalm biodiesel,oilpalm biodiesel,1,0,1,1
+traded rapeseed biodiesel,traded rapeseed biodiesel,traded rapeseed biodiesel,rapeseed biodiesel,1,0,1,1
+traded soybean biodiesel,traded soybean biodiesel,traded soybean biodiesel,soybean biodiesel,1,0,1,1

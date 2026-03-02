@@ -222,6 +222,12 @@ module_emissions_L241.en_newtech_nonco2 <- function(command, ...) {
     # remove non-applicable first-genbio technologies from the data frames.
     L241.firstgenbio_techs <- c("corn ethanol", "sugarbeet ethanol", "sugar cane ethanol", "biodiesel")
 
+    EnTechInputMap %>%
+      distinct(stub.technology) %>%
+      filter(grepl("ethanol|biodiesel", stub.technology),
+             !grepl("cellulosic", stub.technology)) %>% pull ->
+      L241.firstgenbio_techs
+
     # Create region ethanol type and region biodiesel type identifiers from the
     # region-specific assumptions in the energy system. These identifiers will be
     # used to remove non-applicable first-genbio technologies.

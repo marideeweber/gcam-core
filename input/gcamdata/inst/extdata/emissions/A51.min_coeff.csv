@@ -1,7 +1,7 @@
 # File: A51.min_coeff.csv
 # Title: Minimum (i.e., fully controlled) emissions coefficients (unit emissions per unit fuel input or output, or something else) by technology and emissions species, for non-greenhouse gases
 # Units: kg / GJ (or TgXXX / EJ, where XXX is the particular gas)
-# Description: Minimum emissions coefficient for various technologies and gases. Emissions coefficients decline with GDP until these levels are reached, after which no further declines are possible.
+# Description: Minimum emissions coefficient for various technologies and gases. Emissions coefficients decline with GDP until these levels are reached, after which no further declines are possible
 # Source: GCAM3 emissions files (e.g., SO2 are from NonCO2_energy_input.xls, SO2_calcs tab, table starting at row 509)
 # Column types: cccnnnnnn
 # ----------
@@ -65,15 +65,18 @@ process heat cement,biomass,biomass,,,,,,
 process heat cement,coal,coal,,,,,,
 process heat cement,gas,gas,,,,,,
 process heat cement,refined liquids,refined liquids,,,,,,
-refining,biomass liquids,biodiesel,0.0075,0.0054,0.002,0,0,0
-refining,biomass liquids,cellulosic ethanol,0.0075,0.0054,0.002,0,0,0
-refining,biomass liquids,cellulosic ethanol CCS level 1,0.0075,0.0054,0.002,0,0,0
-refining,biomass liquids,cellulosic ethanol CCS level 2,0.0075,0.0054,0.002,0,0,0
-refining,biomass liquids,corn ethanol,0.0075,0.0054,0.002,0,0,0
+oilcrop biodiesel,oilcrop biodiesel,oilcrop biodiesel,0.0075,0.0054,0.002,0,0,0
+oilpalm biodiesel,oilpalm biodiesel,oilpalm biodiesel,0.0075,0.0054,0.002,0,0,0
+soybean biodiesel,soybean biodiesel,soybean biodiesel,0.0075,0.0054,0.002,0,0,0
+rapeseed biodiesel,rapeseed biodiesel,rapeseed biodiesel,0.0075,0.0054,0.002,0,0,0
+cellulosic ethanol,cellulosic ethanol,cellulosic ethanol,0.0075,0.0054,0.002,0,0,0
+cellulosic ethanol,cellulosic ethanol,cellulosic ethanol CCS level 1,0.0075,0.0054,0.002,0,0,0
+cellulosic ethanol,cellulosic ethanol,cellulosic ethanol CCS level 2,0.0075,0.0054,0.002,0,0,0
+corn ethanol,corn ethanol,corn ethanol,0.0075,0.0054,0.002,0,0,0
 refining,biomass liquids,FT biofuels,0.0075,0.0054,0.002,0,0,0
 refining,biomass liquids,FT biofuels CCS level 1,0.0075,0.0054,0.002,0,0,0
 refining,biomass liquids,FT biofuels CCS level 2,0.0075,0.0054,0.002,0,0,0
-refining,biomass liquids,sugar cane ethanol,0.0075,0.0054,0.002,0,0,0
+sugar cane ethanol,sugar cane ethanol,sugar cane ethanol,0.0075,0.0054,0.002,0,0,0
 refining,coal to liquids,coal to liquids,0.0075,0.0054,0.002,0,0,0
 refining,coal to liquids,coal to liquids CCS level 1,0.0075,0.0054,0.002,0,0,0
 refining,coal to liquids,coal to liquids CCS level 2,0.0075,0.0054,0.002,0,0,0

@@ -12,7 +12,8 @@
 #' original data system was \code{batch_en_transformation_USA_xml.R} (gcamusa XML).
 module_gcamusa_en_transformation_xml <- function(command, ...) {
   if(command == driver.DECLARE_INPUTS) {
-    return(c("L222.DeleteStubTech_USAen",
+    return(c("L222.AbsoluteLogitBaseValue_USAen",
+             "L222.DeleteStubTech_USAen",
              "L222.PassThroughSector_USAen",
              "L222.SubsectorLogit_en_USA",
              "L222.StubTech_en_USA",
@@ -42,6 +43,7 @@ module_gcamusa_en_transformation_xml <- function(command, ...) {
     all_data <- list(...)[[1]]
 
     # Load required inputs
+    L222.AbsoluteLogitBaseValue_USAen <- get_data(all_data, "L222.AbsoluteLogitBaseValue_USAen")
     L222.DeleteStubTech_USAen <- get_data(all_data, "L222.DeleteStubTech_USAen")
     L222.PassThroughSector_USAen <- get_data(all_data, "L222.PassThroughSector_USAen")
     L222.SubsectorLogit_en_USA <- get_data(all_data, "L222.SubsectorLogit_en_USA")
@@ -76,6 +78,7 @@ module_gcamusa_en_transformation_xml <- function(command, ...) {
     create_xml("en_transformation_USA.xml") %>%
       add_node_equiv_xml("sector") %>%
       add_node_equiv_xml("technology") %>%
+      add_xml_data(L222.AbsoluteLogitBaseValue_USAen, "AbsoluteLogitBaseValue") %>%
       add_xml_data(L222.DeleteStubTech_USAen, "DeleteStubTech") %>%
       add_xml_data(L222.PassThroughSector_USAen, "PassThroughSector") %>%
       add_logit_tables_xml(L222.SubsectorLogit_en_USA, "SubsectorLogit") %>%
@@ -99,7 +102,8 @@ module_gcamusa_en_transformation_xml <- function(command, ...) {
       add_xml_data(L222.StubTechProd_refining_USA, "StubTechProd") %>%
       add_xml_data(L222.StubTechMarket_en_USA, "StubTechMarket") %>%
       add_xml_data(L222.CarbonCoef_en_USA, "CarbonCoef") %>%
-      add_precursors("L222.DeleteStubTech_USAen",
+      add_precursors("L222.AbsoluteLogitBaseValue_USAen",
+                     "L222.DeleteStubTech_USAen",
                      "L222.PassThroughSector_USAen",
                      "L222.SubsectorLogit_en_USA",
                      "L222.StubTech_en_USA",

@@ -226,14 +226,14 @@ aglu.SPEC_AG_PROD_YEARS     <- MODEL_YEARS[MODEL_YEARS >= MODEL_FINAL_BASE_YEAR 
 aglu.SSP_DEMAND_YEARS       <- unique(c(MODEL_FINAL_BASE_YEAR, MODEL_FUTURE_YEARS)) # food demand in the SSPs is calculated at 5-yr intervals
 aglu.TRADE_FINAL_BASE_YEAR  <- MODEL_FINAL_BASE_YEAR # The base year to which gross trade volumes are assigned. Should be equal to the final model calibration year
 # aglu.TRADED_* regional market commodities
-aglu.TRADED_CROPS           <- c("Corn", "FiberCrop", "Fruits", "Legumes", "MiscCrop", "NutsSeeds", "OilCrop", "OtherGrain", "OilPalm", "Rice", "RootTuber", "Soybean", "SugarCrop", "Vegetables", "Wheat")
+aglu.TRADED_CROPS           <- c("Corn", "FiberCrop", "Fruits", "Legumes", "MiscCrop", "NutsSeeds", "OilCrop", "Rapeseed", "OtherGrain", "OilPalm", "Rice", "RootTuber", "Soybean", "SugarCrop", "Vegetables", "Wheat")
 aglu.BIO_TRADE_SSP4_YEAR_FILLOUT       <- 2025 # year.fillout for SSP4 in L243.bio_trade_input
 aglu.BIO_TRADE_SSP3_YEAR_FILLOUT       <- 2020 # year.fillout for SSP4 in L243.bio_trade_input
 aglu.TRADED_MEATS           <- c("Beef", "Dairy", "Pork", "Poultry", "SheepGoat")
 aglu.TRADED_FORESTS         <- c("Forest")
 # Integrated world market and non-trade commodities
 aglu.IWM_TRADED_COMM        <- c("FodderHerb", "OtherMeat_Fish") # Integrated World Market (IWM)commodities
-aglu.NONTRADED_COMM         <- c("DDGS and feedcakes", "FodderGrass", "Pasture", "Residue", "Scavenging_Other") # non-traded commodities; "Pasture" is modeled as a crop produced from pasture land.
+aglu.NONTRADED_COMM         <- c("DDGS", "FodderGrass", "Pasture", "Residue", "Scavenging_Other") # non-traded commodities; "Pasture" is modeled as a crop produced from pasture land.
 
 aglu.LAND_TOLERANCE    <- 0.005
 
@@ -469,14 +469,8 @@ aglu.LN1_PROTUNMGD_LOGIT_TYPE <- NA
 aglu.MGMT_LOGIT_EXP  <- 2.5
 aglu.MGMT_LOGIT_TYPE <- "absolute-cost-logit"
 
-# Statistical differences reconciliation: China's Vegetable production estimates
-# are inconsistent between the PRODSTAT ("Production") and SUA ("Commodity
-# Balances"). Because the latter dataset is used for estimating food consumption
-# in GCAM, and because these SUA food consumption estimates are derived from
-# production data that is about 20% higher than PRODSTAT, this discrepancy
-# causes very high negative "non-food" demands in this nation, which are large
-# enough to result in negative non-food demands globally.
-aglu.CHN_VEG_FOOD_MULT <- 0.8
+# Margin for feedcake output ratio from veg oil production. When price of feedcakes drops this portion below the base-year level, sec out coef starts to decrease
+aglu.FEEDCAKE_PRICE_MARGIN <- 0.2
 
 # XML-related constants
 aglu.CROP_GLU_DELIMITER   <- "_"  # delimiter between the crop name and GLU name
@@ -1094,7 +1088,8 @@ gcamusa.FERT_NAME       <- "ammonia" # Define GCAM-USA category name of fertiliz
 
 # Fuels whose markets will be modeled at the level of the FERC regions, with prices calibrated
 gcamusa.REGIONAL_FUEL_MARKETS <- c("regional coal", "delivered coal", "wholesale gas", "delivered gas",
-                                   "refined liquids industrial", "refined liquids enduse")
+                                   "refined liquids industrial", "refined liquids enduse",
+                                   "refined liquids gasoline pool")
 
 
 # Resources that will be modeled at the state level

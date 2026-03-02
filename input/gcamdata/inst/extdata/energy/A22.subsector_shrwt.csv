@@ -16,3 +16,10 @@ refining,coal to liquids,initial-future-year,,0
 refining,coal to liquids,end-year,,0.1
 refining,gas to liquids,initial-future-year,,0
 refining,gas to liquids,end-year,,0.25
+sugar cane ethanol,sugar cane ethanol,initial-future-year,,1
+cellulosic ethanol,cellulosic ethanol,initial-future-year,,1
+corn ethanol,corn ethanol,initial-future-year,,1
+soybean biodiesel,soybean biodiesel,initial-future-year,,1
+rapeseed biodiesel,rapeseed biodiesel,initial-future-year,,1
+oilpalm biodiesel,oilpalm biodiesel,initial-future-year,,1
+oilcrop biodiesel,oilcrop biodiesel,initial-future-year,,1

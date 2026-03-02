@@ -57,8 +57,18 @@ module_energy_L111.rsrc_fos_Prod <- function(command, ...) {
     # (lines 38-56 in original file)
     # NOTE: Regional production is derived for each fuel as global TES times regional share of global production
     # Determine global total primary energy supply (TES) for each fuel
+    # Oil (estimated from refined liquids) total energy supply needs to deduct fuel outputs of CTL and GTL
+    L1012.en_bal_EJ_R_Si_Fi_Yh %>%
+      filter(sector %in% c("out_ctl", "out_gtl")) %>%
+      mutate(sector = energy.TPES_FLOW,
+             fuel = "refined liquids") %>%
+      group_by(sector, fuel, year) %>%
+      summarise(value = -1 * sum(value)) %>%
+      ungroup() -> L111.CTLGTL_deduction_Yh
+
     L1012.en_bal_EJ_R_Si_Fi_Yh %>%
       filter(sector == energy.TPES_FLOW, fuel %in% energy.RSRC_FUELS, year %in% HISTORICAL_YEARS) %>%
+      bind_rows(L111.CTLGTL_deduction_Yh) %>%
       group_by(sector, fuel, year) %>%
       summarise(value = sum(value)) %>%
       ungroup ->

@@ -25,10 +25,13 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
       FILE = "energy/A21.globaltech_coef",
       FILE = "energy/A21.globaltech_secout",
       FILE = "energy/A22.globaltech_coef",
+      FILE = "energy/bio_feed_mapping",
+      FILE = "energy/OTAQ_USA_biofuel_prod",
       "L1012.en_bal_EJ_R_Si_Fi_Yh",
       "L121.in_EJ_R_unoil_F_Yh",
       "L121.share_R_TPES_biofuel_tech",
-      "L121.BiomassOilRatios_kgGJ_R_C")
+      "L1262.refinedOil_GrossTrade_EJ_R_C_Y",
+      "L1262.Biofuel_GrossTrade_EJ_R_C_Y")
 
   MODULE_OUTPUTS <-
     c("L122.out_EJ_R_gasproc_F_Yh",
@@ -37,7 +40,8 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
       "L122.out_EJ_R_refining_F_Yh",
       "L122.in_EJ_R_refining_F_Yh",
       "L122.in_Mt_R_C_Yh",
-      "L122.FeedOut_Mt_R_C_Yh")
+      "L122.FeedOut_Mt_R_C_Yh",
+      "L122.StubTechFixOut_otherBiod")
 
   if(command == driver.DECLARE_INPUTS) {
     return(MODULE_INPUTS)
@@ -47,7 +51,7 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
 
     EcYield_kgm2_hi <- EcYield_kgm2_lo <- GCAM_commodity <- GCAM_region_ID <- GLU <-
       Irr_Rfd <- LC_bm2_hi <- LC_bm2_lo <- biodiesel <- biomassOil_tech <- ethanol <- fuel <-
-      fuel.x <- fuelInput <- gas_coef <- hist_year <- in_value <- landshare_hi <-
+      fuel.x <- fuelInput <- gas_coef <- in_value <- landshare_hi <-
       landshare_lo <- level <- minicam.energy.input <- passthrough.sector <- sector <-
       subsector <- supplysector <- technology <- value <- value.x <- value.y <- valueInput <-
       value_ctl_oil <- value_en_bal <- value_en_bal_TPES <- value_en_bal_net_oil <-
@@ -61,21 +65,31 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
     # Load required inputs ----
     get_data_list(all_data, MODULE_INPUTS, strip_attributes = TRUE)
 
+    L121.in_EJ_R_unoil_F_Yh %>%
+      filter(year %in% HISTORICAL_YEARS) ->   # ensure temp data match our current history
+      L121.in_EJ_R_unoil_F_Yh
+
+    L122.USA_soy_biodiesel <- OTAQ_USA_biofuel_prod %>%
+      gather_years() %>%
+      filter(sector == "biodiesel") %>%
+      mutate(biomassOil_tech = "Soybean oil",
+             GCAM_region_ID = 1) %>%
+      rename(value_soybiodiesel = value,
+             technology = sector) %>%
+      mutate(technology = "soybean biodiesel")
+
     # ===================================================
     # Perform computations: Will start with refining
 
     # Most of the technologies (in calibrated_techs.csv) have inputs from outputs based on exogenous coefficients (A22.globaltech_coef).
-    # Extracting those coefficients and interpolating them to 2010.
-    # Remove "x" year
     A22.globaltech_coef %>%
       semi_join(select(calibrated_techs, supplysector, subsector, technology), by = c("supplysector", "subsector", "technology")) %>%
       left_join(select(calibrated_techs, supplysector, subsector, technology, minicam.energy.input, sector, fuel), by = c("supplysector", "subsector", "technology", "minicam.energy.input")) %>%
-      gather(hist_year, value, -supplysector, -subsector, -technology, -minicam.energy.input, -sector, -fuel) %>%
-      set_years() %>%
-      mutate(hist_year = as.numeric(hist_year)) %>%
-      filter(hist_year == min(HISTORICAL_YEARS)) %>%
-      repeat_add_columns(tibble(year = HISTORICAL_YEARS)) %>%
-      select(-hist_year) -> L122.globaltech_coef
+      gather_years() %>%
+      complete(nesting(supplysector, subsector, technology, minicam.energy.input, sector, fuel), year = HISTORICAL_YEARS) %>%
+      group_by(supplysector, subsector, technology, minicam.energy.input, sector, fuel) %>%
+      mutate(value = approx_fun(year, value)) %>%
+      ungroup() -> L122.globaltech_coef
 
     # BIOMASS LIQUIDS: Ethanol and biodiesel output are equal to regional TPES
     # Modify the A_regions assignments based on the technologies available in L121.share_R_TPES_biofuel_tech
@@ -83,10 +97,15 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
     A_biofuel_types_R <- gather(select(A_regions, GCAM_region_ID, region, ethanol, biodiesel, biomassOil_tech),
                                 key = "Biofuel", value = "default_technology",
                                 -GCAM_region_ID, -region, -biomassOil_tech) %>%
+      # Add feedstock-specific technologies
+      left_join(bio_feed_mapping %>% select(technology,biomassOil_tech), by = "biomassOil_tech") %>%
+      mutate(technology = if_else(grepl("ethanol",Biofuel),default_technology,technology),
+             default_technology = technology) %>%
       filter(!region %in% aglu.NO_AGLU_REGIONS) %>%
+      select(-technology) %>%
       left_join(L121.share_R_TPES_biofuel_tech, by = c("GCAM_region_ID", "Biofuel")) %>%
       mutate(technology = if_else(is.na(technology), default_technology, technology),
-             biomassOil_tech = if_else(technology == "biodiesel" & !is.na(GCAM_commodity), GCAM_commodity, biomassOil_tech),
+             biomassOil_tech = if_else(Biofuel == "biodiesel" & !is.na(GCAM_commodity), GCAM_commodity, biomassOil_tech),
              share = if_else(is.na(share), 1, share)) %>%
       select(GCAM_region_ID, Biofuel, technology, biomassOil_tech, share)
 
@@ -98,9 +117,59 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
       filter(sector == energy.TPES_FLOW,
              fuel %in% BIOMASS_LIQUIDS) %>%
       mutate(Biofuel = if_else(fuel == "refined biofuels_ethanol", "ethanol", "biodiesel")) %>%
+      # GPK 8/21/25: Adjust the biofuel output of each region to account for net_trade of biofuels
+      left_join_error_no_match(L1262.Biofuel_GrossTrade_EJ_R_C_Y %>% select(GCAM_region_ID, Biofuel = GCAM_commodity, year, net_trade),
+                               by = c("GCAM_region_ID", "Biofuel", "year")) %>%
+      mutate(value = pmax(0, value + net_trade)) %>%
       left_join(A_biofuel_types_R, by = c("GCAM_region_ID", "Biofuel")) %>%
       mutate(value = value * share) %>%
       select(GCAM_region_ID, technology, biomassOil_tech, year, value) -> L122.out_EJ_R_biofuel_Yh
+
+    # GPK 4/3/25: Total biodiesel from IEA balances minus soybean biodiesel from OTAQ -> "other biodiesel" for fixed outputs
+    L122.out_EJ_R_biofuel_Yh.usa <- L122.out_EJ_R_biofuel_Yh %>%
+      filter(GCAM_region_ID==1,
+             grepl("biodiesel",technology),
+             year>=2005) %>%
+      left_join_error_no_match(L122.USA_soy_biodiesel,
+                               by=c("GCAM_region_ID", "technology", "biomassOil_tech", "year")) %>%
+      mutate(value_otherbiodiesel = value - value_soybiodiesel)
+
+    L122.out_EJ_R_biofuel_Yh.usa.soybiodiesel <- L122.out_EJ_R_biofuel_Yh.usa %>%
+      select(GCAM_region_ID, technology, biomassOil_tech, year, value_soybiodiesel) %>%
+      rename(value = value_soybiodiesel) %>%
+      select(-biomassOil_tech)
+
+    L122.out_EJ_R_biofuel_Yh.usa.otherbiodiesel <- L122.out_EJ_R_biofuel_Yh.usa %>%
+      select(GCAM_region_ID, technology, biomassOil_tech, year, value_otherbiodiesel) %>%
+      rename(value = value_otherbiodiesel) %>%
+      mutate(technology = "other biodiesel",
+             biomassOil_tech = "other biodiesel")
+
+    L122.out_EJ_R_biofuel_Yh<- L122.out_EJ_R_biofuel_Yh %>%
+      filter(!(GCAM_region_ID==1 & technology %in% c("soybean biodiesel") & year>=2005)) %>%
+      bind_rows(L122.out_EJ_R_biofuel_Yh.usa.soybiodiesel)
+
+    # Create the fixed output table for other biodiesel
+    # Expand to all GCAM model years
+    StubTechFixOut_otherBiod<-L122.out_EJ_R_biofuel_Yh.usa.otherbiodiesel %>%
+      filter(year == max(MODEL_BASE_YEARS)) %>%
+      select(-year) %>%
+      repeat_add_columns(tibble(year=MODEL_FUTURE_YEARS)) %>%
+      bind_rows(L122.out_EJ_R_biofuel_Yh.usa.otherbiodiesel) %>%
+      arrange(year)
+
+    L122.StubTechFixOut_otherBiod <- StubTechFixOut_otherBiod %>%
+      mutate(region = "USA",
+             supplysector = "refined liquids enduse",
+             subsector = "biodiesel",
+             share.weight.year = year,
+             subs.share.weight = 1,
+             tech.share.weight = 0) %>%
+      rename(stub.technology = technology,
+             fixedOutput = value) %>%
+      filter(year %in% MODEL_YEARS) %>%
+      select(LEVEL2_DATA_NAMES[["StubTechFixOut"]])
+
 
     # To get the inputs, left_join with the technology coefficients so as to repeat rows for techs with multiple inputs
     # (e.g., corn, gas, electricity inputs to corn ethanol technology)
@@ -128,10 +197,10 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
       select(GCAM_region_ID, sector, fuel, year, value) -> L122.in_EJ_R_gtlctl_F_Yh
 
     # CRUDE OIL REFINING
-    # Copied from original text:
     # NOTE*1: This is complicated. The outputs of CTL and GTL have the same fuel name as the output of oil refining,
     # so need to be deducted from TPES in order to calculate regional output of oil refining.
-    # In contrast, biofuels are assigned different names, so they are not in the TPES of refined liquids.
+    # (In contrast, biofuels are assigned different names, so they are not in the TPES of refined liquids.)
+    # Oil refining output = (TPES of refined liquids) - (outputs of CTL and GTL) + (net exports of refined liquids)
 
     # Create tibble with appropriate sector and fuels for oil refining (output) for L122.out_EJ_R_oilrefining_Yh and add historical years
     tibble(GCAM_region_ID = GCAM_region_names$GCAM_region_ID, sector = "oil refining", fuel = "oil")%>%
@@ -155,13 +224,13 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
       mutate(value_en_bal = value_en_bal_TPES - value_en_bal_net_oil) %>%
       select(-value_en_bal_TPES, -value_en_bal_net_oil) -> en_bal_oil
 
-    # Output for coal for CTL sector
+    # Output of refined liquids from CTL
     L122.out_EJ_R_gtlctl_Yh %>%
       filter(sector == "ctl", fuel == "coal") %>%
       select(GCAM_region_ID, sector, year, value_ctl_oil = value) %>%
       mutate(sector = "oil refining") -> ctl_OIL
 
-    # Output for coal for GTL sector
+    # Output of refined liquids from GTL
     L122.out_EJ_R_gtlctl_Yh %>%
       filter(sector == "gtl", fuel == "gas") %>%
       select(GCAM_region_ID, sector, year, value_gtl_oil = value) %>%
@@ -170,24 +239,29 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
       mutate(value_gtlctl = value_ctl_oil + value_gtl_oil) %>%
       select(-value_ctl_oil, -value_gtl_oil) -> gtlctl_oil
 
-    # Final adjustments to fuel outputs for CTL and GTL to tackle the Note (NOTE*1) made above
+    # Adjustments to fuel outputs of oil refining, to deduct any fuels produced by CTL and GTL
     # left_join_error_no_match could be used here since it has some problems with the timeshifting test
     L122.out_EJ_R_oilrefining_Yh %>%
       left_join(en_bal_oil, by = c("GCAM_region_ID", "sector", "year")) %>%
       left_join(gtlctl_oil, by = c("GCAM_region_ID", "sector", "year")) %>%
       mutate(value = value_en_bal - value_gtlctl) %>%
-      select(-value_en_bal, -value_gtlctl) -> L122.out_EJ_R_oilrefining_Yh
+    # GPK 4/8/25: Adjust the oil refining output of each region to account for net_trade of refined oil products
+      left_join_error_no_match(L1262.refinedOil_GrossTrade_EJ_R_C_Y %>% select(GCAM_region_ID, year, net_trade), by = c("GCAM_region_ID", "year")) %>%
+      mutate(value = value + net_trade) %>%
+      select(GCAM_region_ID, sector, fuel, year, value) ->
+      L122.out_EJ_R_oilrefining_Yh
 
-    # Oil refining: input of oil is equal to TPES, and input of other fuels is from net refinery energy use
+    # Oil refining inputs: input of oil is equal to output of refined liquids plus refinery energy use of refined liquids.
+    # Input of other fuels is exactly as reported in "net_oil refining" sector
     L1012.en_bal_EJ_R_Si_Fi_Yh %>%
       filter(sector == "net_oil refining") %>%
-      filter(fuel == "refined liquids") %>%
-      left_join_error_no_match(select(filter(L1012.en_bal_EJ_R_Si_Fi_Yh, sector == energy.TPES_FLOW, fuel == "refined liquids"), -sector), by = c("GCAM_region_ID", "fuel", "year")) %>%
-      select(-value.x) %>%
-      rename(value = value.y) %>%
-      bind_rows(filter(L1012.en_bal_EJ_R_Si_Fi_Yh, sector == "net_oil refining", fuel!= "refined liquids")) %>%
       mutate(sector = "oil refining",
-             fuel = if_else(fuel == "refined liquids", "oil", fuel)) -> L122.in_EJ_R_oilrefining_F_Yh
+             fuel = if_else(fuel == "refined liquids", "oil", fuel)) %>%
+      left_join(L122.out_EJ_R_oilrefining_Yh, by = c("GCAM_region_ID", "sector", "fuel", "year"),
+                suffix = c(".energyuse", ".output")) %>%
+      replace_na(list(value.output = 0)) %>%
+      mutate(value = value.energyuse + value.output) %>%
+      select(-value.energyuse, -value.output) -> L122.in_EJ_R_oilrefining_F_Yh
 
     # Calculate region- and fuel-specific coefficients of crude oil refining
     L122.in_EJ_R_oilrefining_F_Yh %>%
@@ -214,7 +288,7 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
 
     L122.in_EJ_R_refining_F_Yh <- bind_rows(L122.in_EJ_R_oilrefining_F_Yh, L122.in_EJ_R_gtlctl_F_Yh, L122.in_EJ_R_biofuel_F_Yh_rev)
 
-    # The final steps here write out some information for the AgLU module
+    # The final steps here write out some information for the AgLU module ----
     # First, calculate and create the derived crop inputs to the various first-generation biofuel technologies
     L122.in_EJ_R_biofuel_F_Yh %>%
       left_join(select(calibrated_techs, sector, fuel, passthrough.sector = minicam.energy.input), by = c("sector", "fuel")) %>%
@@ -259,16 +333,16 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
     # Multiply by input quantities by coefficients in L121.globaltech_coef
     # 2/2020 modification (gpk) - replace with region-specific coefficients for selected regions/commodities
     # This reflects the different oil contents of soybeans (~18%) versus sunflower and rapeseed (~43%) feedstocks
+
+
     L122.in_EJ_R_1stgenbio_F_Yh %>%
       select(GCAM_region_ID, passthrough.sector, GCAM_commodity, year, out_value = value) %>%
       left_join(select(L121.globaltech_coef, passthrough.sector = "supplysector", GCAM_commodity = minicam.energy.input, year, coef = value),
                 by = c("passthrough.sector", "GCAM_commodity", "year")) %>%
-      left_join(select(L121.BiomassOilRatios_kgGJ_R_C, GCAM_region_ID, GCAM_commodity, rev_coef = IOcoef),
-                by = c("GCAM_region_ID", "GCAM_commodity")) %>%
-      mutate(value = if_else(is.na(rev_coef), out_value * coef, out_value * rev_coef)) %>%
+      mutate(value = out_value * coef) %>%
       select(GCAM_region_ID, GCAM_commodity, year, value) -> L122.in_Mt_R_C_Yh
 
-    # Next, write out the secondary output flows of DDGS and feedcakes from these technologies
+    # Next, write out the secondary output flows of DDGS from these technologies
     A21.globaltech_secout %>%
       gather_years() %>%
       complete(nesting(supplysector, subsector, technology, fractional.secondary.output),
@@ -290,9 +364,7 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
     # 02/2020 modification (gpk) - replace with region-specific secondary output ratios for selected regions/commodities
     L122.in_EJ_R_1stgenbio_F_Yh %>%
       inner_join(L121.feed_output_ratio, by = c("passthrough.sector", "GCAM_commodity", "year")) %>%
-      left_join(select(L121.BiomassOilRatios_kgGJ_R_C, GCAM_region_ID, GCAM_commodity, rev_output.ratio = SecOutRatio),
-                by = c("GCAM_region_ID", "GCAM_commodity")) %>%
-      mutate(value = if_else(is.na(rev_output.ratio), value * output.ratio, value * rev_output.ratio)) %>%
+      mutate(value = value * output.ratio) %>%
       select(GCAM_region_ID, GCAM_commodity, fractional.secondary.output, year, value) ->
       L122.FeedOut_Mt_R_C_Yh
 
@@ -416,7 +488,7 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
       add_legacy_name("L122.out_EJ_R_refining_F_Yh") %>%
       add_precursors("common/GCAM_region_names", "energy/calibrated_techs",
                      "energy/A_regions", "energy/A21.globaltech_coef", "energy/A22.globaltech_coef", "L1012.en_bal_EJ_R_Si_Fi_Yh",
-                     "L121.in_EJ_R_unoil_F_Yh")  ->
+                     "L1262.refinedOil_GrossTrade_EJ_R_C_Y", "L121.in_EJ_R_unoil_F_Yh")  ->
       L122.out_EJ_R_refining_F_Yh
 
     L122.in_EJ_R_refining_F_Yh %>%
@@ -434,19 +506,27 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
       add_units("Mt") %>%
       add_comments("Created by matching 1st generation bio with the global technologies coefficients for existing minicam energy inputs") %>%
       add_legacy_name("L122.in_Mt_R_C_Yh") %>%
-      add_precursors("common/GCAM_region_names", "energy/calibrated_techs",
+      add_precursors("common/GCAM_region_names", "energy/calibrated_techs", "energy/bio_feed_mapping",
                      "energy/A_regions", "energy/A21.globaltech_coef", "energy/A22.globaltech_coef", "L1012.en_bal_EJ_R_Si_Fi_Yh",
-                     "L121.in_EJ_R_unoil_F_Yh", "aglu/A_agStorageSector", "L121.share_R_TPES_biofuel_tech", "L121.BiomassOilRatios_kgGJ_R_C") ->
+                     "L121.in_EJ_R_unoil_F_Yh", "aglu/A_agStorageSector", "L121.share_R_TPES_biofuel_tech") ->
       L122.in_Mt_R_C_Yh
 
     L122.FeedOut_Mt_R_C_Yh %>%
-      add_title("Feed secondary outputs (DDGS and feedcakes) from first-generation biofuel production by GCAM region / commodity / historical year") %>%
+      add_title("Feed secondary outputs (DDGS) from first-generation biofuel production by GCAM region / commodity / historical year") %>%
       add_units("Mt") %>%
-      add_comments("Created by matching 1st generation bio with the global technology secondary output ratios of DDGS and feedcakes") %>%
+      add_comments("Created by matching 1st generation bio with the global technology secondary output ratios of DDGS") %>%
       add_legacy_name("L122.in_Mt_R_C_Yh") %>%
       same_precursors_as(L122.in_Mt_R_C_Yh) %>%
-      add_precursors("energy/A21.globaltech_secout", "L121.BiomassOilRatios_kgGJ_R_C") ->
+      add_precursors("energy/A21.globaltech_secout") ->
       L122.FeedOut_Mt_R_C_Yh
+
+    L122.StubTechFixOut_otherBiod %>%
+      add_title("FixedOutput for other bidiesel") %>%
+      add_units("EJ") %>%
+      add_comments("This accounts for the difference between soybean biodiesel (from OTAQ) and total biodiesel (from IEA)") %>%
+      same_precursors_as(L122.out_EJ_R_refining_F_Yh) %>%
+      add_precursors("energy/OTAQ_USA_biofuel_prod") ->
+      L122.StubTechFixOut_otherBiod
 
     return_data(MODULE_OUTPUTS)
   } else {

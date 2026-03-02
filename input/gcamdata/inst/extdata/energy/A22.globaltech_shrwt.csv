@@ -15,13 +15,16 @@ refining,coal to liquids,coal to liquids,0,0,1,1,1,1
 refining,coal to liquids,coal to liquids CCS level 1,0,0,0.333,0.444,1,1
 refining,coal to liquids,coal to liquids CCS level 2,0,0,0.333,0.444,1,1
 refining,gas to liquids,gas to liquids,0,0,1,1,1,1
-refining,biomass liquids,cellulosic ethanol,0,0,1,1,1,1
-refining,biomass liquids,cellulosic ethanol CCS level 1,0,0,0.333,0.444,1,1
-refining,biomass liquids,cellulosic ethanol CCS level 2,0,0,0.333,0.444,1,1
+cellulosic ethanol,cellulosic ethanol,cellulosic ethanol,0,0,1,1,1,1
+cellulosic ethanol,cellulosic ethanol,cellulosic ethanol CCS level 1,0,0,0.333,0.444,1,1
+cellulosic ethanol,cellulosic ethanol,cellulosic ethanol CCS level 2,0,0,0.333,0.444,1,1
 refining,biomass liquids,FT biofuels,0,0,1,1,1,1
 refining,biomass liquids,FT biofuels CCS level 1,0,0,0.333,0.444,1,1
 refining,biomass liquids,FT biofuels CCS level 2,0,0,0.333,0.444,1,1
-refining,biomass liquids,corn ethanol,0,1,1,1,1,1
-refining,biomass liquids,sugar cane ethanol,0,1,1,1,1,1
-refining,biomass liquids,biodiesel,0,1,1,1,1,1
+corn ethanol,corn ethanol,corn ethanol,0,1,1,1,1,1
+sugar cane ethanol,sugar cane ethanol,sugar cane ethanol,0,1,1,1,1,1
+oilcrop biodiesel,oilcrop biodiesel,oilcrop biodiesel,0,1,1,1,1,1
+oilpalm biodiesel,oilpalm biodiesel,oilpalm biodiesel,0,1,1,1,1,1
+soybean biodiesel,soybean biodiesel,soybean biodiesel,0,1,1,1,1,1
+rapeseed biodiesel,rapeseed biodiesel,rapeseed biodiesel,0,1,1,1,1,1
 refining,biomass liquids,BTL with hydrogen,0,0,0,1,1,1

@@ -1,0 +1,14 @@
+# File: A262.refinedLiquidsTradedSubsector.csv
+# Title: Subsector assumptions for traded refined oil markets
+# Units: Various
+# Source: NA
+# Column types: ccncnccccic
+# ----------
+supplysector,subsector,logit.exponent,year.fillout,share.weight,apply.to,from.year,to.year,interpolation.function,traded,logit.type
+traded refined oil,traded refined oil,-6,start-year,1,share-weight,final-calibration-year,end-year,fixed,1,
+traded corn ethanol,traded corn ethanol,-6,start-year,1,share-weight,final-calibration-year,end-year,fixed,1,
+traded sugar cane ethanol,traded sugar cane ethanol,-6,start-year,1,share-weight,final-calibration-year,end-year,fixed,1,
+traded oilcrop biodiesel,traded oilcrop biodiesel,-6,start-year,1,share-weight,final-calibration-year,end-year,fixed,1,
+traded oilpalm biodiesel,traded oilpalm biodiesel,-6,start-year,1,share-weight,final-calibration-year,end-year,fixed,1,
+traded rapeseed biodiesel,traded rapeseed biodiesel,-6,start-year,1,share-weight,final-calibration-year,end-year,fixed,1,
+traded soybean biodiesel,traded soybean biodiesel,-6,start-year,1,share-weight,final-calibration-year,end-year,fixed,1,

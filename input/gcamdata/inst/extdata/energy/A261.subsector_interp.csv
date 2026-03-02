@@ -1,0 +1,11 @@
+# File: A261.subsector_interp.csv
+# Title: motor gasoline subsector share-weight interpolation rules
+# Units: Unitless for share weight
+# Column types: cccccnc
+# ----------
+supplysector,subsector,apply.to,from.year,to.year,to.value,interpolation.function
+refined liquids enduse,biodiesel,share-weight,final-calibration-year,end-year,,fixed
+refined liquids enduse,refined oil,share-weight,final-calibration-year,end-year,,fixed
+refined liquids gasoline pool,refined oil,share-weight,final-calibration-year,end-year,,fixed
+refined liquids gasoline pool,ethanol,share-weight,final-calibration-year,initial-future-year,,fixed
+refined liquids gasoline pool,ethanol,share-weight,initial-future-year,end-year,,linear

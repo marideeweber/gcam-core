@@ -14,11 +14,20 @@ Legumes,T,regional legumes,total legumes,ag-storage,1
 MiscCrop,T,regional misccrop,total misccrop,ag-storage,1
 NutsSeeds,T,regional nuts_seeds,total nuts_seeds,ag-storage,1
 OilCrop,T,regional oilcrop,total oilcrop,ag-storage,1
+OilCrop oil,F,regional oilcrop oil,total oilcrop oil,ag-storage,1
+OilCrop feedcake,F,regional oilcrop feedcake,total oilcrop feedcake,ag-storage,1
+Rapeseed,T,regional rapeseed,total rapeseed,ag-storage,1
+Rapeseed oil,F,regional rapeseed oil,total rapeseed oil,ag-storage,1
+Rapeseed feedcake,F,regional rapeseed feedcake,total rapeseed feedcake,ag-storage,1
 OtherGrain,T,regional othergrain,total othergrain,ag-storage,1
-OilPalm,T,regional oilpalm,total oilpalm,ag-storage,1
+OilPalm,F,regional oilpalm,total oilpalm,ag-storage,1
+OilPalm oil,F,regional oilpalm oil,total oilpalm oil,ag-storage,1
+OilPalm feedcake,F,regional oilpalm feedcake,total oilpalm feedcake,ag-storage,1
 Rice,T,regional rice,total rice,ag-storage,1
 RootTuber,T,regional root_tuber,total root_tuber,ag-storage,1
 Soybean,T,regional soybean,total soybean,ag-storage,1
+Soybean oil,F,regional soybean oil,total soybean oil,ag-storage,1
+Soybean feedcake,F,regional soybean feedcake,total soybean feedcake,ag-storage,1
 SugarCrop,T,regional sugarcrop,total sugarcrop,ag-storage,1
 Vegetables,F,regional vegetables,total vegetables,ag-storage,1
 Wheat,T,regional wheat,total wheat,ag-storage,1

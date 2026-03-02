@@ -26,11 +26,15 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
       "L108.ag_Feed_Mt_R_C_Y",
       "L108.ag_NetExp_Mt_R_FodderHerb_Y",
       "L122.in_Mt_R_C_Yh",
+      "L122.FeedOut_Mt_R_C_Yh",
       "L101.GrossTrade_Mt_R_C_Y",
-      "L101.ag_Storage_Mt_R_C_Y")
+      "L101.ag_Storage_Mt_R_C_Y",
+      "L101.FAO_SUA_APE_balance_Crushing",
+      "L101.ag_Secondary_SUA_Mt_R_C_Y")
 
   MODULE_OUTPUTS <-
     c("L109.ag_ALL_Mt_R_C_Y",
+      "L109_crushing_processed_ALL_Mt_R_C_Y",
       "L109.an_ALL_Mt_R_C_Y")
 
   if(command == driver.DECLARE_INPUTS) {
@@ -67,9 +71,16 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
     # So Closing stocks in t - InterAnnualStorageLoss in t = Opening stocks in t+1
     # We will adjust Closing stocks to include InterAnnualStorageLoss
 
+    # [09/22/2024]
+    # For oilseeds, we will represent the processing sectors, so we will include the processed demand for the primary crops
+    # We will also generate the SUA data for the corresponding secondary products
+
     # List of commodities in production table ----
+    # GPK 7/26/2025 - while DDGS is a feed commodity, because it is not tracked by FAOSTAT, and because it is in the
+    # GrossTrade data table, it is treated within this code chunk as a primary commodity
     L101.ag_Prod_Mt_R_C_Y %>%
       pull(GCAM_commodity) %>%
+      c("DDGS") %>%
       unique() -> Primary_commodities
     # List of any commodities (e.g. pasture, residue, scavenging) in feed but not in production table
     L108.ag_Feed_Mt_R_C_Y %>%
@@ -85,11 +96,19 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
       distinct(GCAM_commodity) %>% pull ->
       Storage_commodities
 
+    L101.ag_Secondary_SUA_Mt_R_C_Y %>%
+      distinct(GCAM_commodity) %>% pull ->
+      Crushing_Secondary_commodities
 
+    L101.FAO_SUA_APE_balance_Crushing %>%
+      distinct(GCAM_commodity) %>% pull ->
+      Crushing_Primary_commodities
 
     # Part 1: Primary agricultural goods ----
 
     ## Combine all flow tables ----
+
+
 
   L101.GrossTrade_Mt_R_C_Y %>%
     filter(GCAM_commodity %in% Primary_commodities) %>%
@@ -98,14 +117,22 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
     # Name the flows in each table, and combine all tables
       bind_rows(L108.ag_NetExp_Mt_R_FodderHerb_Y %>% mutate(flow = "NetExp_Mt")) %>%
       bind_rows(mutate(L101.ag_Prod_Mt_R_C_Y, flow = "Prod_Mt")) %>%
+      bind_rows(mutate(L122.FeedOut_Mt_R_C_Yh %>%
+                         select(-GCAM_commodity) %>%
+                         rename(GCAM_commodity = fractional.secondary.output), flow = "Prod_Mt")) %>%
       bind_rows(mutate(L101.ag_Food_Mt_R_C_Y, flow = "Food_Mt")) %>%
-      bind_rows(mutate(L108.ag_Feed_Mt_R_C_Y, flow = "Feed_Mt")) %>%
-      bind_rows(mutate(L122.in_Mt_R_C_Yh, flow = "Biofuels_Mt")) %>%
+      bind_rows(mutate(L108.ag_Feed_Mt_R_C_Y %>%
+                         filter(!GCAM_commodity %in% Crushing_Secondary_commodities), flow = "Feed_Mt")) %>%
+      bind_rows(mutate(L122.in_Mt_R_C_Yh %>%
+                         filter(GCAM_commodity %in% Primary_commodities), flow = "Biofuels_Mt")) %>%
       bind_rows(L101.ag_Storage_Mt_R_C_Y %>% rename(flow = element) %>%
                   filter(GCAM_commodity %in% Primary_commodities)) %>%
+      bind_rows(L101.FAO_SUA_APE_balance_Crushing %>%
+                  transmute(GCAM_commodity, year, GCAM_region_ID, flow = "Crushing_Mt", value)) %>%
       # in case L101.ag_Storage_Mt_R_C_Y is empty
       bind_rows(tibble(`Opening stocks` = numeric(),
                        `Closing stocks` = numeric(),
+                       `Crushing_Mt` = numeric(),
                        `InterAnnualStockLoss` = numeric())) %>%
       # Get all combinations of each GCAM_commodity and flow, by spreading to wide format
       spread(flow, value) %>%
@@ -122,9 +149,10 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
              # Calculate the domestic supply (used in zaglu_L202)
              Supply_Mt = `Opening stocks` + Prod_Mt - NetExp_Mt,
              ## Calculate other uses ----
-             OtherUses_Mt = Supply_Mt - Food_Mt - Feed_Mt - Biofuels_Mt - `Closing stocks` - InterAnnualStockLoss,
+             OtherUses_Mt = Supply_Mt - Food_Mt - Feed_Mt - Biofuels_Mt - Crushing_Mt -  `Closing stocks` - InterAnnualStockLoss,
              `Closing stocks` = `Closing stocks` +  InterAnnualStockLoss)  ->
     L109.ag_ALL_Mt_R_C_Y
+
 
   ## Adjust negative crop feed use using other use ----
   # The negative feed use, if exist, came from connecting feed crops to feedcake or ddgd (bioenergy) in LA108
@@ -139,11 +167,32 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
   # Assign negative other net uses to imports, and adjust global trade to maintain balances
   # Changes in global net exports are apportioned among regions with positive other uses, according to regional shares
 
+
+    ### quick adjustment of negative OtherUses_Mt of Rapeseed in Canada in 1975 by lowering InterAnnualStockLoss ----
+    L109.ag_ALL_Mt_R_C_Y %>%
+      filter(year %in% 1975 & GCAM_commodity == "Rapeseed" & GCAM_region_ID == 8) %>%
+      mutate(OtherUses_Mt = OtherUses_Mt + InterAnnualStockLoss * .5,
+             InterAnnualStockLoss = InterAnnualStockLoss * .5) %>%
+      ## Update other uses
+      mutate(Supply_Mt = `Opening stocks` + Prod_Mt - NetExp_Mt,
+             OtherUses_Mt = Supply_Mt - Food_Mt - Feed_Mt - Biofuels_Mt - `Closing stocks` - InterAnnualStockLoss,
+             `Closing stocks` = `Closing stocks` +  InterAnnualStockLoss) %>%
+      bind_rows(
+        L109.ag_ALL_Mt_R_C_Y %>%
+          filter(!(year %in% 1975 & GCAM_commodity == "Rapeseed" & GCAM_region_ID == 8))
+      ) ->
+      L109.ag_ALL_Mt_R_C_Y
+
+
   if(any(L109.ag_ALL_Mt_R_C_Y$OtherUses_Mt < 0)){
   # Filter commodities that may be imbalanced
   L109.ag_ALL_Mt_R_C_Y %>%
     filter(GCAM_commodity %in% Primary_commodities) %>%
     filter(GCAM_commodity != "FodderHerb") %>%
+      # after palm fruit (OilPalm) is separated
+      # the other use of palm fruit is virtually zero or tiny negative due to rounding
+      # so change tiny negative other use values to zero
+    mutate(OtherUses_Mt = if_else(OtherUses_Mt <0 & OtherUses_Mt > -0.1^7, 0, OtherUses_Mt)) %>%
     mutate(negOther = if_else(OtherUses_Mt < 0, "Neg", "Pos") ) ->
     L109.ag_ALL_Mt_R_C_Y_1
 
@@ -196,7 +245,7 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
     ) ->
     L109.ag_ALL_Mt_R_C_Y_2
 
-  # Bind commodities that were balanced
+  # Bind commodities that were balanced or not relevant here
   L109.ag_ALL_Mt_R_C_Y_2 %>%
   bind_rows(
     L109.ag_ALL_Mt_R_C_Y %>%
@@ -211,7 +260,8 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
     L109.ag_ALL_Mt_R_C_Y
 
   ## Check again in model base year and adjust food consumption if needed ----
-  if(any(filter(L109.ag_ALL_Mt_R_C_Y, year %in% MODEL_BASE_YEARS)$OtherUses_Mt < 0)){
+  if(any(L109.ag_ALL_Mt_R_C_Y %>%
+         filter(year %in% MODEL_BASE_YEARS, OtherUses_Mt < 0) %>% nrow >0)){
 
     L109.ag_ALL_Mt_R_C_Y %>%
       filter(year %in% MODEL_BASE_YEARS, OtherUses_Mt <0) %>%
@@ -239,7 +289,8 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
     # domestic supply minus known (and fixed) food and feed quantities. This needs to be addressed on a case-by-case
     # basis, but failure to address the issue here will result in negative calibration values being read to GCAM, and
     # model solution failure.
-    if(any(filter(L109.ag_ALL_Mt_R_C_Y, year %in% MODEL_BASE_YEARS)$OtherUses_Mt < 0)){
+    if(L109.ag_ALL_Mt_R_C_Y %>%
+       filter(year %in% MODEL_BASE_YEARS, OtherUses_Mt <0) %>% nrow() >0){
       stop("Still negative other uses in model base year, possibly due to biofuel crop requirements exceeding available domestic supply")
     }
 
@@ -252,7 +303,7 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
     # Stocks is adjusted
 
     L109.ag_ALL_Mt_R_C_Y %>%
-      mutate(CurrentConsumption = Biofuels_Mt + Feed_Mt + Food_Mt + OtherUses_Mt) ->
+      mutate(CurrentConsumption = Biofuels_Mt + Crushing_Mt + Feed_Mt + Food_Mt + OtherUses_Mt) ->
       L109.ag_ALL_Mt_R_C_Y_4
 
     # Adjustment is very simple since we do not have balance constraint of stock carryover
@@ -264,7 +315,7 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
              GCAM_commodity %in% Storage_commodities) %>%
       mutate(OtherUses_Mt = 0.01 * `Closing stocks`,
              `Closing stocks` = `Closing stocks` - OtherUses_Mt,
-             CurrentConsumption = Biofuels_Mt + Feed_Mt + Food_Mt + OtherUses_Mt) ->
+             CurrentConsumption = Biofuels_Mt + Crushing_Mt + Feed_Mt + Food_Mt + OtherUses_Mt) ->
       L109.ag_ALL_Mt_R_C_Y_5
 
     # Bind rows to get full table
@@ -322,8 +373,124 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
       arrange(year, GCAM_commodity, GCAM_region_ID) ->
       L109.ag_ALL_Mt_R_C_Y
 
+    # Part 2: Crusing/processed/Secondary commodities ----
 
-    # Part 2: Animal commodities ----
+    # No crushing use of these commodities (e.g., soybean oil is only for food or biofuels)
+
+    L101.ag_Secondary_SUA_Mt_R_C_Y %>%
+      filter(GCAM_commodity %in% Crushing_Secondary_commodities) %>%
+      # Keep relevant elements that will be modeled
+      filter(element %in% c("Import", "Export", "Production", "Food", "Opening stocks", "Closing stocks", "Loss")) %>%
+      # bind bioenergy use
+      bind_rows(mutate(L122.in_Mt_R_C_Yh %>%
+                         filter(GCAM_commodity %in% Crushing_Secondary_commodities), element = "Biofuels_Mt")) %>%
+      bind_rows(mutate(L108.ag_Feed_Mt_R_C_Y %>%
+                         filter(GCAM_commodity %in% Crushing_Secondary_commodities), element = "Feed_Mt")) %>%
+      spread(element, value) %>%
+      # rename to be consistent with above convention
+      rename(GrossExp_Mt = Export, GrossImp_Mt = Import,
+             Food_Mt = Food, Prod_Mt = Production, InterAnnualStockLoss = Loss) %>%
+      mutate(NetExp_Mt = GrossExp_Mt - GrossImp_Mt) %>%
+      # in case L108.ag_Feed_Mt_R_C_Y is empty
+      bind_rows(tibble(Feed_Mt = numeric())) %>%
+      # if no storage model for secondary products set relevant elements to zero
+      mutate(`Opening stocks` = if_else(GCAM_commodity %in% Storage_commodities, `Opening stocks`, 0),
+             `Closing stocks` = if_else(GCAM_commodity %in% Storage_commodities, `Opening stocks`, 0),
+             InterAnnualStockLoss = if_else(GCAM_commodity %in% Storage_commodities, `Opening stocks`, 0)) %>%
+      filter(year %in% aglu.AGLU_HISTORICAL_YEARS) %>%
+      # Set missing values in the complete combinations to zero
+      dplyr::mutate_if(is.numeric, list(~ replace(., is.na(.), 0))) %>%
+      mutate(# Calculate the domestic supply (used in zaglu_L202)
+             Supply_Mt = `Opening stocks` + Prod_Mt - NetExp_Mt,
+             ## Calculate other uses
+             OtherUses_Mt = Supply_Mt - Food_Mt - Feed_Mt - Biofuels_Mt - `Closing stocks` - InterAnnualStockLoss,
+             `Closing stocks` = `Closing stocks` +  InterAnnualStockLoss)  ->
+    L109_crushing_processed_ALL_Mt_R_C_Y
+
+    # L109_crushing_processed_ALL_Mt_R_C_Y %>% filter(OtherUses_Mt <0) -> A
+    # Note that feed and food should not be adjusted (since they have been used in other places)
+    # The best adjustment for negative other use would be through trade.
+    # However, in the case of crushing, we will also need to check crushing rates
+
+
+
+    if(any(L109_crushing_processed_ALL_Mt_R_C_Y$OtherUses_Mt < 0)){
+      # Filter commodities that may be imbalanced
+      L109_crushing_processed_ALL_Mt_R_C_Y %>%
+        mutate(negOther = if_else(OtherUses_Mt < 0, "Neg", "Pos") ) ->
+        L109_crushing_processed_ALL_Mt_R_C_Y_1
+
+      L109_crushing_processed_ALL_Mt_R_C_Y_1 %>%
+        filter(year %in% MODEL_BASE_YEARS) %>%
+        group_by(GCAM_commodity, year, negOther) %>%
+        summarise(value = sum(OtherUses_Mt), .groups = "drop") %>%
+        spread(negOther, value) %>%
+        filter(!is.na(Neg), Neg + Pos < 0) %>% nrow() == 0 ->
+        AG_OTHERUSE_WARNING_Crushing
+
+      if (AG_OTHERUSE_WARNING_Crushing == F) {
+        warning("Negative other use in model base years.
+      Other use in ag crop commodities may require a case-by-case adjustment (in food) since total global other use is negative.
+      Please check food consumption adjustments.") }
+
+
+      ### Ship negative otheruse to other regions with positives ----
+      # positive regions will be scaled down simply
+      L109_crushing_processed_ALL_Mt_R_C_Y_1 %>%
+        group_by(GCAM_commodity, year, negOther) %>%
+        # world processed by neg or pos
+        summarise(OtherUses_Mt = sum(OtherUses_Mt, na.rm = T)) %>%
+        ungroup() %>%
+        spread(negOther, OtherUses_Mt) %>%
+        mutate(World_pos_scaler = -Neg/Pos) %>%
+        select(-Neg, -Pos)->
+        Pos_OtherUse_scaler
+
+      # NA scalers mean no negative other uses in all region for the item
+      L109_crushing_processed_ALL_Mt_R_C_Y_1 %>%
+        left_join(Pos_OtherUse_scaler, by = c("year", "GCAM_commodity")) %>%
+        filter(is.na(World_pos_scaler)) %>%
+        select(-negOther, -World_pos_scaler) %>%
+        # all positive other use bind ones with negative values
+        bind_rows(
+          L109_crushing_processed_ALL_Mt_R_C_Y_1 %>%
+            left_join(Pos_OtherUse_scaler, by = c("year", "GCAM_commodity")) %>%
+            filter(!is.na(World_pos_scaler)) %>%
+            # Adjust negative OtherUse first by moving to import
+            # set neg OtherUse to zero
+            mutate(GrossImp_Mt = if_else(negOther == "Neg", GrossImp_Mt - OtherUses_Mt, GrossImp_Mt),
+                   OtherUses_Mt = if_else(negOther == "Neg", 0, OtherUses_Mt),
+                   # Adjust positive OtherUse by scaling and moving to export
+                   # reduce positive scaler
+                   GrossExp_Mt = if_else(negOther == "Pos", GrossExp_Mt + OtherUses_Mt * World_pos_scaler, GrossExp_Mt),
+                   OtherUses_Mt = if_else(negOther == "Pos", OtherUses_Mt - OtherUses_Mt * World_pos_scaler, OtherUses_Mt)) %>%
+            select(-negOther, -World_pos_scaler) %>%
+            mutate(NetExp_Mt = GrossExp_Mt - GrossImp_Mt,
+                   Supply_Mt = `Opening stocks` + Prod_Mt - NetExp_Mt)
+        ) ->
+        L109_crushing_processed_ALL_Mt_R_C_Y_2
+
+      # Bind commodities that were balanced
+      L109_crushing_processed_ALL_Mt_R_C_Y_2 %>%
+        gather(element, value, -GCAM_region_ID, -GCAM_commodity, -year) %>%
+        mutate(value = round(value, aglu.DIGITS_CALOUTPUT))->
+        L109_crushing_processed_ALL_Mt_R_C_Y_3
+
+      L109_crushing_processed_ALL_Mt_R_C_Y_3 %>%
+        spread(element, value) ->
+        L109_crushing_processed_ALL_Mt_R_C_Y
+
+    }
+
+    if(L109_crushing_processed_ALL_Mt_R_C_Y %>%
+       filter(year %in% MODEL_BASE_YEARS, OtherUses_Mt < 0) %>%
+       nrow() >0){
+      stop("Still negative other uses in model base year")
+    }
+
+
+
+    # Part 3: Animal commodities ----
 
     ## Combine all flow tables ----
 
@@ -547,11 +714,11 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
 
 
 
-    # Part 3 Adjust self-trade to ensure export < domestic supply (production + opening stock) ----
+    # Part 4 Adjust self-trade to ensure export < domestic supply (production + opening stock) ----
     # this was an assumption in GCAM cpp
     # the assumption could be strong e.g., US does not product OilPalm but could export OilPalm product
 
-    ## 3.1 crops
+    ### 3.1 crops ----
     # Method 1 (not used): generalized adjustment
     L109.ag_ALL_Mt_R_C_Y %>%
       # reduce import and export both by the same (GrossExp_Mt - Prod_Mt - `Opening stocks`)
@@ -561,7 +728,7 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
                                    (Prod_Mt + `Opening stocks`), GrossExp_Mt)) ->
       L109.ag_ALL_Mt_R_C_Y_a
 
-    # Method 1 is not used since there would be more errors (palm and suger crops related) due to the adjustments
+    # Method 1 is not used since there would be more errors (palm and sugar crops related) due to the adjustments
     # because there may be not enough import for adjustments (leading to negative import)
 
     # Method 2 (old method; now used with special cases):  adjustments to ensure export < production
@@ -592,7 +759,32 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
     if(any(filter(L109.ag_ALL_Mt_R_C_Y, year %in% MODEL_BASE_YEARS)$GrossImp_Mt < 0)){
       stop("Negative trade values.") }
 
-    ## 3.2 livestock
+    ## 3.2 Crop processed: Crushing ----
+    L109_crushing_processed_ALL_Mt_R_C_Y %>%
+      # reduce import and export both by the same (GrossExp_Mt - Prod_Mt)
+      mutate(GrossImp_Mt = if_else(GrossExp_Mt > Prod_Mt,
+                                   GrossImp_Mt - (GrossExp_Mt - Prod_Mt),GrossImp_Mt),
+             GrossExp_Mt = if_else(GrossExp_Mt > Prod_Mt,
+                                   Prod_Mt, GrossExp_Mt),
+             # avoid tiny negative due to rounding
+             GrossImp_Mt = round(GrossImp_Mt,digits = 6)) ->
+      L109_crushing_processed_ALL_Mt_R_C_Y
+
+    # # further reduce export and import to ensure production > pmin(GrossExp_Mt, GrossImp_Mt) by at least 10%
+    # # when both export and import are positive
+    #
+    # L109_crushing_processed_ALL_Mt_R_C_Y %>%
+    #   # reduce import and export both by the same (GrossExp_Mt - Prod_Mt)
+    #   mutate(GrossTradeAdj = if_else(GrossExp_Mt == Prod_Mt, pmin(GrossExp_Mt, GrossImp_Mt) * .1, 0),
+    #          GrossExp_Mt = GrossExp_Mt - GrossTradeAdj,
+    #          GrossImp_Mt = GrossImp_Mt - GrossTradeAdj) ->
+    #   L109_crushing_processed_ALL_Mt_R_C_Y
+
+
+    if(any(filter(L109_crushing_processed_ALL_Mt_R_C_Y, year %in% MODEL_BASE_YEARS)$GrossImp_Mt < 0)){
+      stop("Negative trade values.") }
+
+    ## 3.3 livestock ----
 
     L109.an_ALL_Mt_R_C_Y %>%
       # reduce import and export both by the same (GrossExp_Mt - Prod_Mt)
@@ -609,7 +801,7 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
     # And note that trade could have been adjusted to ship negative other use around
     # so even initial trade data could be slightly different!
 
-    # Produce outputs
+    # Produce outputs ----
     L109.ag_ALL_Mt_R_C_Y %>%
       add_title("Primary agricultural good mass balances, by region / commodity / year.") %>%
       add_units("Mt") %>%
@@ -622,9 +814,23 @@ module_aglu_L109.ag_an_ALL_R_C_Y <- function(command, ...) {
                      "L108.ag_NetExp_Mt_R_FodderHerb_Y",
                      "L122.in_Mt_R_C_Yh",
                      "L101.GrossTrade_Mt_R_C_Y",
-                     "L101.ag_Storage_Mt_R_C_Y"
+                     "L101.ag_Storage_Mt_R_C_Y",
+                     "L101.FAO_SUA_APE_balance_Crushing"
                      ) ->
       L109.ag_ALL_Mt_R_C_Y
+
+    L109_crushing_processed_ALL_Mt_R_C_Y %>%
+      add_title("Secondary agricultural products mass balances, by region / commodity / year.") %>%
+      add_units("Mt") %>%
+      add_comments("Calculate Secondary agricultural good (e.g., soy oil and cake) mass balances by GCAM region, commodity and year") %>%
+      add_comments("Adjusts global and regional net exports to remove net negative other uses") %>%
+      add_legacy_name("L109.ag_ALL_Mt_R_C_Y") %>%
+      add_precursors("L122.in_Mt_R_C_Yh",
+                     "L122.FeedOut_Mt_R_C_Yh",
+                     "L101.GrossTrade_Mt_R_C_Y",
+                     "L101.ag_Storage_Mt_R_C_Y",
+                     "L101.ag_Secondary_SUA_Mt_R_C_Y") ->
+      L109_crushing_processed_ALL_Mt_R_C_Y
 
     L109.an_ALL_Mt_R_C_Y %>%
       add_title("Animal product mass balances, by region / commodity / year.") %>%

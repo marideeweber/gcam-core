@@ -713,7 +713,7 @@ module_energy_L232.other_industry <- function(command, ...) {
       add_units("EJ") %>%
       add_comments("Calibrated input of industrial energy use values are calculated using L1328.in_EJ_R_indenergy_F_Yh then added information such as subsector, technology, minicam.energy.input, calibration, tech.share.weight, and etc.") %>%
       add_legacy_name("L232.StubTechCalInput_indenergy") %>%
-      add_precursors("L1328.in_EJ_R_indenergy_F_Yh", "energy/calibrated_techs", "energy/A32.globaltech_eff") ->
+      add_precursors("L1328.in_EJ_R_indenergy_F_Yh", "L1328.in_EJ_R_indenergy_F_Yh", "energy/calibrated_techs", "energy/A32.globaltech_eff") ->
       L232.StubTechCalInput_indenergy
 
     L232.StubTechCalInput_indfeed %>%
@@ -729,7 +729,7 @@ module_energy_L232.other_industry <- function(command, ...) {
       add_units("EJ") %>%
       add_comments("Service output values are calculated by technology, for energy-use and feedstocks then aggregated by region") %>%
       add_legacy_name("L232.StubTechProd_industry") %>%
-      add_precursors("L1328.in_EJ_R_indenergy_F_Yh", "L127.in_EJ_R_indchp_F_Yh", "common/GCAM_region_names", "energy/calibrated_techs", "L1324.in_EJ_R_indfeed_F_Yh", "energy/A32.globaltech_eff", "energy/A32.globaltech_shrwt") ->
+      add_precursors("L1328.in_EJ_R_indenergy_F_Yh", "L1328.in_EJ_R_indenergy_F_Yh", "L127.in_EJ_R_indchp_F_Yh", "common/GCAM_region_names", "energy/calibrated_techs", "L1324.in_EJ_R_indfeed_F_Yh", "energy/A32.globaltech_eff", "energy/A32.globaltech_shrwt") ->
       L232.StubTechProd_industry
 
     L232.StubTechCoef_industry %>%

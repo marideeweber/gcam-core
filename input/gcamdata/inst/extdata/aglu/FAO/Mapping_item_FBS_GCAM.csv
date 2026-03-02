@@ -3,7 +3,8 @@
 # Units: NA
 # Description: Rice and products and Groundnuts are adjusted to primary products to match FBH using milling rate of 0.667 and a shell rate of 0.7.
 # There are 118 FBSH and CB items and 9 items were not mapped.
-# Last update: 8-25-2022 (XZ)
+# Palm kernels are not mapped as the processing sector (from fruit to oil and cake) is represented
+# Last update: 01-16-2025 (XZ)
 # Column types: cic
 GCAM_commodity,item_code,FBSH_CB_items
 Beef,2731,Bovine Meat
@@ -55,20 +56,20 @@ OilCrop,2596,Copra Cake
 OilCrop,2561,Sesame seed
 OilCrop,2563,Olives (including preserved)
 OilCrop,2570,"Oilcrops, Other"
-OilCrop,2573,Sunflowerseed Oil
-OilCrop,2574,Rape and Mustard Oil
-OilCrop,2579,Sesameseed Oil
-OilCrop,2580,Olive Oil
-OilCrop,2586,"Oilcrops Oil, Other"
-OilCrop,2558,Rape and Mustardseed
-OilCrop,2592,Sunflowerseed Cake
-OilCrop,2593,Rape and Mustard Cake
-OilCrop,2598,"Oilseed Cakes, Other"
-OilCrop,2597,Sesameseed Cake
-OilPalm,2577,Palm Oil
-OilPalm,2562,Palm kernels
-OilPalm,2576,Palmkernel Oil
-OilPalm,2595,Palmkernel Cake
+OilCrop oil,2573,Sunflowerseed Oil
+Rapeseed oil,2574,Rape and Mustard Oil
+OilCrop oil,2579,Sesameseed Oil
+OilCrop oil,2580,Olive Oil
+OilCrop oil,2586,"Oilcrops Oil, Other"
+Rapeseed,2558,Rape and Mustardseed
+OilCrop feedcake,2592,Sunflowerseed Cake
+Rapeseed feedcake,2593,Rape and Mustard Cake
+OilCrop feedcake,2598,"Oilseed Cakes, Other"
+OilCrop feedcake,2597,Sesameseed Cake
+OilPalm oil,2577,Palm Oil
+,2562,Palm kernels
+OilPalm oil,2576,Palmkernel Oil
+OilPalm feedcake,2595,Palmkernel Cake
 OtherGrain,2513,Barley and products
 OtherGrain,2517,Millet and products
 OtherGrain,2520,"Cereals, Other"
@@ -103,8 +104,8 @@ RootTuber,2534,"Roots, Other"
 RootTuber,2535,Yams
 SheepGoat,2732,Mutton & Goat Meat
 Soybean,2555,Soyabeans
-Soybean,2571,Soyabean Oil
-Soybean,2590,Soyabean Cake
+Soybean oil,2571,Soyabean Oil
+Soybean feedcake,2590,Soyabean Cake
 SugarCrop,2536,Sugar cane
 SugarCrop,2537,Sugar beet
 SugarCrop,2542,Sugar (Raw Equivalent)

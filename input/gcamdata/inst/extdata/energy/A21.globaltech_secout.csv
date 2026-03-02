@@ -1,9 +1,7 @@
 # File: A21.globaltech_secout.csv
 # Title: Feed crop secondary output of biomass liquids feedstock processing technologies (considered upstream of refining)
 # Units: NA
-# Column types: cccciii
+# Column types: ccccnnnnnnnnn
 # ----------
-supplysector,subsector,technology,fractional.secondary.output,1971,initial-future-year,2100
-regional corn for ethanol,regional corn for ethanol,regional corn for ethanol,DDGS and feedcakes,30,30,30
-regional biomassOil,regional biomassOil,OilCrop,DDGS and feedcakes,32,32,32
-regional biomassOil,regional biomassOil,Soybean,DDGS and feedcakes,110,110,110
+supplysector,subsector,technology,fractional.secondary.output,1971,final-calibration-year,initial-future-year,2030,2035,2040,2045,2050,2100
+regional corn for ethanol,regional corn for ethanol,regional corn for ethanol,DDGS,33.3,33.3,32.9,32.1,31.3,30.5,29.7,29.1,29.1
