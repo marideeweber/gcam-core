@@ -1,0 +1,302 @@
+inst/extdata/emissions/A_PrimaryFuelCCoef.csv:aviation fuels,19.6,0
+inst/extdata/energy/A26.fixOut_waste_HEFA.csv:USA,aviation fuels,HEFA,waste oil HEFA,2020,0.05,2020,0
+inst/extdata/energy/A26.fixOut_waste_HEFA.csv:USA,aviation fuels,HEFA,waste oil HEFA,2025,0.10,2025,0
+inst/extdata/energy/A26.fixOut_waste_HEFA.csv:USA,aviation fuels,HEFA,waste oil HEFA,2030,0.16,2030,0
+inst/extdata/energy/A26.fixOut_waste_HEFA.csv:USA,aviation fuels,HEFA,waste oil HEFA,2035,0.16,2035,0
+inst/extdata/energy/A26.fixOut_waste_HEFA.csv:USA,aviation fuels,HEFA,waste oil HEFA,2040,0.16,2040,0
+inst/extdata/energy/A26.fixOut_waste_HEFA.csv:USA,aviation fuels,HEFA,waste oil HEFA,2045,0.16,2045,0
+inst/extdata/energy/A26.fixOut_waste_HEFA.csv:USA,aviation fuels,HEFA,waste oil HEFA,2050,0.16,2050,0
+inst/extdata/energy/A26.fixOut_waste_HEFA.csv:USA,aviation fuels,HEFA,waste oil HEFA,2055,0.16,2055,0
+inst/extdata/energy/A26.fixOut_waste_HEFA.csv:USA,aviation fuels,HEFA,waste oil HEFA,2060,0.16,2060,0
+inst/extdata/energy/A26.fixOut_waste_HEFA.csv:USA,aviation fuels,HEFA,waste oil HEFA,2065,0.16,2065,0
+inst/extdata/energy/A26.fixOut_waste_HEFA.csv:USA,aviation fuels,HEFA,waste oil HEFA,2070,0.16,2070,0
+inst/extdata/energy/A26.fixOut_waste_HEFA.csv:USA,aviation fuels,HEFA,waste oil HEFA,2075,0.16,2075,0
+inst/extdata/energy/A26.fixOut_waste_HEFA.csv:USA,aviation fuels,HEFA,waste oil HEFA,2080,0.16,2080,0
+inst/extdata/energy/A26.fixOut_waste_HEFA.csv:USA,aviation fuels,HEFA,waste oil HEFA,2085,0.16,2085,0
+inst/extdata/energy/A26.fixOut_waste_HEFA.csv:USA,aviation fuels,HEFA,waste oil HEFA,2090,0.16,2090,0
+inst/extdata/energy/A26.fixOut_waste_HEFA.csv:USA,aviation fuels,HEFA,waste oil HEFA,2095,0.16,2095,0
+inst/extdata/energy/A26.fixOut_waste_HEFA.csv:USA,aviation fuels,HEFA,waste oil HEFA,2100,0.16,2100,0
+inst/extdata/energy/A26.subsector_logit.csv:aviation fuels,refined oil,-3,
+inst/extdata/energy/A26.subsector_logit.csv:aviation fuels,HEFA,-3,
+inst/extdata/energy/A26.subsector_logit.csv:aviation fuels,ETJ,-3,
+inst/extdata/energy/A26.subsector_logit.csv:aviation fuels,FT,-3,
+inst/extdata/energy/A271.freight_cost_adj.csv:USA,aviation fuels,refined oil,refined oil,non-energy,0.9,0.9
+inst/extdata/energy/A271.freight_cost_adj.csv:Africa_Eastern,aviation fuels,refined oil,refined oil,non-energy,0.9,0.9
+inst/extdata/energy/A271.freight_cost_adj.csv:Africa_Northern,aviation fuels,refined oil,refined oil,non-energy,0.9,0.9
+inst/extdata/energy/A271.freight_cost_adj.csv:Africa_Southern,aviation fuels,refined oil,refined oil,non-energy,0.9,0.9
+inst/extdata/energy/A271.freight_cost_adj.csv:Africa_Western,aviation fuels,refined oil,refined oil,non-energy,0.9,0.9
+inst/extdata/energy/A271.freight_cost_adj.csv:Australia_NZ,aviation fuels,refined oil,refined oil,non-energy,0.9,0.9
+inst/extdata/energy/A271.freight_cost_adj.csv:Brazil,aviation fuels,refined oil,refined oil,non-energy,0.9,0.9
+inst/extdata/energy/A271.freight_cost_adj.csv:Canada,aviation fuels,refined oil,refined oil,non-energy,0.9,0.9
+inst/extdata/energy/A271.freight_cost_adj.csv:Central America and Caribbean,aviation fuels,refined oil,refined oil,non-energy,0.9,0.9
+inst/extdata/energy/A271.freight_cost_adj.csv:Central Asia,aviation fuels,refined oil,refined oil,non-energy,0.9,0.9
+inst/extdata/energy/A271.freight_cost_adj.csv:China,aviation fuels,refined oil,refined oil,non-energy,0.9,0.9
+inst/extdata/energy/A271.freight_cost_adj.csv:EU-12,aviation fuels,refined oil,refined oil,non-energy,0.9,0.9
+inst/extdata/energy/A271.freight_cost_adj.csv:EU-15,aviation fuels,refined oil,refined oil,non-energy,0.9,0.9
+inst/extdata/energy/A271.freight_cost_adj.csv:Europe_Eastern,aviation fuels,refined oil,refined oil,non-energy,0.9,0.9
+inst/extdata/energy/A271.freight_cost_adj.csv:Europe_Non_EU,aviation fuels,refined oil,refined oil,non-energy,0.9,0.9
+inst/extdata/energy/A271.freight_cost_adj.csv:European Free Trade Association,aviation fuels,refined oil,refined oil,non-energy,0.9,0.9
+inst/extdata/energy/A271.freight_cost_adj.csv:India,aviation fuels,refined oil,refined oil,non-energy,0.9,0.9
+inst/extdata/energy/A271.freight_cost_adj.csv:Indonesia,aviation fuels,refined oil,refined oil,non-energy,0.9,0.9
+inst/extdata/energy/A271.freight_cost_adj.csv:Japan,aviation fuels,refined oil,refined oil,non-energy,0.9,0.9
+inst/extdata/energy/A271.freight_cost_adj.csv:Mexico,aviation fuels,refined oil,refined oil,non-energy,0.9,0.9
+inst/extdata/energy/A271.freight_cost_adj.csv:Middle East,aviation fuels,refined oil,refined oil,non-energy,0.9,0.9
+inst/extdata/energy/A271.freight_cost_adj.csv:Pakistan,aviation fuels,refined oil,refined oil,non-energy,0.9,0.9
+inst/extdata/energy/A271.freight_cost_adj.csv:Russia,aviation fuels,refined oil,refined oil,non-energy,0.9,0.9
+inst/extdata/energy/A271.freight_cost_adj.csv:South Africa,aviation fuels,refined oil,refined oil,non-energy,0.9,0.9
+inst/extdata/energy/A271.freight_cost_adj.csv:South America_Northern,aviation fuels,refined oil,refined oil,non-energy,0.9,0.9
+inst/extdata/energy/A271.freight_cost_adj.csv:South America_Southern,aviation fuels,refined oil,refined oil,non-energy,0.9,0.9
+inst/extdata/energy/A271.freight_cost_adj.csv:South Asia,aviation fuels,refined oil,refined oil,non-energy,0.9,0.9
+inst/extdata/energy/A271.freight_cost_adj.csv:South Korea,aviation fuels,refined oil,refined oil,non-energy,0.9,0.9
+inst/extdata/energy/A271.freight_cost_adj.csv:Southeast Asia,aviation fuels,refined oil,refined oil,non-energy,0.9,0.9
+inst/extdata/energy/A271.freight_cost_adj.csv:Taiwan,aviation fuels,refined oil,refined oil,non-energy,0.9,0.9
+inst/extdata/energy/A271.freight_cost_adj.csv:Argentina,aviation fuels,refined oil,refined oil,non-energy,0.9,0.9
+inst/extdata/energy/A271.freight_cost_adj.csv:Colombia,aviation fuels,refined oil,refined oil,non-energy,0.9,0.9
+inst/extdata/energy/A26.sector.csv:aviation fuels,EJ,EJ,1975$/GJ,-3,
+inst/extdata/energy/A26.subsector_shrwt.csv:aviation fuels,refined oil,start-year,,1
+inst/extdata/energy/A26.subsector_shrwt.csv:aviation fuels,HEFA,1975,,0
+inst/extdata/energy/A26.subsector_shrwt.csv:aviation fuels,HEFA,initial-future-year,,0.5
+inst/extdata/energy/A26.subsector_shrwt.csv:aviation fuels,ETJ,start-year,,0
+inst/extdata/energy/A26.subsector_shrwt.csv:aviation fuels,ETJ,initial-future-year,,0.5
+inst/extdata/energy/A26.subsector_shrwt.csv:aviation fuels,FT,start-year,,0
+inst/extdata/energy/A26.subsector_shrwt.csv:aviation fuels,FT,initial-future-year,,0.5
+inst/extdata/energy/A26.globaltech_cost.csv:aviation fuels,refined oil,refined oil,non-energy,1.1,1.1,1.1,1.1
+inst/extdata/energy/A26.globaltech_cost.csv:aviation fuels,HEFA,soybean HEFA,non-energy,1.1,1.1,1.1,1.1
+inst/extdata/energy/A26.globaltech_cost.csv:aviation fuels,HEFA,rapeseed HEFA,non-energy,1.1,1.1,1.1,1.1
+inst/extdata/energy/A26.globaltech_cost.csv:aviation fuels,HEFA,palmfruit HEFA,non-energy,1.1,1.1,1.1,1.1
+inst/extdata/energy/A26.globaltech_cost.csv:aviation fuels,HEFA,oilcrop HEFA,non-energy,1.1,1.1,1.1,1.1
+inst/extdata/energy/A26.globaltech_cost.csv:aviation fuels,ETJ,corn ETJ,non-energy,1.1,1.1,1.1,1.1
+inst/extdata/energy/A26.globaltech_cost.csv:aviation fuels,FT,FT biojet,non-energy,1.1,1.1,1.1,1.1
+inst/extdata/energy/A52.globaltech_eff.csv:transportation,aviation fuels,aviation fuels,aviation fuels,0.16,0.17,0.25
+inst/extdata/energy/A26.globaltech_eff.csv:aviation fuels,refined oil,refined oil,regional refined jet,1,1,1
+inst/extdata/energy/A26.globaltech_eff.csv:aviation fuels,HEFA,soybean HEFA,regional soybean HEFA jet fuel,1,1,1
+inst/extdata/energy/A26.globaltech_eff.csv:aviation fuels,HEFA,rapeseed HEFA,regional rapeseed HEFA jet fuel,1,1,1
+inst/extdata/energy/A26.globaltech_eff.csv:aviation fuels,HEFA,palmfruit HEFA,regional palmfruit HEFA jet fuel,1,1,1
+inst/extdata/energy/A26.globaltech_eff.csv:aviation fuels,HEFA,oilcrop HEFA,regional oilcrop HEFA jet fuel,1,1,1
+inst/extdata/energy/A26.globaltech_eff.csv:aviation fuels,ETJ,corn ETJ,regional corn ETJ jet fuel,1,1,1
+inst/extdata/energy/A26.globaltech_eff.csv:aviation fuels,FT,FT biojet,regional FT biojet,1,1,1
+inst/extdata/energy/A271.freight_coef.csv:USA,aviation fuels,ETJ,corn ETJ,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Africa_Eastern,aviation fuels,ETJ,corn ETJ,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Africa_Northern,aviation fuels,ETJ,corn ETJ,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Africa_Southern,aviation fuels,ETJ,corn ETJ,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Africa_Western,aviation fuels,ETJ,corn ETJ,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Australia_NZ,aviation fuels,ETJ,corn ETJ,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Brazil,aviation fuels,ETJ,corn ETJ,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Canada,aviation fuels,ETJ,corn ETJ,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Central America and Caribbean,aviation fuels,ETJ,corn ETJ,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Central Asia,aviation fuels,ETJ,corn ETJ,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:China,aviation fuels,ETJ,corn ETJ,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:EU-12,aviation fuels,ETJ,corn ETJ,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:EU-15,aviation fuels,ETJ,corn ETJ,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Europe_Eastern,aviation fuels,ETJ,corn ETJ,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Europe_Non_EU,aviation fuels,ETJ,corn ETJ,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:European Free Trade Association,aviation fuels,ETJ,corn ETJ,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:India,aviation fuels,ETJ,corn ETJ,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Indonesia,aviation fuels,ETJ,corn ETJ,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Japan,aviation fuels,ETJ,corn ETJ,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Mexico,aviation fuels,ETJ,corn ETJ,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Middle East,aviation fuels,ETJ,corn ETJ,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Pakistan,aviation fuels,ETJ,corn ETJ,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Russia,aviation fuels,ETJ,corn ETJ,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:South Africa,aviation fuels,ETJ,corn ETJ,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:South America_Northern,aviation fuels,ETJ,corn ETJ,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:South America_Southern,aviation fuels,ETJ,corn ETJ,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:South Asia,aviation fuels,ETJ,corn ETJ,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:South Korea,aviation fuels,ETJ,corn ETJ,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Southeast Asia,aviation fuels,ETJ,corn ETJ,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Taiwan,aviation fuels,ETJ,corn ETJ,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Argentina,aviation fuels,ETJ,corn ETJ,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Colombia,aviation fuels,ETJ,corn ETJ,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:USA,aviation fuels,HEFA,oilcrop HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Africa_Eastern,aviation fuels,HEFA,oilcrop HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Africa_Northern,aviation fuels,HEFA,oilcrop HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Africa_Southern,aviation fuels,HEFA,oilcrop HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Africa_Western,aviation fuels,HEFA,oilcrop HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Australia_NZ,aviation fuels,HEFA,oilcrop HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Brazil,aviation fuels,HEFA,oilcrop HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Canada,aviation fuels,HEFA,oilcrop HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Central America and Caribbean,aviation fuels,HEFA,oilcrop HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Central Asia,aviation fuels,HEFA,oilcrop HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:China,aviation fuels,HEFA,oilcrop HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:EU-12,aviation fuels,HEFA,oilcrop HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:EU-15,aviation fuels,HEFA,oilcrop HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Europe_Eastern,aviation fuels,HEFA,oilcrop HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Europe_Non_EU,aviation fuels,HEFA,oilcrop HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:European Free Trade Association,aviation fuels,HEFA,oilcrop HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:India,aviation fuels,HEFA,oilcrop HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Indonesia,aviation fuels,HEFA,oilcrop HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Japan,aviation fuels,HEFA,oilcrop HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Mexico,aviation fuels,HEFA,oilcrop HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Middle East,aviation fuels,HEFA,oilcrop HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Pakistan,aviation fuels,HEFA,oilcrop HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Russia,aviation fuels,HEFA,oilcrop HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:South Africa,aviation fuels,HEFA,oilcrop HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:South America_Northern,aviation fuels,HEFA,oilcrop HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:South America_Southern,aviation fuels,HEFA,oilcrop HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:South Asia,aviation fuels,HEFA,oilcrop HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:South Korea,aviation fuels,HEFA,oilcrop HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Southeast Asia,aviation fuels,HEFA,oilcrop HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Taiwan,aviation fuels,HEFA,oilcrop HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Argentina,aviation fuels,HEFA,oilcrop HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Colombia,aviation fuels,HEFA,oilcrop HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:USA,aviation fuels,HEFA,palmfruit HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Africa_Eastern,aviation fuels,HEFA,palmfruit HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Africa_Northern,aviation fuels,HEFA,palmfruit HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Africa_Southern,aviation fuels,HEFA,palmfruit HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Africa_Western,aviation fuels,HEFA,palmfruit HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Australia_NZ,aviation fuels,HEFA,palmfruit HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Brazil,aviation fuels,HEFA,palmfruit HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Canada,aviation fuels,HEFA,palmfruit HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Central America and Caribbean,aviation fuels,HEFA,palmfruit HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Central Asia,aviation fuels,HEFA,palmfruit HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:China,aviation fuels,HEFA,palmfruit HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:EU-12,aviation fuels,HEFA,palmfruit HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:EU-15,aviation fuels,HEFA,palmfruit HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Europe_Eastern,aviation fuels,HEFA,palmfruit HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Europe_Non_EU,aviation fuels,HEFA,palmfruit HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:European Free Trade Association,aviation fuels,HEFA,palmfruit HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:India,aviation fuels,HEFA,palmfruit HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Indonesia,aviation fuels,HEFA,palmfruit HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Japan,aviation fuels,HEFA,palmfruit HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Mexico,aviation fuels,HEFA,palmfruit HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Middle East,aviation fuels,HEFA,palmfruit HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Pakistan,aviation fuels,HEFA,palmfruit HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Russia,aviation fuels,HEFA,palmfruit HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:South Africa,aviation fuels,HEFA,palmfruit HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:South America_Northern,aviation fuels,HEFA,palmfruit HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:South America_Southern,aviation fuels,HEFA,palmfruit HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:South Asia,aviation fuels,HEFA,palmfruit HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:South Korea,aviation fuels,HEFA,palmfruit HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Southeast Asia,aviation fuels,HEFA,palmfruit HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Taiwan,aviation fuels,HEFA,palmfruit HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Argentina,aviation fuels,HEFA,palmfruit HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Colombia,aviation fuels,HEFA,palmfruit HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:USA,aviation fuels,HEFA,rapeseed HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Africa_Eastern,aviation fuels,HEFA,rapeseed HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Africa_Northern,aviation fuels,HEFA,rapeseed HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Africa_Southern,aviation fuels,HEFA,rapeseed HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Africa_Western,aviation fuels,HEFA,rapeseed HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Australia_NZ,aviation fuels,HEFA,rapeseed HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Brazil,aviation fuels,HEFA,rapeseed HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Canada,aviation fuels,HEFA,rapeseed HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Central America and Caribbean,aviation fuels,HEFA,rapeseed HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Central Asia,aviation fuels,HEFA,rapeseed HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:China,aviation fuels,HEFA,rapeseed HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:EU-12,aviation fuels,HEFA,rapeseed HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:EU-15,aviation fuels,HEFA,rapeseed HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Europe_Eastern,aviation fuels,HEFA,rapeseed HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Europe_Non_EU,aviation fuels,HEFA,rapeseed HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:European Free Trade Association,aviation fuels,HEFA,rapeseed HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:India,aviation fuels,HEFA,rapeseed HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Indonesia,aviation fuels,HEFA,rapeseed HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Japan,aviation fuels,HEFA,rapeseed HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Mexico,aviation fuels,HEFA,rapeseed HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Middle East,aviation fuels,HEFA,rapeseed HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Pakistan,aviation fuels,HEFA,rapeseed HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Russia,aviation fuels,HEFA,rapeseed HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:South Africa,aviation fuels,HEFA,rapeseed HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:South America_Northern,aviation fuels,HEFA,rapeseed HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:South America_Southern,aviation fuels,HEFA,rapeseed HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:South Asia,aviation fuels,HEFA,rapeseed HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:South Korea,aviation fuels,HEFA,rapeseed HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Southeast Asia,aviation fuels,HEFA,rapeseed HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Taiwan,aviation fuels,HEFA,rapeseed HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Argentina,aviation fuels,HEFA,rapeseed HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Colombia,aviation fuels,HEFA,rapeseed HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:USA,aviation fuels,refined oil,refined oil,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Africa_Eastern,aviation fuels,refined oil,refined oil,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Africa_Northern,aviation fuels,refined oil,refined oil,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Africa_Southern,aviation fuels,refined oil,refined oil,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Africa_Western,aviation fuels,refined oil,refined oil,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Australia_NZ,aviation fuels,refined oil,refined oil,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Brazil,aviation fuels,refined oil,refined oil,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Canada,aviation fuels,refined oil,refined oil,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Central America and Caribbean,aviation fuels,refined oil,refined oil,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Central Asia,aviation fuels,refined oil,refined oil,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:China,aviation fuels,refined oil,refined oil,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:EU-12,aviation fuels,refined oil,refined oil,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:EU-15,aviation fuels,refined oil,refined oil,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Europe_Eastern,aviation fuels,refined oil,refined oil,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Europe_Non_EU,aviation fuels,refined oil,refined oil,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:European Free Trade Association,aviation fuels,refined oil,refined oil,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:India,aviation fuels,refined oil,refined oil,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Indonesia,aviation fuels,refined oil,refined oil,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Japan,aviation fuels,refined oil,refined oil,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Mexico,aviation fuels,refined oil,refined oil,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Middle East,aviation fuels,refined oil,refined oil,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Pakistan,aviation fuels,refined oil,refined oil,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Russia,aviation fuels,refined oil,refined oil,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:South Africa,aviation fuels,refined oil,refined oil,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:South America_Northern,aviation fuels,refined oil,refined oil,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:South America_Southern,aviation fuels,refined oil,refined oil,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:South Asia,aviation fuels,refined oil,refined oil,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:South Korea,aviation fuels,refined oil,refined oil,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Southeast Asia,aviation fuels,refined oil,refined oil,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Taiwan,aviation fuels,refined oil,refined oil,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Argentina,aviation fuels,refined oil,refined oil,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Colombia,aviation fuels,refined oil,refined oil,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:USA,aviation fuels,HEFA,soybean HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Africa_Eastern,aviation fuels,HEFA,soybean HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Africa_Northern,aviation fuels,HEFA,soybean HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Africa_Southern,aviation fuels,HEFA,soybean HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Africa_Western,aviation fuels,HEFA,soybean HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Australia_NZ,aviation fuels,HEFA,soybean HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Brazil,aviation fuels,HEFA,soybean HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Canada,aviation fuels,HEFA,soybean HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Central America and Caribbean,aviation fuels,HEFA,soybean HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Central Asia,aviation fuels,HEFA,soybean HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:China,aviation fuels,HEFA,soybean HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:EU-12,aviation fuels,HEFA,soybean HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:EU-15,aviation fuels,HEFA,soybean HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Europe_Eastern,aviation fuels,HEFA,soybean HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Europe_Non_EU,aviation fuels,HEFA,soybean HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:European Free Trade Association,aviation fuels,HEFA,soybean HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:India,aviation fuels,HEFA,soybean HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Indonesia,aviation fuels,HEFA,soybean HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Japan,aviation fuels,HEFA,soybean HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Mexico,aviation fuels,HEFA,soybean HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Middle East,aviation fuels,HEFA,soybean HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Pakistan,aviation fuels,HEFA,soybean HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Russia,aviation fuels,HEFA,soybean HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:South Africa,aviation fuels,HEFA,soybean HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:South America_Northern,aviation fuels,HEFA,soybean HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:South America_Southern,aviation fuels,HEFA,soybean HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:South Asia,aviation fuels,HEFA,soybean HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:South Korea,aviation fuels,HEFA,soybean HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Southeast Asia,aviation fuels,HEFA,soybean HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Taiwan,aviation fuels,HEFA,soybean HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Argentina,aviation fuels,HEFA,soybean HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A271.freight_coef.csv:Colombia,aviation fuels,HEFA,soybean HEFA,trn_freight,4.52E-04,2800,2800,2800,2800,2800
+inst/extdata/energy/A26.globaltech_interp.csv:aviation fuels,HEFA,soybean HEFA,share-weight,initial-future-year,end-year,fixed
+inst/extdata/energy/A26.globaltech_interp.csv:aviation fuels,HEFA,rapeseed HEFA,share-weight,initial-future-year,end-year,fixed
+inst/extdata/energy/A26.globaltech_interp.csv:aviation fuels,HEFA,palmfruit HEFA,share-weight,initial-future-year,end-year,fixed
+inst/extdata/energy/A26.globaltech_interp.csv:aviation fuels,HEFA,oilcrop HEFA,share-weight,initial-future-year,end-year,fixed
+inst/extdata/energy/A26.globaltech_interp.csv:aviation fuels,ETJ,corn ETJ,share-weight,initial-future-year,end-year,fixed
+inst/extdata/energy/A26.globaltech_interp.csv:aviation fuels,refined oil,refined oil,share-weight,final-calibration-year,end-year,fixed
+inst/extdata/energy/A26.globaltech_interp.csv:aviation fuels,FT,FT biojet,share-weight,initial-future-year,end-year,fixed
+inst/extdata/energy/A26.subsector_interp.csv:aviation fuels,refined oil,share-weight,final-calibration-year,end-year,,linear
+inst/extdata/energy/A26.subsector_interp.csv:aviation fuels,HEFA,share-weight,final-calibration-year,2050,,s-curve
+inst/extdata/energy/A26.subsector_interp.csv:aviation fuels,ETJ,share-weight,final-calibration-year,end-year,,s-curve
+inst/extdata/energy/A26.subsector_interp.csv:aviation fuels,FT,share-weight,final-calibration-year,end-year,,s-curve
+inst/extdata/energy/A26.globaltech_shrwt.csv:aviation fuels,refined oil,refined oil,1,1,1,1
+inst/extdata/energy/A26.globaltech_shrwt.csv:aviation fuels,HEFA,soybean HEFA,0,0,1,1
+inst/extdata/energy/A26.globaltech_shrwt.csv:aviation fuels,HEFA,rapeseed HEFA,0,0,1,1
+inst/extdata/energy/A26.globaltech_shrwt.csv:aviation fuels,HEFA,palmfruit HEFA,0,0,1,1
+inst/extdata/energy/A26.globaltech_shrwt.csv:aviation fuels,HEFA,oilcrop HEFA,0,0,1,1
+inst/extdata/energy/A26.globaltech_shrwt.csv:aviation fuels,HEFA,waste oil HEFA,0,0,0,0
+inst/extdata/energy/A26.globaltech_shrwt.csv:aviation fuels,ETJ,corn ETJ,0,0,0.1,0.5
+inst/extdata/energy/A26.globaltech_shrwt.csv:aviation fuels,FT,FT biojet,0,0,0.1,0.5
+inst/extdata/energy/liquids_mapping.txt:mappings/calibrated_techs_trn_agg.csv:trn_domestic air,refined liquids,transportation,aviation fuel,aviation fuel,aviation fuel,input,trn_air
+inst/extdata/energy/liquids_mapping.txt:mappings/calibrated_techs_trn_agg.csv:trn_international air,refined liquids,transportation,aviation fuel,aviation fuel,aviation fuel,input,trn_air
+inst/extdata/energy/liquids_mapping.txt:mappings/IEA_sector_fuel_modifications.csv:net_industry_oil refining,refined liquids,net_oil refining,aviation fuel,-0.00004186
+inst/extdata/energy/mappings/fuel_energy_input.csv:aviation fuels,refined liquids
+inst/extdata/energy/mappings/UCD_techs_revised.csv:Passenger,Air Domestic,All,Liquids,Liquids,trn_air,refined liquids,trn_pass,Domestic Aviation,Liquids,aviation fuels,aviation fuels
+inst/extdata/energy/mappings/UCD_techs_revised.csv:Passenger,Air International,All,Liquids,Liquids,trn_air,refined liquids,trn_aviation_intl,International Aviation,Liquids,aviation fuels,aviation fuels
+inst/extdata/energy/mappings/calibrated_techs_trn_agg.csv:trn_domestic air,refined liquids,transportation,refined liquids,refined liquids,aviation fuels,input,trn_air
+inst/extdata/energy/mappings/calibrated_techs_trn_agg.csv:trn_international air,refined liquids,transportation,refined liquids,refined liquids,aviation fuels,input,trn_air
+inst/extdata/energy/mappings/UCD_techs.csv:Passenger,Air Domestic,All,Liquids,Liquids,trn_air,refined liquids,trn_pass,Domestic Aviation,Liquids,aviation fuels,aviation fuels
+inst/extdata/energy/mappings/UCD_techs.csv:Passenger,Air International,All,Liquids,Liquids,trn_air,refined liquids,trn_aviation_intl,International Aviation,Liquids,aviation fuels,aviation fuels
+R/zchunk_L271.ag_en_freight_inputs.R:                                    supplysector != "aviation fuels",
+R/constants.R:                                   "aviation fuels")
+R/zchunk_batch_ag_en_freight_inputs_xml.R:             supplysector = "aviation fuels",
+R/zchunk_L226.en_distribution.R:             supplysector = "aviation fuels",

@@ -9,3 +9,4 @@ transportation,electricity,electricity,elect_td_trn,0.48,0.51,0.65
 transportation,hydrogen,hydrogen,H2 retail dispensing,0.224,0.238,0.35
 transportation,gas,gas,delivered gas,0.16,0.17,0.25
 transportation,refined liquids,refined liquids,refined liquids enduse,0.16,0.17,0.25
+transportation,aviation fuels,aviation fuels,aviation fuels,0.16,0.17,0.25
