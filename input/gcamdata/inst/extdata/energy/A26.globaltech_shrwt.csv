@@ -1,7 +1,7 @@
 # File: A26.globaltech_shrwt.csv
 # Title: Final energy transformation default technology shareweights
 # Units: NA
-# Description: Default shareweights for final energy transformation technologies, used to interpolate shareweights for all model years
+# Description: Default shareweights for final energy transformation technologies, used to interpolate shareweights for all model years,,,,,
 # Source: NA
 # Column types: ccciiii
 # ----------
@@ -25,7 +25,7 @@ aviation fuels,renewable diesel,oilcrop renewable diesel,0,0,1,1
 refined liquids enduse,refined oil,refined oil,1,1,1,1
 refined liquids enduse,biodiesel,oilcrop biodiesel refining,1,1,1,1
 refined liquids enduse,biodiesel,rapeseed biodiesel refining,1,1,1,1
-refined liquids enduse,biodiesel,palmfruit biodiesel refining,1,1,1,1
+refined liquids enduse,biodiesel,oilpalm biodiesel refining,1,1,1,1
 refined liquids enduse,biodiesel,soybean biodiesel refining,1,1,1,1
 refined liquids enduse,biodiesel,other biodiesel,0,0,0,0
 refined liquids industrial,refined liquids industrial,refined liquids industrial,1,1,1,1
