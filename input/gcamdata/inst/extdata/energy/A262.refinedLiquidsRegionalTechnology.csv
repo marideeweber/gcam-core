@@ -5,34 +5,35 @@
 # Source: NA
 # Column types: ccccnnncc
 # ----------
-supplysector,subsector,technology,minicam.energy.input,coefficient,input.cost,share.weight,market.name
-regional refined oil,domestic refined oil,domestic refined oil,refining,1,0,1,regional
-regional refined oil,imported refined oil,imported refined oil,traded refined oil,1,0,1,USA
-regional corn ethanol,domestic corn ethanol,domestic corn ethanol,corn ethanol,1,0,1,regional
-regional corn ethanol,imported corn ethanol,imported corn ethanol,traded corn ethanol,1,0,1,USA
-regional sugar cane ethanol,domestic sugar cane ethanol,domestic sugar cane ethanol,sugar cane ethanol,1,0,1,regional
-regional sugar cane ethanol,imported sugar cane ethanol,imported sugar cane ethanol,traded sugar cane ethanol,1,0,1,USA
-regional oilcrop biodiesel,domestic oilcrop biodiesel,domestic oilcrop biodiesel,oilcrop biodiesel,1,0,1,regional
-regional palmfruit biodiesel,domestic palmfruit biodiesel,domestic palmfruit biodiesel,palmfruit biodiesel,1,0,1,regional
-regional rapeseed biodiesel,domestic rapeseed biodiesel,domestic rapeseed biodiesel,rapeseed biodiesel,1,0,1,regional
-regional soybean biodiesel,domestic soybean biodiesel,domestic soybean biodiesel,soybean biodiesel,1,0,1,regional
-regional oilcrop biodiesel,imported oilcrop biodiesel,imported oilcrop biodiesel,traded oilcrop biodiesel,1,0,1,USA
-regional palmfruit biodiesel,imported palmfruit biodiesel,imported palmfruit biodiesel,traded palmfruit biodiesel,1,0,1,USA
-regional rapeseed biodiesel,imported rapeseed biodiesel,imported rapeseed biodiesel,traded rapeseed biodiesel,1,0,1,USA
-regional soybean biodiesel,imported soybean biodiesel,imported soybean biodiesel,traded soybean biodiesel,1,0,1,USA
-regional soybean renewable diesel,domestic soybean renewable diesel,domestic soybean renewable diesel,soybean renewable diesel,1,0,1,regional
-regional rapeseed renewable diesel,domestic rapeseed renewable diesel,domestic rapeseed renewable diesel,rapeseed renewable diesel,1,0,1,regional
-regional palmfruit renewable diesel,domestic palmfruit renewable diesel,domestic palmfruit renewable diesel,palmfruit renewable diesel,1,0,1,regional
-regional oilcrop renewable diesel,domestic oilcrop renewable diesel,domestic oilcrop renewable diesel,oilcrop renewable diesel,1,0,1,regional
-regional soybean renewable diesel,imported soybean renewable diesel,imported soybean renewable diesel,traded soybean renewable diesel,1,0,1,USA
-regional rapeseed renewable diesel,imported rapeseed renewable diesel,imported rapeseed renewable diesel,traded rapeseed renewable diesel,1,0,1,USA
-regional palmfruit renewable diesel,imported palmfruit renewable diesel,imported palmfruit renewable diesel,traded palmfruit renewable diesel,1,0,1,USA
-regional oilcrop renewable diesel,imported oilcrop renewable diesel,imported oilcrop renewable diesel,traded oilcrop renewable diesel,1,0,1,USA
-regional soybean renewable diesel jet fuel,domestic soybean renewable diesel jet fuel,domestic soybean renewable diesel jet fuel,soybean renewable diesel jet fuel,1,0,1,regional
-regional rapeseed renewable diesel jet fuel,domestic rapeseed renewable diesel jet fuel,domestic rapeseed renewable diesel jet fuel,rapeseed renewable diesel jet fuel,1,0,1,regional
-regional palmfruit renewable diesel jet fuel,domestic palmfruit renewable diesel jet fuel,domestic palmfruit renewable diesel jet fuel,palmfruit renewable diesel jet fuel,1,0,1,regional
-regional oilcrop renewable diesel jet fuel,domestic oilcrop renewable diesel jet fuel,domestic oilcrop renewable diesel jet fuel,oilcrop renewable diesel jet fuel,1,0,1,regional
-regional soybean renewable diesel jet fuel,imported soybean renewable diesel jet fuel,imported soybean renewable diesel jet fuel,traded soybean renewable diesel jet fuel,1,0,1,USA
-regional rapeseed renewable diesel jet fuel,imported rapeseed renewable diesel jet fuel,imported rapeseed renewable diesel jet fuel,traded rapeseed renewable diesel jet fuel,1,0,1,USA
-regional palmfruit renewable diesel jet fuel,imported palmfruit renewable diesel jet fuel,imported palmfruit renewable diesel jet fuel,traded palmfruit renewable diesel jet fuel,1,0,1,USA
-regional oilcrop renewable diesel jet fuel,imported oilcrop renewable diesel jet fuel,imported oilcrop renewable diesel jet fuel,traded oilcrop renewable diesel jet fuel,1,0,1,USA
+supplysector,subsector,technology,minicam.energy.input,coefficient,input.cost,share.weight,market.name,memo
+regional refined oil,domestic refined oil,domestic refined oil,refining,1,0,1,regional,
+regional refined oil,imported refined oil,imported refined oil,traded refined oil,1,0,1,USA,
+regional corn ethanol,domestic corn ethanol,domestic corn ethanol,corn ethanol,1,0,1,regional,
+regional corn ethanol,domestic corn ethanol,domestic corn ethanol (exceed blend wall),corn ethanol,1,3.6,1,regional,USA only
+regional corn ethanol,imported corn ethanol,imported corn ethanol,traded corn ethanol,1,0,1,USA,
+regional sugar cane ethanol,domestic sugar cane ethanol,domestic sugar cane ethanol,sugar cane ethanol,1,0,1,regional,
+regional sugar cane ethanol,imported sugar cane ethanol,imported sugar cane ethanol,traded sugar cane ethanol,1,0,1,USA,
+regional sugar cane ethanol,imported sugar cane ethanol,imported sugar cane ethanol (exceed blend wall),traded sugar cane ethanol,1,0,1,USA,USA only
+regional palmfruit biodiesel,domestic palmfruit biodiesel,domestic palmfruit biodiesel,palmfruit biodiesel,1,0,1,regional,
+regional rapeseed biodiesel,domestic rapeseed biodiesel,domestic rapeseed biodiesel,rapeseed biodiesel,1,0,1,regional,
+regional soybean biodiesel,domestic soybean biodiesel,domestic soybean biodiesel,soybean biodiesel,1,0,1,regional,
+regional oilcrop biodiesel,imported oilcrop biodiesel,imported oilcrop biodiesel,traded oilcrop biodiesel,1,0,1,USA,
+regional palmfruit biodiesel,imported palmfruit biodiesel,imported palmfruit biodiesel,traded palmfruit biodiesel,1,0,1,USA,
+regional rapeseed biodiesel,imported rapeseed biodiesel,imported rapeseed biodiesel,traded rapeseed biodiesel,1,0,1,USA,
+regional soybean biodiesel,imported soybean biodiesel,imported soybean biodiesel,traded soybean biodiesel,1,0,1,USA,
+regional soybean renewable diesel,domestic soybean renewable diesel,domestic soybean renewable diesel,soybean renewable diesel,1,0,1,regional,
+regional rapeseed renewable diesel,domestic rapeseed renewable diesel,domestic rapeseed renewable diesel,rapeseed renewable diesel,1,0,1,regional,
+regional palmfruit renewable diesel,domestic palmfruit renewable diesel,domestic palmfruit renewable diesel,palmfruit renewable diesel,1,0,1,regional,
+regional oilcrop renewable diesel,domestic oilcrop renewable diesel,domestic oilcrop renewable diesel,oilcrop renewable diesel,1,0,1,regional,
+regional soybean renewable diesel,imported soybean renewable diesel,imported soybean renewable diesel,traded soybean renewable diesel,1,0,1,USA,
+regional rapeseed renewable diesel,imported rapeseed renewable diesel,imported rapeseed renewable diesel,traded rapeseed renewable diesel,1,0,1,USA,
+regional palmfruit renewable diesel,imported palmfruit renewable diesel,imported palmfruit renewable diesel,traded palmfruit renewable diesel,1,0,1,USA,
+regional oilcrop renewable diesel,imported oilcrop renewable diesel,imported oilcrop renewable diesel,traded oilcrop renewable diesel,1,0,1,USA,
+regional soybean renewable diesel jet fuel,domestic soybean renewable diesel jet fuel,domestic soybean renewable diesel jet fuel,soybean renewable diesel jet fuel,1,0,1,regional,
+regional rapeseed renewable diesel jet fuel,domestic rapeseed renewable diesel jet fuel,domestic rapeseed renewable diesel jet fuel,rapeseed renewable diesel jet fuel,1,0,1,regional,
+regional palmfruit renewable diesel jet fuel,domestic palmfruit renewable diesel jet fuel,domestic palmfruit renewable diesel jet fuel,palmfruit renewable diesel jet fuel,1,0,1,regional,
+regional oilcrop renewable diesel jet fuel,domestic oilcrop renewable diesel jet fuel,domestic oilcrop renewable diesel jet fuel,oilcrop renewable diesel jet fuel,1,0,1,regional,
+regional soybean renewable diesel jet fuel,imported soybean renewable diesel jet fuel,imported soybean renewable diesel jet fuel,traded soybean renewable diesel jet fuel,1,0,1,USA,
+regional rapeseed renewable diesel jet fuel,imported rapeseed renewable diesel jet fuel,imported rapeseed renewable diesel jet fuel,traded rapeseed renewable diesel jet fuel,1,0,1,USA,
+regional palmfruit renewable diesel jet fuel,imported palmfruit renewable diesel jet fuel,imported palmfruit renewable diesel jet fuel,traded palmfruit renewable diesel jet fuel,1,0,1,USA,
+regional oilcrop renewable diesel jet fuel,imported oilcrop renewable diesel jet fuel,imported oilcrop renewable diesel jet fuel,traded oilcrop renewable diesel jet fuel,1,0,1,USA,

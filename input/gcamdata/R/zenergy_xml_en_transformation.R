@@ -31,7 +31,10 @@ module_energy_en_transformation_xml <- function(command, ...) {
       "L222.GlobalTechKeyword_en",
       "L222.StubTechProd_gasproc",
       "L222.StubTechProd_refining",
-      "L222.StubTechCoef_refining")
+      "L222.StubTechCoef_refining",
+      "L222.GlobalTechSecOut",
+      "L222.jet_fuel_credits",
+      "L222.jet_fuel_credits_min_price")
 
   MODULE_OUTPUTS <-
     c(XML = "en_transformation.xml")
@@ -91,6 +94,9 @@ module_energy_en_transformation_xml <- function(command, ...) {
       add_xml_data(L222.StubTechProd_gasproc, "StubTechProd") %>%
       add_xml_data(L222.StubTechProd_refining, "StubTechProd") %>%
       add_xml_data(L222.StubTechCoef_refining, "StubTechCoef") %>%
+      add_xml_data(L222.GlobalTechSecOut, "GlobalTechRESSecOut") %>%
+      add_xml_data(L222.jet_fuel_credits, "PortfolioStdConstraint") %>%
+      add_xml_data(L222.jet_fuel_credits_min_price, "PortfolioStdMinPrice") %>%
       add_precursors(MODULE_INPUTS) ->
       en_transformation.xml
 

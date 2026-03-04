@@ -207,7 +207,8 @@ module_energy_L2262.refined_liquids_trade <- function(command, ...) {
       mutate(minicam.energy.input = if_else(GCAM_commodity == "refining", GCAM_commodity, sector)) %>%
       select(region, GCAM_commodity, sector, minicam.energy.input, year, gross_exports)
 
-    L2262.Production_refinedLiquids_tra <- filter(A262.refinedLiquidsTradedTechnology_R_Y, year %in% MODEL_BASE_YEARS) %>%
+    L2262.Production_refinedLiquids_tra <- filter(A262.refinedLiquidsTradedTechnology_R_Y, year %in% MODEL_BASE_YEARS,
+                                                  minicam.energy.input %in% unique(L2262.refinedLiquidsGrossExports_EJ_R_C_Y$minicam.energy.input) ) %>%
       left_join_error_no_match(L2262.refinedLiquidsGrossExports_EJ_R_C_Y,
                                by = c(market.name = "region", "minicam.energy.input", "year")) %>%
       mutate(calOutputValue = round(gross_exports, energy.DIGITS_CALOUTPUT),
@@ -259,6 +260,7 @@ module_energy_L2262.refined_liquids_trade <- function(command, ...) {
 
     L2262.Production_refinedLiquids_reg_imp <- A262.refinedLiquidsRegionalTechnology_R_Y %>%
       filter(year %in% MODEL_BASE_YEARS,
+             minicam.energy.input %in% unique(L2262.refinedLiquidsGrossImports_EJ_R_C_Y$supplysector),
              grepl( "import", subsector)) %>%
       left_join_error_no_match(L2262.refinedLiquidsGrossImports_EJ_R_C_Y,
                                by = c("region", minicam.energy.input = "supplysector", "year")) %>%
@@ -287,6 +289,7 @@ module_energy_L2262.refined_liquids_trade <- function(command, ...) {
     # 3/31/2025 gpk revision - the "exceed blend wall" techs have names that differ from their parent subsector, and have 0 calibration
     L2262.Production_refinedLiquids_reg_dom <- A262.refinedLiquidsRegionalTechnology_R_Y %>%
       filter(year %in% MODEL_BASE_YEARS,
+             minicam.energy.input %in% c(L2262.refinedLiquidsGrossExports_EJ_R_C_Y$minicam.energy.input),
              grepl( "domestic", subsector)) %>%
       left_join_error_no_match(L2262.refinedLiquidsGrossExports_EJ_R_C_Y,
                                by = c("region", "minicam.energy.input", "year")) %>%

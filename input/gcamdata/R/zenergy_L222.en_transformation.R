@@ -47,6 +47,9 @@ module_energy_L222.en_transformation <- function(command, ...) {
         FILE = "energy/A22.globaltech_retirement",
         FILE = "energy/A22.stubtech_lifetime",
         FILE = "energy/A22.globaltech_keyword",
+        FILE = "energy/A22.globaltech_secondary_output",
+        FILE = "energy/A22.jet_credits",
+
         "L122.out_EJ_R_gasproc_F_Yh",
         "L122.out_EJ_R_refining_F_Yh",
         "L122.IO_R_oilrefining_F_Yh",
@@ -77,60 +80,16 @@ module_energy_L222.en_transformation <- function(command, ...) {
       "L222.StubTechProd_refining",
       "L222.StubTechCoef_refining",
       "L222.GlobalTechCost_low_en",
-      "L222.biofuel_type_filter_R")
+      "L222.biofuel_type_filter_R",
+      "L222.GlobalTechSecOut",
+      "L222.jet_fuel_credits",
+      "L222.jet_fuel_credits_min_price")
 
   if(command == driver.DECLARE_INPUTS) {
-    return(c(FILE = "common/GCAM_region_names",
-             FILE = "energy/calibrated_techs",
-             FILE = "energy/A_regions",
-             FILE = "energy/A22.sector",
-             FILE = "energy/A22.subsector_logit",
-             FILE = "energy/A22.subsector_shrwt",
-             FILE = "energy/A22.subsector_interp",
-             FILE = "energy/A22.globaltech_coef",
-             FILE = "energy/A22.globaltech_cost",
-             # Note: Low indicates low tech. Costs are actually higher than core
-             FILE = "energy/A22.globaltech_cost_low",
-             FILE = "energy/A22.globaltech_shrwt",
-             FILE = "energy/A22.globaltech_interp",
-             FILE = "energy/A22.globaltech_co2capture",
-             FILE = "energy/A22.globaltech_retirement",
-             FILE = "energy/A22.globaltech_secondary_output",
-             FILE = "energy/A22.jet_credits",
-             "L121.share_R_TPES_biofuel_tech",
-             FILE = "energy/A22.globaltech_keyword",
-             "L122.out_EJ_R_gasproc_F_Yh",
-             "L122.out_EJ_R_refining_F_Yh",
-             "L122.IO_R_oilrefining_F_Yh"))
+    return(MODULE_INPUTS)
   } else if(command == driver.DECLARE_OUTPUTS) {
-    return(c("L222.Supplysector_en",
-             "L222.SectorUseTrialMarket_en",
-             "L222.SubsectorLogit_en",
-             "L222.SubsectorShrwt_en",
-             "L222.SubsectorShrwtFllt_en",
-             "L222.SubsectorInterp_en",
-             "L222.SubsectorInterpTo_en",
-             "L222.StubTech_en",
-             "L222.GlobalTechInterp_en",
-             "L222.GlobalTechCoef_en",
-             "L222.GlobalTechCost_en",
-             "L222.GlobalTechShrwt_en",
-             "L222.GlobalTechCapture_en",
-             "L222.GlobalTechShutdown_en",
-             "L222.GlobalTechSCurve_en",
-             "L222.GlobalTechLifetime_en",
-             "L222.GlobalTechProfitShutdown_en",
-             "L222.GlobalTechKeyword_en",
-             "L222.StubTechProd_gasproc",
-             "L222.StubTechProd_refining",
-             "L222.StubTechCoef_refining",
-             "L222.GlobalTechCost_low_en",
-             "L222.AbsCostLogitBaseValue_ethanol",
-             "L222.biofuel_type_filter_R",
-             "L222.GlobalTechSecOut",
-             "L222.jet_fuel_credits",
-             "L222.jet_fuel_credits_min_price"))
-  } else if(command == driver.MAKE) {
+    return(MODULE_OUTPUTS)
+  } else if(command == driver.MAKE)  {
 
     all_data <- list(...)[[1]]
 
@@ -902,14 +861,7 @@ module_energy_L222.en_transformation <- function(command, ...) {
       add_precursors("energy/A22.jet_credits") ->
       L222.jet_fuel_credits_min_price
 
-    return_data(L222.Supplysector_en, L222.SectorUseTrialMarket_en, L222.SubsectorLogit_en, L222.SubsectorShrwt_en,
-                L222.SubsectorShrwtFllt_en, L222.SubsectorInterp_en, L222.SubsectorInterpTo_en,
-                L222.StubTech_en, L222.GlobalTechInterp_en, L222.GlobalTechCoef_en, L222.GlobalTechCost_en,
-                L222.GlobalTechShrwt_en, L222.GlobalTechCapture_en, L222.GlobalTechShutdown_en,
-                L222.GlobalTechSCurve_en, L222.GlobalTechLifetime_en, L222.GlobalTechProfitShutdown_en,
-                L222.StubTechProd_gasproc, L222.StubTechProd_refining, L222.StubTechCoef_refining,
-                L222.GlobalTechCost_low_en, L222.GlobalTechKeyword_en, L222.AbsCostLogitBaseValue_ethanol,
-                L222.biofuel_type_filter_R, L222.GlobalTechSecOut, L222.jet_fuel_credits, L222.jet_fuel_credits_min_price)
+    return_data(MODULE_OUTPUTS)
   } else {
     stop("Unknown command")
   }
