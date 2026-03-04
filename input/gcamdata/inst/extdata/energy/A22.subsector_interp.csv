@@ -10,8 +10,9 @@ gas processing,coal gasification,share-weight,final-calibration-year,end-year,,l
 nuclearFuelGenII,enrichedUranium,share-weight,final-calibration-year,end-year,,linear
 nuclearFuelGenIII,enrichedUranium,share-weight,final-calibration-year,end-year,,linear
 refining,oil refining,share-weight,final-calibration-year,end-year,,fixed
-refining,coal to liquids,share-weight,initial-future-year,2025,,linear
-refining,gas to liquids,share-weight,initial-future-year,2025,,linear
+refining,biomass liquids,share-weight,final-calibration-year,2030,,linear
+refining,coal to liquids,share-weight,initial-future-year,end-year,,linear
+refining,gas to liquids,share-weight,initial-future-year,end-year,,linear
 soybean renewable diesel joint,soybean renewable diesel joint,share-weight,final-calibration-year,end-year,,linear
 soybean renewable diesel jet fuel,soybean renewable diesel jet fuel,share-weight,final-calibration-year,end-year,,linear
 soybean renewable diesel,soybean renewable diesel,share-weight,final-calibration-year,end-year,,linear

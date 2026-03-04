@@ -21,7 +21,11 @@ refining,biomass liquids,FT biofuels,non-energy,7.802307692,7.802307692,,0.7,0.0
 refining,biomass liquids,FT biofuels CCS level 1,non-energy,8.516923077,8.516923077,,0.6,0.05,FT biofuels
 refining,biomass liquids,FT biofuels CCS level 2,non-energy,8.97527027,8.97527027,,0.6,0.05,FT biofuels
 corn ethanol,corn ethanol,corn ethanol,non-energy,2.38,2.38,2.38,,,
-sugar cane ethanol,sugar cane ethanol,sugar cane ethanol,non-energy,0,0,0,,,
+sugar cane ethanol,sugar cane ethanol,sugar cane ethanol,non-energy,2,2,2,,,
+oilcrop biodiesel,oilcrop biodiesel,oilcrop biodiesel,non-energy,1.88,1.88,1.88,,,
+oilpalm biodiesel,oilpalm biodiesel,oilpalm biodiesel,non-energy,1.88,1.88,1.88,,,
+soybean biodiesel,soybean biodiesel,soybean biodiesel,non-energy,1.88,1.88,1.88,,,
+rapeseed biodiesel,rapeseed biodiesel,rapeseed biodiesel,non-energy,1.88,1.88,1.88,,,
 refining,biomass liquids,BTL with hydrogen,non-energy,5.65,5.65,,0.7,0.03,
 oilcrop biodiesel,oilcrop biodiesel,oilcrop biodiesel,non-energy,1.41,1.41,1.41,,,
 rapeseed biodiesel,rapeseed biodiesel,rapeseed biodiesel,non-energy,1.41,1.41,1.41,,,

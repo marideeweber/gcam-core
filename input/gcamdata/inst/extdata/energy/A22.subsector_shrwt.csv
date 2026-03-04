@@ -15,7 +15,7 @@ refining,biomass liquids,initial-future-year,,1
 refining,coal to liquids,initial-future-year,,0
 refining,coal to liquids,end-year,,0.1
 refining,gas to liquids,initial-future-year,,0
-refining,gas to liquids,2025,,0.001
+refining,gas to liquids,2025,,0.25
 soybean renewable diesel joint,soybean renewable diesel joint,start-year,,0
 soybean renewable diesel joint,soybean renewable diesel joint,initial-future-year,,1
 soybean renewable diesel,soybean renewable diesel,start-year,,0
@@ -41,3 +41,9 @@ oilcrop renewable diesel,oilcrop renewable diesel,initial-future-year,,1
 oilcrop renewable diesel jet fuel,oilcrop renewable diesel jet fuel,start-year,,0
 oilcrop renewable diesel jet fuel,oilcrop renewable diesel jet fuel,initial-future-year,,1
 sugar cane ethanol,sugar cane ethanol,initial-future-year,,1
+cellulosic ethanol,cellulosic ethanol,initial-future-year,,1
+corn ethanol,corn ethanol,initial-future-year,,1
+soybean biodiesel,soybean biodiesel,initial-future-year,,1
+rapeseed biodiesel,rapeseed biodiesel,initial-future-year,,1
+oilpalm biodiesel,oilpalm biodiesel,initial-future-year,,1
+oilcrop biodiesel,oilcrop biodiesel,initial-future-year,,1
