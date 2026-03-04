@@ -63,8 +63,8 @@ module_energy_en_distribution_xml <- function(command, ...) {
       filter(minicam.energy.input != "regional refined oil") %>%
       left_join_error_no_match(
         L226.GlobalTechEff_en %>%
-          bind_rows(L2261.GlobalTechEff_en %>% filter(subsector.name == "ethanol")) %>%
-          filter(sector.name != "refined liquids industrial") %>%
+          bind_rows(L2261.GlobalTechEff_en %>% filter(subsector.name %in% c("ethanol"))) %>%
+          filter(!sector.name %in% c("refined liquids industrial","aviation fuels")) %>%
           transmute(supplysector = sector.name,
                     subsector = subsector.name,
                     stub.technology = technology,
@@ -137,7 +137,7 @@ module_energy_en_distribution_xml <- function(command, ...) {
 
     #  This is biodiesel data
     L2262.StubTechConsumption_refining_biofuels %>%
-      filter(subsector == "biodiesel")%>%
+      filter(subsector %in% c("biodiesel","renewable diesel"))%>%
       group_by(region, year, subsector) %>%
       mutate(subs.share.weight = if_else(sum(calOutputValue)>0, 1, 0)) %>%
       ungroup() ->
