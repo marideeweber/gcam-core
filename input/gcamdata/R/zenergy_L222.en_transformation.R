@@ -158,7 +158,7 @@ module_energy_L222.en_transformation <- function(command, ...) {
                                         L222.renewable_diesel_jet_filter_R)
 
 
-    L222.Supplysector_en <- anti_join(L222.Supplysector_en, L222.biofuel_type_filter_R, by = c("region", "supplysector"))
+    #L222.Supplysector_en <- anti_join(L222.Supplysector_en, L222.biofuel_type_filter_R, by = c("region", "supplysector"))
 
     # 2b. Subsector information
     # L222.SubsectorLogit_en: Subsector logit exponents of energy transformation sectors
@@ -168,9 +168,11 @@ module_energy_L222.en_transformation <- function(command, ...) {
       select(region, supplysector) %>%
       mutate(use.trial.market = 1)
 
+
     A22.subsector_logit %>%
-      write_to_all_regions(c(LEVEL2_DATA_NAMES[["SubsectorLogit"]], LOGIT_TYPE_COLNAME), GCAM_region_names) ->
-      L222.SubsectorLogit_en
+      write_to_all_regions(c(LEVEL2_DATA_NAMES[["SubsectorLogit"]], LOGIT_TYPE_COLNAME), GCAM_region_names) ->L222.SubsectorLogit_en
+      #anti_join(L222.biofuel_type_filter_R, by = c("region", "supplysector")) ->
+
 
     if(any(!is.na(A22.subsector_shrwt$year))) {
       A22.subsector_shrwt %>%

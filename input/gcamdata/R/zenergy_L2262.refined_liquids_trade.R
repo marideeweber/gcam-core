@@ -289,7 +289,7 @@ module_energy_L2262.refined_liquids_trade <- function(command, ...) {
     # 3/31/2025 gpk revision - the "exceed blend wall" techs have names that differ from their parent subsector, and have 0 calibration
     L2262.Production_refinedLiquids_reg_dom <- A262.refinedLiquidsRegionalTechnology_R_Y %>%
       filter(year %in% MODEL_BASE_YEARS,
-             minicam.energy.input %in% c(L2262.refinedLiquidsGrossExports_EJ_R_C_Y$minicam.energy.input),
+             minicam.energy.input %in% c(L2262.refinedLiquidsProd_EJ_R_C_Y$minicam.energy.input),
              grepl( "domestic", subsector)) %>%
       left_join_error_no_match(L2262.refinedLiquidsGrossExports_EJ_R_C_Y,
                                by = c("region", "minicam.energy.input", "year")) %>%
