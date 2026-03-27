@@ -29,7 +29,8 @@ module_energy_L1011.en_bal_adj <- function(command, ...) {
              "L101.en_bal_EJ_R_Si_Fi_Yh_full"))
   } else if(command == driver.DECLARE_OUTPUTS) {
     return(c("L1011.en_bal_EJ_R_Si_Fi_Yh",
-             "L1011.in_EJ_ctry_intlship_TOT_Yh"))
+             "L1011.in_EJ_ctry_intlship_TOT_Yh",
+             "L101_aviation_adj"))
   } else if(command == driver.MAKE) {
 
     # Silence package check
@@ -230,7 +231,12 @@ module_energy_L1011.en_bal_adj <- function(command, ...) {
       stop("Exogenous IO coef on coal input to gas works caused an increase in natural gas beyond the regional TPES of gas")
     }
 
-
+    L101.in_EJ_ctry_trn_Fi_Yh %>%
+    left_join_error_no_match(iso_GCAM_regID %>% select(iso,GCAM_region_ID),by=c("iso")) %>%
+      filter(grepl("air",sector)) %>%
+      group_by(GCAM_region_ID,year) %>%
+      summarize(air_value=sum(value)) %>%
+      ungroup()->L101_aviation_adj
     # ===================================================
 
     # Produce outputs
@@ -254,7 +260,15 @@ module_energy_L1011.en_bal_adj <- function(command, ...) {
                      "common/iso_GCAM_regID", "L101.in_EJ_ctry_trn_Fi_Yh") ->
       L1011.in_EJ_ctry_intlship_TOT_Yh
 
-    return_data(L1011.en_bal_EJ_R_Si_Fi_Yh, L1011.in_EJ_ctry_intlship_TOT_Yh)
+     L101_aviation_adj %>%
+       add_title("Liquid fuel consumption by international shipping by GCAM_region / historical year") %>%
+       add_units("EJ") %>%
+       add_legacy_name("L1262_aviation_adj") %>%
+       add_precursors("common/iso_GCAM_regID", "L101.in_EJ_ctry_trn_Fi_Yh") ->
+       L101_aviation_adj
+
+
+    return_data(L1011.en_bal_EJ_R_Si_Fi_Yh, L1011.in_EJ_ctry_intlship_TOT_Yh,L101_aviation_adj)
   } else {
     stop("Unknown command")
   }
