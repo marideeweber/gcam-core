@@ -6,7 +6,7 @@
 # Column types: ccccnnn 
 # ----------
 supplysector,subsector,technology,minicam.energy.input,1971,2020,2100
-biochar_labile,biochar_labile,slow pyrolysis biochar herbaceous,biomassHerbaceous_forBiochar,0.01835794,0.01835794,0.01835794
-biochar_labile,biochar_labile,slow pyrolysis biochar woody,biomassWoody_forBiochar,0.056947,0.056947,0.056947
-biochar_recalcitrant,biochar_recalcitrant,fast pyrolysis biochar herbaceous,biomassHerbaceous_forBiochar,0.044255,0.044255,0.044255
-biochar_recalcitrant,biochar_recalcitrant,fast pyrolysis biochar woody,biomassWoody_forBiochar,0.064665,0.064665,0.064665
+biochar_labile,biochar_labile,slow pyrolysis biochar herbaceous,biomassHerbaceous_forBiochar,0.018357807,0.018357807,0.018357807
+biochar_labile,biochar_labile,slow pyrolysis biochar woody,biomassWoody_forBiochar,0.034758,0.034758,0.034758
+biochar_recalcitrant,biochar_recalcitrant,fast pyrolysis biochar herbaceous,biomassHerbaceous_forBiochar,0.045111,0.045111,0.045111
+biochar_recalcitrant,biochar_recalcitrant,fast pyrolysis biochar woody,biomassWoody_forBiochar,0.129331,0.129331,0.129331

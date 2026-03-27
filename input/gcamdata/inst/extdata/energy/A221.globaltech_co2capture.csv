@@ -6,7 +6,7 @@
 # Column types: cccnn 
 # ----------
 supplysector,subsector,technology,1971,2100
-biochar_labile,biochar_labile,slow pyrolysis biochar herbaceous,0.8478,0.8478
-biochar_labile,biochar_labile,slow pyrolysis biochar woody,0.7045,0.7045
-biochar_recalcitrant,biochar_recalcitrant,fast pyrolysis biochar herbaceous,0.7128,0.7128
-biochar_recalcitrant,biochar_recalcitrant,fast pyrolysis biochar woody,0.5965,0.5965
+biochar_labile,biochar_labile,slow pyrolysis biochar herbaceous,0.8331,0.8331
+biochar_labile,biochar_labile,slow pyrolysis biochar woody,0.7766,0.7766
+biochar_recalcitrant,biochar_recalcitrant,fast pyrolysis biochar herbaceous,0.5237,0.5237
+biochar_recalcitrant,biochar_recalcitrant,fast pyrolysis biochar woody,0.2703,0.2703

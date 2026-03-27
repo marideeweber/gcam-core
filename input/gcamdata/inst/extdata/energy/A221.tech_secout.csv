@@ -5,11 +5,11 @@
 # Source: NREL TEA
 # ----------
 supplysector,subsector,technology,secondary.output,output.ratio
-biochar_labile,biochar_labile,slow pyrolysis biochar herbaceous,natural gas,0.000918114
-biochar_labile,biochar_labile,slow pyrolysis biochar herbaceous,refined liquids enduse,0.001057415
-biochar_labile,biochar_labile,slow pyrolysis biochar woody,natural gas,0.001484356
-biochar_labile,biochar_labile,slow pyrolysis biochar woody,refined liquids enduse,0.004627962
-biochar_recalcitrant,biochar_recalcitrant,fast pyrolysis biochar herbaceous,natural gas,0.000859476
-biochar_recalcitrant,biochar_recalcitrant,fast pyrolysis biochar herbaceous,refined liquids enduse,0.005618089
-biochar_recalcitrant,biochar_recalcitrant,fast pyrolysis biochar woody,natural gas,0.002096438
-biochar_recalcitrant,biochar_recalcitrant,fast pyrolysis biochar woody,refined liquids enduse,0.008302106
+biochar_labile,biochar_labile,slow pyrolysis biochar herbaceous,natural gas,0.001254431
+biochar_labile,biochar_labile,slow pyrolysis biochar herbaceous,refined liquids enduse,0.001068446
+biochar_labile,biochar_labile,slow pyrolysis biochar woody,natural gas,0.00181554
+biochar_labile,biochar_labile,slow pyrolysis biochar woody,refined liquids enduse,0.002175372
+biochar_recalcitrant,biochar_recalcitrant,fast pyrolysis biochar herbaceous,natural gas,0.003032772
+biochar_recalcitrant,biochar_recalcitrant,fast pyrolysis biochar herbaceous,refined liquids enduse,0.005666311
+biochar_recalcitrant,biochar_recalcitrant,fast pyrolysis biochar woody,natural gas,0.008201123
+biochar_recalcitrant,biochar_recalcitrant,fast pyrolysis biochar woody,refined liquids enduse,0.01639778
