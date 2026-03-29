@@ -60,7 +60,8 @@ module_energy_en_distribution_xml <- function(command, ...) {
       bind_rows(L2262.Production_refinedLiquids_reg_dom) %>%
       group_by(region, year, minicam.energy.input = supplysector) %>%
       summarize(calOutputValue = sum(calOutputValue), .groups = "drop") %>%
-      filter(minicam.energy.input != "regional refined oil") %>%
+      filter(minicam.energy.input != "regional refined oil",
+             minicam.energy.input != "regional refined jet",) %>%
       left_join_error_no_match(
         L226.GlobalTechEff_en %>%
           bind_rows(L2261.GlobalTechEff_en %>% filter(subsector.name %in% c("ethanol"))) %>%

@@ -1089,7 +1089,7 @@ gcamusa.FERT_NAME       <- "ammonia" # Define GCAM-USA category name of fertiliz
 # Fuels whose markets will be modeled at the level of the FERC regions, with prices calibrated
 gcamusa.REGIONAL_FUEL_MARKETS <- c("regional coal", "delivered coal", "wholesale gas", "delivered gas",
                                    "refined liquids industrial", "refined liquids enduse",
-                                   "refined liquids gasoline pool")
+                                   "refined liquids gasoline pool","aviation fuels")
 
 
 # Resources that will be modeled at the state level

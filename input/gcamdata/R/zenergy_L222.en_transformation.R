@@ -49,6 +49,7 @@ module_energy_L222.en_transformation <- function(command, ...) {
         FILE = "energy/A22.globaltech_keyword",
         FILE = "energy/A22.globaltech_secondary_output",
         FILE = "energy/A22.jet_credits",
+        FILE="energy/A_jet_fuel_net_trade",
         "L101_aviation_adj",
         "L122.out_EJ_R_gasproc_F_Yh",
         "L122.out_EJ_R_refining_F_Yh",
@@ -105,7 +106,9 @@ module_energy_L222.en_transformation <- function(command, ...) {
     get_data_list(all_data, MODULE_INPUTS, strip_attributes = TRUE)
 
     # ===================================================
-
+    jet_fuel_net_trade <- A_jet_fuel_net_trade %>%
+      select(GCAM_region_ID,year,prod,imports,exports,cons,net=value) %>%
+      left_join_error_no_match(GCAM_region_names, by =c("GCAM_region_ID"))
     # 2. Build tables for CSVs
     # 2a. Supplysector information
     # L222.Supplysector_en: Supply sector information for energy transformation sectors
@@ -559,10 +562,10 @@ module_energy_L222.en_transformation <- function(command, ...) {
       left_join(L222.out_EJ_R_refining_F_Yh, by = c("sector", "fuel")) %>%
       # rounds and renames outputs and adds year column for shareweights
       mutate(calOutputValue = round(value, energy.DIGITS_CALOUTPUT), year.share.weight = year) %>%
-      left_join_keep_first_only(L101_aviation_adj, by=c("GCAM_region_ID" ,"year")) %>%
-      mutate(air_value=if_else(is.na(air_value),0,air_value),
+      left_join_keep_first_only(jet_fuel_net_trade %>% select(GCAM_region_ID,year,prod), by=c("GCAM_region_ID" ,"year")) %>%
+      mutate(air_value=if_else(is.na(prod),0,prod),
              air_value=if_else(subsector=="oil refining",air_value,0)) %>%
-      mutate(calOutputValue= calOutputValue- air_value) %>%
+      mutate(calOutputValue= calOutputValue) %>%
       select(-sector, -GCAM_region_ID, -fuel, -value) %>%
       # sets shareweight to 1 if output exists, otherwise 0
       mutate(share.weight = if_else(calOutputValue > 0, 1, 0)) %>%

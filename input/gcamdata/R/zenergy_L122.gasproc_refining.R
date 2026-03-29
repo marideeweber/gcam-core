@@ -78,7 +78,7 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
       rename(value_soybiodiesel = value,
              technology = sector) %>%
       mutate(technology = "soybean biodiesel")
-    
+
     jet_fuel_net_trade <-  A_jet_fuel_net_trade%>%
                          select(GCAM_region_ID,year,net_jet=value) %>%
                          left_join_error_no_match(GCAM_region_names, by =c("GCAM_region_ID"))
@@ -266,9 +266,7 @@ module_energy_L122.gasproc_refining <- function(command, ...) {
       left_join(L122.out_EJ_R_oilrefining_Yh, by = c("GCAM_region_ID", "sector", "fuel", "year"),
                 suffix = c(".energyuse", ".output")) %>%
       replace_na(list(value.output = 0)) %>%
-       left_join(jet_fuel_net_trade %>% mutate(fuel="oil"), by=c("GCAM_region_ID","year","fuel")) %>%
-      mutate(net_jet= if_else(is.na(net_jet),0,net_jet)) %>%
-      mutate(value = value.energyuse + value.output+net_jet) %>%
+      mutate(value = value.energyuse + value.output) %>%
       select(-value.energyuse, -value.output) -> L122.in_EJ_R_oilrefining_F_Yh
 
     # Calculate region- and fuel-specific coefficients of crude oil refining
