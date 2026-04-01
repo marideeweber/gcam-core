@@ -15,12 +15,12 @@ elect_td_trn,elect_td_trn,share-weight,final-calibration-year,end-year,,linear
 gas pipeline,gas pipeline,share-weight,final-calibration-year,end-year,,linear
 wholesale gas,wholesale gas,share-weight,final-calibration-year,end-year,,linear
 delivered gas,delivered gas,share-weight,final-calibration-year,end-year,,linear
-aviation fuels,refined oil,share-weight,final-calibration-year,end-year,,linear
-aviation fuels,renewable diesel,share-weight,initial-future-year,end-year,,linear
+aviation fuels,refined oil,2030,initial-future-year,end-year,,linear
+aviation fuels,renewable diesel,share-weight,final-calibration-year,end-year,,linear
 refined liquids enduse,refined oil,share-weight,final-calibration-year,end-year,,linear
 refined liquids enduse,biodiesel,share-weight,final-calibration-year,initial-future-year,,fixed
 refined liquids enduse,biodiesel,share-weight,initial-future-year,end-year,,linear
 refined liquids industrial,refined liquids industrial,share-weight,final-calibration-year,end-year,,linear
 backup_electricity,hydrogen,share-weight,final-calibration-year,initial-future-year,,linear
 backup_electricity,hydrogen,share-weight,initial-future-year,2030,,linear
-refined liquids enduse,renewable diesel,share-weight,initial-future-year,end-year,,linear
+refined liquids enduse,renewable diesel,share-weight,2030,end-year,,linear

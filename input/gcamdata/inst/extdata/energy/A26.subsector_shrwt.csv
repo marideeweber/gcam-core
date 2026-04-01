@@ -19,10 +19,10 @@ wholesale gas,wholesale gas,start-year,,1
 delivered gas,delivered gas,start-year,,1
 aviation fuels,refined oil,start-year,,1
 aviation fuels,renewable diesel,1975,,0
-aviation fuels,renewable diesel,initial-future-year,,1
+aviation fuels,renewable diesel,2030,,1
 refined liquids enduse,refined oil,start-year,,1
 refined liquids enduse,biodiesel,start-year,,0.5
 refined liquids enduse,renewable diesel,start-year,,0
-refined liquids enduse,renewable diesel,initial-future-year,,0.5
+refined liquids enduse,renewable diesel,2030,,0.5
 refined liquids industrial,refined liquids industrial,start-year,,1
 backup_electricity,hydrogen,start-year,,1

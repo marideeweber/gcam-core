@@ -6,3 +6,4 @@
 supplysector,subsector,year.fillout,year,share.weight
 refined liquids gasoline pool,refined oil,start-year,,1
 refined liquids gasoline pool,ethanol,start-year,,0.5
+refined liquids gasoline pool,renewable diesel,2030,,0.5

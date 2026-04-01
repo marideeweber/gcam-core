@@ -1,0 +1,110 @@
+A22.globaltech_coef.csv:oilcrop renewable diesel joint,oilcrop renewable diesel joint,oilcrop renewable diesel joint high,other industrial energy,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098
+A22.globaltech_coef.csv:oilcrop renewable diesel joint,oilcrop renewable diesel joint,oilcrop renewable diesel joint low,other industrial energy,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098
+A22.globaltech_coef.csv:palmfruit renewable diesel joint,palmfruit renewable diesel joint,palmfruit renewable diesel joint high,other industrial energy,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098
+A22.globaltech_coef.csv:palmfruit renewable diesel joint,palmfruit renewable diesel joint,palmfruit renewable diesel joint low,other industrial energy,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098
+A22.globaltech_coef.csv:rapeseed renewable diesel joint,rapeseed renewable diesel joint,rapeseed renewable diesel joint high,other industrial energy,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098
+A22.globaltech_coef.csv:rapeseed renewable diesel joint,rapeseed renewable diesel joint,rapeseed renewable diesel joint low,other industrial energy,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098
+A22.globaltech_coef.csv:soybean renewable diesel joint,soybean renewable diesel joint,soybean renewable diesel joint high,other industrial energy,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098
+A22.globaltech_coef.csv:soybean renewable diesel joint,soybean renewable diesel joint,soybean renewable diesel joint low,other industrial energy,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098
+A32.globaltech_coef.csv:other industry,other industry,other industry,other industrial energy use,0.93
+A32.globaltech_cost.csv:other industrial energy use,biomass,biomass,non-energy,3,3
+A32.globaltech_cost.csv:other industrial energy use,biomass,biomass cogen,non-energy,4.5,4.5
+A32.globaltech_cost.csv:other industrial energy use,coal,coal,non-energy,3,3
+A32.globaltech_cost.csv:other industrial energy use,coal,coal cogen,non-energy,4.5,4.5
+A32.globaltech_cost.csv:other industrial energy use,district heat,district heat,non-energy,3,3
+A32.globaltech_cost.csv:other industrial energy use,electricity,electricity,non-energy,3,3
+A32.globaltech_cost.csv:other industrial energy use,gas,gas,non-energy,3,3
+A32.globaltech_cost.csv:other industrial energy use,gas,gas cogen,non-energy,4.5,4.5
+A32.globaltech_cost.csv:other industrial energy use,hydrogen,hydrogen,non-energy,3,3
+A32.globaltech_cost.csv:other industrial energy use,hydrogen,hydrogen cogen,non-energy,4.5,4.5
+A32.globaltech_cost.csv:other industrial energy use,refined liquids,refined liquids,non-energy,3,3
+A32.globaltech_cost.csv:other industrial energy use,refined liquids,refined liquids cogen,non-energy,4.5,4.5
+A32.globaltech_eff.csv:other industrial energy use,biomass,biomass,delivered biomass,,0.746423292,0.799,0.797,0.804,0.81,0.816,0.823,0.828,0.828
+A32.globaltech_eff.csv:other industrial energy use,biomass,biomass cogen,delivered biomass,electricity,0.515676667,0.552,0.56,0.568,0.577,0.586,0.595,0.604,0.604
+A32.globaltech_eff.csv:other industrial energy use,coal,coal,delivered coal,,0.808080285,0.865,0.891,0.901,0.909,0.917,0.926,0.936,0.936
+A32.globaltech_eff.csv:other industrial energy use,coal,coal cogen,delivered coal,electricity,0.582004645,0.623,0.629,0.636,0.644,0.652,0.661,0.67,0.67
+A32.globaltech_eff.csv:other industrial energy use,district heat,district heat,district heat,,1,1,1,1,1,1,1,1,1
+A32.globaltech_eff.csv:other industrial energy use,electricity,electricity,elect_td_ind,,0.934196861,1,1.015,1.03,1.046,1.062,1.078,1.094,1.094
+A32.globaltech_eff.csv:other industrial energy use,gas,gas,wholesale gas,,0.825830025,0.884,0.898,0.913,0.926,0.941,0.955,0.969,0.969
+A32.globaltech_eff.csv:other industrial energy use,gas,gas cogen,wholesale gas,electricity,0.563320707,0.603,0.612,0.621,0.63,0.64,0.649,0.659,0.659
+A32.globaltech_eff.csv:other industrial energy use,hydrogen,hydrogen,H2 industrial,,1,1,1,1.015,1.03,1.046,1.062,1.078,1.078
+A32.globaltech_eff.csv:other industrial energy use,hydrogen,hydrogen cogen,H2 wholesale delivery,electricity,0.563320707,0.603,0.612,0.621,0.63,0.64,0.649,0.659,0.659
+A32.globaltech_eff.csv:other industrial energy use,refined liquids,refined liquids,refined liquids industrial,,0.917381318,0.982,1.001,1.018,1.033,1.047,1.062,1.077,1.077
+A32.globaltech_eff.csv:other industrial energy use,refined liquids,refined liquids cogen,refined liquids industrial,electricity,0.565189101,0.605,0.614,0.623,0.632,0.642,0.652,0.662,0.662
+A32.globaltech_interp.csv:other industrial energy use,biomass,biomass,share-weight,final-calibration-year,end-year,fixed
+A32.globaltech_interp.csv:other industrial energy use,biomass,biomass cogen,share-weight,final-calibration-year,end-year,fixed
+A32.globaltech_interp.csv:other industrial energy use,coal,coal,share-weight,final-calibration-year,end-year,fixed
+A32.globaltech_interp.csv:other industrial energy use,coal,coal cogen,share-weight,final-calibration-year,end-year,fixed
+A32.globaltech_interp.csv:other industrial energy use,gas,gas,share-weight,final-calibration-year,end-year,fixed
+A32.globaltech_interp.csv:other industrial energy use,gas,gas cogen,share-weight,final-calibration-year,end-year,fixed
+A32.globaltech_interp.csv:other industrial energy use,refined liquids,refined liquids,share-weight,final-calibration-year,end-year,fixed
+A32.globaltech_interp.csv:other industrial energy use,refined liquids,refined liquids cogen,share-weight,final-calibration-year,end-year,fixed
+A32.globaltech_retirement.csv:other industrial energy use,biomass,biomass,final-calibration-year,40,,20,0.3,-0.5,6
+A32.globaltech_retirement.csv:other industrial energy use,biomass,biomass cogen,final-calibration-year,40,,20,0.3,-0.5,6
+A32.globaltech_retirement.csv:other industrial energy use,coal,coal,final-calibration-year,40,,20,0.3,-0.5,6
+A32.globaltech_retirement.csv:other industrial energy use,coal,coal cogen,final-calibration-year,40,,20,0.3,-0.5,6
+A32.globaltech_retirement.csv:other industrial energy use,district heat,district heat,final-calibration-year,40,,20,0.3,-0.5,6
+A32.globaltech_retirement.csv:other industrial energy use,electricity,electricity,final-calibration-year,40,,20,0.3,-0.5,6
+A32.globaltech_retirement.csv:other industrial energy use,gas,gas,final-calibration-year,40,,20,0.3,-0.5,6
+A32.globaltech_retirement.csv:other industrial energy use,gas,gas cogen,final-calibration-year,40,,20,0.3,-0.5,6
+A32.globaltech_retirement.csv:other industrial energy use,hydrogen,hydrogen,final-calibration-year,40,,20,0.3,-0.5,6
+A32.globaltech_retirement.csv:other industrial energy use,hydrogen,hydrogen cogen,final-calibration-year,40,,20,0.3,-0.5,6
+A32.globaltech_retirement.csv:other industrial energy use,refined liquids,refined liquids,final-calibration-year,40,,20,0.3,-0.5,6
+A32.globaltech_retirement.csv:other industrial energy use,refined liquids,refined liquids cogen,final-calibration-year,40,,20,0.3,-0.5,6
+A32.globaltech_retirement.csv:other industrial energy use,biomass,biomass,initial-future-year,40,,20,0.3,-0.5,6
+A32.globaltech_retirement.csv:other industrial energy use,biomass,biomass cogen,initial-future-year,40,,20,0.3,-0.5,6
+A32.globaltech_retirement.csv:other industrial energy use,coal,coal,initial-future-year,40,,20,0.3,-0.5,6
+A32.globaltech_retirement.csv:other industrial energy use,coal,coal cogen,initial-future-year,40,,20,0.3,-0.5,6
+A32.globaltech_retirement.csv:other industrial energy use,district heat,district heat,initial-future-year,40,,20,0.3,-0.5,6
+A32.globaltech_retirement.csv:other industrial energy use,electricity,electricity,initial-future-year,40,,20,0.3,-0.5,6
+A32.globaltech_retirement.csv:other industrial energy use,gas,gas,initial-future-year,40,,20,0.3,-0.5,6
+A32.globaltech_retirement.csv:other industrial energy use,gas,gas cogen,initial-future-year,40,,20,0.3,-0.5,6
+A32.globaltech_retirement.csv:other industrial energy use,hydrogen,hydrogen,initial-future-year,40,,20,0.3,-0.5,6
+A32.globaltech_retirement.csv:other industrial energy use,hydrogen,hydrogen cogen,initial-future-year,40,,20,0.3,-0.5,6
+A32.globaltech_retirement.csv:other industrial energy use,refined liquids,refined liquids,initial-future-year,40,,20,0.3,-0.5,6
+A32.globaltech_retirement.csv:other industrial energy use,refined liquids,refined liquids cogen,initial-future-year,40,,20,0.3,-0.5,6
+A32.globaltech_shrwt.csv:other industrial energy use,biomass,biomass,1,1,1,1
+A32.globaltech_shrwt.csv:other industrial energy use,biomass,biomass cogen,0,0,1,1
+A32.globaltech_shrwt.csv:other industrial energy use,coal,coal,1,1,1,1
+A32.globaltech_shrwt.csv:other industrial energy use,coal,coal cogen,1,1,1,1
+A32.globaltech_shrwt.csv:other industrial energy use,district heat,district heat,1,1,1,1
+A32.globaltech_shrwt.csv:other industrial energy use,electricity,electricity,1,1,1,1
+A32.globaltech_shrwt.csv:other industrial energy use,gas,gas,1,1,1,1
+A32.globaltech_shrwt.csv:other industrial energy use,gas,gas cogen,1,1,1,1
+A32.globaltech_shrwt.csv:other industrial energy use,hydrogen,hydrogen,0,0,0,1
+A32.globaltech_shrwt.csv:other industrial energy use,hydrogen,hydrogen cogen,0,0,0,0.15
+A32.globaltech_shrwt.csv:other industrial energy use,refined liquids,refined liquids,1,1,1,1
+A32.globaltech_shrwt.csv:other industrial energy use,refined liquids,refined liquids cogen,1,1,1,1
+A32.sector.csv:other industrial energy use,EJ,EJ,1975$/GJ,-3,industry,
+A32.subsector_interp.csv:other industrial energy use,biomass,share-weight,final-calibration-year,end-year,,fixed
+A32.subsector_interp.csv:other industrial energy use,coal,share-weight,final-calibration-year,end-year,,fixed
+A32.subsector_interp.csv:other industrial energy use,district heat,share-weight,final-calibration-year,end-year,,fixed
+A32.subsector_interp.csv:other industrial energy use,electricity,share-weight,final-calibration-year,end-year,,fixed
+A32.subsector_interp.csv:other industrial energy use,gas,share-weight,final-calibration-year,end-year,,fixed
+A32.subsector_interp.csv:other industrial energy use,hydrogen,share-weight,final-calibration-year,2100,,linear
+A32.subsector_interp.csv:other industrial energy use,refined liquids,share-weight,final-calibration-year,end-year,,fixed
+A32.subsector_logit.csv:other industrial energy use,biomass,-6,
+A32.subsector_logit.csv:other industrial energy use,coal,-6,
+A32.subsector_logit.csv:other industrial energy use,district heat,-6,
+A32.subsector_logit.csv:other industrial energy use,electricity,-6,
+A32.subsector_logit.csv:other industrial energy use,gas,-6,
+A32.subsector_logit.csv:other industrial energy use,hydrogen,-6,
+A32.subsector_logit.csv:other industrial energy use,refined liquids,-6,
+A32.subsector_shrwt.csv:other industrial energy use,biomass,start-year,,1
+A32.subsector_shrwt.csv:other industrial energy use,coal,start-year,,1
+A32.subsector_shrwt.csv:other industrial energy use,district heat,start-year,,1
+A32.subsector_shrwt.csv:other industrial energy use,electricity,start-year,,1
+A32.subsector_shrwt.csv:other industrial energy use,hydrogen,start-year,,0
+A32.subsector_shrwt.csv:other industrial energy use,hydrogen,initial-future-year,,0.25
+A32.subsector_shrwt.csv:other industrial energy use,gas,start-year,,1
+A32.subsector_shrwt.csv:other industrial energy use,refined liquids,start-year,,1
+calibrated_techs.csv:chp_elec,biomass,other industrial energy use,biomass,biomass cogen,delivered biomass,input,electricity
+calibrated_techs.csv:chp_elec,coal,other industrial energy use,coal,coal cogen,delivered coal,input,electricity
+calibrated_techs.csv:chp_elec,gas,other industrial energy use,gas,gas cogen,wholesale gas,input,electricity
+calibrated_techs.csv:chp_elec,refined liquids,other industrial energy use,refined liquids,refined liquids cogen,refined liquids industrial,input,electricity
+calibrated_techs.csv:industry_energy,biomass,other industrial energy use,biomass,biomass,delivered biomass,input,
+calibrated_techs.csv:industry_energy,coal,other industrial energy use,coal,coal,delivered coal,input,
+calibrated_techs.csv:industry_energy,electricity,other industrial energy use,electricity,electricity,elect_td_ind,input,
+calibrated_techs.csv:industry_energy,gas,other industrial energy use,gas,gas,wholesale gas,input,
+calibrated_techs.csv:industry_energy,heat,other industrial energy use,district heat,district heat,district heat,input,
+calibrated_techs.csv:industry_energy,refined liquids,other industrial energy use,refined liquids,refined liquids,refined liquids industrial,input,

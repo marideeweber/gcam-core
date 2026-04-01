@@ -33,13 +33,11 @@ oilcrop renewable diesel jet fuel,oilcrop renewable diesel jet fuel,oilcrop rene
 oilcrop renewable diesel jet fuel,oilcrop renewable diesel jet fuel,oilcrop renewable diesel jet fuel,refining jet credit,1,1,1,1,1,1,1,1,1,1
 oilcrop renewable diesel joint,oilcrop renewable diesel joint,oilcrop renewable diesel joint high,regional biomassOil oilcrop,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685
 oilcrop renewable diesel joint,oilcrop renewable diesel joint,oilcrop renewable diesel joint high,wholesale gas,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186
-oilcrop renewable diesel joint,oilcrop renewable diesel joint,oilcrop renewable diesel joint high,elect_td_ind,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098
 refining,biomass liquids,BTL with hydrogen,H2 industrial,0.816228052,0.816228052,0.816228052,0.816228052,0.816228052,0.816228052,0.816228052,0.816228052,0.816228052,0.816228052
 refining,biomass liquids,BTL with hydrogen,regional biomass,1.031914894,1.031914894,1.031914894,1.031914894,1.031914894,1.031914894,1.031914894,1.031914894,1.031914894,1.031914894
 oilcrop renewable diesel joint,oilcrop renewable diesel joint,oilcrop renewable diesel joint high,H2 industrial,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095
 oilcrop renewable diesel joint,oilcrop renewable diesel joint,oilcrop renewable diesel joint low,regional biomassOil oilcrop,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685
 oilcrop renewable diesel joint,oilcrop renewable diesel joint,oilcrop renewable diesel joint low,wholesale gas,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186
-oilcrop renewable diesel joint,oilcrop renewable diesel joint,oilcrop renewable diesel joint low,elect_td_ind,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098
 oilcrop renewable diesel joint,oilcrop renewable diesel joint,oilcrop renewable diesel joint low,H2 industrial,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095
 oilpalm biodiesel,oilpalm biodiesel,oilpalm biodiesel,regional biomassOil oilpalm,1.0309,1.0309,1.026,1.012,1.008,1.003,0.999,0.994,0.989,0.989
 oilpalm biodiesel,oilpalm biodiesel,oilpalm biodiesel,wholesale gas,0.05767,0.05767,0.05767,0.057815625,0.05796125,0.058106875,0.0582525,0.058398125,0.05854375,0.06
@@ -48,11 +46,9 @@ palmfruit renewable diesel jet fuel,palmfruit renewable diesel jet fuel,palmfrui
 palmfruit renewable diesel jet fuel,palmfruit renewable diesel jet fuel,palmfruit renewable diesel jet fuel,refining jet credit,1,1,1,1,1,1,1,1,1,1
 palmfruit renewable diesel joint,palmfruit renewable diesel joint,palmfruit renewable diesel joint high,regional biomassOil oilpalm,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685
 palmfruit renewable diesel joint,palmfruit renewable diesel joint,palmfruit renewable diesel joint high,wholesale gas,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186
-palmfruit renewable diesel joint,palmfruit renewable diesel joint,palmfruit renewable diesel joint high,elect_td_ind,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098
 palmfruit renewable diesel joint,palmfruit renewable diesel joint,palmfruit renewable diesel joint high,H2 industrial,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095
 palmfruit renewable diesel joint,palmfruit renewable diesel joint,palmfruit renewable diesel joint low,regional biomassOil oilpalm,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685
 palmfruit renewable diesel joint,palmfruit renewable diesel joint,palmfruit renewable diesel joint low,wholesale gas,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186
-palmfruit renewable diesel joint,palmfruit renewable diesel joint,palmfruit renewable diesel joint low,elect_td_ind,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098
 palmfruit renewable diesel joint,palmfruit renewable diesel joint,palmfruit renewable diesel joint low,H2 industrial,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095
 rapeseed biodiesel,rapeseed biodiesel,rapeseed biodiesel,regional biomassOil rapeseed,1.0309,1.0309,1.026,1.012,1.008,1.003,0.999,0.994,0.989,0.989
 rapeseed biodiesel,rapeseed biodiesel,rapeseed biodiesel,wholesale gas,0.05767,0.05767,0.05767,0.057815625,0.05796125,0.058106875,0.0582525,0.058398125,0.05854375,0.06
@@ -61,11 +57,9 @@ rapeseed renewable diesel jet fuel,rapeseed renewable diesel jet fuel,rapeseed r
 rapeseed renewable diesel jet fuel,rapeseed renewable diesel jet fuel,rapeseed renewable diesel jet fuel,refining jet credit,1,1,1,1,1,1,1,1,1,1
 rapeseed renewable diesel joint,rapeseed renewable diesel joint,rapeseed renewable diesel joint high,regional biomassOil rapeseed,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685
 rapeseed renewable diesel joint,rapeseed renewable diesel joint,rapeseed renewable diesel joint high,wholesale gas,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186
-rapeseed renewable diesel joint,rapeseed renewable diesel joint,rapeseed renewable diesel joint high,elect_td_ind,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098
 rapeseed renewable diesel joint,rapeseed renewable diesel joint,rapeseed renewable diesel joint high,H2 industrial,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095
 rapeseed renewable diesel joint,rapeseed renewable diesel joint,rapeseed renewable diesel joint low,regional biomassOil rapeseed,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685
 rapeseed renewable diesel joint,rapeseed renewable diesel joint,rapeseed renewable diesel joint low,wholesale gas,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186
-rapeseed renewable diesel joint,rapeseed renewable diesel joint,rapeseed renewable diesel joint low,elect_td_ind,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098
 rapeseed renewable diesel joint,rapeseed renewable diesel joint,rapeseed renewable diesel joint low,H2 industrial,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095
 soybean biodiesel,soybean biodiesel,soybean biodiesel,regional biomassOil soybean,1.0309,1.0309,1.026,1.012,1.008,1.003,0.999,0.994,0.989,0.989
 soybean biodiesel,soybean biodiesel,soybean biodiesel,wholesale gas,0.05767,0.05767,0.05767,0.057815625,0.05796125,0.058106875,0.0582525,0.058398125,0.05854375,0.06
@@ -74,11 +68,9 @@ soybean renewable diesel jet fuel,soybean renewable diesel jet fuel,soybean rene
 soybean renewable diesel jet fuel,soybean renewable diesel jet fuel,soybean renewable diesel jet fuel,refining jet credit,1,1,1,1,1,1,1,1,1,1
 soybean renewable diesel joint,soybean renewable diesel joint,soybean renewable diesel joint high,regional biomassOil soybean,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685
 soybean renewable diesel joint,soybean renewable diesel joint,soybean renewable diesel joint high,wholesale gas,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186
-soybean renewable diesel joint,soybean renewable diesel joint,soybean renewable diesel joint high,elect_td_ind,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098
 soybean renewable diesel joint,soybean renewable diesel joint,soybean renewable diesel joint high,H2 industrial,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095
 soybean renewable diesel joint,soybean renewable diesel joint,soybean renewable diesel joint low,regional biomassOil soybean,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685,1.0685
 soybean renewable diesel joint,soybean renewable diesel joint,soybean renewable diesel joint low,wholesale gas,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186,0.0186
-soybean renewable diesel joint,soybean renewable diesel joint,soybean renewable diesel joint low,elect_td_ind,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098,0.0098
 soybean renewable diesel joint,soybean renewable diesel joint,soybean renewable diesel joint low,H2 industrial,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095
 refined jet,refined jet,refined jet,refining,1,1,1,1,1,1,1,1,1,1
 refined jet,refined jet,refined jet,oil refining credit,1,1,1,1,1,1,1,1,1,1

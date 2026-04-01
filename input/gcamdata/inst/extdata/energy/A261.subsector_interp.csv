@@ -9,3 +9,4 @@ refined liquids enduse,refined oil,share-weight,final-calibration-year,end-year,
 refined liquids gasoline pool,refined oil,share-weight,final-calibration-year,end-year,,fixed
 refined liquids gasoline pool,ethanol,share-weight,final-calibration-year,initial-future-year,,fixed
 refined liquids gasoline pool,ethanol,share-weight,initial-future-year,end-year,,linear
+refined liquids gasoline pool,renewable diesel,share-weight,2030,end-year,,linear
