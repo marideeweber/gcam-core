@@ -19,7 +19,7 @@ delivered gas,delivered gas,delivered gas,gas pipeline,1,1,1
 aviation fuels,refined oil,refined oil,regional refined jet,1,1,1
 aviation fuels,renewable diesel,soybean renewable diesel,regional soybean renewable diesel jet fuel,1,1,1
 aviation fuels,renewable diesel,rapeseed renewable diesel,regional rapeseed renewable diesel jet fuel,1,1,1
-aviation fuels,renewable diesel,palmfruit renewable diesel,regional palmfruit renewable diesel jet fuel,1,1,1
+aviation fuels,renewable diesel,oilpalm renewable diesel,regional oilpalm renewable diesel jet fuel,1,1,1
 aviation fuels,renewable diesel,oilcrop renewable diesel,regional oilcrop renewable diesel jet fuel,1,1,1
 refined liquids enduse,refined oil,refined oil,regional refined oil,1,1,1
 refined liquids enduse,biodiesel,soybean biodiesel refining,regional soybean biodiesel,1,1,1
@@ -30,5 +30,5 @@ refined liquids industrial,refined liquids industrial,refined liquids industrial
 backup_electricity,hydrogen,hydrogen combustion turbine,H2 industrial,0.377,0.377,0.428
 refined liquids enduse,renewable diesel,soybean renewable diesel,regional soybean renewable diesel,1,1,1
 refined liquids enduse,renewable diesel,rapeseed renewable diesel,regional rapeseed renewable diesel,1,1,1
-refined liquids enduse,renewable diesel,palmfruit renewable diesel,regional palmfruit renewable diesel,1,1,1
+refined liquids enduse,renewable diesel,oilpalm renewable diesel,regional oilpalm renewable diesel,1,1,1
 refined liquids enduse,renewable diesel,oilcrop renewable diesel,regional oilcrop renewable diesel,1,1,1

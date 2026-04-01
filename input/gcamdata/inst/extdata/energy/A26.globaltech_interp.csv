@@ -10,10 +10,10 @@ refined liquids enduse,biodiesel,oilpalm biodiesel refining,share-weight,final-c
 refined liquids enduse,biodiesel,soybean biodiesel refining,share-weight,final-calibration-year,end-year,fixed
 refined liquids enduse,renewable diesel,soybean renewable diesel,share-weight,initial-future-year,end-year,s-curve
 refined liquids enduse,renewable diesel,rapeseed renewable diesel,share-weight,initial-future-year,end-year,s-curve
-refined liquids enduse,renewable diesel,palmfruit renewable diesel,share-weight,initial-future-year,end-year,s-curve
+refined liquids enduse,renewable diesel,oilpalm renewable diesel,share-weight,initial-future-year,end-year,s-curve
 refined liquids enduse,renewable diesel,oilcrop renewable diesel,share-weight,initial-future-year,end-year,s-curve
 aviation fuels,renewable diesel,soybean renewable diesel,share-weight,initial-future-year,end-year,fixed
 aviation fuels,renewable diesel,rapeseed renewable diesel,share-weight,initial-future-year,end-year,fixed
-aviation fuels,renewable diesel,palmfruit renewable diesel,share-weight,initial-future-year,end-year,fixed
+aviation fuels,renewable diesel,oilpalm renewable diesel,share-weight,initial-future-year,end-year,fixed
 aviation fuels,renewable diesel,oilcrop renewable diesel,share-weight,initial-future-year,end-year,fixed
 aviation fuels,refined oil,refined oil,share-weight,final-calibration-year,end-year,fixed
