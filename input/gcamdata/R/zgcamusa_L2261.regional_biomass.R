@@ -136,7 +136,8 @@ module_gcamusa_L2261.regional_biomass <- function(command, ...) {
     # Not deleting USA regional biomass because gas processing & H2 central production
     # still both occur at the USA level and consume USA regional biomass
     A28.sector %>%
-      filter(supplysector != "regional biomass") %>%
+      filter(!supplysector %in% c("regional biomass","regional biomassOil soybean",
+                                 "regional biomassOil rapeseed")) %>%
       mutate(region = gcam.USA_REGION) %>%
       select(region, supplysector) -> L2261.DeleteSupplysector_bio_USA
 
