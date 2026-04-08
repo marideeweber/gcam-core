@@ -19,3 +19,5 @@ aviation fuels,renewable diesel,oilcrop renewable diesel,share-weight,initial-fu
 aviation fuels,refined oil,refined oil,share-weight,final-calibration-year,end-year,fixed
 refined liquids enduse,renewable diesel,corn ethanol renewable diesel,share-weight,initial-future-year,end-year,fixed
 aviation fuels,ETJ,corn ETJ,share-weight,initial-future-year,end-year,fixed
+refined liquids enduse,renewable diesel,FT biofuel RD,share-weight,initial-future-year,end-year,s-curve
+aviation fuels,FT,FT biojet,share-weight,initial-future-year,end-year,fixed

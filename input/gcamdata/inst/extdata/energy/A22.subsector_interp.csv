@@ -29,3 +29,6 @@ refined jet,refined jet,refined jet,final-calibration-year,end-year,,fixed
 corn ETJ joint,corn ETJ joint,share-weight,final-calibration-year,end-year,,linear
 corn ethanol renewable diesel,corn ethanol renewable diesel,share-weight,final-calibration-year,end-year,,linear
 corn ETJ jet fuel,corn ETJ jet fuel,share-weight,final-calibration-year,end-year,,linear
+FT biofuel,FT biofuel,FT biofuel,final-calibration-year,end-year,,linear
+FT biofuel RD,FT biofuel RD,FT biofuel RD,final-calibration-year,end-year,,linear
+FT biojet,FT biojet,FT biojet,final-calibration-year,end-year,,linear

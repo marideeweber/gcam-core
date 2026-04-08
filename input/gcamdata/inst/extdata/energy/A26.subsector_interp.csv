@@ -25,3 +25,4 @@ backup_electricity,hydrogen,share-weight,final-calibration-year,initial-future-y
 backup_electricity,hydrogen,share-weight,initial-future-year,2030,,linear
 refined liquids enduse,renewable diesel,share-weight,2030,end-year,,linear
 aviation fuels,ETJ,share-weight,2030,end-year,,linear
+aviation fuels,FT,share-weight,2030,end-year,,s-curve

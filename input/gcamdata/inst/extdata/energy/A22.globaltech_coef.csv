@@ -79,3 +79,7 @@ corn ETJ joint,corn ETJ joint,corn ETJ joint,wholesale gas,0.318,0.318,0.318,0.3
 corn ethanol renewable diesel,corn ethanol renewable diesel,corn ethanol renewable diesel,corn ETJ joint,1,1,1,1,1,1,1,1,1,1
 corn ETJ jet fuel,corn ETJ jet fuel,corn ETJ jet fuel,corn ETJ joint,1,1,1,1,1,1,1,1,1,1
 corn ETJ jet fuel,corn ETJ jet fuel,corn ETJ jet fuel,jet credit ETJ,1,1,1,1,1,1,1,1,1,1
+FT biofuel,FT biofuel,FT biofuel,regional biomass,1.961,1.961,1.739,1.739,1.739,1.739,1.739,1.739,1.739,1.739
+FT biofuel RD,FT biofuel RD,FT biofuel RD,FT biofuel,1,1,1,1,1,1,1,1,1,1
+FT biojet,FT biojet,FT biojet,FT biofuel,1,1,1,1,1,1,1,1,1,1
+FT biojet,FT biojet,FT biojet,jet credit FT,1,1,1,1,1,1,1,1,1,1

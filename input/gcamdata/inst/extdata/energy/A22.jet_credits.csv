@@ -8,3 +8,4 @@ policy.portfolio.standard,policyType,constraint, min.price
 refining jet credit,RES,1,0
 oil refining credit,RES,1,0.00E+00
 jet credit ETJ,RES,1,0.00E+00
+jet credit FT,RES,1,0.00E+00

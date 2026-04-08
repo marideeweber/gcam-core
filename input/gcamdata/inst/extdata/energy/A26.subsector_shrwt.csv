@@ -28,3 +28,5 @@ refined liquids industrial,refined liquids industrial,start-year,,1
 backup_electricity,hydrogen,start-year,,1
 aviation fuels,ETJ,start-year,,0
 aviation fuels,ETJ,2030,,1
+aviation fuels,FT,start-year,,0
+aviation fuels,FT,2030,,1

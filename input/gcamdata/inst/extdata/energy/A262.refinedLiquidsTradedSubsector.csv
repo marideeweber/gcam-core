@@ -23,3 +23,5 @@ traded oilcrop renewable diesel jet fuel,traded oilcrop renewable diesel jet fue
 traded refined jet,traded refined jet,-6,start-year,1,share-weight,final-calibration-year,end-year,fixed,1,
 traded corn ethanol renewable diesel,traded corn ethanol renewable diesel,-1,start-year,1,share-weight,final-calibration-year,end-year,fixed,1,
 traded corn ETJ jet fuel,traded corn ETJ jet fuel,-6,start-year,1,share-weight,final-calibration-year,end-year,fixed,1,
+traded FT biofuel RD,traded FT biofuel RD,-6,start-year,1,share-weight,start-year,2020,fixed,1,
+traded FT biojet,traded FT biojet,-6,start-year,0,share-weight,final-calibration-year,end-year,fixed,1,

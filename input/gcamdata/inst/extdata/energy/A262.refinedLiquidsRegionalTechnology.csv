@@ -44,3 +44,7 @@ regional corn ethanol renewable diesel,domestic corn ethanol renewable diesel,do
 regional corn ethanol renewable diesel,imported corn ethanol renewable diesel,imported corn ethanol renewable diesel,traded corn ethanol renewable diesel,1,0,1,USA,
 regional corn ETJ jet fuel,domestic corn ETJ jet fuel,domestic corn ETJ jet fuel,corn ETJ jet fuel,1,0,1,regional,
 regional corn ETJ jet fuel,imported corn ETJ jet fuel,imported corn ETJ jet fuel,traded corn ETJ jet fuel,1,0,1,USA,
+regional FT biofuel RD,domestic FT biofuel RD,domestic biofuel RD,FT biofuel RD,1,0,1,regional,
+regional FT biofuel RD,imported FT biofuel RD,imported FT biofuel RD,traded FT biofuel RD,1,0,1,USA,
+regional FT biojet,domestic FT biojet,domestic FT biojet,FT biojet,1,0,1,regional,
+regional FT biojet,imported FT biojet,imported FT biojet,traded FT biojet,1,0,1,USA,
