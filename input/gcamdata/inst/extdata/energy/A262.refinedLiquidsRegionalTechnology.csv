@@ -40,3 +40,7 @@ regional oilpalm renewable diesel jet fuel,imported oilpalm renewable diesel jet
 regional oilcrop renewable diesel jet fuel,imported oilcrop renewable diesel jet fuel,imported oilcrop renewable diesel jet fuel,traded oilcrop renewable diesel jet fuel,1,0,1,USA,
 regional refined jet,domestic refined jet,domestic refined jet,refined jet,1,0,1,regional,
 regional refined jet,imported refined jet,imported refined jet,traded refined jet,1,0,1,USA,
+regional corn ethanol renewable diesel,domestic corn ethanol renewable diesel,domestic corn ethanol renewable diesel,corn ethanol renewable diesel,1,0,1,regional,
+regional corn ethanol renewable diesel,imported corn ethanol renewable diesel,imported corn ethanol renewable diesel,traded corn ethanol renewable diesel,1,0,1,USA,
+regional corn ETJ jet fuel,domestic corn ETJ jet fuel,domestic corn ETJ jet fuel,corn ETJ jet fuel,1,0,1,regional,
+regional corn ETJ jet fuel,imported corn ETJ jet fuel,imported corn ETJ jet fuel,traded corn ETJ jet fuel,1,0,1,USA,

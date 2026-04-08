@@ -95,6 +95,7 @@ module_gcamusa_L222.en_transformation <- function(command, ...) {
       L222.StubTech_en %>%
       distinct(supplysector) %>%
       filter(grepl("refining|biodiesel|ethanol", supplysector)) %>%
+      filter(!supplysector %in% c("corn ethanol renewable diesel")) %>%
       pull(supplysector)
 
     # silence check package notes

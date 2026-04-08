@@ -21,3 +21,5 @@ traded rapeseed renewable diesel jet fuel,traded rapeseed renewable diesel jet f
 traded oilpalm renewable diesel jet fuel,traded oilpalm renewable diesel jet fuel,-6,start-year,1,share-weight,2030,end-year,fixed,1,
 traded oilcrop renewable diesel jet fuel,traded oilcrop renewable diesel jet fuel,-6,start-year,1,share-weight,2030,end-year,fixed,1,
 traded refined jet,traded refined jet,-6,start-year,1,share-weight,final-calibration-year,end-year,fixed,1,
+traded corn ethanol renewable diesel,traded corn ethanol renewable diesel,-1,start-year,1,share-weight,final-calibration-year,end-year,fixed,1,
+traded corn ETJ jet fuel,traded corn ETJ jet fuel,-6,start-year,1,share-weight,final-calibration-year,end-year,fixed,1,

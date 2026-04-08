@@ -74,3 +74,8 @@ soybean renewable diesel joint,soybean renewable diesel joint,soybean renewable 
 soybean renewable diesel joint,soybean renewable diesel joint,soybean renewable diesel joint low,H2 industrial,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095,0.1095
 refined jet,refined jet,refined jet,refining,1,1,1,1,1,1,1,1,1,1
 refined jet,refined jet,refined jet,oil refining credit,1,1,1,1,1,1,1,1,1,1
+corn ETJ joint,corn ETJ joint,corn ETJ joint,regional corn for ethanol,1,1,1,1,1,1,1,1,1,1
+corn ETJ joint,corn ETJ joint,corn ETJ joint,wholesale gas,0.318,0.318,0.318,0.318,0.318,0.318,0.318,0.318,0.318,0.318
+corn ethanol renewable diesel,corn ethanol renewable diesel,corn ethanol renewable diesel,corn ETJ joint,1,1,1,1,1,1,1,1,1,1
+corn ETJ jet fuel,corn ETJ jet fuel,corn ETJ jet fuel,corn ETJ joint,1,1,1,1,1,1,1,1,1,1
+corn ETJ jet fuel,corn ETJ jet fuel,corn ETJ jet fuel,jet credit ETJ,1,1,1,1,1,1,1,1,1,1

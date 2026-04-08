@@ -48,3 +48,9 @@ rapeseed biodiesel,rapeseed biodiesel,initial-future-year,,1
 oilpalm biodiesel,oilpalm biodiesel,initial-future-year,,1
 oilcrop biodiesel,oilcrop biodiesel,initial-future-year,,1
 refined jet,refined jet,start-year,,1
+corn ETJ joint,corn ETJ joint,start-year,,0
+corn ETJ joint,corn ETJ joint,initial-future-year,,1
+corn ethanol renewable diesel,corn ethanol renewable diesel,start-year,,0
+corn ethanol renewable diesel,corn ethanol renewable diesel,initial-future-year,,1
+corn ETJ jet fuel,corn ETJ jet fuel,start-year,,0
+corn ETJ jet fuel,corn ETJ jet fuel,initial-future-year,,1

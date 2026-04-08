@@ -37,3 +37,7 @@ regional oilpalm renewable diesel jet fuel,imported oilpalm renewable diesel jet
 regional oilcrop renewable diesel jet fuel,imported oilcrop renewable diesel jet fuel,-6,start-year,1,share-weight,final-calibration-year,end-year,s-curve,
 regional refined jet,domestic refined jet,-6,start-year,1,share-weight,final-calibration-year,end-year,s-curve,
 regional refined jet,imported refined jet,-6,start-year,1,share-weight,final-calibration-year,end-year,s-curve,
+regional corn ethanol renewable diesel,domestic corn ethanol renewable diesel,-6,start-year,1,share-weight,final-calibration-year,end-year,s-curve,
+regional corn ethanol renewable diesel,imported corn ethanol renewable diesel,-6,start-year,1,share-weight,final-calibration-year,end-year,s-curve,
+regional corn ETJ jet fuel,domestic corn ETJ jet fuel,-6,start-year,1,share-weight,final-calibration-year,end-year,s-curve,
+regional corn ETJ jet fuel,imported corn ETJ jet fuel,-6,start-year,1,share-weight,final-calibration-year,end-year,s-curve,
