@@ -6,9 +6,5 @@
 supplysector,subsector,technology,apply.to,from.year,to.year,interpolation.function
 refined liquids gasoline pool,ethanol,corn ethanol refining,share-weight,final-calibration-year,end-year,fixed
 refined liquids gasoline pool,ethanol,sugar cane ethanol refining,share-weight,final-calibration-year,end-year,fixed
-refined liquids gasoline pool,renewable diesel,soybean renewable diesel,share-weight,initial-future-year,end-year,s-curve
-refined liquids gasoline pool,renewable diesel,rapeseed renewable diesel,share-weight,initial-future-year,end-year,s-curve
-refined liquids gasoline pool,renewable diesel,oilpalm renewable diesel,share-weight,initial-future-year,end-year,s-curve
-refined liquids gasoline pool,renewable diesel,oilcrop renewable diesel,share-weight,initial-future-year,end-year,s-curve
 refined liquids gasoline pool,renewable diesel,corn ethanol renewable diesel,share-weight,initial-future-year,end-year,s-curve
 refined liquids gasoline pool,renewable diesel,renewable diesel FT,share-weight,initial-future-year,end-year,s-curve
