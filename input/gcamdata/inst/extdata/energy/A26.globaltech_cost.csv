@@ -35,6 +35,5 @@ refined liquids industrial,refined liquids industrial,refined liquids industrial
 backup_electricity,hydrogen,hydrogen combustion turbine,fixed and variable OM,1.84,1.84,1.84,1.69
 backup_electricity,hydrogen,hydrogen combustion turbine,additional levelized capital,2.28,2.28,2.28,2.28
 aviation fuels,ETJ,corn ETJ,non-energy,1.1,1.1,1.1,1.1
-refined liquids enduse,renewable diesel,corn ethanol renewable diesel,non-energy,1.1,1.1,1.1,1.1
 aviation fuels,FT,FT biojet,non-energy,1.1,1.1,1.1,1.1
 refined liquids enduse,renewable diesel,FT biofuel RD,non-energy,1.1,1.1,1.1,1.1

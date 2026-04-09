@@ -6,4 +6,4 @@
 supplysector,subsector,logit.exponent,logit.type
 refined liquids gasoline pool,refined oil,-6,
 refined liquids gasoline pool,ethanol,-6,
-refined liquids gasoline pool,renewable diesel,-6,
+refined liquids gasoline pool,renewable diesel,-3,
