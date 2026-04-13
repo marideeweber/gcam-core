@@ -5,14 +5,14 @@
 # Column types: ccccn
 # ----------
 supplysector,subsector,technology,res.secondary.output,output.ratio
-soybean renewable diesel joint,soybean renewable diesel joint,soybean renewable diesel joint high,refining jet credit,0.5
-rapeseed renewable diesel joint,rapeseed renewable diesel joint,rapeseed renewable diesel joint high,refining jet credit,0.5
-oilpalm renewable diesel joint,oilpalm renewable diesel joint,oilpalm renewable diesel joint high,refining jet credit,0.5
-oilcrop renewable diesel joint,oilcrop renewable diesel joint,oilcrop renewable diesel joint high,refining jet credit,0.5
-soybean renewable diesel joint,soybean renewable diesel joint,soybean renewable diesel joint low,refining jet credit,0
-rapeseed renewable diesel joint,rapeseed renewable diesel joint,rapeseed renewable diesel joint low,refining jet credit,0
-oilpalm renewable diesel joint,oilpalm renewable diesel joint,oilpalm renewable diesel joint low,refining jet credit,0
-oilcrop renewable diesel joint,oilcrop renewable diesel joint,oilcrop renewable diesel joint low,refining jet credit,0
+soybean renewable diesel joint,soybean renewable diesel joint,soybean renewable diesel joint high,refining jet credit soybean,0.5
+rapeseed renewable diesel joint,rapeseed renewable diesel joint,rapeseed renewable diesel joint high,refining jet credit rapeseed,0.5
+oilpalm renewable diesel joint,oilpalm renewable diesel joint,oilpalm renewable diesel joint high,refining jet credit oilpalm,0.5
+oilcrop renewable diesel joint,oilcrop renewable diesel joint,oilcrop renewable diesel joint high,refining jet credit oilcrop,0.5
+soybean renewable diesel joint,soybean renewable diesel joint,soybean renewable diesel joint low,refining jet credit soybean,0
+rapeseed renewable diesel joint,rapeseed renewable diesel joint,rapeseed renewable diesel joint low,refining jet credit rapeseed,0
+oilpalm renewable diesel joint,oilpalm renewable diesel joint,oilpalm renewable diesel joint low,refining jet credit oilpalm,0
+oilcrop renewable diesel joint,oilcrop renewable diesel joint,oilcrop renewable diesel joint low,refining jet credit oilcrop,0
 refining,oil refining,oil refining,oil refining credit,0.1
 corn ETJ joint,corn ETJ joint,corn ETJ joint,jet credit ETJ,0.7
 FT biofuel,FT biofuel,FT biofuel,jet credit FT,0.5
