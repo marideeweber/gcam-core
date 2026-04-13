@@ -5,7 +5,7 @@
 # Column types: ccin
 # ----------
 policy.portfolio.standard,policyType,constraint, min.price
-refining jet credit,RES,1,0
+refining jet credit,RES,1,-5
 oil refining credit,RES,1,0.00E+00
-jet credit ETJ,RES,1,0.00E+00
+jet credit ETJ,RES,1,-5
 jet credit FT,RES,1,0.00E+00

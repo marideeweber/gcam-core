@@ -467,6 +467,14 @@ module_energy_L222.en_transformation <- function(command, ...) {
       select(LEVEL2_DATA_NAMES[["PortfolioStdConstraint"]]) ->
       L222.jet_fuel_credits_all
 
+    L222.jet_fuel_credits_all %>%
+      filter(policy.portfolio.standard =="oil refining credit")->L222.jet_fuel_credits_all_oil
+
+    L222.jet_fuel_credits_all %>%
+      filter(policy.portfolio.standard !="oil refining credit",
+             year>= 2035)-> L222.jet_fuel_credits_all_bio
+
+    L222.jet_fuel_credits_all <- bind_rows(L222.jet_fuel_credits_all_bio,L222.jet_fuel_credits_all_oil)
 
 
     jet_credit_high_filter <- L222.biofuel_type_filter_R %>%
