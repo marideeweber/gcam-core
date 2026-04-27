@@ -46,3 +46,48 @@ NonFoodDemand_sawnwood,0,0
 NonFoodDemand_woodpulp,0,0
 regional woodpulp for energy,23,0
 aviation fuels,19.6,0
+traded soybean renewable diesel,19.6,1
+traded rapeseed renewable diesel,19.6,1
+traded oilpalm renewable diesel,19.6,1
+traded oilcrop renewable diesel,19.6,1
+traded soybean renewable diesel jet fuel,19.6,1
+traded rapeseed renewable diesel jet fuel,19.6,1
+traded oilpalm renewable diesel jet fuel,19.6,1
+traded oilcrop renewable diesel jet fuel,19.6,1
+traded refined jet,19.6,1
+traded corn ethanol renewable diesel,19.6,1
+traded corn ETJ jet fuel,19.6,1
+traded FT biofuel RD,19.6,1
+traded FT biojet,19.6,1
+oilcrop renewable diesel,19.6,0
+oilcrop renewable diesel jet fuel,19.6,0
+oilcrop renewable diesel joint,19.6,0
+oilpalm renewable diesel,19.6,0
+oilpalm renewable diesel jet fuel,19.6,0
+oilpalm renewable diesel joint,19.6,0
+rapeseed renewable diesel,19.6,0
+rapeseed renewable diesel jet fuel,19.6,0
+rapeseed renewable diesel joint,19.6,0
+soybean renewable diesel,19.6,0
+soybean renewable diesel jet fuel,19.6,0
+soybean renewable diesel joint,19.6,0
+refined jet,19.6,0
+corn ETJ joint,19.6,0
+corn ethanol renewable diesel,19.6,0
+corn ETJ jet fuel,19.6,0
+FT biofuel,19.6,0
+FT biofuel RD,19.6,0
+FT biojet,19.6,0
+regional soybean renewable diesel,19.6,0
+regional rapeseed renewable diesel,19.6,0
+regional oilpalm renewable diesel,19.6,0
+regional oilcrop renewable diesel,19.6,0
+regional soybean renewable diesel jet fuel,19.6,0
+regional rapeseed renewable diesel jet fuel,19.6,0
+regional oilpalm renewable diesel jet fuel,19.6,0
+regional oilcrop renewable diesel jet fuel,19.6,0
+regional refined jet,19.6,0
+regional corn ethanol renewable diesel,19.6,0
+regional corn ETJ jet fuel,19.6,0
+regional FT biofuel RD,19.6,0
+regional FT biojet,19.6,0

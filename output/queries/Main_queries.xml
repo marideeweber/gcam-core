@@ -1743,7 +1743,7 @@ local:generate-sector-input-coefs(remove($outputNameQueue, 1), $currTree, $coefs
                     <axis1 name="fuel">sector</axis1>
                     <axis2 name="Year">cost</axis2>
                     <xPath buildList="true" dataName="price" group="false" sumAll="false">*[@type='sector' and (@name='refining' or @name='refined liquids enduse' or
-               @name='refined liquids industrial')]/cost/text()</xPath>
+               @name='refined liquids industrial' or  @name='aviation fuels')]/cost/text()</xPath>
                     <comments/>
                 </supplyDemandQuery>
                 <supplyDemandQuery title="refined liquids costs by subsector">
@@ -2169,6 +2169,7 @@ element input {
                             <rewrite from="regional coal" to="coal"/>
                             <rewrite from="H2 industrial" to="hydrogen"/>
                             <rewrite from="refined liquids enduse" to="refined liquids"/>
+                             <rewrite from="aviation fuels" to="refined liquids"/>
                             <rewrite from="elect_td_trn" to="electricity"/>
                             <rewrite from="delivered coal" to="coal"/>
                             <rewrite from="delivered gas" to="gas"/>
@@ -2225,7 +2226,7 @@ element input {
             @name='delivered coal' or @name='delivered biomass' or @name='traditional biomass' or
             @name='elect_td_ind' or @name='elect_td_bld' or @name='elect_td_trn' or
             @name='H2 wholesale dispensing' or @name='H2 wholesale delivery' or @name='H2 retail dispensing' or @name='H2 retail delivery' or
-            @name='refined liquids industrial' or @name='refined liquids enduse' or @name='waste biomass for paper')]/
+            @name='refined liquids industrial' or @name='refined liquids enduse' or @name='waste biomass for paper'or @name='aviation fuels')]/
             cost/text()</xPath>
                     <comments/>
                 </supplyDemandQuery>

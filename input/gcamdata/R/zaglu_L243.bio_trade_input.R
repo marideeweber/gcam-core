@@ -272,19 +272,19 @@ module_aglu_L243.bio_trade_input <- function(command, ...) {
       filter(subsector == "imported biomass", year >= aglu.BIO_TRADE_SSP3_YEAR_FILLOUT) %>%
       mutate(share.weight = 0.1) ->
       L243.StubTechShrwt_TotBio_SSP3
-
+    # Set up filter to remove DDGS trade from regions where corn ethanol production is not allowed.
+    DDGS_regions <- A_regions$region[A_regions$ethanol == "corn ethanol"]
     # SSP4 ag trade - reduce the logit exponents for the decision between imports and consumption of domestic
     # production, in low income regions
     SSP4_AG_LOGIT_IMPORT_LOW <- -1.5
     L243.Supplysector_reg_SSP4 <- mutate(A_agRegionalSector, logit.year.fillout = min(MODEL_BASE_YEARS)) %>%
       write_to_all_regions(c(LEVEL2_DATA_NAMES[["Supplysector"]], "logit.type"),
-                           filter(GCAM_region_names, region %in% get_ssp_regions(L102.pcgdp_thous90USD_Scen_R_Y, GCAM_region_names, "low"))) %>%
+                           filter(GCAM_region_names, region %in% DDGS_regions ,region %in% get_ssp_regions(L102.pcgdp_thous90USD_Scen_R_Y, GCAM_region_names, "low"))) %>%
       mutate(logit.exponent = SSP4_AG_LOGIT_IMPORT_LOW)
 
     # SSP4 ag trade, cont'd - for the export market (sharing regions), decrease the share-weights from their base-year
     # calibrated values towards zero in some year beyond the analysis window
-    # Set up filter to remove DDGS trade from regions where corn ethanol production is not allowed.
-    DDGS_regions <- A_regions$region[A_regions$ethanol == "corn ethanol"]
+
     SSP4_ZERO_EXPORT_YEAR_LOW <- 2150
     A_agTradedSubsector_SSP4 <- mutate(A_agTradedSubsector, to.value = 0,
                                        to.year = SSP4_ZERO_EXPORT_YEAR_LOW,
