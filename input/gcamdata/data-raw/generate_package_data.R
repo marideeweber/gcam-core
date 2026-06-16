@@ -145,6 +145,7 @@ generate_level2_data_names <- function() {
   level2_data_names[["TechFixOut"]] <- c(level2_data_names[["TechYr"]], "fixedOutput")
   level2_data_names[["TechIntGainOutputRatio"]] <- c("region", "supplysector", "subsector", "technology", "year", "internal.gains.output.ratio", "internal.gains.market.name")
   level2_data_names[["TechLifetime"]] <- c(level2_data_names[["TechYr"]], "lifetime")
+  level2_data_names[["TechLifetimeCoef"]] <- c(level2_data_names[["TechLifetime"]], "minicam.energy.input", "coefficient")
   level2_data_names[["TechSecOut"]] <- c(level2_data_names[["TechYr"]], "secondary.output", "output.ratio")
   level2_data_names[["TechSecOutPMult"]] <- c(level2_data_names[["TechSecOut"]], "pMultiplier")
   level2_data_names[["TechAccountOutput"]] <- c(level2_data_names[["TechYr"]], "output.accounting", "output.ratio", "market.name")

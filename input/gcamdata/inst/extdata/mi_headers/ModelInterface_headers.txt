@@ -264,6 +264,8 @@ TechOMvar, world/+{name}region, region/+{name}supplysector, supplysector/+{name}
 
 TechLifetime, world/+{name}region, region/+{name}supplysector, supplysector/+{name}subsector, subsector/+{name}technology, technology/+{year}period, period/+lifetime, scenario, scenario/world
 
+TechLifetimeCoef, world/+{name}region, region/+{name}supplysector, supplysector/+{name}subsector, subsector/+{name}technology, technology/+{year}period, period/+lifetime, period/+{name}minicam-energy-input, minicam-energy-input/+coefficient, scenario, scenario/world
+
 TechIntGainOutputRatio, world/+{name}region, region/+{name}supplysector, supplysector/+{name}subsector, subsector/+{name}technology, technology/+{year}period, internal-gains/+output-ratio, internal-gains/+internal-gains-market-name, scenario, scenario/world, period/internal-gains
 
 TechSecOut, world/+{name}region, region/+{name}supplysector, supplysector/+{name}subsector, subsector/+{name}technology, technology/+{year}period, period/+{name}secondary-output, secondary-output/+output-ratio, scenario, scenario/world

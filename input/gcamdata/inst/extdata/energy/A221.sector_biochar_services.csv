@@ -1,0 +1,8 @@
+# File: A221.sector_biochar_services.csv
+# Title: Biochar Services Supplysector
+# Units: NA
+# Comments:  creates the biochar services sector to be demanded by cropland
+# Column types: ccccnnn 
+# ----------
+supplysector,subsector,technology,minicam.energy.input
+biochar services,biochar services,biochar services,biochar_labile

@@ -17,7 +17,7 @@
 #' \code{L2221.AgProdChange_ag_irr_ref},
 #' \code{L2221.AgCoef_Fert_ag_irr_mgmt},
 #' \code{L2221.AgCost_ag_irr_mgmt_adj}, \code{L2221.AgResBio_ag_irr_mgmt},
-#' \code{L2221.AgResBioCurve_ag_irr_mgmt}, \code{L2221.AgCoef_Biochar_ag_irr_mgmt}, \code{L2221.AgCost_Biochar_irr_mgmt_adj},
+#' \code{L2221.AgResBioCurve_ag_irr_mgmt}, \code{L2221.AgCoef_Biochar_ag_irr_mgmt}, \code{L2221.AgCost_Biochar_irr_mgmt_adj}, \code{L2221.Supplysector_Biochar_services},
 #' \code{L2221.CarbonCoef}, \code{L2221.AgCoef_IrrBphysWater_ag_mgmt},
 #' \code{L2221.AgCoef_IrrWaterWdraw_ag_mgmt},
 #' \code{L2221.AgCoef_IrrWaterCons_ag_mgmt},
@@ -61,6 +61,7 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
       FILE = "common/GCAM_region_names",
       FILE = "aglu/A221.bio_tech_prod",
       FILE = "aglu/A221.bio_tech_land_alloc",
+      FILE = "energy/A221.sector_biochar_services",
       # PART 8: biochar_ag_water_input_IRR_MGMT.xml
       "L2072.AgCoef_IrrBphysWater_ag_mgmt",
       "L2072.AgCoef_IrrWaterWdraw_ag_mgmt",
@@ -90,6 +91,7 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
       "L2221.AgCoef_Biochar_ag_irr_mgmt",
       "L2221.AgCost_Biochar_irr_mgmt_adj",
       "L2221.CarbonCoef",
+      "L2221.Supplysector_Biochar_services",
       #8. biochar_ag_water_input_IRR_MGMT.xml
       "L2221.AgCoef_IrrBphysWater_ag_mgmt",
       "L2221.AgCoef_IrrWaterWdraw_ag_mgmt",
@@ -147,6 +149,7 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
     #Update these files
     A221.bio_tech_prod <- get_data(all_data, "aglu/A221.bio_tech_prod")
     A221.bio_tech_land_alloc <- get_data(all_data, "aglu/A221.bio_tech_land_alloc")
+    A221.sector_biochar_services <- get_data(all_data, "energy/A221.sector_biochar_services")
     # And we also use L2252.LN5_MgdAllocation_crop, L2012.AgProduction_ag_irr_mgmt, L2062.AgCost_ag_irr_mgmt_adj
 
     #PART 8: biochar_ag_water_input_IRR_MGMT.xml
@@ -569,59 +572,59 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
     # 5. Annual biochar yield improvement:
     #Finally, we turn this parameter into an annual yield improvement.
 
-
-    ## L2221.AgProdChange_ag_irr_ref
-    L2052.AgProdChange_ag_irr_ref %>%
-      #Filter for regions we are analyzing (either all or some specific one), and for high technologies
-      filter(region %in% test.region,
-             grepl("_hi", AgProductionTechnology)) %>%
-      # Here we create the biochar suffix to add to the technologies
-      mutate(suffix = "biochar") %>%
-      unite("AgProductionTechnology", c("AgProductionTechnology", "suffix"), sep="_") %>%
-      # Now get column to distinguish irrigated vs rainfed
-      mutate(water = if_else(grepl("IRR", AgProductionTechnology), "irrigated", "rainfed")) %>%
-      # Add climate zones tables
-      left_join_error_no_match(GCAM_region_names_climate_zone, by = "region") %>%
-      # Now add the table with the yield improvements as percentages, distinguishing from irrigated-rainfed, and tropical/temperate
-      left_join_error_no_match(A221.biochar_yield_increase, by = c("water", "zone")) %>%
-      # (Step 1): Finally, add the table with percentage of biochar land per period, which has the information for step 1
-      left_join_error_no_match(A221.biochar_land_alloc, by = "year") %>%
-      # There are 3 specifc GLUs that have an AgPordChange parameter of -1, which would affect our following calculaitons
-      # So we just change those three from -1 to -0.9999
-      # The three GLUs are: Wheat_ShebJubR_IRR_hi_biochar; OtherGrain_AfrCstNW_IRR_hi_biochar; OtherGrain_LChad_IRR_hi_biochar
-      mutate(AgProdChange = if_else(AgProdChange == -1, -0.9999, AgProdChange)) %>%
-      # Now everything is ready, perform calculations
-      # Step 2: Get the average yield on biochar land
-      # considering the percentage of land with biochar, and the yield increase of appliying the biochar
-      mutate(av_yield_biochar = 1*(1 + percentage * yield_increase)) %>%
-      # Step 3: Get cumulative base yield improvements (without biochar)
-      # Since this calculation is recursive, we need to set a for loop
-      # Each computaiton is dependent on the computaiton from teh previous year (within each basin and technology and crop)
-      group_by(region, AgSupplySector, AgSupplySubsector, AgProductionTechnology, water, GCAM_region_ID, zone) %>%
-      mutate(cum_base_yield_improv = 1) -> temp
-
-    for (y in unique(temp$year)) {
-      temp %>%
-        mutate(cum_base_yield_improv = lag(cum_base_yield_improv)*(1 + AgProdChange)^5) %>%
-        replace_na(list(cum_base_yield_improv = 1))->temp
-    }
-
-    # Now continue with computations
-    temp %>%
-      # Step 4: Get cumulative biochar yield improvement
-      mutate(cum_biochar_yield_improv = cum_base_yield_improv * av_yield_biochar) %>%
-      # Step 5: Get annual biochar yield improvement
-      #We need to group first so that the divisin happens wihtin the same country, basin, crop, tech, and compared to previous year
-      #and not across different regions.
-      group_by(region, AgSupplySector, AgSupplySubsector, AgProductionTechnology, water, GCAM_region_ID, zone) %>%
-      mutate(annual_biochar_yield_improv = ((cum_biochar_yield_improv / lag(cum_biochar_yield_improv))^(1/5))-1) %>%
-      ungroup() %>%
-      # Now replace NA in 2020 with the same ag prod change from the default technology, since the yield increase comes after the application
-      mutate(annual_biochar_yield_improv = if_else(year == 2020 & is.na(annual_biochar_yield_improv), AgProdChange, annual_biochar_yield_improv)) %>%
-      # Now reanme old ag prod change, and keep the new one
-      rename(old_AgProdChange = AgProdChange,
-             AgProdChange = annual_biochar_yield_improv) %>%
-      select(LEVEL2_DATA_NAMES$AgProdChange)-> L2221.AgProdChange_ag_irr_ref_BEFORE # OUTPUT
+#
+#     ## L2221.AgProdChange_ag_irr_ref
+#     L2052.AgProdChange_ag_irr_ref %>%
+#       #Filter for regions we are analyzing (either all or some specific one), and for high technologies
+#       filter(region %in% test.region,
+#              grepl("_hi", AgProductionTechnology)) %>%
+#       # Here we create the biochar suffix to add to the technologies
+#       mutate(suffix = "biochar") %>%
+#       unite("AgProductionTechnology", c("AgProductionTechnology", "suffix"), sep="_") %>%
+#       # Now get column to distinguish irrigated vs rainfed
+#       mutate(water = if_else(grepl("IRR", AgProductionTechnology), "irrigated", "rainfed")) %>%
+#       # Add climate zones tables
+#       left_join_error_no_match(GCAM_region_names_climate_zone, by = "region") %>%
+#       # Now add the table with the yield improvements as percentages, distinguishing from irrigated-rainfed, and tropical/temperate
+#       left_join_error_no_match(A221.biochar_yield_increase, by = c("water", "zone")) %>%
+#       # (Step 1): Finally, add the table with percentage of biochar land per period, which has the information for step 1
+#       left_join_error_no_match(A221.biochar_land_alloc, by = "year") %>%
+#       # There are 3 specifc GLUs that have an AgPordChange parameter of -1, which would affect our following calculaitons
+#       # So we just change those three from -1 to -0.9999
+#       # The three GLUs are: Wheat_ShebJubR_IRR_hi_biochar; OtherGrain_AfrCstNW_IRR_hi_biochar; OtherGrain_LChad_IRR_hi_biochar
+#       mutate(AgProdChange = if_else(AgProdChange == -1, -0.9999, AgProdChange)) %>%
+#       # Now everything is ready, perform calculations
+#       # Step 2: Get the average yield on biochar land
+#       # considering the percentage of land with biochar, and the yield increase of appliying the biochar
+#       mutate(av_yield_biochar = 1*(1 + percentage * yield_increase)) %>%
+#       # Step 3: Get cumulative base yield improvements (without biochar)
+#       # Since this calculation is recursive, we need to set a for loop
+#       # Each computaiton is dependent on the computaiton from teh previous year (within each basin and technology and crop)
+#       group_by(region, AgSupplySector, AgSupplySubsector, AgProductionTechnology, water, GCAM_region_ID, zone) %>%
+#       mutate(cum_base_yield_improv = 1) -> temp
+#
+#     for (y in unique(temp$year)) {
+#       temp %>%
+#         mutate(cum_base_yield_improv = lag(cum_base_yield_improv)*(1 + AgProdChange)^5) %>%
+#         replace_na(list(cum_base_yield_improv = 1))->temp
+#     }
+#
+#     # Now continue with computations
+#     temp %>%
+#       # Step 4: Get cumulative biochar yield improvement
+#       mutate(cum_biochar_yield_improv = cum_base_yield_improv * av_yield_biochar) %>%
+#       # Step 5: Get annual biochar yield improvement
+#       #We need to group first so that the divisin happens wihtin the same country, basin, crop, tech, and compared to previous year
+#       #and not across different regions.
+#       group_by(region, AgSupplySector, AgSupplySubsector, AgProductionTechnology, water, GCAM_region_ID, zone) %>%
+#       mutate(annual_biochar_yield_improv = ((cum_biochar_yield_improv / lag(cum_biochar_yield_improv))^(1/5))-1) %>%
+#       ungroup() %>%
+#       # Now replace NA in 2020 with the same ag prod change from the default technology, since the yield increase comes after the application
+#       mutate(annual_biochar_yield_improv = if_else(year == 2020 & is.na(annual_biochar_yield_improv), AgProdChange, annual_biochar_yield_improv)) %>%
+#       # Now reanme old ag prod change, and keep the new one
+#       rename(old_AgProdChange = AgProdChange,
+#              AgProdChange = annual_biochar_yield_improv) %>%
+#       select(LEVEL2_DATA_NAMES$AgProdChange)-> L2221.AgProdChange_ag_irr_ref_BEFORE # OUTPUT
 
     #=============================================================================================================================
 
@@ -663,45 +666,32 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
       unite("AgProductionTechnology", c(AgProductionTechnology, treatment)) %>%
       mutate(residue.biomass.production = "biomassHerbaceous") -> L2221.AgResBioCurve_ag_irr_mgmt # OUTPUT
 
+
+
     #=============================================================================================================================
 
     #### PART 7: Create Agriculture Demand for Biochar (biochar_ag_demand.xml) ####
     # This part is used to create the demand for biochar in agricultural crops
-    # We follow a similar approach to fertilizer input to agriculture
-    # Based on output table L142.ag_Fert_IO_R_C_Y_GLU from LB142.ag_Fert_IO_R_C_Y_GLU fertilizer is calculated as:
-    # Input-output coefficients for each crop are first calculated as fertilizer demands divided by agriculture production in the base year
-
-    # We use similar approach with biochar demand (assumed) divided by agriculture production in the base year
-    # Steps:
-    # 1. First filter for base year, and for biochar crops
-    # 2. from total land allocation get total biochar application (assuming certain biochar application rates)
-    # 3. We assume that the total from step 2 is absolute maximum biochar application. To get the rate per year we divide total by 75
-    #(which are the years modeled, since biochar application starts in 2025)
-    # 4. Then that biochar per year application (in Mt) is divided by the agricultural production (in Mt) to get the coefficient
+    # Because biochar has a one-time application, we need a way to mimic vintaging the crops
+    # We create a pass-through sector, biochar services, that has a lifetime of 75 years
+    # This biochar services sector consumes biochar, and the ag tech consumes biochar services
+    # The input-putput coefficient of the biochar services ag tech is 1/75 * the application rate
 
     ## L2221.AgCoef_Biochar_ag_irr_mgmt
-    # Estimate coefficients for biochar demand
-    # Get the total amount of land per crop, basin and tech for 2015 only
-    # But we create a new ag sector that competes with the other ones.
     L2252.LN5_MgdAllocation_crop %>%
       filter(region %in% test.region,
              year == MODEL_FINAL_BASE_YEAR,
              LandLeaf %in% biochar.techs) %>%
       full_join(biochar_techs, by=c("LandLeaf" = "technology"), relationship = "many-to-many") %>%
       unite("AgProductionTechnology", c(LandLeaf, treatment)) %>%
+      select(-allocation) %>%
+      # extract biochar application rate from technology name to calculate coefficient
       mutate(biochar_rate = str_extract(AgProductionTechnology, "[^_]+$"),
-             biochar_rate = as.numeric(biochar_rate)) %>%
-      # Units are in thousand km2 and we need them in hectares
-      # Then we assume certain biochar application rate - we allow 5, 15, or 30 tons/hectare
-      # This is expected to be the absolute maximum (total amount of land times "X" tons per hectare)
-      # Then divide by the remaining modeled years to get a rate (from constant "assumed.biochar.years")
-      # This will give us the demand in a given year for biochar
-      mutate(allocation_ha = allocation * 1000 * km2.to.ha,
-             # 10^6 since we need units in megatons, and rate is in tons
-             max.biochar_MT = (allocation_ha * biochar_rate) / 10^6,
-             biochar.year_MT = max.biochar_MT / assumed.biochar.years,
-             #Get allocation in kg per hectare, since units are in kg of biochar per kg of crop
-             biochar.year_kg = biochar.year_MT * 10^9) %>%
+             biochar_rate = as.numeric(biochar_rate),
+             # convert application rate from ton/hectare to kg/m^2
+             # TODO: is this the right unit
+             biochar_rate = biochar_rate / 10,
+             coefficient = ((1/assumed.biochar.years))*biochar_rate) %>%
       rename("AgSupplySubsector" = "LandNode4") %>%
       select(-biochar_rate) -> L2252.LN5_MgdAllocation_crop_biochar
 
@@ -710,8 +700,6 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
       filter(region %in% test.region,
              year == MODEL_FINAL_BASE_YEAR,
              AgProductionTechnology %in% biochar.techs) %>%
-      # Since units are in Mt we convert them to kg
-      mutate(prod_kg = calOutputValue * 10^9) %>%
       # Add in technology suffixes
       full_join(biochar_techs, by=c("AgProductionTechnology" = "technology"), relationship = "many-to-many") %>%
       unite("AgProductionTechnology", c(AgProductionTechnology, treatment)) -> L2012.AgProduction_ag_irr_mgmt_biochar
@@ -720,26 +708,23 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
     L2252.LN5_MgdAllocation_crop_biochar %>%
       # Join table with agriculture production by crops
       left_join_error_no_match(L2012.AgProduction_ag_irr_mgmt_biochar, by = c("region", "year", "AgSupplySubsector", "AgProductionTechnology")) %>%
-      select(region, AgSupplySector, AgSupplySubsector, AgProductionTechnology, year, biochar.year_MT, calOutputValue,
-             biochar.year_kg, prod_kg) %>%
-      # Now compute coefficient as biochar.year_MT divided total crop production (as with fertilzier)
-      # This is Megatons of biochar / Mt of crop produced in that land; or kf of biochar / kg of crop production
-      # only biochar_labile can be used as a soil amendment
-      mutate(minicam.energy.input = "biochar_labile",
-             coefficient = biochar.year_MT / calOutputValue,
-             coefficient_kg = biochar.year_kg / prod_kg) %>%
+      select(region, AgSupplySector, AgSupplySubsector, AgProductionTechnology, year, coefficient) %>%
+      # Create minicam energy input for biochar services
+      mutate(minicam.energy.input = "biochar services") %>%
       # Complete other years
       complete(nesting(region, AgSupplySector, AgSupplySubsector, AgProductionTechnology,
                        minicam.energy.input, coefficient), year = c(year, MODEL_YEARS)) %>%
       select(LEVEL2_DATA_NAMES$AgCoef)-> L2221.AgCoef_Biochar_ag_irr_mgmt # OUTPUT
 
     ## L2221.AgCost_Biochar_irr_mgmt_adj
-    L2062.AgCost_ag_irr_mgmt_adj %>% # We use the adjsuted costs of applying fertilizer here
+    L2062.AgCost_ag_irr_mgmt_adj %>% # We use the adjusted costs of applying fertilizer here
       filter(region %in% test.region,
              AgProductionTechnology %in% biochar.techs) %>%
       # Add in technology suffixes
       full_join(biochar_techs, by=c("AgProductionTechnology" = "technology"), relationship = "many-to-many") %>%
       unite("AgProductionTechnology", c(AgProductionTechnology, treatment)) %>%
+      #increase the cost of biochar technologies by 3% to account for application costs
+      mutate(nonLandVariableCost = nonLandVariableCost + (nonLandVariableCost * .03)) %>%
       # filter out non existent crops
       semi_join(L2221.AgCoef_Biochar_ag_irr_mgmt, by = c("region", "AgSupplySector", "AgSupplySubsector", "AgProductionTechnology", "year")) %>%
       select(LEVEL2_DATA_NAMES$AgCost) -> L2221.AgCost_Biochar_irr_mgmt_adj # OUTPUT
@@ -750,7 +735,111 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
       write_to_all_regions(c(LEVEL2_DATA_NAMES[["CarbonCoef"]]), GCAM_region_names = GCAM_region_names, has_traded = TRUE) %>%
       filter(region %in% test.region) -> L2221.CarbonCoef # OUTPUT
 
+
+    ## L2221.Supplysector_Biochar_services
+    # Create table for the biochar service supplysector
+    A221.sector_biochar_services %>%
+      # add in a coefficient and lifetime equal to the number of years biochar can be demanded
+      mutate(coefficient = assumed.biochar.years,
+             lifetime = assumed.biochar.years,
+             # add biochar region
+             region = test.region,
+             # add in a year (this is for the next step, it can be any year)
+             year = min(MODEL_YEARS)) %>%
+      # Complete years
+      complete(nesting(region, supplysector, subsector, technology,
+                       minicam.energy.input, coefficient, lifetime), year = c(year, MODEL_YEARS)) -> L2221.Supplysector_Biochar_services
     #=============================================================================================================================
+
+
+    # #=============================================================================================================================
+    #
+    # #### PART 7: Create Agriculture Demand for Biochar (biochar_ag_demand.xml) ####
+    # # This part is used to create the demand for biochar in agricultural crops
+    # # We follow a similar approach to fertilizer input to agriculture
+    # # Based on output table L142.ag_Fert_IO_R_C_Y_GLU from LB142.ag_Fert_IO_R_C_Y_GLU fertilizer is calculated as:
+    # # Input-output coefficients for each crop are first calculated as fertilizer demands divided by agriculture production in the base year
+    #
+    # # We use similar approach with biochar demand (assumed) divided by agriculture production in the base year
+    # # Steps:
+    # # 1. First filter for base year, and for biochar crops
+    # # 2. from total land allocation get total biochar application (assuming certain biochar application rates)
+    # # 3. We assume that the total from step 2 is absolute maximum biochar application. To get the rate per year we divide total by 75
+    # #(which are the years modeled, since biochar application starts in 2025)
+    # # 4. Then that biochar per year application (in Mt) is divided by the agricultural production (in Mt) to get the coefficient
+    #
+    # ## L2221.AgCoef_Biochar_ag_irr_mgmt
+    # # Estimate coefficients for biochar demand
+    # # Get the total amount of land per crop, basin and tech for 2015 only
+    # # But we create a new ag sector that competes with the other ones.
+    # L2252.LN5_MgdAllocation_crop %>%
+    #   filter(region %in% test.region,
+    #          year == MODEL_FINAL_BASE_YEAR,
+    #          LandLeaf %in% biochar.techs) %>%
+    #   full_join(biochar_techs, by=c("LandLeaf" = "technology"), relationship = "many-to-many") %>%
+    #   unite("AgProductionTechnology", c(LandLeaf, treatment)) %>%
+    #   mutate(biochar_rate = str_extract(AgProductionTechnology, "[^_]+$"),
+    #          biochar_rate = as.numeric(biochar_rate)) %>%
+    #   # Units are in thousand km2 and we need them in hectares
+    #   # Then we assume certain biochar application rate - we allow 5, 15, or 30 tons/hectare
+    #   # This is expected to be the absolute maximum (total amount of land times "X" tons per hectare)
+    #   # Then divide by the remaining modeled years to get a rate (from constant "assumed.biochar.years")
+    #   # This will give us the demand in a given year for biochar
+    #   mutate(allocation_ha = allocation * 1000 * km2.to.ha,
+    #          # 10^6 since we need units in megatons, and rate is in tons
+    #          max.biochar_MT = (allocation_ha * biochar_rate) / 10^6,
+    #          biochar.year_MT = max.biochar_MT / assumed.biochar.years,
+    #          #Get allocation in kg per hectare, since units are in kg of biochar per kg of crop
+    #          biochar.year_kg = biochar.year_MT * 10^9) %>%
+    #   rename("AgSupplySubsector" = "LandNode4") %>%
+    #   select(-biochar_rate) -> L2252.LN5_MgdAllocation_crop_biochar
+    #
+    # # Now prepare the table with the agricultural production
+    # L2012.AgProduction_ag_irr_mgmt %>%
+    #   filter(region %in% test.region,
+    #          year == MODEL_FINAL_BASE_YEAR,
+    #          AgProductionTechnology %in% biochar.techs) %>%
+    #   # Since units are in Mt we convert them to kg
+    #   mutate(prod_kg = calOutputValue * 10^9) %>%
+    #   # Add in technology suffixes
+    #   full_join(biochar_techs, by=c("AgProductionTechnology" = "technology"), relationship = "many-to-many") %>%
+    #   unite("AgProductionTechnology", c(AgProductionTechnology, treatment)) -> L2012.AgProduction_ag_irr_mgmt_biochar
+    #
+    # # Merge tables
+    # L2252.LN5_MgdAllocation_crop_biochar %>%
+    #   # Join table with agriculture production by crops
+    #   left_join_error_no_match(L2012.AgProduction_ag_irr_mgmt_biochar, by = c("region", "year", "AgSupplySubsector", "AgProductionTechnology")) %>%
+    #   select(region, AgSupplySector, AgSupplySubsector, AgProductionTechnology, year, biochar.year_MT, calOutputValue,
+    #          biochar.year_kg, prod_kg) %>%
+    #   # Now compute coefficient as biochar.year_MT divided total crop production (as with fertilzier)
+    #   # This is Megatons of biochar / Mt of crop produced in that land; or kf of biochar / kg of crop production
+    #   # only biochar_labile can be used as a soil amendment
+    #   mutate(minicam.energy.input = "biochar_labile",
+    #          coefficient = biochar.year_MT / calOutputValue,
+    #          coefficient_kg = biochar.year_kg / prod_kg) %>%
+    #   # Complete other years
+    #   complete(nesting(region, AgSupplySector, AgSupplySubsector, AgProductionTechnology,
+    #                    minicam.energy.input, coefficient), year = c(year, MODEL_YEARS)) %>%
+    #   select(LEVEL2_DATA_NAMES$AgCoef)-> L2221.AgCoef_Biochar_ag_irr_mgmt # OUTPUT
+    #
+    # ## L2221.AgCost_Biochar_irr_mgmt_adj
+    # L2062.AgCost_ag_irr_mgmt_adj %>% # We use the adjusted costs of applying fertilizer here
+    #   filter(region %in% test.region,
+    #          AgProductionTechnology %in% biochar.techs) %>%
+    #   # Add in technology suffixes
+    #   full_join(biochar_techs, by=c("AgProductionTechnology" = "technology"), relationship = "many-to-many") %>%
+    #   unite("AgProductionTechnology", c(AgProductionTechnology, treatment)) %>%
+    #   # filter out non existent crops
+    #   semi_join(L2221.AgCoef_Biochar_ag_irr_mgmt, by = c("region", "AgSupplySector", "AgSupplySubsector", "AgProductionTechnology", "year")) %>%
+    #   select(LEVEL2_DATA_NAMES$AgCost) -> L2221.AgCost_Biochar_irr_mgmt_adj # OUTPUT
+    #
+    #
+    # ## L2221.CarbonCoef
+    # A221.A_PrimaryFuelCCoef %>%
+    #   write_to_all_regions(c(LEVEL2_DATA_NAMES[["CarbonCoef"]]), GCAM_region_names = GCAM_region_names, has_traded = TRUE) %>%
+    #   filter(region %in% test.region) -> L2221.CarbonCoef # OUTPUT
+    #
+    # #=============================================================================================================================
 
     #### PART 8: Create Water demand for newly created technologies (biochar_ag_water_input_IRR_MGMT.xml)####
     # Here we create the water demands for the new technologies, so that they do not have any missing information
@@ -936,6 +1025,14 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
       add_precursors("common/GCAM_region_names", "energy/A221.A_PrimaryFuelCCoef") ->
       L2221.CarbonCoef
 
+    L2221.Supplysector_Biochar_services %>%
+      add_title("Biochar services supplysector") %>%
+      add_units("kgC/GJ") %>%
+      add_comments("Biochar service sector to demand biochar, and then be demanded by cropland") %>%
+      add_legacy_name("L2221.Supplysector_Biochar_services") %>%
+      add_precursors("energy/A221.sector_biochar_services") ->
+      L2221.Supplysector_Biochar_services
+
     #8. biochar_ag_water_input_IRR_MGMT.xml
     L2221.AgCoef_IrrBphysWater_ag_mgmt%>%
       add_title("Biophysical water consumption IO coefficients by region / irrigated crop / year / GLU / management level for new biochar techs") %>%
@@ -995,7 +1092,7 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
       L2221.AgResBio_ag_irr_mgmt, L2221.AgResBioCurve_ag_irr_mgmt,
       #7. biochar_ag_demand.xml
       L2221.AgCoef_Biochar_ag_irr_mgmt, L2221.AgCost_Biochar_irr_mgmt_adj,
-      L2221.CarbonCoef,
+      L2221.CarbonCoef, L2221.Supplysector_Biochar_services,
       #8. biochar_ag_water_input_IRR_MGMT.xml
       L2221.AgCoef_IrrBphysWater_ag_mgmt,
       L2221.AgCoef_IrrWaterWdraw_ag_mgmt,
