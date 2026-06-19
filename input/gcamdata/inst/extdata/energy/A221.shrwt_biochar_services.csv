@@ -1,0 +1,8 @@
+# File: A221.shrwt_biochar_services.csv
+# Title: Biochar Services Shareweight
+# Units: NA
+# Comments:  creates shareweights for the biochar services sector to be demanded by cropland
+# Column types: ccnn
+# ----------
+supplysector,subsector,year.fillout,share.weight
+biochar services,biochar services,1975,1

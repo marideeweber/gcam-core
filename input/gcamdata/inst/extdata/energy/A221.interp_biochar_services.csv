@@ -1,0 +1,8 @@
+# File: A221.interp_biochar_services.csv
+# Title: Biochar Services Interpolation
+# Units: NA
+# Comments:  creates interpolation rule for the biochar services sector to be demanded by cropland
+# Column types: cccnnc
+# ----------
+supplysector,subsector,apply.to,from.year,to.year,interpolation.function
+biochar services,biochar services,share-weight,final-calibration-year,end-year,fixed

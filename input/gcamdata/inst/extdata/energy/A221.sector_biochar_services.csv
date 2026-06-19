@@ -2,7 +2,7 @@
 # Title: Biochar Services Supplysector
 # Units: NA
 # Comments:  creates the biochar services sector to be demanded by cropland
-# Column types: ccccnnn 
+# Column types: ccccncn 
 # ----------
-supplysector,subsector,technology,minicam.energy.input
-biochar services,biochar services,biochar services,biochar_labile
+supplysector,output.unit,input.unit,price.unit,logit.exponent,logit.type,logit.year.fillout
+biochar services,EJ,EJ,1975$/kg,-6,,1975

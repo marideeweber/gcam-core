@@ -1,0 +1,8 @@
+# File: A221.logit_biochar_services.csv
+# Title: Biochar Services Logit
+# Units: NA
+# Comments:  creates logits for the biochar services sector to be demanded by cropland
+# Column types: ccnnn
+# ----------
+supplysector,subsector,logit.year.fillout,logit.exponent,logit.type
+biochar services,biochar services,1975,-6,

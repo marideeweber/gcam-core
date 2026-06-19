@@ -18,6 +18,8 @@
 #' \code{L2221.AgCoef_Fert_ag_irr_mgmt},
 #' \code{L2221.AgCost_ag_irr_mgmt_adj}, \code{L2221.AgResBio_ag_irr_mgmt},
 #' \code{L2221.AgResBioCurve_ag_irr_mgmt}, \code{L2221.AgCoef_Biochar_ag_irr_mgmt}, \code{L2221.AgCost_Biochar_irr_mgmt_adj}, \code{L2221.Supplysector_Biochar_services},
+#' \code{L2221.Shareweight_Biochar_services},\code{L2221.SubsectorLogit_Biochar_services}, \code{L2221.SupplysectorLogit_Biochar_services},
+#' \code{L2221.SubsectorInterp_Biochar_services}, \code{L2221.SubsectorShareweight_Biochar_services},
 #' \code{L2221.CarbonCoef}, \code{L2221.AgCoef_IrrBphysWater_ag_mgmt},
 #' \code{L2221.AgCoef_IrrWaterWdraw_ag_mgmt},
 #' \code{L2221.AgCoef_IrrWaterCons_ag_mgmt},
@@ -62,6 +64,9 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
       FILE = "aglu/A221.bio_tech_prod",
       FILE = "aglu/A221.bio_tech_land_alloc",
       FILE = "energy/A221.sector_biochar_services",
+      FILE = "energy/A221.shrwt_biochar_services",
+      FILE = "energy/A221.subsector_interp_biochar_services",
+      FILE = "energy/A221.logit_biochar_services",
       # PART 8: biochar_ag_water_input_IRR_MGMT.xml
       "L2072.AgCoef_IrrBphysWater_ag_mgmt",
       "L2072.AgCoef_IrrWaterWdraw_ag_mgmt",
@@ -92,6 +97,11 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
       "L2221.AgCost_Biochar_irr_mgmt_adj",
       "L2221.CarbonCoef",
       "L2221.Supplysector_Biochar_services",
+      "L2221.Shareweight_Biochar_services",
+      "L2221.SubsectorLogit_Biochar_services",
+      "L2221.SupplysectorLogit_Biochar_services",
+      "L2221.SubsectorInterp_Biochar_services",
+      "L2221.SubsectorShareweight_Biochar_services",
       #8. biochar_ag_water_input_IRR_MGMT.xml
       "L2221.AgCoef_IrrBphysWater_ag_mgmt",
       "L2221.AgCoef_IrrWaterWdraw_ag_mgmt",
@@ -150,6 +160,9 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
     A221.bio_tech_prod <- get_data(all_data, "aglu/A221.bio_tech_prod")
     A221.bio_tech_land_alloc <- get_data(all_data, "aglu/A221.bio_tech_land_alloc")
     A221.sector_biochar_services <- get_data(all_data, "energy/A221.sector_biochar_services")
+    A221.shrwt_biochar_services <- get_data(all_data, "energy/A221.shrwt_biochar_services")
+    A221.subsector_interp_biochar_services <- get_data(all_data, "energy/A221.subsector_interp_biochar_services")
+    A221.logit_biochar_services <- get_data(all_data, "energy/A221.logit_biochar_services")
     # And we also use L2252.LN5_MgdAllocation_crop, L2012.AgProduction_ag_irr_mgmt, L2062.AgCost_ag_irr_mgmt_adj
 
     #PART 8: biochar_ag_water_input_IRR_MGMT.xml
@@ -739,8 +752,14 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
     ## L2221.Supplysector_Biochar_services
     # Create table for the biochar service supplysector
     A221.sector_biochar_services %>%
+      select(supplysector) %>%
+      # add a subsector, tech, input, and shareweight
+      mutate(subsector = supplysector,
+             technology = supplysector,
+             minicam.energy.input = "biochar_labile",
+             share.weight = 1,
       # add in a coefficient and lifetime equal to the number of years biochar can be demanded
-      mutate(coefficient = assumed.biochar.years,
+             coefficient = assumed.biochar.years,
              lifetime = assumed.biochar.years,
              # add biochar region
              region = test.region,
@@ -748,7 +767,39 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
              year = min(MODEL_YEARS)) %>%
       # Complete years
       complete(nesting(region, supplysector, subsector, technology,
-                       minicam.energy.input, coefficient, lifetime), year = c(year, MODEL_YEARS)) -> L2221.Supplysector_Biochar_services
+                       minicam.energy.input, share.weight, coefficient, lifetime), year = c(year, MODEL_YEARS)) -> L2221.Supplysector_Biochar_services
+
+    # Create logit table for the biochar service supplysector
+    A221.sector_biochar_services %>%
+      mutate(# add biochar region
+        region = test.region) -> L2221.SupplysectorLogit_Biochar_services
+
+    # Create logit table for the biochar service subsector
+    A221.logit_biochar_services %>%
+      mutate(# add biochar region
+        region = test.region) -> L2221.SubsectorLogit_Biochar_services
+
+    # Create interpolation table for the biochar service subsector
+    A221.subsector_interp_biochar_services %>%
+      # must use this to convert GCAM-recognized character strings into years
+      write_to_all_regions(LEVEL2_DATA_NAMES[["SubsectorInterp"]], GCAM_region_names) %>%
+      filter(region == test.region) -> L2221.SubsectorInterp_Biochar_services
+
+    # Create shareweight table for the biochar service subsector
+    A221.subsector_interp_biochar_services %>%
+      select(supplysector, subsector) %>%
+      mutate(share.weight = 1,
+             region = test.region,
+             year = MODEL_FINAL_BASE_YEAR) %>%
+      # Complete years
+      complete(nesting(region, supplysector, subsector, share.weight), year = c(year, MODEL_BASE_YEARS)) -> L2221.SubsectorShareweight_Biochar_services
+
+    # Create shareweight table for the biochar service technologies
+    A221.shrwt_biochar_services %>%
+      mutate(# add biochar region
+        region = test.region) -> L2221.Shareweight_Biochar_services
+
+
     #=============================================================================================================================
 
 
@@ -1027,11 +1078,46 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
 
     L2221.Supplysector_Biochar_services %>%
       add_title("Biochar services supplysector") %>%
-      add_units("kgC/GJ") %>%
+      add_units("Unitless") %>%
       add_comments("Biochar service sector to demand biochar, and then be demanded by cropland") %>%
       add_legacy_name("L2221.Supplysector_Biochar_services") %>%
       add_precursors("energy/A221.sector_biochar_services") ->
       L2221.Supplysector_Biochar_services
+
+    L2221.Shareweight_Biochar_services %>%
+      add_units("Unitless") %>%
+      add_comments("Shareweights for biochar service sector to demand biochar") %>%
+      add_legacy_name("L2221.Shareweight_Biochar_services") %>%
+      add_precursors("energy/A221.shrwt_biochar_services") ->
+      L2221.Shareweight_Biochar_services
+
+    L2221.SubsectorLogit_Biochar_services %>%
+      add_units("Unitless") %>%
+      add_comments("Logits for biochar service subsector to demand biochar") %>%
+      add_legacy_name("L2221.SubsectorLogit_Biochar_services") %>%
+      add_precursors("energy/A221.logit_biochar_services") ->
+      L2221.SubsectorLogit_Biochar_services
+
+    L2221.SupplysectorLogit_Biochar_services %>%
+      add_units("Unitless") %>%
+      add_comments("Logits for biochar service supplysector to demand biochar") %>%
+      add_legacy_name("L2221.SupplysectorLogit_Biochar_services") %>%
+      add_precursors("energy/A221.logit_biochar_services") ->
+      L2221.SupplysectorLogit_Biochar_services
+
+    L2221.SubsectorInterp_Biochar_services %>%
+      add_units("Unitless") %>%
+      add_comments("Interpolation for biochar service subsector to demand biochar") %>%
+      add_legacy_name("L2221.SubsectorInterp_Biochar_services") %>%
+      add_precursors("energy/A221.interp_biochar_services") ->
+      L2221.SubsectorInterp_Biochar_services
+
+    L2221.SubsectorShareweight_Biochar_services %>%
+      add_units("Unitless") %>%
+      add_comments("Shareweights for biochar service subsector to demand biochar") %>%
+      add_legacy_name("L2221.SubsectorInterp_Biochar_services") %>%
+      add_precursors("energy/A221.interp_biochar_services") ->
+      L2221.SubsectorShareweight_Biochar_services
 
     #8. biochar_ag_water_input_IRR_MGMT.xml
     L2221.AgCoef_IrrBphysWater_ag_mgmt%>%
@@ -1092,7 +1178,9 @@ module_energy_L2221.biochar_demand_cropland <- function(command, ...) {
       L2221.AgResBio_ag_irr_mgmt, L2221.AgResBioCurve_ag_irr_mgmt,
       #7. biochar_ag_demand.xml
       L2221.AgCoef_Biochar_ag_irr_mgmt, L2221.AgCost_Biochar_irr_mgmt_adj,
-      L2221.CarbonCoef, L2221.Supplysector_Biochar_services,
+      L2221.CarbonCoef, L2221.Supplysector_Biochar_services, L2221.Shareweight_Biochar_services,
+      L2221.SubsectorLogit_Biochar_services, L2221.SupplysectorLogit_Biochar_services,
+      L2221.SubsectorInterp_Biochar_services, L2221.SubsectorShareweight_Biochar_services,
       #8. biochar_ag_water_input_IRR_MGMT.xml
       L2221.AgCoef_IrrBphysWater_ag_mgmt,
       L2221.AgCoef_IrrWaterWdraw_ag_mgmt,

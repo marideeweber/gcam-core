@@ -1,0 +1,7 @@
+# File: A221.subsector_interp_biochar_services.csv
+# Title: Cement default subsector shareweight interpolation
+# Units: NA
+# Column types: cccccc
+# ----------
+supplysector,subsector,apply.to,from.year,to.year,interpolation.function
+biochar services,biochar services,share-weight,final-calibration-year,end-year,fixed
