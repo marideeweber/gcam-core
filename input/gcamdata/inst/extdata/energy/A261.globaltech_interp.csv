@@ -8,3 +8,4 @@ refined liquids gasoline pool,ethanol,corn ethanol refining,share-weight,final-c
 refined liquids gasoline pool,ethanol,sugar cane ethanol refining,share-weight,final-calibration-year,end-year,fixed
 refined liquids gasoline pool,renewable diesel,corn ethanol renewable diesel,share-weight,initial-future-year,end-year,s-curve
 refined liquids gasoline pool,renewable diesel,renewable diesel FT,share-weight,initial-future-year,end-year,s-curve
+refined liquids gasoline pool,ethanol,cellulosic ethanol refining,share-weight,final-calibration-year,2060,s-curve
