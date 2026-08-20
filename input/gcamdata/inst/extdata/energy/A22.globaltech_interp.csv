@@ -5,7 +5,6 @@
 # Column types: ccccccc 
 # ----------
 supplysector,subsector,technology,apply.to,from.year,to.year,interpolation.function
-cellulosic ethanol,cellulosic ethanol,cellulosic ethanol,share-weight,final-calibration-year,initial-future-year,fixed
 refining,biomass liquids,FT biofuels,share-weight,final-calibration-year,initial-future-year,linear
 corn ethanol,corn ethanol,corn ethanol,share-weight,final-calibration-year,end-year,linear
 sugar cane ethanol,sugar cane ethanol,sugar cane ethanol,share-weight,final-calibration-year,end-year,linear
