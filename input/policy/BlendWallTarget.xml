@@ -19,6 +19,93 @@
                      <res-secondary-output name="Blend Wall Credit">
                         <output-ratio>0.0773</output-ratio>
                      </res-secondary-output>
+                  </period>
+                  <period year="2035">
+                     <res-secondary-output name="Blend Wall Credit">
+                        <output-ratio>0.0801</output-ratio>
+                     </res-secondary-output>
+                  </period>
+                  <period year="2040">
+                     <res-secondary-output name="Blend Wall Credit">
+                        <output-ratio>0.0828</output-ratio>
+                     </res-secondary-output>
+                  </period>
+                  <period year="2045">
+                     <res-secondary-output name="Blend Wall Credit">
+                        <output-ratio>0.0855</output-ratio>
+                     </res-secondary-output>
+                  </period>
+                  <period year="2050">
+                     <res-secondary-output name="Blend Wall Credit">
+                        <output-ratio>0.0881</output-ratio>
+                     </res-secondary-output>
+                  </period>
+                  <period year="2055">
+                      <res-secondary-output name="Blend Wall Credit">
+                          <output-ratio>0.0881</output-ratio>
+                      </res-secondary-output>
+                  </period>
+                  <period year="2060">
+                      <res-secondary-output name="Blend Wall Credit">
+                          <output-ratio>0.0881</output-ratio>
+                      </res-secondary-output>
+                  </period>
+                  <period year="2065">
+                      <res-secondary-output name="Blend Wall Credit">
+                          <output-ratio>0.0881</output-ratio>
+                      </res-secondary-output>
+                  </period>
+                  <period year="2070">
+                      <res-secondary-output name="Blend Wall Credit">
+                          <output-ratio>0.0881</output-ratio>
+                      </res-secondary-output>
+                  </period>
+                  <period year="2075">
+                      <res-secondary-output name="Blend Wall Credit">
+                          <output-ratio>0.0881</output-ratio>
+                      </res-secondary-output>
+                  </period>
+                  <period year="2080">
+                      <res-secondary-output name="Blend Wall Credit">
+                          <output-ratio>0.0881</output-ratio>
+                      </res-secondary-output>
+                  </period>
+                  <period year="2085">
+                      <res-secondary-output name="Blend Wall Credit">
+                          <output-ratio>0.0881</output-ratio>
+                      </res-secondary-output>
+                  </period>
+                  <period year="2090">
+                      <res-secondary-output name="Blend Wall Credit">
+                          <output-ratio>0.0881</output-ratio>
+                      </res-secondary-output>
+                  </period>
+                  <period year="2095">
+                      <res-secondary-output name="Blend Wall Credit">
+                          <output-ratio>0.0881</output-ratio>
+                      </res-secondary-output>
+                  </period>
+                  <period year="2100">
+                      <res-secondary-output name="Blend Wall Credit">
+                          <output-ratio>0.0881</output-ratio>
+                      </res-secondary-output>
+                  </period>
+               </technology>
+                <technology name="cellulosic ethanol refining">
+                  <period year="2021">
+                     <res-secondary-output name="Blend Wall Credit">
+                        <output-ratio>0.0714</output-ratio>
+                     </res-secondary-output>
+                  </period>
+                  <period year="2025">
+                     <res-secondary-output name="Blend Wall Credit">
+                        <output-ratio>0.0744</output-ratio>
+                     </res-secondary-output>
+                  </period>
+                  <period year="2030">
+                     <res-secondary-output name="Blend Wall Credit">
+                        <output-ratio>0.0773</output-ratio>
+                     </res-secondary-output>
                   </period>
                   <period year="2035">
                      <res-secondary-output name="Blend Wall Credit">
@@ -452,6 +539,271 @@
          <supplysector name="regional sugar cane ethanol">
             <subsector name="imported sugar cane ethanol">
                <technology name="imported sugar cane ethanol">
+                  <period year="2021">
+                     <minicam-energy-input name="Blend Wall Credit">
+                        <coefficient>1</coefficient>
+                     </minicam-energy-input>
+                  </period>
+                  <period year="2025">
+                     <minicam-energy-input name="Blend Wall Credit">
+                        <coefficient>1</coefficient>
+                     </minicam-energy-input>
+                  </period>
+                  <period year="2030">
+                     <minicam-energy-input name="Blend Wall Credit">
+                        <coefficient>1</coefficient>
+                     </minicam-energy-input>
+                  </period>
+                  <period year="2035">
+                     <minicam-energy-input name="Blend Wall Credit">
+                        <coefficient>1</coefficient>
+                     </minicam-energy-input>
+                  </period>
+                  <period year="2040">
+                     <minicam-energy-input name="Blend Wall Credit">
+                        <coefficient>1</coefficient>
+                     </minicam-energy-input>
+                  </period>
+                  <period year="2045">
+                     <minicam-energy-input name="Blend Wall Credit">
+                        <coefficient>1</coefficient>
+                     </minicam-energy-input>
+                  </period>
+                  <period year="2050">
+                     <minicam-energy-input name="Blend Wall Credit">
+                        <coefficient>1</coefficient>
+                     </minicam-energy-input>
+                  </period>
+                  <period year="2055">
+                      <minicam-energy-input name="Blend Wall Credit">
+                          <coefficient>1</coefficient>
+                      </minicam-energy-input>
+                  </period>
+                  <period year="2060">
+                      <minicam-energy-input name="Blend Wall Credit">
+                          <coefficient>1</coefficient>
+                      </minicam-energy-input>
+                  </period>
+                  <period year="2065">
+                      <minicam-energy-input name="Blend Wall Credit">
+                          <coefficient>1</coefficient>
+                      </minicam-energy-input>
+                  </period>
+                  <period year="2070">
+                      <minicam-energy-input name="Blend Wall Credit">
+                          <coefficient>1</coefficient>
+                      </minicam-energy-input>
+                  </period>
+                  <period year="2075">
+                      <minicam-energy-input name="Blend Wall Credit">
+                          <coefficient>1</coefficient>
+                      </minicam-energy-input>
+                  </period>
+                  <period year="2080">
+                      <minicam-energy-input name="Blend Wall Credit">
+                          <coefficient>1</coefficient>
+                      </minicam-energy-input>
+                  </period>
+                  <period year="2085">
+                      <minicam-energy-input name="Blend Wall Credit">
+                          <coefficient>1</coefficient>
+                      </minicam-energy-input>
+                  </period>
+                  <period year="2090">
+                      <minicam-energy-input name="Blend Wall Credit">
+                          <coefficient>1</coefficient>
+                      </minicam-energy-input>
+                  </period>
+                  <period year="2095">
+                      <minicam-energy-input name="Blend Wall Credit">
+                          <coefficient>1</coefficient>
+                      </minicam-energy-input>
+                  </period>
+                  <period year="2100">
+                      <minicam-energy-input name="Blend Wall Credit">
+                          <coefficient>1</coefficient>
+                      </minicam-energy-input>
+                  </period>
+               </technology>
+            </subsector>
+         </supplysector>
+        <supplysector name="cellulosic ethanol">
+            <subsector name="cellulosic ethanol">
+               <technology name="cellulosic ethanol">
+                  <period year="2021">
+                     <minicam-energy-input name="Blend Wall Credit">
+                        <coefficient>1</coefficient>
+                     </minicam-energy-input>
+                  </period>
+                  <period year="2025">
+                     <minicam-energy-input name="Blend Wall Credit">
+                        <coefficient>1</coefficient>
+                     </minicam-energy-input>
+                  </period>
+                  <period year="2030">
+                     <minicam-energy-input name="Blend Wall Credit">
+                        <coefficient>1</coefficient>
+                     </minicam-energy-input>
+                  </period>
+                  <period year="2035">
+                     <minicam-energy-input name="Blend Wall Credit">
+                        <coefficient>1</coefficient>
+                     </minicam-energy-input>
+                  </period>
+                  <period year="2040">
+                     <minicam-energy-input name="Blend Wall Credit">
+                        <coefficient>1</coefficient>
+                     </minicam-energy-input>
+                  </period>
+                  <period year="2045">
+                     <minicam-energy-input name="Blend Wall Credit">
+                        <coefficient>1</coefficient>
+                     </minicam-energy-input>
+                  </period>
+                  <period year="2050">
+                     <minicam-energy-input name="Blend Wall Credit">
+                        <coefficient>1</coefficient>
+                     </minicam-energy-input>
+                  </period>
+                  <period year="2055">
+                      <minicam-energy-input name="Blend Wall Credit">
+                          <coefficient>1</coefficient>
+                      </minicam-energy-input>
+                  </period>
+                  <period year="2060">
+                      <minicam-energy-input name="Blend Wall Credit">
+                          <coefficient>1</coefficient>
+                      </minicam-energy-input>
+                  </period>
+                  <period year="2065">
+                      <minicam-energy-input name="Blend Wall Credit">
+                          <coefficient>1</coefficient>
+                      </minicam-energy-input>
+                  </period>
+                  <period year="2070">
+                      <minicam-energy-input name="Blend Wall Credit">
+                          <coefficient>1</coefficient>
+                      </minicam-energy-input>
+                  </period>
+                  <period year="2075">
+                      <minicam-energy-input name="Blend Wall Credit">
+                          <coefficient>1</coefficient>
+                      </minicam-energy-input>
+                  </period>
+                  <period year="2080">
+                      <minicam-energy-input name="Blend Wall Credit">
+                          <coefficient>1</coefficient>
+                      </minicam-energy-input>
+                  </period>
+                  <period year="2085">
+                      <minicam-energy-input name="Blend Wall Credit">
+                          <coefficient>1</coefficient>
+                      </minicam-energy-input>
+                  </period>
+                  <period year="2090">
+                      <minicam-energy-input name="Blend Wall Credit">
+                          <coefficient>1</coefficient>
+                      </minicam-energy-input>
+                  </period>
+                  <period year="2095">
+                      <minicam-energy-input name="Blend Wall Credit">
+                          <coefficient>1</coefficient>
+                      </minicam-energy-input>
+                  </period>
+                  <period year="2100">
+                      <minicam-energy-input name="Blend Wall Credit">
+                          <coefficient>1</coefficient>
+                      </minicam-energy-input>
+                  </period>
+               </technology>
+               <technology name="cellulosic ethanol CCS level 1">
+                  <period year="2021">
+                     <minicam-energy-input name="Blend Wall Credit">
+                        <coefficient>1</coefficient>
+                     </minicam-energy-input>
+                  </period>
+                  <period year="2025">
+                     <minicam-energy-input name="Blend Wall Credit">
+                        <coefficient>1</coefficient>
+                     </minicam-energy-input>
+                  </period>
+                  <period year="2030">
+                     <minicam-energy-input name="Blend Wall Credit">
+                        <coefficient>1</coefficient>
+                     </minicam-energy-input>
+                  </period>
+                  <period year="2035">
+                     <minicam-energy-input name="Blend Wall Credit">
+                        <coefficient>1</coefficient>
+                     </minicam-energy-input>
+                  </period>
+                  <period year="2040">
+                     <minicam-energy-input name="Blend Wall Credit">
+                        <coefficient>1</coefficient>
+                     </minicam-energy-input>
+                  </period>
+                  <period year="2045">
+                     <minicam-energy-input name="Blend Wall Credit">
+                        <coefficient>1</coefficient>
+                     </minicam-energy-input>
+                  </period>
+                  <period year="2050">
+                     <minicam-energy-input name="Blend Wall Credit">
+                        <coefficient>1</coefficient>
+                     </minicam-energy-input>
+                  </period>
+                  <period year="2055">
+                      <minicam-energy-input name="Blend Wall Credit">
+                          <coefficient>1</coefficient>
+                      </minicam-energy-input>
+                  </period>
+                  <period year="2060">
+                      <minicam-energy-input name="Blend Wall Credit">
+                          <coefficient>1</coefficient>
+                      </minicam-energy-input>
+                  </period>
+                  <period year="2065">
+                      <minicam-energy-input name="Blend Wall Credit">
+                          <coefficient>1</coefficient>
+                      </minicam-energy-input>
+                  </period>
+                  <period year="2070">
+                      <minicam-energy-input name="Blend Wall Credit">
+                          <coefficient>1</coefficient>
+                      </minicam-energy-input>
+                  </period>
+                  <period year="2075">
+                      <minicam-energy-input name="Blend Wall Credit">
+                          <coefficient>1</coefficient>
+                      </minicam-energy-input>
+                  </period>
+                  <period year="2080">
+                      <minicam-energy-input name="Blend Wall Credit">
+                          <coefficient>1</coefficient>
+                      </minicam-energy-input>
+                  </period>
+                  <period year="2085">
+                      <minicam-energy-input name="Blend Wall Credit">
+                          <coefficient>1</coefficient>
+                      </minicam-energy-input>
+                  </period>
+                  <period year="2090">
+                      <minicam-energy-input name="Blend Wall Credit">
+                          <coefficient>1</coefficient>
+                      </minicam-energy-input>
+                  </period>
+                  <period year="2095">
+                      <minicam-energy-input name="Blend Wall Credit">
+                          <coefficient>1</coefficient>
+                      </minicam-energy-input>
+                  </period>
+                  <period year="2100">
+                      <minicam-energy-input name="Blend Wall Credit">
+                          <coefficient>1</coefficient>
+                      </minicam-energy-input>
+                  </period>
+               </technology>
+               <technology name="cellulosic ethanol CCS level 2">
                   <period year="2021">
                      <minicam-energy-input name="Blend Wall Credit">
                         <coefficient>1</coefficient>
